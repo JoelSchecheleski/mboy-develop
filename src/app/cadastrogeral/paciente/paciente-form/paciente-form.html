@@ -1,0 +1,412 @@
+<form [formGroup]="formulario" (ngSubmit)="submit(formulario)">
+    <!-- TAB INFORMAÇÕES GERAIS -->
+    <mat-tab-group>
+        <mat-tab label="Geral">
+            <mat-card>
+                <div class="gene-card-title">
+                    <div fxLayout="row" fxLayoutAlign="start left">
+                        <div fxLayout="column">
+                            <h5>{{'Informações do paciente: ' |translate}} {{nomePac}} de {{anos}} de idade</h5>
+                        </div>
+                        <span fxFlex></span>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="gene-card-content">
+
+                    <!-- Primeira linha -->
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">
+                            <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                                <mat-form-field class="full-wid">
+                                    <input formControlName="id" matInput placeholder="Prontuário" disabled>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <input formControlName="dataatual" matInput placeholder="Data de Cadastro">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Segunda linha-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="nome" #nome matInput placeholder="Nome completo*">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="identidade" matInput placeholder="Registro">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="nascimento" matInput [matDatepicker]="picker"
+                                   placeholder="Data de Nascimento">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <!--Terceira linha-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="cpf" matInput placeholder="CPF*">
+                            <mat-error>{{'Campo obrigatório' | translate}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="certidao" matInput placeholder="Certidão Nascimento">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="pispasep" matInput placeholder="Nº PIS/PASEP">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Quarta linha -->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="nomemae" matInput placeholder="Nome da Mãe*">
+                            <mat-error>{{'Campo obrigatório' | translate}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="nomepai" matInput placeholder="Nome do Pai">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="cartaosus" matInput placeholder="Nº Cartão SUS">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="grauinst" matInput placeholder="Grau de Instrução">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Quinta linha -->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+
+                        <mat-form-field>
+                            <mat-select name="estcivil" [(value)]="selectedEstCivil" placeholder="Estado Civil">
+                                <mat-option *ngFor="let m of marital" [value]="m.id">
+                                    {{m.descricao}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-select name="cor" [(value)]="selectedCor" placeholder="Pelo">
+                                <mat-option *ngFor="let c of color" [value]="c.id">
+                                    {{c.descricao}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-select name="religiao" [(value)]="selectedReligiao" placeholder="Religião">
+                                <mat-option *ngFor="let r of religion" [value]="r.id">
+                                    {{r.descricao}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                        <!--<mat-form-field>-->
+                            <!--<mat-select name="sexo" [(value)]="selectedSexo" placeholder="Sexo">-->
+                                <!--<mat-option [value]="0">Não informado</mat-option>-->
+                                <!--<mat-option [value]="1">Masculino</mat-option>-->
+                                <!--<mat-option [value]="2">Feminino</mat-option>-->
+                            <!--</mat-select>-->
+                        <!--</mat-form-field>-->
+
+                        <mat-form-field>
+                            <mat-select name="sexo" [(value)]="selectedSexo" placeholder="Sexo">
+                                <mat-option *ngFor="let s of sex" [value]="s.id">
+                                    {{s.descricao}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+                    <!-- Sexta linha -->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="profispaci" matInput placeholder="Profissão">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-select name="nacional" [(value)]="selectedNacional" placeholder="Nacionalidade">
+                                <mat-option *ngFor="let n of nationality" [value]="n.id">
+                                    {{n.descricao}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-tab>
+
+        <!-- TAB CONVÊNIO -->
+        <mat-tab label="Convênio">
+            <mat-card>
+                <div class="gene-card-title">
+                    <div fxLayout="row" fxLayoutAlign="start left">
+                        <div fxLayout="column">
+                            <h5>{{'Informações do convênio'|translate}}</h5>
+                        </div>
+                        <span fxFlex></span>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="gene-card-content">
+
+                    <!-- Primeira linha -->
+                    <!--<div fxLayout="row wrap" fxLayoutAlign="space-between center">-->
+                    <!--<div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="convenio" matInput placeholder="Convênio*">
+                            <mat-error>{{'Campo obrigatório' | translate}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="matricula" matInput placeholder="Matricula">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="plano" matInput placeholder="Plano">
+                        </mat-form-field>
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!-- Segunda linha -->
+                    <!--<div fxLayout="row wrap" fxLayoutAlign="space-between center">-->
+                    <!--<div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="empseguro" matInput placeholder="Emp. Convênio">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="dtvalcart" matInput placeholder="Validade">
+                        </mat-form-field>
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+                    <mat-divider></mat-divider>
+
+                    <!-- Terceira linha -->
+                    <!--<div fxLayout="row wrap" fxLayoutAlign="space-between center">-->
+                    <!--<div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="segurado" matInput placeholder="Segurado">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="cpf_Segurado" matInput placeholder="CPF">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="nascimento_Segurado" matInput placeholder="Nascimento">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-select name="sexo_Segurado" [(value)]="selectedSexo" placeholder="Sexo">
+                                <mat-option *ngFor="let s of sex" [value]="s.id">
+                                    {{s.descricao}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!-- Quarta linha -->
+                    <!--<div fxLayout="row wrap" fxLayoutAlign="space-between center">-->
+                    <!--<div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field>
+                            <mat-select name="estcivil" [(value)]="selectedEstCivil" placeholder="Estado Civil">
+                                <mat-option *ngFor="let m of marital" [value]="m.id">
+                                    {{m.descricao}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="empresa" matInput placeholder="Empresa">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="profissao" matInput placeholder="Profissão">
+                        </mat-form-field>
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+
+
+                    <!-- Quinta linha -->
+                    <!--<div fxLayout="row wrap" fxLayoutAlign="space-between center">-->
+                    <!--<div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field>
+                            <input formControlName="ddd" matInput placeholder="DDD">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="fone1" matInput placeholder="Telefone">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="ramal" matInput placeholder="Ramal">
+                        </mat-form-field>
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </mat-card>
+        </mat-tab>
+
+        <!-- TAB ENDEREÇO -->
+        <mat-tab label="Endereço">
+            <mat-card>
+                <div class="gene-card-title">
+                    <div fxLayout="row" fxLayoutAlign="start left">
+                        <div fxLayout="column">
+                            <h5>{{'Informações do Endereço do Paciente'|translate}}</h5>
+                        </div>
+                        <span fxFlex></span>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="gene-card-content">
+
+                    <!-- Primeira linha -->
+                    <!--<div fxLayout="row wrap" fxLayoutAlign="space-between center">-->
+                    <!--<div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="endereco" matInput placeholder="Endereço*">
+                            <mat-error>{{'Campo obrigatório' | translate}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="numero" matInput placeholder="Número">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="bairro" matInput placeholder="Bairro">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Segunda linha -->
+                    <!--<div fxLayout="row wrap" fxLayoutAlign="space-between center">-->
+                    <!--<div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="cep" matInput placeholder="CEP*">
+                            <mat-error>{{'Campo obrigatório' | translate}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="ddd" matInput placeholder="DDD">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="fone2" matInput placeholder="Telefone">
+                        </mat-form-field>
+
+                    </div>
+
+                    <!-- Terceira linha -->
+                    <!--<div fxLayout="row wrap" fxLayoutAlign="space-between center">-->
+                    <!--<div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="naturalcid" matInput placeholder="Naturalidade*">
+                            <mat-error>{{'Campo obrigatório' | translate}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="naturaluf" matInput placeholder="UF">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Quarta linha -->
+                    <!--<div fxLayout="row wrap" fxLayoutAlign="space-between center">-->
+                    <!--<div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="responsavel" matInput placeholder="Responsável*">
+                            <mat-error>{{'Campo obrigatório' | translate}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="cpf_Responsavel" matInput placeholder="CPF Reponsável">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="identidade" matInput placeholder="Identidade">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-select name="estcivil" [(value)]="selectedEstCivil" placeholder="Estado Civil">
+                                <mat-option *ngFor="let m of marital" [value]="m.id">
+                                    {{m.descricao}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Quinta linha -->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="profispaci" matInput placeholder="Profissão">
+                            <mat-error>{{'Campo obrigatório' | translate}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-select name="nacional" [(value)]="selectedNacional" placeholder="Nacionalidade">
+                                <mat-option *ngFor="let n of nationality" [value]="n.id">
+                                    {{n.descricao}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="endereco" matInput placeholder="Endereço">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="cep" matInput placeholder="CEP">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Sexta linha -->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="ddd" matInput placeholder="DDD">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="fone2" matInput placeholder="Telefone">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="observacao" matInput placeholder="Observação">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <mat-dialog-actions>
+                    <button mat-button type="submit">Salvar</button>
+                    <button mat-button type="button" (click)="dialogRef.close()">Cancelar</button>
+                </mat-dialog-actions>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</form>
