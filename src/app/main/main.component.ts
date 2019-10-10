@@ -561,20 +561,20 @@ export class MainComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * addMenuItem is used to add a new menu into menu list.
+     * Usado para adicionar de forma dinâmica novos menus
      */
-    addMenuItem(): void {
-        this.menuItems.add({
-            state: 'pages',
-            name: 'GENE MENU',
-            type: 'sub',
-            icon: 'trending_flat',
-            children: [
-                {state: 'blank', name: 'SUB MENU1'},
-                {state: 'blank', name: 'SUB MENU2'}
-            ]
-        });
-    }
+    // addMenuItem(): void {
+    //     this.menuItems.add({
+    //         state: 'pages',
+    //         name: 'GENE MENU',
+    //         type: 'sub',
+    //         icon: 'trending_flat',
+    //         children: [
+    //             {state: 'blank', name: 'SUB MENU1'},
+    //             {state: 'blank', name: 'SUB MENU2'}
+    //         ]
+    //     });
+    // }
 
     /**
      * changeRTL method is used to change the layout of template.

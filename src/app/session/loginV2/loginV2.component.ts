@@ -9,7 +9,7 @@ import {ApiMedeasy} from '../session.service';
 @Component({
     selector: 'ms-loginV2-session',
     templateUrl: './loginV2-component.html',
-    styleUrls: ['./loginV2-component.scss'],
+    styleUrls: ['./loginV2-component.scss', '../../../assets/styles/styles.scss'],
     encapsulation: ViewEncapsulation.None,
     providers: [ApiMedeasy]
 })
@@ -58,8 +58,8 @@ export class LoginV2Component {
                 private router: Router) {
 
         this.frmLogin = new FormGroup({
-          usuario: this.username,
-          senha: this.password
+          username: this.username,
+          password: this.password
         });
     }
 
@@ -71,7 +71,7 @@ export class LoginV2Component {
     // TODO: Login com o sistema
     login() {
         console.log('Efetuando login...');
-        this.authenticationMedeasy.login(this.frmLogin.value.usuario, this.frmLogin.value.senha).subscribe(data => {
+        this.authenticationMedeasy.login(this.frmLogin.value.username, this.frmLogin.value.password).subscribe(data => {
             const ret = JSON.parse(JSON.stringify(data));
             console.log('entrou em login component');
             if (ret.jwtToken != null) {

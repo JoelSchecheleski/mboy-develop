@@ -1,6 +1,32 @@
-@media(max-width:599px){
-   .set-resp-space{
-      padding-top: 0.8rem !important;
-      padding-bottom: 0.8rem !important;
-   }
+//@media(max-width:599px){
+//   .set-resp-space{
+//      padding-top: 0.8rem !important;
+//      padding-bottom: 0.8rem !important;
+//   }
+//}
+@import "../../../assets/styles/styles";
+
+.display {
+  display: block;
+  margin: 0 auto;
 }
+
+.container {
+  // background: url(../../../../../../assets/img/brand/login-bg.jpg) no-repeat center center;
+  background-color: #d5652b;
+}
+
+.other {
+  margin-top: 24px;
+  line-height: 22px;
+  text-align: left;
+
+  nz-tooltip {
+    vertical-align: middle;
+  }
+
+  .register {
+    float: right;
+  }
+}
+

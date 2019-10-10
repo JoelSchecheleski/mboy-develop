@@ -1,0 +1,39 @@
+$primary-color: rgb(213, 101, 43);
+$secondary-color: #454545;
+$menu-font-color: #000;
+$heading-color: fade(#000, 85%);
+$text-color-secondary: fade(#000, 45%);
+$font-size-base: 14px;
+
+.alain-default__header {
+  background-color: $primary-color;
+}
+
+body {
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+
+.alain-default__aside {
+  background-color: #fff;
+  .sidebar-nav__selected {
+    background-color: #fff;
+  }
+
+  .sidebar-nav__item-link:hover {
+    background-color: #ffe0cc;
+  }
+
+  .sidebar-nav__item-link {
+    color: #000;
+  }
+
+
+  .sidebar-nav__sub-arrow::before, .sidebar-nav__sub-arrow::after {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  }
+}
+
+.preloader {
+    background-color: $primary-color !important;
+}

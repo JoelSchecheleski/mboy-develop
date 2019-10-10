@@ -12,7 +12,6 @@ import {
     MatToolbarModule
 } from '@angular/material';
 
-// import {EcommerceService} from '../service/ecommerce/ecommerce.service';
 import {ToastrModule} from 'ngx-toastr';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
@@ -28,8 +27,12 @@ import {ForgotPasswordV2Component} from './forgot-passwordV2/forgot-passwordV2.c
 import {RegisterV2Component} from './registerV2/registerV2.component';
 import {LoginV2Component} from './loginV2/loginV2.component';
 
-
 import {SessionRoutes} from './session.routing';
+import {NzCardModule} from 'ng-zorro-antd';
+import {NZ_ICONS} from 'ng-zorro-antd';
+
+import {MaterialSharedModule} from '../modules/material-shared.module';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 
 @NgModule({
@@ -59,7 +62,9 @@ import {SessionRoutes} from './session.routing';
         ReactiveFormsModule,
         RouterModule.forChild(SessionRoutes),
         ToastrModule.forRoot(),
-        SlickCarouselModule
+        SlickCarouselModule,
+        NzCardModule,
+        MaterialSharedModule
     ],
     providers: [
         // EcommerceService

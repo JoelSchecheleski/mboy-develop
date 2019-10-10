@@ -50,18 +50,18 @@ export class HorizontalLayoutComponent implements OnInit {
                 public translate: TranslateService,
                 private router: Router,
                 private authService: AuthService,
-                // public ecommerceService: EcommerceService,
                 private coreService: CoreService,
                 private activateRoute: ActivatedRoute) {
 
         const browserLang: string = translate.getBrowserLang();
         translate.use(browserLang.match(/en|fr/) ? browserLang : 'pt-br');
 
+        // Tour pelo sistema
         this.tourService.initialize([{
             anchorId: 'start.tour',
-            content: 'Welcome to Gene admin panel!',
+            content: 'Bem vindo ao backOffice MBoy!',
             placement: 'below',
-            title: 'Welcome to Gene',
+            title: 'Bem vindo!',
         },
             {
                 anchorId: 'tour-search',

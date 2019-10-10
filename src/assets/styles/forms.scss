@@ -1,0 +1,57 @@
+@import "variables";
+
+.page-view-label,
+.page-view-value {
+  display: block;
+  text-align: left;
+  border-left: 1px #e5eaea solid;
+  padding-left: 12px !important;
+}
+
+.page-view-label {
+  font-weight: normal;
+  :after {
+    margin: 0 !important;
+  }
+}
+
+.page-view-value {
+  font-weight: $font-weight-medium;
+  padding-bottom: 15px;
+  min-height: 36px;
+  :after {
+    content: none !important;
+  }
+}
+
+.page-view-value.p-b-0 {
+  min-height: 21px;
+}
+
+.actions {
+  margin-top: 35px;
+}
+
+@media (min-width: $screen-md-min) {
+  .actions .ant-btn, .action-btn {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.btn-link {
+  color: $primary-color;
+  text-decoration: underline;
+  border: none;
+  padding: 0;
+  font-weight: $font-weight-medium;
+
+  span {
+    text-decoration: underline;
+  }
+}
