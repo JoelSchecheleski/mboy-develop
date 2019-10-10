@@ -17,13 +17,13 @@ export interface Menu {
 }
 
 const MENUITEMS = [
-    // {
-    //     state: 'horizontal',
-    //     name: 'TOP MENU',
-    //     type: 'button',
-    //     icon: 'horizontal_split',
-    //     label: 'New'
-    // },
+    {
+        state: 'horizontal',
+        name: 'TOP MENU',
+        type: 'button',
+        icon: 'horizontal_split',
+        label: 'New'
+    },
     {
         state: 'dashboard',
         name: 'DASHBOARD',
@@ -83,29 +83,29 @@ const MENUITEMS = [
             {state: 'invoice', name: 'INVOICE', active: true},
         ]
     },
-    {
-        state: 'pages',
-        name: 'PAGES',
-        type: 'sub',
-        icon: 'import_contacts',
-        label: 'New',
-        active: true,
-        children: [
-            {state: 'media', name: 'GALLERY', active: true},
-            {state: 'mediaV2', name: 'GALLERY V2', label: 'New', active: true},
-            {state: 'pricing', name: 'PRICING', active: true},
-            {state: 'pricing-1', name: 'PRICING V2', label: 'New', active: true},
-            {state: 'blank', name: 'BLANK', active: true},
-            {state: 'timeline', name: 'TIMELINE', label: 'New', active: true},
-            {state: 'faq', name: 'FAQ', label: 'New', active: true},
-            {state: 'feedback', name: 'FEEDBACK', label: 'New', active: true},
-            {state: 'about', name: 'ABOUT', label: 'New', active: true},
-            {state: 'contact', name: 'CONTACT', label: 'New', active: true},
-            {state: 'search', name: 'SEARCH', label: 'New', active: true},
-            {state: 'comingsoon', name: 'COMING SOON', label: 'New', active: true},
-            {state: 'maintenance', name: 'MAINTENANCE', label: 'New', active: true},
-        ]
-    },
+    // {
+    //     state: 'pages',
+    //     name: 'PAGES',
+    //     type: 'sub',
+    //     icon: 'import_contacts',
+    //     label: 'New',
+    //     active: true,
+    //     children: [
+    //         {state: 'media', name: 'GALLERY', active: true},
+    //         {state: 'mediaV2', name: 'GALLERY V2', label: 'New', active: true},
+    //         {state: 'pricing', name: 'PRICING', active: true},
+    //         {state: 'pricing-1', name: 'PRICING V2', label: 'New', active: true},
+    //         {state: 'blank', name: 'BLANK', active: true},
+    //         {state: 'timeline', name: 'TIMELINE', label: 'New', active: true},
+    //         {state: 'faq', name: 'FAQ', label: 'New', active: true},
+    //         {state: 'feedback', name: 'FEEDBACK', label: 'New', active: true},
+    //         {state: 'about', name: 'ABOUT', label: 'New', active: true},
+    //         {state: 'contact', name: 'CONTACT', label: 'New', active: true},
+    //         {state: 'search', name: 'SEARCH', label: 'New', active: true},
+    //         {state: 'comingsoon', name: 'COMING SOON', label: 'New', active: true},
+    //         {state: 'maintenance', name: 'MAINTENANCE', label: 'New', active: true},
+    //     ]
+    // },
     {
         state: 'user-management',
         name: 'MANAGEMENT',

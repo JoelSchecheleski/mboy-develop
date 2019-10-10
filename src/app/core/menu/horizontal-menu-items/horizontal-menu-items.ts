@@ -1356,80 +1356,80 @@ const MENUITEMS = [
                 active: true
             },
         ]
-    },
-    {
-        name: 'Pages',
-        type: 'sub',
-        class: 'group-title',
-        mega: true,
-        showColumns: 'show-column-3',
-        icon: '',
-        active: true,
-        children: [
-            {
-                state: 'pages',
-                name: 'PAGES',
-                type: 'subChild',
-                icon: 'import_contacts',
-                active: true,
-                children: [
-                    {state: 'media', name: 'GALLERY', type: 'link', active: true},
-                    {state: 'mediaV2', name: 'GALLERY V2', type: 'link', active: true},
-                    {state: 'pricing', name: 'PRICING', type: 'link', active: true},
-                    {state: 'pricing-1', name: 'PRICING V2', type: 'link', active: true},
-                    {state: 'blank', name: 'BLANK', type: 'link', active: true},
-                    {state: 'timeline', name: 'TIMELINE', type: 'link', active: true},
-                    {state: 'faq', name: 'FAQ', type: 'link', active: true},
-                    {state: 'feedback', name: 'FEEDBACK', type: 'link', active: true},
-                    {state: 'about', name: 'ABOUT', type: 'link', active: true},
-                    {state: 'contact', name: 'CONTACT', type: 'link', active: true},
-                    {state: 'search', name: 'SEARCH', type: 'link', active: true},
-                    {state: 'comingsoon', name: 'COMING SOON', type: 'link', active: true},
-                    {state: 'maintenance', name: 'MAINTENANCE', type: 'link', active: true},
-                ]
-            },
-            {
-                state: 'users',
-                name: 'USERS',
-                type: 'subChild',
-                icon: 'web',
-                active: true,
-                children: [
-                    {state: 'userlist', type: 'link', name: 'USER LIST', active: true},
-                    {state: 'userprofile', type: 'link', name: 'USER PROFILE', active: true},
-                    {state: 'userprofilev2', type: 'link', name: 'USER PROFILE V2', active: true}
-                ]
-            },
-            {
-                state: 'user-management',
-                name: 'MANAGEMENT',
-                type: 'subChild',
-                icon: 'view_list',
-                active: true,
-                children: [
-                    {state: 'usermanagelist', name: 'USER LIST', type: 'link', active: true},
-                    {state: 'usergridlist', name: 'USER GRID', type: 'link', active: true}
-                ]
-            },
-            {
-                state: 'session',
-                name: 'SESSIONS',
-                type: 'subChild',
-                icon: 'face',
-                active: true,
-                children: [
-                    {state: 'login', name: 'LOGIN', type: 'link', active: true},
-                    {state: 'loginV2', name: 'LOGIN V2', type: 'link', active: true},
-                    {state: 'register', name: 'REGISTER', type: 'link', active: true},
-                    {state: 'registerV2', name: 'REGISTER V2', type: 'link', active: true},
-                    {state: 'forgot-password', name: 'FORGOT', type: 'link', active: true},
-                    {state: 'forgot-passwordV2', name: 'FORGOT V2', type: 'link', active: true},
-                    {state: 'lockscreen', name: 'LOCKSCREEN', type: 'link', active: true},
-                    {state: 'lockscreenV2', name: 'LOCKSCREEN V2', type: 'link', active: true}
-                ]
-            }
-        ]
-    }
+    } //,
+    // {
+    //     name: 'Pages',
+    //     type: 'sub',
+    //     class: 'group-title',
+    //     mega: true,
+    //     showColumns: 'show-column-3',
+    //     icon: '',
+    //     active: true,
+    //     children: [
+    //         {
+    //             state: 'pages',
+    //             name: 'PAGES',
+    //             type: 'subChild',
+    //             icon: 'import_contacts',
+    //             active: true,
+    //             children: [
+    //                 {state: 'media', name: 'GALLERY', type: 'link', active: true},
+    //                 {state: 'mediaV2', name: 'GALLERY V2', type: 'link', active: true},
+    //                 {state: 'pricing', name: 'PRICING', type: 'link', active: true},
+    //                 {state: 'pricing-1', name: 'PRICING V2', type: 'link', active: true},
+    //                 {state: 'blank', name: 'BLANK', type: 'link', active: true},
+    //                 {state: 'timeline', name: 'TIMELINE', type: 'link', active: true},
+    //                 {state: 'faq', name: 'FAQ', type: 'link', active: true},
+    //                 {state: 'feedback', name: 'FEEDBACK', type: 'link', active: true},
+    //                 {state: 'about', name: 'ABOUT', type: 'link', active: true},
+    //                 {state: 'contact', name: 'CONTACT', type: 'link', active: true},
+    //                 {state: 'search', name: 'SEARCH', type: 'link', active: true},
+    //                 {state: 'comingsoon', name: 'COMING SOON', type: 'link', active: true},
+    //                 {state: 'maintenance', name: 'MAINTENANCE', type: 'link', active: true},
+    //             ]
+    //         },
+    //         {
+    //             state: 'users',
+    //             name: 'USERS',
+    //             type: 'subChild',
+    //             icon: 'web',
+    //             active: true,
+    //             children: [
+    //                 {state: 'userlist', type: 'link', name: 'USER LIST', active: true},
+    //                 {state: 'userprofile', type: 'link', name: 'USER PROFILE', active: true},
+    //                 {state: 'userprofilev2', type: 'link', name: 'USER PROFILE V2', active: true}
+    //             ]
+    //         },
+    //         {
+    //             state: 'user-management',
+    //             name: 'MANAGEMENT',
+    //             type: 'subChild',
+    //             icon: 'view_list',
+    //             active: true,
+    //             children: [
+    //                 {state: 'usermanagelist', name: 'USER LIST', type: 'link', active: true},
+    //                 {state: 'usergridlist', name: 'USER GRID', type: 'link', active: true}
+    //             ]
+    //         },
+    //         {
+    //             state: 'session',
+    //             name: 'SESSIONS',
+    //             type: 'subChild',
+    //             icon: 'face',
+    //             active: true,
+    //             children: [
+    //                 {state: 'login', name: 'LOGIN', type: 'link', active: true},
+    //                 {state: 'loginV2', name: 'LOGIN V2', type: 'link', active: true},
+    //                 {state: 'register', name: 'REGISTER', type: 'link', active: true},
+    //                 {state: 'registerV2', name: 'REGISTER V2', type: 'link', active: true},
+    //                 {state: 'forgot-password', name: 'FORGOT', type: 'link', active: true},
+    //                 {state: 'forgot-passwordV2', name: 'FORGOT V2', type: 'link', active: true},
+    //                 {state: 'lockscreen', name: 'LOCKSCREEN', type: 'link', active: true},
+    //                 {state: 'lockscreenV2', name: 'LOCKSCREEN V2', type: 'link', active: true}
+    //             ]
+    //         }
+    //     ]
+    // }
 ];
 
 @Injectable()

@@ -401,7 +401,7 @@ export class MainComponent implements OnInit, OnDestroy {
         breadcrumbService.addFriendlyNameForRoute('/maps', 'Maps');
         breadcrumbService.addFriendlyNameForRoute('/maps/googlemap', 'Google Map');
         breadcrumbService.addFriendlyNameForRoute('/maps/leaflet', 'Leaflet Map');
-        breadcrumbService.addFriendlyNameForRoute('/pages', 'Pages');
+        // breadcrumbService.addFriendlyNameForRoute('/pages', 'Pages');
         breadcrumbService.addFriendlyNameForRoute('/pages/media', 'Gallery');
         breadcrumbService.addFriendlyNameForRoute('/pages/pricing', 'Pricing');
         breadcrumbService.addFriendlyNameForRoute('/pages/blank', 'Blank');
