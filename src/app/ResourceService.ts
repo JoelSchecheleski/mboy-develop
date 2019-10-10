@@ -1,18 +1,12 @@
 import {throwError as observableThrowError, Observable} from 'rxjs';
-
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-
-
+import {HttpClient} from '@angular/common/http';
 import {Resource} from './Resource';
 import {QueryOptions} from './query-options';
-import {catchError, map} from 'rxjs/operators';
-
-
-import {Injectable} from '@angular/core';
-
+import {map} from 'rxjs/operators';
 
 export class ResourceService<T extends Resource> {
     url = 'http://localhost:8080/api/';
+    // url = 'http://54.207.116.219:8080/api/';
     public results: any;
 
     constructor(
@@ -45,6 +39,16 @@ export class ResourceService<T extends Resource> {
         // const headers = new HttpHeaders().set('Authorization', `Bearer ${JSON.parse(localStorage.getItem('SESSAO')).accessToken}`);
         return this.httpClient
             .put<T>(`${this.url}${this.endpoint}/${item.id}`, JSON.stringify(item)).pipe(
+                map(data => {
+                    return data as T;
+                }));
+    }
+
+    public POT(item: T, id: T): Observable<T> {
+        console.log('ID do objeto a ser atualizado: ' + id + ', Objeto a ser atualizado : ' + JSON.stringify(item));
+        // const headers = new HttpHeaders().set('Authorization', `Bearer ${JSON.parse(localStorage.getItem('SESSAO')).accessToken}`);
+        return this.httpClient
+            .put<T>(`${this.url}${this.endpoint}/updateUser`, JSON.stringify(item)).pipe(
                 map(data => {
                     return data as T;
                 }));

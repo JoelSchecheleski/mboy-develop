@@ -4,5 +4,5 @@
  * @date: 06/08/2018
  */
 export class Resource {
-  id: number;
+  id: any;
 }

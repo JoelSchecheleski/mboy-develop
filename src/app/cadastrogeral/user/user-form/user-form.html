@@ -1,0 +1,160 @@
+<form [formGroup]="formulario" (ngSubmit)="submit(formulario)">
+    <!-- TAB INFORMAÇÕES GERAIS -->
+    <mat-tab-group>
+
+        <mat-tab label="Informações">
+            <mat-card>
+                <div class="gene-card-title">
+                    <div fxLayout="row" fxLayoutAlign="start left">
+                        <div fxLayout="column">
+                            <h5>{{'Informações do usuário: ' |translate}} {{username}}</h5>
+                        </div>
+                        <span fxFlex></span>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="gene-card-content">
+                    <!-- Primeira linha -->
+                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                        <mat-form-field>
+                            <input formControlName="name" matInput placeholder="Usuário">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="cpfCnpj" matInput placeholder="CPF">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="registrationStatus" matInput placeholder="Status">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="password" matInput placeholder="Senha">
+                        </mat-form-field>
+                    </div>
+                    <!-- segunda linha -->
+                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                        <mat-form-field>
+                            <input formControlName="cnh" matInput placeholder="CNH">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="email" matInput placeholder="E-mail">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="username" matInput placeholder="Celular">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="motorcyclePlate" matInput placeholder="Placa (moto)">
+                        </mat-form-field>
+                    </div>
+                    <!-- terceira linha -->
+                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                        <mat-form-field>
+                            <input formControlName="street" matInput placeholder="Logradouro">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="houseNumber" matInput placeholder="Número">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="complement" matInput placeholder="Complemento">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="neighborhood" matInput placeholder="Bairro">
+                        </mat-form-field>
+                    </div>
+                    <!-- quarta linha -->
+                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                        <mat-form-field>
+                            <input formControlName="usercity" matInput placeholder="Cidade">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="userstate" matInput placeholder="Estado">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="zipCode" matInput placeholder="CEP">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Status linha -->
+                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                        <mat-form-field>
+                            <mat-select name="nacional" [(value)]="selectedStatus" placeholder="Status">
+                                <mat-option *ngFor="let n of registrationStatusList" [value]="n.value">
+                                    {{n.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <mat-dialog-actions>
+                    <button mat-button type="submit">Salvar</button>
+                    <button mat-button type="button" (click)="dialogRef.close()">Cancelar</button>
+                </mat-dialog-actions>
+
+
+            </mat-card>
+        </mat-tab>
+
+        <!-- TAB Documentos Anexos -->
+        <mat-tab label="Anexos">
+            <mat-card>
+                <div class="gene-card-title">
+                    <div fxLayout="row" fxLayoutAlign="start left">
+                        <div fxLayout="column">
+                            <h5>{{'Informações dos documentos'|translate}}</h5>
+                        </div>
+                        <span fxFlex></span>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="gene-card-content">
+
+                    <!-- Primeira linha -->
+                    <!--                    TODO Ajustar chamada dos documentos -->
+                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                        <mat-form-field>
+                            <input formControlName="registrationStatus" matInput placeholder="Status">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+            </mat-card>
+        </mat-tab>
+
+        <!-- TAB Corridas -->
+        <mat-tab label="Corridas">
+            <mat-card>
+                <div class="gene-card-title">
+                    <div fxLayout="row" fxLayoutAlign="start left">
+                        <div fxLayout="column">
+                            <h5>{{'Informações das corridas'|translate}}</h5>
+                        </div>
+                        <span fxFlex></span>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="gene-card-content">
+
+                    <!-- Primeira linha -->
+                    <!--                    TODO Ajustar chamada das corridas -->
+                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                        <mat-form-field>
+                            <input formControlName="registrationStatus" matInput placeholder="Status">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</form>

@@ -20,6 +20,8 @@ const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         children: [
             {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
+
+            {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
             {path: 'inbox', loadChildren: './inbox/inbox.module#InboxModule'},
             {path: 'chat', loadChildren: './chat/chat.module#ChatModule'},
             {path: 'calendar', loadChildren: './calendar/calendar.module#Calendar_Module'},
