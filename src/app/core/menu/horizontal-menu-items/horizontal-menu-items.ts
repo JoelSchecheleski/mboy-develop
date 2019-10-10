@@ -17,12 +17,12 @@ export interface Menu {
 }
 
 const MENUITEMS = [
-    // {
-    //     state: 'vertical',
-    //     name: 'Vertical Menu',
-    //     type: 'button',
-    //     icon: ''
-    // },
+    {
+        state: 'vertical',
+        name: 'Vertical Menu',
+        type: 'button',
+        icon: ''
+    },
 
     // ================================== GERAL ===============================
     {

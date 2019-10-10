@@ -14,6 +14,7 @@ export class IdiomaPTBR {
     loadingOoo: 'carregando...',
     selectAll: 'selecionar todos',
     searchOoo: 'procurando...',
+    Search: 'Buscar',
     blanks: 'branco',
     filterOoo: 'filtro...',
     applyFilter: 'aplicar filtro...',
