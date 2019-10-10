@@ -38,15 +38,15 @@ import {PagesModule} from './pages/pages.module';
 
 // Módulos do sistema
 import {Interceptor} from './interceptor.module';
-import {RaioxModule} from './raiox/raiox.module';
+// import {RaioxModule} from './raiox/raiox.module';
 import {CadastrogeralModule} from './cadastrogeral/cadastrogeral.module';
-import {ProntosocorroModule} from './prontosocorro/prontosocorro.module';
-import {InternacaoModule} from './internacao/internacao.module';
-import {OncologiaModule} from './oncologia/oncologia.module';
-import {PrescricaoModule} from './prescricao/prescricao.module';
-import {FarmaciaModule} from './farmacia/farmacia.module';
-import {TesourariaModule} from './tesouraria/tesouraria.module';
-import {FaturamentoModule} from './faturamento/faturamento.module';
+// import {ProntosocorroModule} from './prontosocorro/prontosocorro.module';
+// import {InternacaoModule} from './internacao/internacao.module';
+// import {OncologiaModule} from './oncologia/oncologia.module';
+// import {PrescricaoModule} from './prescricao/prescricao.module';
+// import {FarmaciaModule} from './farmacia/farmacia.module';
+// import {TesourariaModule} from './tesouraria/tesouraria.module';
+// import {FaturamentoModule} from './faturamento/faturamento.module';
 import {MaterialSharedModule} from './modules/material-shared.module';
 import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 
@@ -80,14 +80,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         PagesModule,
 
         CadastrogeralModule,  // Módulo de cadastros gerais do sistema
-        ProntosocorroModule,  // Módulo do Pronto Socorro
-        InternacaoModule,     // Módulo de Internação
-        RaioxModule,          // Módulo do Raio-X
-        OncologiaModule,      // Módulo da Oncologia
-        PrescricaoModule,     // Módulo de Prescrição médica/oncológica
-        FarmaciaModule,       // Módulo da Farmácia
-        TesourariaModule,     // Módulo da Tesouraria
-        FaturamentoModule,    // Módulo do Faturamento
+        // ProntosocorroModule,  // Módulo do Pronto Socorro
+        // InternacaoModule,     // Módulo de Internação
+        // RaioxModule,          // Módulo do Raio-X
+        // OncologiaModule,      // Módulo da Oncologia
+        // PrescricaoModule,     // Módulo de Prescrição médica/oncológica
+        // FarmaciaModule,       // Módulo da Farmácia
+        // TesourariaModule,     // Módulo da Tesouraria
+        // FaturamentoModule,    // Módulo do Faturamento
         MaterialSharedModule, // Módulo contendo todos os componentes do Material Design
 
         ToastrModule.forRoot(),
