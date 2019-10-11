@@ -34,7 +34,7 @@ export class GridListComponent implements OnInit{
 	 	text: 'Three',
 	 	cols: 1,
 	 	rows: 1,
-	 	color: '#0097a7'
+	 	color: '#d5652b'
   	}, {
 	 	text: 'Four',
 	 	cols: 2,

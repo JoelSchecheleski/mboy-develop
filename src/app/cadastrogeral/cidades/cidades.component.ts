@@ -10,20 +10,22 @@ import {MatButton, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material
 
 import {filter} from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import {PacienteDialogComponent} from './paciente-form/paciente-dialog.component';
-import {PacienteServices} from './paciente-shared/paciente.services';
+
+import {CidadeServices} from './cidades-shared/cidade.services';
 import {AntibiogramaServices} from '../antibiograma/antibiograma-shared/antibiograma.services';
 import {HttpClient} from '@angular/common/http';
 import {Config} from '../../app-config';
+import {CidadesDialogComponent} from './cidades-form/cidade-dialog.component';
 
 @Component({
-    selector: 'ms-paciente',
-    templateUrl: './paciente.component.html',
-    styleUrls: ['./paciente.component.scss'],
-    providers: [PacienteServices]
+  selector: 'ms-cidades',
+  templateUrl: './cidades.component.html',
+  styleUrls: ['./cidades.component.scss'],
+  providers: [CidadeServices]
 })
-export class PacienteComponent implements OnInit {
-    public rowPaciente: any;
+
+export class CidadesComponent implements OnInit {
+    public rowCidades: any;
     public gridOptions: GridOptions;
     public rowData: any;
     public columnDefs: any;
@@ -33,16 +35,16 @@ export class PacienteComponent implements OnInit {
     private gridApi;
     private gridColumnApi;
 
-    fileNameDialogRef: MatDialogRef<PacienteDialogComponent>;
+    fileNameDialogRef: MatDialogRef<CidadesDialogComponent>;
 
-    // Construtor da classe paciente
+    // Construtor da classe Cidades
     constructor(public _http: HttpClient,
-                public api: PacienteServices,
+                public api: CidadeServices,
                 private translate: TranslateService,
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
-        this.pageTitleService.setTitle('Pacientes');
+        this.pageTitleService.setTitle('Cidades');
         const params = {
             skipHeader: false,
             skipFooters: true,
@@ -61,12 +63,12 @@ export class PacienteComponent implements OnInit {
         };
 
         this.columnDefs = [
-            {headerName: 'Prontuário', field: 'id', rowDrag: true},
-            {headerName: 'Nome', field: 'nome'},
-            {headerName: 'Data de Nascimento', field: 'nascimento'},
-            {headerName: 'Nome da Mãe', field: 'nomemae'},
-            // {headerName: 'CPF', field: 'cpf'},
-            // {headerName: 'RG', field: 'certidao'},
+            {headerName: 'Id', field: 'id', rowDrag: true},
+            {headerName: 'Nome', field: 'name'},
+            {headerName: 'IBGE', field: 'ibgeCode'},
+            {headerName: 'UF', field: 'state.abbreviation'},
+            {headerName: 'Estado', field: 'state.name'},
+            // {headerName: 'Autorizado', field: 'authorized'},
             {
                 headerName: 'Ação',
                 lockPosition: false,
@@ -88,7 +90,7 @@ export class PacienteComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.getAllPacientes()
+        this.getAllCidades()
     }
 
     /**
@@ -97,37 +99,36 @@ export class PacienteComponent implements OnInit {
      */
     openFileDialog(file?) {
         if (file) { // Editando
-            this.fileNameDialogRef = this.dialog.open(PacienteDialogComponent, {
+            this.fileNameDialogRef = this.dialog.open(CidadesDialogComponent, {
                 height: '650px',
                 width: '1200px',
                 // position: {
                 //     'top': '15%',
                 //     'left': '25%'
                 // },
-                data: this.api.pacienteData(file)
+                data: this.api.cityData(file)
             });
         } else { // Novo
-            this.fileNameDialogRef = this.dialog.open(PacienteDialogComponent, {
+            this.fileNameDialogRef = this.dialog.open(CidadesDialogComponent, {
                 height: '650px',
                 width: '1200px',
-                data: this.api.pacienteData(file)
+                data: this.api.cityData(file)
             });
         }
 
         this.fileNameDialogRef.afterClosed().pipe(
             filter(descricao => descricao)
         ).subscribe(descricao => {
-            if (this.rowPaciente) {
-                const index = this.rowPaciente.findIndex(f => f.descricao === file);
+            if (this.rowCidades) {
+                const index = this.rowCidades.findIndex(f => f.descricao === file);
                 if (index !== -1) {
-                    this.rowPaciente[index] = {descricao, content: file};
+                    this.rowCidades[index] = {descricao, content: file};
                 } else {
-                    this.rowPaciente.push({descricao, content: ''});
+                    this.rowCidades.push({descricao, content: ''});
                 }
             }
             this.ngOnInit();
         });
-        // console.log(this.rowAntibiograma);
     }
 
     /**
@@ -138,28 +139,18 @@ export class PacienteComponent implements OnInit {
         if (e.event.target !== undefined) {
             const id = e.data.id;
             const actionType = e.event.target.getAttribute('data-action-type');
-            // console.log(actionType);
             switch (actionType) {
                 case 'editar':
                     let selectedRows = {};
-                        // IMPLEMENTAR A BUSCA POR UM REGISTRO ESPECÍFICO QUANDO CLICADO REGISTRO ATUAL /Paciente/397
-                    this._http.get(`http://localhost:8080/api/Paciente/${id}`)
+                    const endpoint = new Config().getEndpoint();
+                    this._http.get(`${endpoint}city/${id}`)
                         .subscribe(data => {
                             selectedRows = data;
                             console.table(selectedRows);
                             this.openFileDialog(selectedRows);
                         });
-                    // const selectedRows = this.gridApi.getSelectedRows();
-                    // let selectedRowsString = '';
-                    // selectedRows.forEach(function (rowSelection, index) {
-                    //     if (index !== 0) {
-                    //         selectedRowsString += ',';
-                    //     }
-                    //     selectedRowsString += rowSelection.descricao;
-                    // });
                     break;
                 case 'deletar':
-                    console.log('DELETAR O ITEM: ', id);
                     Swal.fire({
                         title: 'Deseja realmente deletar esse registro?',
                         text: '',
@@ -209,42 +200,41 @@ export class PacienteComponent implements OnInit {
             selectedRowsString += rowSelection.descricao;
         });
         console.log(JSON.stringify(selectedRows[0]));
-        // this.openFileDialog(selectedRows[0]);
     }
 
     public onGridReady(params) {
         this.gridApi = params.api;
         this.gridColumnApi = params.columnApi;
-
         params.api.sizeColumnsToFit();
     }
 
     /**
-     * Busca todos os pacientes
+     * Busca todos os Cidades
      * @return List of {objects<T>}
      */
-    public getAllPacientes() {
+    public getAllCidades() {
         const endpoint = new Config().getEndpoint();
-        this._http.get(`${endpoint}Paciente/Simple`)
+        this._http.get(`${endpoint}city`)
             .subscribe(
                 data => { // @ts-ignore
-                    this.rowPaciente = data;
+                    this.rowCidades = data;
                     this.rowData = data;
                 },
                 err => console.error(err),
-                () => console.log(this.rowPaciente)
+                () => console.log(this.rowCidades)
             );
         {
 
         }
         // this.api.GET().subscribe(
         //     data => { // @ts-ignore
-        //         this.rowPaciente = data;
+        //         this.rowCidades = data;
         //         this.rowData = data;
         //     },
         //     err => console.error(err),
-        //     () => console.log(this.rowPaciente)
+        //     () => console.log(this.rowCidades)
         // );
     }
 
 }
+

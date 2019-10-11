@@ -17,13 +17,19 @@ export interface Menu {
 }
 
 const MENUITEMS = [
+    // {
+    //     state: 'vertical',
+    //     name: 'Menu horizontal',
+    //     type: 'button',
+    //     icon: '',
+    //     active: true,
+    //     children: []
+    // },
     {
         state: 'vertical',
-        name: 'Alterar menu',
+        name: 'Menu lateral',
         type: 'button',
-        icon: '',
-        active: true,
-        children: []
+        icon: ''
     },
     // ================================== MENUT ITENS MAIN-MATERIAL ===============================
     {
@@ -47,6 +53,13 @@ const MENUITEMS = [
                 type: 'link',
                 icon: 'date_range',
                 active: true
+            },
+            {
+                state: 'cidades', // Cadastro de cidades
+                name: 'cidades',
+                type: 'link',
+                icon: 'date_range',
+                active: true
             }
         ]
     }
@@ -56,7 +69,7 @@ const MENUITEMS = [
 export class MenuItems {
     getAll(): Menu[] {
         // const acesso = JSON.parse(localStorage.getItem('infoUsuarioLogado'))[0].acessos;
-        const menus = MENUITEMS;
+        // const menus = MENUITEMS;
         // acesso.forEach(a => {
         //   a.telas.forEach(b => {
         //     menus.forEach(e => {
@@ -73,8 +86,7 @@ export class MenuItems {
         //     });
         //   });
         // });
-        return menus;
-        // return MENUITEMS;
+        return MENUITEMS;
     }
 
     // add(menu: any) {

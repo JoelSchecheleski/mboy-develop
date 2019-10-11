@@ -80,14 +80,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         PagesModule,
 
         CadastrogeralModule,  // Módulo de cadastros gerais do sistema
-        // ProntosocorroModule,  // Módulo do Pronto Socorro
-        // InternacaoModule,     // Módulo de Internação
-        // RaioxModule,          // Módulo do Raio-X
-        // OncologiaModule,      // Módulo da Oncologia
-        // PrescricaoModule,     // Módulo de Prescrição médica/oncológica
-        // FarmaciaModule,       // Módulo da Farmácia
-        // TesourariaModule,     // Módulo da Tesouraria
-        // FaturamentoModule,    // Módulo do Faturamento
         MaterialSharedModule, // Módulo contendo todos os componentes do Material Design
 
         ToastrModule.forRoot(),

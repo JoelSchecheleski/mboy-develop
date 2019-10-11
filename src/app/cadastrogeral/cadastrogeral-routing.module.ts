@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthGuardService as RoleGuard} from '../role-guarde.service';
 
 const routes: Routes = [
+<<<<<<< HEAD
     // Cadastro geral ================================================================================
     {
         path: '',
@@ -85,6 +86,31 @@ const routes: Routes = [
             }
         ]
     }
+=======
+  // Cadastro geral ================================================================================
+  {
+    path: '',
+    redirectTo: '/',
+    pathMatch: 'full'
+  },
+  {
+      path: '',
+      children: [
+          {
+              path: 'patients',
+              loadChildren: './paciente/paciente.module#PacienteModule'
+          },
+          {
+              path: 'convenios',
+              loadChildren: './convenios/convenios.module#ConveniosModule'
+          },
+          {
+              path: 'cidades',
+              loadChildren: './cidades/cidades.module#CidadesModule'
+          }
+      ]
+  }
+>>>>>>> 1d297b2979115e974babb9c275e628cf34e1725e
 ];
 
 // JB925473301BR

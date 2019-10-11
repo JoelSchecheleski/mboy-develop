@@ -28,35 +28,45 @@ export class JWTInterceptor implements HttpInterceptor {
      * Se existir uma LocalStorage com a SESSAO criada então resolve o header das requisições
      */
     if (localStorage.getItem('SESSAO') != null) {
-      // se for uma solicitação da API
-      if (req.url.includes('localhost')) {
-        // precisamos adicionar um token OAUTH como cabeçalho para acessar a API
+          const clone = req.clone({
+            headers: req.headers.append('Content-Type', 'application/json; charset=utf-8')
+              .set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+              .set('Access-Control-Allow-Origin', '*')
+              .set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, HEAD, OPTIONS')
+              .set('SYSTEM', 'Mboy')
+              .set('Authorization', `Bearer ${JSON.parse(localStorage.getItem('SESSAO')).jwtToken}`)
+          });
+          return next.handle(clone);
 
-        const re = '/Os/FileOS';
-        if (req.url.search(re) === -1) {
-          const clone = req.clone({
-            headers: req.headers.append('Content-Type', 'application/json; charset=utf-8')
-              .set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-              .set('Access-Control-Allow-Origin', '*')
-              .set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, HEAD, OPTIONS')
-              .set('SYSTEM', 'Mboy')
-              .set('Authorization', `Bearer ${JSON.parse(localStorage.getItem('SESSAO')).accessToken}`)
-          });
-          return next.handle(clone);
-        } else {
-          const clone = req.clone({
-            headers: req.headers.append('Content-Type', 'application/json; charset=utf-8')
-              .set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-              .set('Access-Control-Allow-Origin', '*')
-              .set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, HEAD, OPTIONS')
-              .set('SYSTEM', 'Mboy')
-              .set('Authorization', `Bearer ${JSON.parse(localStorage.getItem('SESSAO')).accessToken}`)
-          });
-          return next.handle(clone);
-        }
-      } else { // Se não for uma requisição a API, nós apenas lidamos com o próximo manipulador
-        return next.handle(req);
-      }
+      // se for uma solicitação da API
+      // if (req.url.includes('localhost')) {
+      //   // precisamos adicionar um token OAUTH como cabeçalho para acessar a API
+      //
+      //   const re = '/Os/FileOS';
+      //   if (req.url.search(re) === -1) {
+      //     const clone = req.clone({
+      //       headers: req.headers.append('Content-Type', 'application/json; charset=utf-8')
+      //         .set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+      //         .set('Access-Control-Allow-Origin', '*')
+      //         .set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, HEAD, OPTIONS')
+      //         .set('SYSTEM', 'Mboy')
+      //         .set('Authorization', `Bearer ${JSON.parse(localStorage.getItem('SESSAO')).accessToken}`)
+      //     });
+      //     return next.handle(clone);
+      //   } else {
+      //     const clone = req.clone({
+      //       headers: req.headers.append('Content-Type', 'application/json; charset=utf-8')
+      //         .set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+      //         .set('Access-Control-Allow-Origin', '*')
+      //         .set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, HEAD, OPTIONS')
+      //         .set('SYSTEM', 'Mboy')
+      //         .set('Authorization', `Bearer ${JSON.parse(localStorage.getItem('SESSAO')).accessToken}`)
+      //     });
+      //     return next.handle(clone);
+      //   }
+      // } else { // Se não for uma requisição a API, nós apenas lidamos com o próximo manipulador
+      //   return next.handle(req);
+      // }
     } else {
       const firstLogin = req.clone({
         headers: req.headers.append('Content-Type', 'application/json; charset=utf-8')

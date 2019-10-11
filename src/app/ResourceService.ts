@@ -3,10 +3,13 @@ import {HttpClient} from '@angular/common/http';
 import {Resource} from './Resource';
 import {QueryOptions} from './query-options';
 import {map} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Config} from './app-config';
 
 export class ResourceService<T extends Resource> {
     url = 'http://localhost:8080/api/';
-    // url = 'http://54.207.116.219:8080/api/';
+    // url = new Config().getEndpoint();
+
     public results: any;
 
     constructor(
@@ -59,6 +62,31 @@ export class ResourceService<T extends Resource> {
                     return data as T;
                 }));
     }
+
+    /**
+     * Retorna um registro pelo id informado
+     * @param id ID para a pesquisa
+     * @return <T>{Object}
+     */
+    public GETID(id: number): Observable<T> {
+        return this.httpClient
+            .get(`${this.url}{this.endpoint}/${id}`)
+            .pipe(map((data: any) => {
+                    return data as T;
+                })
+            );
+    }
+
+    getTodos(): Observable<T> {
+        return this.httpClient.get(`${this.url}${this.endpoint}`)
+            .pipe(map((data: Resource) => {
+                    console.log(JSON.stringify(data))
+                    return data as T;
+                })
+            );
+    }
+
+    // this.serializer.fromJson(data) as T)
 
     /**
      * Busca todos os registros do end-point informado
