@@ -35,29 +35,8 @@ const appRoutes: Routes = [
             // Carrega todos os componentes dos cadastros gerais da aplicação
             {path: '', loadChildren: './cadastrogeral/cadastrogeral.module#CadastrogeralModule'},
 
-            // // Carrega todos os componentes do módulo do pronto socorro
-            // {path: '', loadChildren: './prontosocorro/prontosocorro.module#ProntosocorroModule'},
-            //
-            // // Carrega todos os componentes do módulo de Internação
-            // {path: '', loadChildren: './internacao/internacao.module#InternacaoModule'},
-            //
-            // // Carrega todos os componentes do módulo de Raio-X
-            // {path: '', loadChildren: './raiox/raiox.module#RaioxModule'},
-            //
-            // // Carrega todos os componentes da oncologia
-            // {path: '', loadChildren: './oncologia/oncologia.module#OncologiaModule'},
-            //
-            // // Carrega todos os componentes para prescrição médica/oncológica
-            // {path: '', loadChildren: './prescricao/prescricao.module#PrescricaoModule'},
-            //
-            // // Carrega todos os componentes do modulo de farmacia
-            // {path: '', loadChildren: './farmacia/farmacia.module#FarmaciaModule'},
-            //
-            // // Carrega todos os componentes do modulo de tesouraria
-            // {path: '', loadChildren: './tesouraria/tesouraria.module#TesourariaModule'},
-            //
-            // // Carrega todos os componentes do modulo de faturamento
-            // {path: '', loadChildren: './faturamento/faturamento.module#FaturamentoModule'}
+            // Carrega todos os componentes do módulo do pronto socorro
+             // {path: '', loadChildren: './cidades/cidades.module#CidadesModule'},
 
         ]
     },

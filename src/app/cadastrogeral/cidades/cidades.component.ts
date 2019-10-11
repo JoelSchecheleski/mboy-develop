@@ -20,7 +20,8 @@ import {CidadesDialogComponent} from './cidades-form/cidade-dialog.component';
 @Component({
   selector: 'ms-cidades',
   templateUrl: './cidades.component.html',
-  styleUrls: ['./cidades.component.scss']
+  styleUrls: ['./cidades.component.scss'],
+  providers: [CidadeServices]
 })
 
 export class CidadesComponent implements OnInit {
@@ -89,7 +90,7 @@ export class CidadesComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getAllCidadess()
+        this.getAllCidades()
     }
 
     /**
@@ -141,21 +142,13 @@ export class CidadesComponent implements OnInit {
             switch (actionType) {
                 case 'editar':
                     let selectedRows = {};
-                        // IMPLEMENTAR A BUSCA POR UM REGISTRO ESPECÍFICO QUANDO CLICADO REGISTRO ATUAL /Cidades/397
-                    this._http.get(`http://localhost:8080/api/city/${id}`)
+                    const endpoint = new Config().getEndpoint();
+                    this._http.get(`${endpoint}city/${id}`)
                         .subscribe(data => {
                             selectedRows = data;
                             console.table(selectedRows);
                             this.openFileDialog(selectedRows);
                         });
-                    // const selectedRows = this.gridApi.getSelectedRows();
-                    // let selectedRowsString = '';
-                    // selectedRows.forEach(function (rowSelection, index) {
-                    //     if (index !== 0) {
-                    //         selectedRowsString += ',';
-                    //     }
-                    //     selectedRowsString += rowSelection.descricao;
-                    // });
                     break;
                 case 'deletar':
                     Swal.fire({
@@ -216,10 +209,10 @@ export class CidadesComponent implements OnInit {
     }
 
     /**
-     * Busca todos os Cidadess
+     * Busca todos os Cidades
      * @return List of {objects<T>}
      */
-    public getAllCidadess() {
+    public getAllCidades() {
         const endpoint = new Config().getEndpoint();
         this._http.get(`${endpoint}city`)
             .subscribe(

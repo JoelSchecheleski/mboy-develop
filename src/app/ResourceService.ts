@@ -9,10 +9,13 @@ import {catchError, map} from 'rxjs/operators';
 
 
 import {Injectable} from '@angular/core';
+import {Config} from './app-config';
 
 
 export class ResourceService<T extends Resource> {
-    url = 'http://localhost:8080/api/';
+    // url = 'http://localhost:8080/api/';
+    url = new Config().getEndpoint();
+
     public results: any;
 
     constructor(
@@ -67,7 +70,7 @@ export class ResourceService<T extends Resource> {
     getTodos(): Observable<T> {
         return this.httpClient.get(`${this.url}${this.endpoint}`)
             .pipe(map((data: Resource) => {
-                    // return JSON.stringify(data);
+                    console.log(JSON.stringify(data))
                     return data as T;
                 })
             );

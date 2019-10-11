@@ -88,7 +88,7 @@ export class PacienteComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getAllPacientes()
+        // this.getAllPacientes()
     }
 
     /**
