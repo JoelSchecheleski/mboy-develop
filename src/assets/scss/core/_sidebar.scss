@@ -261,12 +261,15 @@ body {
       font-size: 0.875rem;
    }
 
+   .mat-mini-fab {
+      background-color: #D5652B;
+   }
 
+   //   TODO: Alterar a cor novamente
    .mat-form-field.mat-focused .mat-form-field-ripple {
-      background-color: #00897b; // #1565c0;
+      background-color: #D5652B; // #00897b; // #1565c0;
    }
    .mat-mini-fab .mat-button-wrapper {
-
       display: inline;
 
    }

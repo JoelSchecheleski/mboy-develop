@@ -5,11 +5,9 @@ import {CadastrogeralRoutingModule} from './cadastrogeral-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FileUploadModule} from 'ng2-file-upload';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-
 import {MaterialSharedModule} from '../modules/material-shared.module';
 
 @NgModule({
-    declarations: [],
     imports: [
         CommonModule,
         MaterialSharedModule,

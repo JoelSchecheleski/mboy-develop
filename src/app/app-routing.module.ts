@@ -25,17 +25,11 @@ const appRoutes: Routes = [
             {path: 'calendar', loadChildren: './calendar/calendar.module#Calendar_Module'},
             {path: 'editor', loadChildren: './editor/editor.module#EditorModule'},
             {path: 'icons', loadChildren: './material-icons/material-icons.module#MaterialIconsModule'},
-            // {path: 'chart', loadChildren: './chart/chart.module#ChartModule'},
             {path: 'components', loadChildren: './components/components.module#ComponentsModule'},
-            // {path: 'dragndrop', loadChilden: './drag-drop/drag-drop.module#DragDropModule'},
             {path: 'tables', loadChildren: './tables/tables.module#TablesModule'},
             {path: 'forms', loadChildren: './forms/forms.module#FormModule'},
-            // {path: 'maps', loadChildren: './maps/maps.module#MapsModule'},
-            // {path: 'pages', loadChildren: './pages/pages.module#PagesModule'},
             {path: 'users', loadChildren: './users/users.module#UsersModule'},
-            // {path: 'video-player', loadChildren: './video-player/video-player.module#VideoPlayerModule'},
             {path: 'taskboard', loadChildren: './task-board/task-board.module#TaskBoardModule'},
-            // {path: 'courses', loadChildren: './courses/courses.module#CoursesModule'},
             {path: 'user-management', loadChildren: './user-management/user-management.module#UserManagementModule'},
 
             // Carrega todos os componentes dos cadastros gerais da aplicação

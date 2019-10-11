@@ -20,44 +20,43 @@
                         </div>
                     </mat-toolbar>
 
-                    <perfect-scrollbar>
+                    <perfect-scrollbar style="background-color: white"> <!-- TODO: Alterado a cor do menu -->
                         <div class="sidebar-container">
                             <div class="gene-user-thumb text-center">
-
                                 <div class="img-responsive">
-                                    <!--                                    <img class="logo" src="../../assets/img/brand/logo-full-alt.svg"-->
-                                    <!--                                         style="width: 100%; max-height: 75px">-->
                                     <span class="gene-user-name gene-block">Joel Schecheleski</span>
                                 </div>
                                 <div class="sidenav-scrollbar-container" fxLayout="column">
                                     <mat-nav-list fxLayout="column" menuToggleDirective class="navigation">
                                         <mat-divider></mat-divider>
+                                        <!-- Monta o menu com base no menu-items.ts -->
+
                                         <mat-list-item menuToggleLink *ngFor="let menuitem of menuItems.getAll()">
                                             <a menuToggle class="gene-relative" mat-ripple
                                                *ngIf="menuitem.type === 'button'" routerLinkActive="active-link"
                                                (click)="changeLayout()">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
                                                 <span>{{ menuitem.name | translate }}</span>
-                                                <!--                                            <ng-container *ngIf="menuitem.label">-->
-                                                <!--                                                <span class="sidebar-label">{{ menuitem.label}}</span>-->
-                                                <!--                                            </ng-container>-->
+                                                <ng-container *ngIf="menuitem.label">
+                                                    <span class="sidebar-label">{{ menuitem.label}}</span>
+                                                </ng-container>
                                             </a>
                                             <a menuToggle class="gene-relative" mat-ripple
                                                [routerLink]="['/', menuitem.state]" routerLinkActive="active-link"
                                                *ngIf="menuitem.type === 'link'">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
                                                 <span>{{ menuitem.name | translate }}</span>
-                                                <!--                                            <ng-container *ngIf="menuitem.label">-->
-                                                <!--                                                <span class="sidebar-label">{{ menuitem.label}}</span>-->
-                                                <!--                                            </ng-container>-->
+                                                <ng-container *ngIf="menuitem.label">
+                                                    <span class="sidebar-label">{{ menuitem.label}}</span>
+                                                </ng-container>
                                             </a>
                                             <a menuToggle class="gene-relative" mat-ripple href="javascript:;"
                                                *ngIf="menuitem.type === 'sub'">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
                                                 <span>{{ menuitem.name | translate }}</span>
-                                                <!--                                                <ng-container *ngIf="menuitem.label">-->
-                                                <!--                                                    <span class="sidebar-label">{{ menuitem?.label}}</span>-->
-                                                <!--                                                </ng-container>-->
+                                                <ng-container *ngIf="menuitem.label">
+                                                    <span class="sidebar-label">{{ menuitem.label}}</span>
+                                                </ng-container>
                                                 <span fxFlex></span>
                                                 <mat-icon class="menu-caret">chevron_right</mat-icon>
                                             </a>
@@ -67,13 +66,14 @@
                                                     <a [routerLink]="['/', menuitem.state, childitem.state ]"
                                                        routerLinkActive="active-link" class="gene-relative" mat-ripple>
                                                         {{ childitem.name | translate }}
-                                                        <!--                                                        <ng-container *ngIf="childitem?.label">-->
-                                                        <!--                                                            <span class="sidebar-label">{{childitem?.label}}</span>-->
-                                                        <!--                                                        </ng-container>-->
+                                                        <ng-container *ngIf="childitem.label">
+                                                            <span class="sidebar-label">{{childitem.label}}</span>
+                                                        </ng-container>
                                                     </a>
                                                 </mat-list-item>
                                             </mat-nav-list>
                                         </mat-list-item>
+
                                         <mat-divider></mat-divider>
                                         <!--                                        <mat-list-item>-->
                                         <!--                                            <a (click)="addMenuItem()">-->
