@@ -122,7 +122,6 @@ export class UserComponent implements OnInit {
         if (e.event.target !== undefined) {
             const id = e.data.username;
             const actionType = e.event.target.getAttribute('data-action-type');
-            // console.log(actionType);
             switch (actionType) {
                 case 'editar':
                     let selectedRows = {};
@@ -130,7 +129,7 @@ export class UserComponent implements OnInit {
                     this._http.get(`http://localhost:8080/api/user/${id}`)
                         .subscribe(data => {
                             selectedRows = data;
-                            console.table(selectedRows);
+                            // console.table(selectedRows);
                             this.openFileDialog(selectedRows);
                         });
                     break;
@@ -185,7 +184,7 @@ export class UserComponent implements OnInit {
             }
             selectedRowsString += rowSelection.descricao;
         });
-        console.log(JSON.stringify(selectedRows[0]));
+        // console.log(JSON.stringify(selectedRows[0]));
         // this.openFileDialog(selectedRows[0]);
     }
 

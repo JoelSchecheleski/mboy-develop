@@ -2,24 +2,25 @@ import {Component, OnInit, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {isNullOrUndefined} from '@swimlane/ngx-datatable/release/utils';
-
+import {DomSanitizer} from '@angular/platform-browser';
 import Swal from 'sweetalert2'
 import {UserServices} from '../user-shared/user.services';
+import {MatTabChangeEvent} from '@angular/material/tabs';
 
 @Component({
     templateUrl: './user-form.html',
     providers: [UserServices]
 })
 export class UserDialogComponent implements OnInit {
-    private status: any;
+    private readonly status: any;
 
     public today = new Date();
     public registrationStatusList = [
-        { value: 'UNDER_ANALYSIS', viewValue: 'UNDER_ANALYSIS' },
-        { value: 'APPROVED', viewValue: 'APPROVED' },
-        { value: 'BLOCKED', viewValue: 'BLOCKED' },
-        { value: 'ACCESS_DENIED', viewValue: 'ACCESS_DENIED' },
-        { value: 'REJECTED', viewValue: 'REJECTED' }
+        {value: 'UNDER_ANALYSIS', viewValue: 'UNDER_ANALYSIS'},
+        {value: 'APPROVED', viewValue: 'APPROVED'},
+        {value: 'BLOCKED', viewValue: 'BLOCKED'},
+        {value: 'ACCESS_DENIED', viewValue: 'ACCESS_DENIED'},
+        {value: 'REJECTED', viewValue: 'REJECTED'}
     ];
 
     public selectedStatus: any;
@@ -31,6 +32,7 @@ export class UserDialogComponent implements OnInit {
         public api: UserServices,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<UserDialogComponent>,
+        private domSanitizer: DomSanitizer,
         @Inject(MAT_DIALOG_DATA) private data,
     ) {
         if (!isNullOrUndefined(data.username) && data.username !== '') {
@@ -40,6 +42,11 @@ export class UserDialogComponent implements OnInit {
             this.username = 'Novo Usuário';
             this.status = 'Novo';
         }
+    }
+
+    tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+        console.log('tabChangeEvent => ', tabChangeEvent);
+        console.log('index => ', tabChangeEvent.index);
     }
 
     ngOnInit() {
@@ -75,17 +82,8 @@ export class UserDialogComponent implements OnInit {
         this.selectedStatus = this.data.registrationStatus;
     }
 
-    // public compareObjects(o1: any, o2: any): boolean {
-    //     return o1.name === o2.name && o1.id === o2.id;
-    // }
-    //
-    // public compareItems(i1, i2) {
-    //     return i1 && i2 && i1.id === i2.id;
-    // }
-
-
     submit(form) {
-        console.log("submit");
+        console.log('submit');
         if (this.status === 'Novo') {
             // console.log('Editando: ', form.value)
             this.api.POST(form.value)
@@ -107,7 +105,7 @@ export class UserDialogComponent implements OnInit {
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.value) {
-                    this.api.POT(form.value, form.value.username)
+                    this.api.PUT(form.value, form.value.username)
                         .subscribe(data => {
                                 console.log('Objeto atualizado!', data);
                                 this.dialogRef.close(`${form.value.descricao}`);
@@ -116,41 +114,5 @@ export class UserDialogComponent implements OnInit {
                 }
             });
         }
-        // this.dialogRef.close(`${form.value.descricao}`);
     }
-
-    // getErrorMessage() {
-    //     return this.formulario['nome'].hasError('required') ? 'Nome é requerido' : '';
-    // }
-
-    // private idade(data) {
-    //     const atualmente = new Date();
-    //     const nascimento = new Date(data.split('/').reverse().join('/'));
-    //
-    //     let ano = atualmente.getFullYear() - nascimento.getFullYear();
-    //     let mes: any;
-    //     let dia: any;
-    //
-    //     if ((atualmente.getMonth() + 1) >= (nascimento.getMonth() + 1)) {
-    //         mes = (atualmente.getMonth() + 1) - (nascimento.getMonth() + 1);
-    //     } else {
-    //         mes = 12 + (atualmente.getMonth() + 1) - (nascimento.getMonth() + 1);
-    //         ano--;
-    //     }
-    //
-    //     if (atualmente.getDate() >= nascimento.getDate()) {
-    //         dia = atualmente.getDate() - nascimento.getDate();
-    //     } else {
-    //         dia = 31 + atualmente.getDate() - nascimento.getDate();
-    //         mes--;
-    //
-    //         if (mes < 0) {
-    //             mes = 11;
-    //             ano--;
-    //         }
-    //     }
-    //     return ((ano > 1) ? ano + ' Anos' : (ano === 1) ? ano + ' Ano' :
-    //         (mes > 1) ? mes + ' Meses' : (mes === 1) ? mes + ' Mês' :
-    //             (dia > 1) ? dia + ' Dias' : (dia === 1) ? dia + ' Dia' : 'Hoje');
-    // }
 }

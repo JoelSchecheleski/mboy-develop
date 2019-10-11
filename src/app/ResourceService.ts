@@ -15,15 +15,31 @@ export class ResourceService<T extends Resource> {
     }
 
     /**
+     * Limpa valores vazios pro valores nulos
+     * @param jsonObject
+     * * @return String com Json limpo
+     */
+    private getCleanObject(jsonObject) {
+        const clone = JSON.parse(JSON.stringify(jsonObject))
+        for (const prop in clone) {
+            if (!clone[prop]) {
+                // delete clone[prop];
+                clone[prop] = null;
+            }
+        }
+        return JSON.stringify(clone);
+    }
+
+    /**
      * Cria um novo registro
      * @param item Item{Object<T>} a ser inserido
      * @return <T> data object
      */
     public POST(item: T): Observable<T> {
         delete item['id'];
-        console.log('Objeto a ser inserido: ' + JSON.stringify(item));
+        console.log('Objeto a ser inserido: ' + this.getCleanObject(item));
         return this.httpClient
-            .post<T>(`${this.url}${this.endpoint}`, JSON.stringify(item)).pipe(
+            .post<T>(`${this.url}${this.endpoint}`, this.getCleanObject(item)).pipe(
                 map(data => {
                     return data as T;
                 }));
@@ -34,50 +50,15 @@ export class ResourceService<T extends Resource> {
      * @param item Item{Object} a ser atualizado
      * @return <T> Object updated
      */
-    public PUT(item: T): Observable<T> {
-        console.log('Objeto a ser atualizado: ' + JSON.stringify(item));
+    public PUT(item: T, id: any = null): Observable<T> {
+        console.log('Objeto a ser atualizado: ' + this.getCleanObject(item));
         // const headers = new HttpHeaders().set('Authorization', `Bearer ${JSON.parse(localStorage.getItem('SESSAO')).accessToken}`);
         return this.httpClient
-            .put<T>(`${this.url}${this.endpoint}/${item.id}`, JSON.stringify(item)).pipe(
+            .put<T>(`${this.url}${this.endpoint}`, this.getCleanObject(item)).pipe(
                 map(data => {
                     return data as T;
                 }));
     }
-
-    public POT(item: T, id: T): Observable<T> {
-        console.log('ID do objeto a ser atualizado: ' + id + ', Objeto a ser atualizado : ' + JSON.stringify(item));
-        // const headers = new HttpHeaders().set('Authorization', `Bearer ${JSON.parse(localStorage.getItem('SESSAO')).accessToken}`);
-        return this.httpClient
-            .put<T>(`${this.url}${this.endpoint}/updateUser`, JSON.stringify(item)).pipe(
-                map(data => {
-                    return data as T;
-                }));
-    }
-
-    /**
-     * Retorna um registro pelo id informado
-     * @param id ID para a pesquisa
-     * @return <T>{Object}
-     */
-    public GETID(id: number): Observable<T> {
-        return this.httpClient
-            .get(`${this.url}{this.endpoint}/${id}`)
-            .pipe(map((data: any) => {
-                    return data as T;
-                })
-            );
-    }
-
-    getTodos(): Observable<T> {
-        return this.httpClient.get(`${this.url}${this.endpoint}`)
-            .pipe(map((data: Resource) => {
-                    // return JSON.stringify(data);
-                    return data as T;
-                })
-            );
-    }
-
-    // this.serializer.fromJson(data) as T)
 
     /**
      * Busca todos os registros do end-point informado

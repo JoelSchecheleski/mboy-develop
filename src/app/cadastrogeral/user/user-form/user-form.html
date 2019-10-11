@@ -1,7 +1,6 @@
 <form [formGroup]="formulario" (ngSubmit)="submit(formulario)">
     <!-- TAB INFORMAÇÕES GERAIS -->
-    <mat-tab-group>
-
+    <mat-tab-group  (selectedTabChange)="tabChanged($event)">
         <mat-tab label="Informações">
             <mat-card>
                 <div class="gene-card-title">
@@ -17,15 +16,11 @@
                     <!-- Primeira linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
                         <mat-form-field>
-                            <input formControlName="name" matInput placeholder="Usuário">
+                            <input formControlName="name" matInput placeholder="Usuário" >
                         </mat-form-field>
 
                         <mat-form-field>
                             <input formControlName="cpfCnpj" matInput placeholder="CPF">
-                        </mat-form-field>
-
-                        <mat-form-field>
-                            <input formControlName="registrationStatus" matInput placeholder="Status">
                         </mat-form-field>
 
                         <mat-form-field>
@@ -86,22 +81,19 @@
                     <!-- Status linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
                         <mat-form-field>
-                            <mat-select name="nacional" [(value)]="selectedStatus" placeholder="Status">
+                            <mat-select formControlName="registrationStatus" [(value)]="selectedStatus" placeholder="Status">
                                 <mat-option *ngFor="let n of registrationStatusList" [value]="n.value">
                                     {{n.viewValue}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
-
                 </div>
 
                 <mat-dialog-actions>
                     <button mat-button type="submit">Salvar</button>
                     <button mat-button type="button" (click)="dialogRef.close()">Cancelar</button>
                 </mat-dialog-actions>
-
-
             </mat-card>
         </mat-tab>
 
@@ -123,7 +115,8 @@
                     <!--                    TODO Ajustar chamada dos documentos -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
                         <mat-form-field>
-                            <input formControlName="registrationStatus" matInput placeholder="Status">
+                            <input formControlName="zipCode" matInput placeholder="CEP">
+<!--                            <input formControlName="registrationStatus" matInput placeholder="Status">-->
                         </mat-form-field>
                     </div>
 
@@ -132,29 +125,29 @@
         </mat-tab>
 
         <!-- TAB Corridas -->
-        <mat-tab label="Corridas">
-            <mat-card>
-                <div class="gene-card-title">
-                    <div fxLayout="row" fxLayoutAlign="start left">
-                        <div fxLayout="column">
-                            <h5>{{'Informações das corridas'|translate}}</h5>
-                        </div>
-                        <span fxFlex></span>
-                    </div>
-                    <mat-divider></mat-divider>
-                </div>
-                <div class="gene-card-content">
+<!--        <mat-tab label="Corridas">-->
+<!--            <mat-card>-->
+<!--                <div class="gene-card-title">-->
+<!--                    <div fxLayout="row" fxLayoutAlign="start left">-->
+<!--                        <div fxLayout="column">-->
+<!--                            <h5>{{'Informações das corridas'|translate}}</h5>-->
+<!--                        </div>-->
+<!--                        <span fxFlex></span>-->
+<!--                    </div>-->
+<!--                    <mat-divider></mat-divider>-->
+<!--                </div>-->
+<!--                <div class="gene-card-content">-->
 
-                    <!-- Primeira linha -->
-                    <!--                    TODO Ajustar chamada das corridas -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
-                            <input formControlName="registrationStatus" matInput placeholder="Status">
-                        </mat-form-field>
-                    </div>
+<!--                    &lt;!&ndash; Primeira linha &ndash;&gt;-->
+<!--                    &lt;!&ndash;                    TODO Ajustar chamada das corridas &ndash;&gt;-->
+<!--                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">-->
+<!--                        <mat-form-field>-->
+<!--&lt;!&ndash;                            <input formControlName="registrationStatus" matInput placeholder="Status">&ndash;&gt;-->
+<!--                        </mat-form-field>-->
+<!--                    </div>-->
 
-                </div>
-            </mat-card>
-        </mat-tab>
+<!--                </div>-->
+<!--            </mat-card>-->
+<!--        </mat-tab>-->
     </mat-tab-group>
 </form>
