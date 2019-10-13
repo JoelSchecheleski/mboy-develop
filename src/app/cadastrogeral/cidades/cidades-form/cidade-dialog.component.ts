@@ -9,19 +9,22 @@ import {CorServices} from '../../../modules/servicos/cor.services';
 import {NacionalServices} from '../../../modules/servicos/nacional.services';
 import {EstadocivilServices} from '../../../modules/servicos/estadocivil.services';
 import {CidadeServices} from '../cidades-shared/cidade.services';
+import {StateServices} from '../cidades-shared/state.services';
 
 @Component({
     templateUrl: './cidade-form.html',
-    providers: [CidadeServices]
+    providers: [CidadeServices, StateServices]
 })
 export class CidadesDialogComponent implements OnInit {
     private status: any;
 
     public today = new Date();
-
+    public selectedState: any;
+    public state: any;
     public formulario: FormGroup;
 
     constructor(
+        private stateService: StateServices,
         public api: CidadeServices,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<CidadesDialogComponent>,
@@ -42,15 +45,22 @@ export class CidadesDialogComponent implements OnInit {
         //     console.table(this.nationality);
         // });
 
+        // Busca todos os tipos de estado civil cadastrado
+        this.stateService.GET().subscribe(data => {
+            this.state = data;
+            console.log(this.state);
+        });
+
         // Formulário de cadastro de pacientes
         this.formulario = this.formBuilder.group({
             id: this.data.id ? this.data.id : '',
             name: this.data.name ? this.data.name : '',
             authorized: this.data.authorized ? this.data.authorized : '',
-            ibgeCode: this.data.ibgeCode  ? this.data.ibgeCode : '',
-            zipCodes: this.data.zipCodes  ? this.data.zipCodes : '',
-            state: this.data.state  ? this.data.state : '',
+            ibgeCode: this.data.ibgeCode ? this.data.ibgeCode : '',
+            zipCodes: this.data.zipCodes ? this.data.zipCodes : '',
+            state: this.data.state ? this.data.state : '',
         });
+        this.selectedState = this.data.state;
     }
 
     public compareObjects(o1: any, o2: any): boolean {
