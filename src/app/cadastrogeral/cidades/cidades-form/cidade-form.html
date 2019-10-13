@@ -1,1 +1,58 @@
-<h1>Cadastro de cidades</h1>
+<form [formGroup]="formulario" (ngSubmit)="submit(formulario)">
+    <!-- TAB INFORMAÇÕES GERAIS -->
+    <mat-tab-group>
+        <mat-tab label="Geral">
+            <mat-card>
+                <div class="gene-card-title">
+                    <div fxLayout="row" fxLayoutAlign="start left">
+                        <div fxLayout="column">
+                            <!--                            <h5>{{'Informações do paciente: ' |translate}} {{nomePac}} de {{anos}} de idade</h5>-->
+                        </div>
+                        <span fxFlex></span>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="gene-card-content">
+
+                    <!-- Primeira linha -->
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">
+                            <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                                <mat-form-field class="full-wid">
+                                    <input formControlName="id" matInput placeholder="Prontuário" disabled>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Segunda linha-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="name" #nome matInput placeholder="Nome da cidade*">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="ibgeCode" matInput placeholder="CBGE">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="authorized" matInput placeholder="Autorizada">
+                        </mat-form-field>
+                    </div>
+
+                    <!--Terceira linha-->
+                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+                        <mat-form-field class="full-wid">
+                            <input formControlName="state.name" matInput placeholder="Estado">
+                            <mat-error>{{'Campo obrigatório' | translate}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid">
+                            <input formControlName="state.abbreviation" matInput placeholder="UF">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</form>

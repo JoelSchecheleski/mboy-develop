@@ -45,8 +45,11 @@ export class CidadesDialogComponent implements OnInit {
         // Formulário de cadastro de pacientes
         this.formulario = this.formBuilder.group({
             id: this.data.id ? this.data.id : '',
-            nome: this.data.nome ? this.data.nome : '',
-            convenioModel: this.data.convenioModel ? this.data.convenioModel : ''
+            name: this.data.name ? this.data.name : '',
+            authorized: this.data.authorized ? this.data.authorized : '',
+            ibgeCode: this.data.ibgeCode  ? this.data.ibgeCode : '',
+            zipCodes: this.data.zipCodes  ? this.data.zipCodes : '',
+            state: this.data.state  ? this.data.state : '',
         });
     }
 

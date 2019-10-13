@@ -11,6 +11,9 @@ import {MaterialSharedModule} from '../../modules/material-shared.module';
 import {Button} from 'selenium-webdriver';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PacienteRoutingModule} from '../paciente/paciente-routing.module';
+import {PacienteDialogComponent} from '../paciente/paciente-form/paciente-dialog.component';
+import {PacienteComponent} from '../paciente/paciente.component';
+import {CidadesDialogComponent} from './cidades-form/cidade-dialog.component';
 
 @NgModule({
     imports: [
@@ -24,7 +27,8 @@ import {PacienteRoutingModule} from '../paciente/paciente-routing.module';
         ReactiveFormsModule,
         TranslateModule
     ],
-    declarations: [CidadesComponent],
+    entryComponents: [CidadesDialogComponent],
+    declarations: [CidadesComponent, CidadesDialogComponent],
     bootstrap: [CidadesComponent]
 })
 export class CidadesModule {
