@@ -27,15 +27,18 @@
                                     <span class="gene-user-name gene-block">{{name | uppercase}}</span>
                                 </div>
                                 <div class="sidenav-scrollbar-container" fxLayout="column">
-                                    <mat-nav-list fxLayout="column" menuToggleDirective class="navigation" style="color: #615d5a">
+                                    <mat-nav-list fxLayout="column" menuToggleDirective class="navigation"
+                                                  style="color: #615d5a">
                                         <mat-divider></mat-divider>
                                         <!-- Monta o menu com base no menu-items.ts -->
 
-                                        <mat-list-item menuToggleLink *ngFor="let menuitem of menuItems.getAll()" class="rectangle">
+                                        <mat-list-item menuToggleLink *ngFor="let menuitem of menuItems.getAll()"
+                                                       class="rectangle">
                                             <a menuToggle class="gene-relative" style="color: #615d5a"
                                                *ngIf="menuitem.type === 'button'" routerLinkActive="active-link"
                                                (click)="changeLayout()">
-                                                <mat-icon>{{ menuitem.icon }}</mat-icon>
+                                                <mat-icon
+                                                        style="height: 24px; width: 24px;">{{ menuitem.icon }}</mat-icon>
                                                 <span>{{ menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem?.label">
                                                     <span class="sidebar-label">{{ menuitem?.label}}</span>
@@ -73,20 +76,17 @@
                                                 </mat-list-item>
                                             </mat-nav-list>
                                         </mat-list-item>
-
                                     </mat-nav-list>
                                 </div>
                             </div>
                         </div>
                     </perfect-scrollbar>
                 </div>
-
-
             </mat-sidenav>
             <mat-toolbar class="gene-header-toolbar" style="background-color: #d5652b">
                 <div class="gene-ham-icon" tourAnchor="start.tour">
                     <!-- TODO: toggleSidebar-->
-                    <button style="background-color: #d5652b" mat-mini-fab mat-card-icon (click)="toggleSidebar()">
+                    <button style="background-color: white" mat-mini-fab mat-card-icon (click)="toggleSidebar()">
                         <mat-icon>menu</mat-icon>
                     </button>
                 </div>

@@ -34,11 +34,11 @@ const MENUITEMS = [
     // },
     // ================================== MENUT ITENS MAIN-MATERIAL ===============================
     {
-        state: '',
-        name: 'General',
+        state: 'Pessoas',
+        name: 'Pessoas',
         type: 'sub',
         class: 'group-title',
-        icon: '',
+        icon: 'people',
         active: true,
         children: [
             {
@@ -54,22 +54,15 @@ const MENUITEMS = [
                 type: 'link',
                 icon: 'date_range',
                 active: true
-            },
-            {
-                state: 'cidades', // Cadastro de cidades
-                name: 'cidades',
-                type: 'link',
-                icon: 'date_range',
-                active: true
             }
         ]
     },
-    {
-        state: 'Pessoas',
-        name: 'Pessoas',
-        type: 'link',
-        icon: 'people'
-    },
+    // {
+    //     state: 'Pessoas',
+    //     name: 'Pessoas',
+    //     type: 'link',
+    //     icon: 'people'
+    // },
     {
         state: 'cidades',
         name: 'Cidades',
