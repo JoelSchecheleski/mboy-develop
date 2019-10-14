@@ -36,7 +36,6 @@ export class CidadeServices extends ResourceService<CityModel> {
             zipCodes: file ? file.zipCodes : '',
             state: file ? file.state : {},
         };
-
         return this.dados;
     }
 }

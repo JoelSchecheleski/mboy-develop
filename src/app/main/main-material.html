@@ -43,15 +43,17 @@
                                                     <span class="sidebar-label">{{ menuitem?.label}}</span>
                                                 </ng-container>
                                             </a>
+
                                             <a menuToggle class="gene-relative" mat-ripple style="color: #615d5a"
-                                               [routerLink]="['/', menuitem.state]" routerLinkActive="active-link"
+                                               [routerLink]="[menuitem.state]" routerLinkActive="active"
                                                *ngIf="menuitem.type === 'link'">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
-                                                <span>{{ menuitem.name | translate }}</span>
+                                                <span>{{menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem?.label">
                                                     <span class="sidebar-label">{{ menuitem?.label}}</span>
                                                 </ng-container>
                                             </a>
+
                                             <a menuToggle class="gene-relative" mat-ripple href="javascript:;"
                                                *ngIf="menuitem.type === 'sub'">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
@@ -77,6 +79,7 @@
                                         </mat-list-item>
                                     </mat-nav-list>
                                 </div>
+
                             </div>
                         </div>
                     </perfect-scrollbar>
@@ -85,9 +88,9 @@
             <mat-toolbar class="gene-header-toolbar" style="background-color: #d5652b">
                 <div class="gene-ham-icon" tourAnchor="start.tour">
                     <!-- TODO: toggleSidebar-->
-<!--                    <button style="background-color: white" mat-mini-fab mat-card-icon (click)="toggleSidebar()">-->
-<!--                        <mat-icon>menu</mat-icon>-->
-<!--                    </button>-->
+                    <!--                    <button style="background-color: white" mat-mini-fab mat-card-icon (click)="toggleSidebar()">-->
+                    <!--                        <mat-icon>menu</mat-icon>-->
+                    <!--                    </button>-->
                 </div>
                 <a class="navbar-brand" href="#">{{header}}</a>
                 <breadcrumb class="gene-breadcrumbs"></breadcrumb>
@@ -114,44 +117,51 @@
                     <!--                    </button>-->
                 </div>
             </mat-toolbar>
-        </mat-sidenav-container>
-    </div>
 
-    <mat-menu class="user-menu" x-position="before" y-position="below" #menu="matMenu">
-        <button mat-menu-item>
-            <mat-icon>account_circle</mat-icon>
-            <span>{{'Profile'|translate}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>settings</mat-icon>
-            <span>{{'Settings'|translate}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>help</mat-icon>
-            <span>{{'Help'|translate}}</span>
-        </button>
-        <mat-divider></mat-divider>
-        <!--        <button (click)="logOut()" mat-menu-item>-->
-        <!--            <mat-icon>exit_to_app</mat-icon>-->
-        <!--            <span>{{'Logout'|translate}}</span>-->
-        <!--        </button>-->
-    </mat-menu>
-    <mat-menu class="apps-menu" x-position="after" y-position="below" #appsmenu="matMenu">
-        <button mat-menu-item>
-            <mat-icon>storage</mat-icon>
-            <span>{{'Total App Memory'|translate}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>memory</mat-icon>
-            <span>{{'Total Memory Used'|translate}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>mail</mat-icon>
-            <span>{{'12 Unread Mail'|translate}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>feedback</mat-icon>
-            <span>{{'2 Feedback'|translate}}</span>
-        </button>
-    </mat-menu>
+            <div class="gene-base-container" #container>
+                <div class="inner-container">
+                    <router-outlet (activate)="onActivate($event, container)"></router-outlet>
+                </div>
+            </div>
+        </mat-sidenav-container>
+
+
+        <mat-menu class="user-menu" x-position="before" y-position="below" #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>account_circle</mat-icon>
+                <span>{{'Profile'|translate}}</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                <span>{{'Settings'|translate}}</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>help</mat-icon>
+                <span>{{'Help'|translate}}</span>
+            </button>
+            <mat-divider></mat-divider>
+            <!--        <button (click)="logOut()" mat-menu-item>-->
+            <!--            <mat-icon>exit_to_app</mat-icon>-->
+            <!--            <span>{{'Logout'|translate}}</span>-->
+            <!--        </button>-->
+        </mat-menu>
+        <mat-menu class="apps-menu" x-position="after" y-position="below" #appsmenu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>storage</mat-icon>
+                <span>{{'Total App Memory'|translate}}</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>memory</mat-icon>
+                <span>{{'Total Memory Used'|translate}}</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>mail</mat-icon>
+                <span>{{'12 Unread Mail'|translate}}</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>feedback</mat-icon>
+                <span>{{'2 Feedback'|translate}}</span>
+            </button>
+        </mat-menu>
+    </div>
 </ng-template>

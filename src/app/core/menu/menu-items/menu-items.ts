@@ -42,27 +42,42 @@ const MENUITEMS = [
         active: true,
         children: [
             {
-                state: 'chat',
-                name: 'CHAT',
+                state: 'usuarios',
+                name: 'Usuários',
                 type: 'link',
-                icon: 'chat',
+                icon: 'user',
+                active: true
+            },
+            {
+                state: 'motoboys',
+                name: 'Motoboys',
+                type: 'link',
+                icon: '',
+                active: true
+            },
+            {
+                state: 'empresas',
+                name: 'Empresas',
+                type: 'link',
+                icon: 'store',
+                active: true
+            },
+            {
+                state: 'clientes',
+                name: 'Clientes',
+                type: 'link',
+                icon: '',
                 active: true
             },
             {
                 state: 'user', // Cadastro de Pacientes
                 name: 'patients',
                 type: 'link',
-                icon: 'date_range',
+                icon: 'user',
                 active: true
             }
         ]
     },
-    // {
-    //     state: 'Pessoas',
-    //     name: 'Pessoas',
-    //     type: 'link',
-    //     icon: 'people'
-    // },
     {
         state: 'cidades',
         name: 'Cidades',

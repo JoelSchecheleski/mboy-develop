@@ -27,7 +27,7 @@ const appRoutes: Routes = [
             {path: 'users', loadChildren: './users/users.module#UsersModule'},
 
             // Carrega todos os componentes dos cadastros gerais da aplicação
-            {path: 'general', loadChildren: './cadastrogeral/cadastrogeral.module#CadastrogeralModule'},
+            {path: '', loadChildren: './cadastrogeral/cadastrogeral.module#CadastrogeralModule'},
 
         ]
     },

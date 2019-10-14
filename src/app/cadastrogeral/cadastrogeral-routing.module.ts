@@ -7,7 +7,7 @@ const routes: Routes = [
     // Cadastro geral ================================================================================
     {
       path: '',
-      redirectTo: '/main',
+      redirectTo: '/',
       pathMatch: 'full'
     },
     {
