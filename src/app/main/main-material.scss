@@ -10,3 +10,23 @@
       font-size: 0.85rem;
    }
 }
+
+.rectangle {
+  height: 44px;
+  width: 237px;
+  opacity: 0.4;
+  border-radius: 4px;
+  background-color: rgba(213, 101, 43, 0.17);
+}
+
+.mat-list-item :hover {
+  background-color: #ffe0cc;
+}
+
+//.mat-list-item {
+//  height: 44px;
+//  width: 237px;
+//  opacity: 0.4;
+//  border-radius: 4px;
+//  background-color: rgba(213, 101, 43, 0.17);
+//}

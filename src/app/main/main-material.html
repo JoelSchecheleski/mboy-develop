@@ -27,12 +27,12 @@
                                     <span class="gene-user-name gene-block">{{name | uppercase}}</span>
                                 </div>
                                 <div class="sidenav-scrollbar-container" fxLayout="column">
-                                    <mat-nav-list fxLayout="column" menuToggleDirective class="navigation">
-<!--                                        <mat-divider></mat-divider>-->
+                                    <mat-nav-list fxLayout="column" menuToggleDirective class="navigation" style="color: #615d5a">
+                                        <mat-divider></mat-divider>
                                         <!-- Monta o menu com base no menu-items.ts -->
 
-                                        <mat-list-item menuToggleLink *ngFor="let menuitem of menuItems.getAll()">
-                                            <a menuToggle class="gene-relative" mat-ripple
+                                        <mat-list-item menuToggleLink *ngFor="let menuitem of menuItems.getAll()" class="rectangle">
+                                            <a menuToggle class="gene-relative" style="color: #615d5a"
                                                *ngIf="menuitem.type === 'button'" routerLinkActive="active-link"
                                                (click)="changeLayout()">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
@@ -41,7 +41,7 @@
                                                     <span class="sidebar-label">{{ menuitem?.label}}</span>
                                                 </ng-container>
                                             </a>
-                                            <a menuToggle class="gene-relative" mat-ripple
+                                            <a menuToggle class="gene-relative" mat-ripple style="color: #615d5a"
                                                [routerLink]="['/', menuitem.state]" routerLinkActive="active-link"
                                                *ngIf="menuitem.type === 'link'">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
@@ -74,13 +74,6 @@
                                             </mat-nav-list>
                                         </mat-list-item>
 
-                                        <mat-divider></mat-divider>
-                                        <!--                                        <mat-list-item>-->
-                                        <!--                                            <a (click)="addMenuItem()">-->
-                                        <!--                                                <mat-icon>add</mat-icon>-->
-                                        <!--                                                <span>{{'Add'|translate}}</span>-->
-                                        <!--                                            </a>-->
-                                        <!--                                        </mat-list-item>-->
                                     </mat-nav-list>
                                 </div>
                             </div>

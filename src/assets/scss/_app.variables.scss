@@ -4,10 +4,9 @@
 
 
 //Sidebar
-
 $sidebar-width: 16rem !default;
-$sidebar-text-color: #e4e7ef;
-$sidebar-bg-color: #37474F;
+$sidebar-text-color: #000000;
+$sidebar-bg-color: #D5652A;
 $compact-sidebar-width: 70px !default;
 
 
@@ -20,7 +19,7 @@ $header-font-color:#000000;
 $mat-card-padding-top-bottom :0.875rem;
 $mat-card-padding-left-right : 1.5rem;
 $mat-card-bg-color:#ffffff;
-$mat-card-title-font-color:#37474F;
+$mat-card-title-font-color:#D5652A;
 $mat-card-hover-effect:0 0 10px rgba(0, 0, 0, 0.2);
 //mat-icon
 
@@ -30,20 +29,21 @@ $mat-card-icon-color: #868e96;
 $container-bg:#f0f2f7;
 //Rounded Icons
 $highlight-icons: #ffffff;
-$highlight-icon-color:#37474F;
+$highlight-icon-color:#D5652A;
 
 
 // Typography
 //
 
 
-$font-color: #37474F;
+$font-color: #D5652A;
 //Meta post
 $meta-post-color:#9c9fad;
 $meta-post-font-weight:bold;
+
 //Breadcrumb
 $breadcrumb-font-size:0.875rem;
-$breadcrumb-font-color:#37474F;
+$breadcrumb-font-color:#D5652A;
 
 //Mat list hover bg
 $mat-list-hover-bg-color: rgba(0, 0, 0, 0.2);

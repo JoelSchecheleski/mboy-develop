@@ -6,7 +6,6 @@ const routes: Routes = [
     {
         path: '',
         component: CidadesComponent,
-
         data: {
             title: 'Cadastro de cidades e liberação das mesmas',
             icon: 'ti-home',
