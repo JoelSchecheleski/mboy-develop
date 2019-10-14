@@ -22,23 +22,12 @@ const appRoutes: Routes = [
             {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
 
             {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
-            // {path: 'inbox', loadChildren: './inbox/inbox.module#InboxModule'},
-            // {path: 'chat', loadChildren: './chat/chat.module#ChatModule'},
-            // {path: 'calendar', loadChildren: './calendar/calendar.module#Calendar_Module'},
-            // {path: 'editor', loadChildren: './editor/editor.module#EditorModule'},
             {path: 'icons', loadChildren: './material-icons/material-icons.module#MaterialIconsModule'},
             {path: 'components', loadChildren: './components/components.module#ComponentsModule'},
-            // {path: 'tables', loadChildren: './tables/tables.module#TablesModule'},
-            // {path: 'forms', loadChildren: './forms/forms.module#FormModule'},
             {path: 'users', loadChildren: './users/users.module#UsersModule'},
-            // {path: 'taskboard', loadChildren: './task-board/task-board.module#TaskBoardModule'},
-            // {path: 'user-management', loadChildren: './user-management/user-management.module#UserManagementModule'},
 
             // Carrega todos os componentes dos cadastros gerais da aplicação
             {path: '', loadChildren: './cadastrogeral/cadastrogeral.module#CadastrogeralModule'},
-
-            // Carrega todos os componentes do módulo do pronto socorro
-             // {path: '', loadChildren: './cidades/cidades.module#CidadesModule'},
 
         ]
     },

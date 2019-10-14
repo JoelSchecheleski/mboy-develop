@@ -7,8 +7,7 @@ import {Injectable} from '@angular/core';
 import {Config} from './app-config';
 
 export class ResourceService<T extends Resource> {
-    url = 'http://localhost:8080/api/';
-    // url = new Config().getEndpoint();
+    url = new Config().getEndpoint();
 
     public results: any;
 
@@ -55,7 +54,6 @@ export class ResourceService<T extends Resource> {
      */
     public PUT(item: T, id: any = null): Observable<T> {
         console.log('Objeto a ser atualizado: ' + this.getCleanObject(item));
-        // const headers = new HttpHeaders().set('Authorization', `Bearer ${JSON.parse(localStorage.getItem('SESSAO')).accessToken}`);
         return this.httpClient
             .put<T>(`${this.url}${this.endpoint}`, this.getCleanObject(item)).pipe(
                 map(data => {
@@ -87,7 +85,6 @@ export class ResourceService<T extends Resource> {
     }
 
     // this.serializer.fromJson(data) as T)
-
     /**
      * Busca todos os registros do end-point informado
      * @return Array de objetos {}[]

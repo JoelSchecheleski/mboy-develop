@@ -144,7 +144,7 @@ export class MainComponent implements OnInit, OnDestroy {
                 public coreService: CoreService, private routes: Router,
                 private activatedRoute: ActivatedRoute) {
 
-        // Define o menu horizontal como padrão
+        // TODO: Mudar layout para  o padrão horizontal
         this.changeLayout();
 
         // Carrega o layout em fullscreen
@@ -438,11 +438,11 @@ export class MainComponent implements OnInit, OnDestroy {
      * O método changeLayout é usado para alterar o layout vertical para o layout horizontal.
      */
     changeLayout() {
-        this.coreService.horizontalStatus = true;
+        this.coreService.horizontalStatus = false;
         if (window.innerWidth <= 959) {
-            this.coreService.horizontalSizeStatue = false;
-        } else {
             this.coreService.horizontalSizeStatue = true;
+        } else {
+            this.coreService.horizontalSizeStatue = false;
         }
     }
 }

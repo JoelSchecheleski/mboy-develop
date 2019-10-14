@@ -3,10 +3,11 @@ import {Injectable, Component} from '@angular/core';
 import {Router, CanActivate, ActivatedRouteSnapshot} from '@angular/router';
 import {map} from 'rxjs/operators';
 import * as CryptoJS from 'crypto-js';
+import {Config} from './app-config';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-    public _baseUrl = 'http://localhost:8080/api/';
+    private _baseUrl = new Config().getEndpoint();
     public _token: string;
     public _usuario: string;
     public infoUser: any;
@@ -29,7 +30,7 @@ export class AuthGuardService implements CanActivate {
         const intervalo = expire - atual; // 600000 mm == 10 min
 
         if (intervalo < 1.8e+6 && intervalo > 0) {
-            const jwtToken = CryptoJS.AES.decrypt(String(infoUsuarioLogado.accesskey).trim(), '#medeasy#').toString(CryptoJS.enc.Utf8);
+            const jwtToken = CryptoJS.AES.decrypt(String(infoUsuarioLogado.jwtToken).trim(), '#mboy#').toString(CryptoJS.enc.Utf8);
             this._http.post<any>(`${this._baseUrl}auth/signin`, {
                 username: infoUsuarioLogado.username,
                 password: jwtToken
