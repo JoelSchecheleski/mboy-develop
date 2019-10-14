@@ -23,7 +23,7 @@ export class StateServices extends ResourceService<StateModel> {
     }
 
     /**
-     * Monta a estrutura de dados de cidades para ser apresentado nos componentes
+     * Monta a estrutura de dados de estados
      * @param file Objeto (registro) selecionado na grid.
      */
     public stateData(file: any): Observable<any> {
