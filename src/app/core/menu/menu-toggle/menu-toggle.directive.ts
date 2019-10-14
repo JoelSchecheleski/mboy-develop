@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MenuToggleLinkDirective } from './menu-toggle-link.directive';
 
 @Directive({
-  selector: '[menuToggleDirective]',
+   selector: '[menuToggleDirective]',
 })
 export class MenuToggleDirective {
 

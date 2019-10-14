@@ -12,7 +12,6 @@ import {filter} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
 import {CidadeServices} from './cidades-shared/cidade.services';
-import {AntibiogramaServices} from '../antibiograma/antibiograma-shared/antibiograma.services';
 import {HttpClient} from '@angular/common/http';
 import {Config} from '../../app-config';
 import {CidadesDialogComponent} from './cidades-form/cidade-dialog.component';

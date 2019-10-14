@@ -12,7 +12,7 @@ import {filter} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {PacienteDialogComponent} from './paciente-form/paciente-dialog.component';
 import {PacienteServices} from './paciente-shared/paciente.services';
-import {AntibiogramaServices} from '../antibiograma/antibiograma-shared/antibiograma.services';
+// import {AntibiogramaServices} from '../antibiograma/antibiograma-shared/antibiograma.services';
 import {HttpClient} from '@angular/common/http';
 import {Config} from '../../app-config';
 

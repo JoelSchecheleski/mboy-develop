@@ -18,10 +18,6 @@ const routes: Routes = [
               loadChildren: './paciente/paciente.module#PacienteModule'
           },
           {
-              path: 'convenios',
-              loadChildren: './convenios/convenios.module#ConveniosModule'
-          },
-          {
               path: 'cidades',
               loadChildren: './cidades/cidades.module#CidadesModule'
           }

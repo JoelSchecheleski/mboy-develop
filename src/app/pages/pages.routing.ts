@@ -3,7 +3,7 @@ import {Routes} from '@angular/router';
 import {MediaComponent} from './media/media.component';
 import {MediaV2Component} from './mediaV2/mediaV2.component';
 import {PricingComponent} from './pricing/pricing.component';
-import {Pricing1Component} from './pricing1/pricing1.component';
+// import {Pricing1Component} from './pricing1/pricing1.component';
 import {BlankComponent} from './blank/blank.component';
 import {FaqComponent} from './faq/faq.component';
 import {AboutComponent} from './about/about.component';
@@ -34,10 +34,10 @@ export const PagesRoutes: Routes = [
                 path: 'pricing',
                 component: PricingComponent
             },
-            {
-                path: 'pricing-1',
-                component: Pricing1Component
-            },
+            // {
+            //     path: 'pricing-1',
+            //     component: Pricing1Component
+            // },
             {
                 path: 'blank',
                 component: BlankComponent
