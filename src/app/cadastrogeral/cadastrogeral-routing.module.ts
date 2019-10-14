@@ -4,25 +4,25 @@ import {AuthGuardService as RoleGuard} from '../role-guarde.service';
 
 const routes: Routes = [
 
-  // Cadastro geral ================================================================================
-  {
-    path: '',
-    redirectTo: '/',
-    pathMatch: 'full'
-  },
-  {
+    // Cadastro geral ================================================================================
+    {
       path: '',
-      children: [
-          {
-              path: 'patients',
-              loadChildren: './paciente/paciente.module#PacienteModule'
-          },
-          {
-              path: 'cidades',
-              loadChildren: './cidades/cidades.module#CidadesModule'
-          }
-      ]
-  }
+      redirectTo: '/',
+      pathMatch: 'full'
+    },
+    {
+        path: '',
+        children: [
+            {
+                path: 'patients',
+                loadChildren: './paciente/paciente.module#PacienteModule'
+            },
+            {
+                path: 'cidades',
+                loadChildren: './cidades/cidades.module#CidadesModule'
+            }
+        ]
+    }
 ];
 
 // JB925473301BR

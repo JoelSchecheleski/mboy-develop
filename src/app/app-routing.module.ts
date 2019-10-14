@@ -8,10 +8,10 @@ import {AuthGuard} from './core/guards/auth.guard';
 
 const appRoutes: Routes = [
     // {
-    //     path: '',
-    //     redirectTo: 'dashboard',
-    //     pathMatch: 'full',
-    // },
+    //     //     path: '',
+    //     //     redirectTo: 'dashboard',
+    //     //     pathMatch: 'full',
+    //     // },
     {
         path: '',
         component: MainComponent,
@@ -27,7 +27,7 @@ const appRoutes: Routes = [
             {path: 'users', loadChildren: './users/users.module#UsersModule'},
 
             // Carrega todos os componentes dos cadastros gerais da aplicação
-            {path: '', loadChildren: './cadastrogeral/cadastrogeral.module#CadastrogeralModule'},
+            {path: 'general', loadChildren: './cadastrogeral/cadastrogeral.module#CadastrogeralModule'},
 
         ]
     },

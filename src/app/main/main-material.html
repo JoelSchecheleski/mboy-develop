@@ -42,7 +42,7 @@
                                                 </ng-container>
                                             </a>
                                             <a menuToggle class="gene-relative" mat-ripple
-                                               [routerLink]="[menuitem.state]" routerLinkActive="active-link"
+                                               [routerLink]="['/', menuitem.state]" routerLinkActive="active-link"
                                                *ngIf="menuitem.type === 'link'">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
                                                 <span>{{ menuitem.name | translate }}</span>
