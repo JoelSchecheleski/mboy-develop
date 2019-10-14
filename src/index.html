@@ -4,7 +4,7 @@
     <base href="/">
     <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=11">
-   <title>Hospital system</title>
+   <title>Backoffice MBoy</title>
 
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -32,9 +32,9 @@
 
 </head>
 <body>
-	<gene-app>
+	<mboy-app>
 		<div class="spinner"></div>
-	</gene-app>
+	</mboy-app>
 
 <script type="text/javascript">
     (function (window) {
@@ -45,7 +45,9 @@
         function MouseEvent(eventType, params) {
           params = params || { bubbles: false, cancelable: false };
           var mouseEvent = document.createEvent('MouseEvent');
-          mouseEvent.initMouseEvent(eventType, params.bubbles, params.cancelable, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+          mouseEvent.initMouseEvent(eventType, params.bubbles, params.cancelable, window,
+              0, 0, 0, 0, 0, false, false,
+              false, false, 0, null);
 
           return mouseEvent;
         }

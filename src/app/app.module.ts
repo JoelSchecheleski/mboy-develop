@@ -25,7 +25,7 @@ import {AuthService} from './service/auth-service/auth.service';
 import {PageTitleService} from './core/page-title/page-title.service';
 import {D3ChartService} from './core/nvD3/nvD3.service';
 
-import {GeneAppComponent} from './app.component';
+import {MBoyAppComponent} from './app.component';
 import {MainComponent} from './main/main.component';
 import {MenuToggleModule} from './core/menu/menu-toggle.module';
 import {MenuItems} from './core/menu/menu-items/menu-items';
@@ -105,11 +105,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         SweetAlert2Module.forRoot()
     ],
     declarations: [
-        GeneAppComponent,
+        MBoyAppComponent,
         MainComponent,
         HorizontalLayoutComponent
     ],
-    bootstrap: [GeneAppComponent],
+    bootstrap: [MBoyAppComponent],
     providers: [
         D3ChartService,
         MenuItems,
@@ -126,5 +126,5 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     // exports: [MaterialSharedModule],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class GeneAppModule {
+export class MboyAppModule {
 }

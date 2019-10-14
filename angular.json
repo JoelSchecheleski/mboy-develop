@@ -172,7 +172,7 @@
       }
     }
   },
-  "defaultProject": "Gene",
+  "defaultProject": "Mboy",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "ms",
