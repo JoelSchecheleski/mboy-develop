@@ -34,7 +34,7 @@ const MENUITEMS = [
     // },
     // ================================== MENUT ITENS MAIN-MATERIAL ===============================
     {
-        state: 'general',
+        state: '',
         name: 'General',
         type: 'sub',
         class: 'group-title',

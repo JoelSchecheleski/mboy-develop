@@ -37,17 +37,17 @@
                                                (click)="changeLayout()">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
                                                 <span>{{ menuitem.name | translate }}</span>
-                                                <ng-container *ngIf="menuitem.label">
-                                                    <span class="sidebar-label">{{ menuitem.label}}</span>
+                                                <ng-container *ngIf="menuitem?.label">
+                                                    <span class="sidebar-label">{{ menuitem?.label}}</span>
                                                 </ng-container>
                                             </a>
                                             <a menuToggle class="gene-relative" mat-ripple
-                                               [routerLink]="['/', menuitem.state]" routerLinkActive="active-link"
+                                               [routerLink]="[menuitem.state]" routerLinkActive="active-link"
                                                *ngIf="menuitem.type === 'link'">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
                                                 <span>{{ menuitem.name | translate }}</span>
-                                                <ng-container *ngIf="menuitem.label">
-                                                    <span class="sidebar-label">{{ menuitem.label}}</span>
+                                                <ng-container *ngIf="menuitem?.label">
+                                                    <span class="sidebar-label">{{ menuitem?.label}}</span>
                                                 </ng-container>
                                             </a>
                                             <a menuToggle class="gene-relative" mat-ripple href="javascript:;"
@@ -63,7 +63,7 @@
                                             <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
                                                 <mat-list-item *ngFor="let childitem of menuitem.children"
                                                                routerLinkActive="open">
-                                                    <a [routerLink]="['/', menuitem.state, childitem.state ]"
+                                                    <a [routerLink]="[menuitem.state, childitem.state ]"
                                                        routerLinkActive="active-link" class="gene-relative" mat-ripple>
                                                         {{ childitem.name | translate }}
                                                         <ng-container *ngIf="childitem.label">
