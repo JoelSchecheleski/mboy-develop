@@ -24,7 +24,7 @@ const screenfull = require('screenfull');
 })
 
 export class MainComponent implements OnInit, OnDestroy {
-
+    name: any = '';
     root: any = 'ltr';
     layout: any = 'ltr';
     currentLang: any = 'pt-br';
@@ -52,85 +52,6 @@ export class MainComponent implements OnInit, OnDestroy {
     private _router: Subscription;
     @ViewChild('sidenav') sidenav;
 
-    sideBarFilterClass: any = [
-        {
-            sideBarSelect: 'sidebar-color-1',
-            colorSelect: 'sidebar-color-dark'
-        },
-        {
-            sideBarSelect: 'sidebar-color-2',
-            colorSelect: 'sidebar-color-primary',
-        },
-        {
-            sideBarSelect: 'sidebar-color-3',
-            colorSelect: 'sidebar-color-accent'
-        },
-        {
-            sideBarSelect: 'sidebar-color-4',
-            colorSelect: 'sidebar-color-warn'
-        },
-        {
-            sideBarSelect: 'sidebar-color-5',
-            colorSelect: 'sidebar-color-green'
-        }
-    ]
-
-    headerFilterClass: any = [
-        {
-            headerSelect: 'header-color-1',
-            colorSelect: 'header-color-dark'
-        },
-        {
-            headerSelect: 'header-color-2',
-            colorSelect: 'header-color-primary'
-        },
-        {
-            headerSelect: 'header-color-3',
-            colorSelect: 'header-color-accent'
-        },
-        {
-            headerSelect: 'header-color-4',
-            colorSelect: 'header-color-warning'
-        },
-        {
-            headerSelect: 'header-color-5',
-            colorSelect: 'header-color-green'
-        }
-    ]
-
-    chatList: any [] = [
-        {
-            image: 'assets/img/user-1.jpg',
-            name: 'John Smith',
-            chat: 'Lorem ipsum simply dummy',
-            mode: 'online'
-        },
-        {
-            image: 'assets/img/user-2.jpg',
-            name: 'Amanda Brown',
-            chat: 'Lorem ipsum simply dummy',
-            mode: 'online'
-        },
-        {
-            image: 'assets/img/user-3.jpg',
-            name: 'Justin Randolf',
-            chat: 'Lorem ipsum simply dummy',
-            mode: 'offline'
-        },
-        {
-            image: 'assets/img/user-4.jpg',
-            name: 'Randy SunSung',
-            chat: 'Lorem ipsum simply dummy',
-            mode: 'online'
-        },
-        {
-            image: 'assets/img/user-5.jpg',
-            name: 'Lisa Myth',
-            chat: 'Lorem ipsum simply dummy',
-            mode: 'online'
-        },
-    ]
-
     constructor(public tourService: TourService,
                 public menuItems: MenuItems,
                 private breadcrumbService: BreadcrumbService,
@@ -155,60 +76,41 @@ export class MainComponent implements OnInit, OnDestroy {
 
         this.tourService.initialize([{
             anchorId: 'start.tour',
-            content: 'Welcome to Gene admin panel!',
+            content: 'Bem vindo ao sistema Backoffice MBoy!',
             placement: 'below',
             title: 'Bem vindo novamente',
         },
             {
                 anchorId: 'tour-search',
-                content: 'Enjoying Search box with sugestion and many more things',
+                content: 'Desfrutando da caixa de pesquisa com sugestões e muito mais.',
                 placement: 'below',
-                title: 'Search Box',
+                title: 'Caixa de pesquisa',
             },
             {
                 anchorId: 'tour-full-screen',
-                content: 'By pressing this button you can switch to fullscreen mode.',
+                content: 'Ao pressionar este botão, você pode alternar para o modo de tela cheia.',
                 placement: 'below',
-                title: 'Full Screen',
+                title: 'tela cheia',
             },
             {
                 anchorId: 'tour-ui',
-                content: 'Show your site stats with unique designed cards',
+                content: 'Mostre as estatísticas do seu site com cards exclusivos',
                 placement: 'below',
-                title: 'Stats Cards',
+                title: 'Estatísticas',
             }]);
 
+        // TODO: Removido o tourService.Start()
         if (window.innerWidth > 959) {
-            this.tourService.start();
+            // this.tourService.start();
         }
 
         breadcrumbService.addFriendlyNameForRoute('/dashboard', 'Dashboard');
         breadcrumbService.addFriendlyNameForRoute('/dashboard/saas', 'SAAS');
         breadcrumbService.addFriendlyNameForRoute('/dashboard/web-analytics', 'Web Analytics');
-        breadcrumbService.addFriendlyNameForRoute('/inbox', '');
-        breadcrumbService.addFriendlyNameForRoute('/chat', '');
-        breadcrumbService.addFriendlyNameForRoute('/calendar', '');
 
         // CADASTRO GERAL DO SISTEMA
         breadcrumbService.addFriendlyNameForRoute('/patients', ''); // Abre a sessão de cadastro de pacientes
         breadcrumbService.addFriendlyNameForRoute('/cidades', ''); // Abre a sessão de cadastro de convenios
-        // breadcrumbService.addFriendlyNameForRoute('/porte', ''); // Abre a sessão de cadastro de porte anestésicos
-        // breadcrumbService.addFriendlyNameForRoute('/cbhpm', ''); // CBHPM - Classificação Brasileira Hierarquisada de Procedimentos Médicos
-        // breadcrumbService.addFriendlyNameForRoute('/proc-cbhpm-padrao', ''); // Procedimentis CBHPM Padrão
-        // breadcrumbService.addFriendlyNameForRoute('/cadfun', ''); // Cadastro de funcionários do hospital
-        // breadcrumbService.addFriendlyNameForRoute('/sitio', ''); // Cadastro de sítio cirurgico
-        // breadcrumbService.addFriendlyNameForRoute('/antimicrobiano', ''); // Cadastro de Antimicrobiano
-        // breadcrumbService.addFriendlyNameForRoute('/etiologicos', ''); // Cadastro de Etiologicos
-        // breadcrumbService.addFriendlyNameForRoute('/metodo', ''); // Cadastro de métodos
-        // breadcrumbService.addFriendlyNameForRoute('/antibiograma', ''); // Cadastro de antibiograma
-        // breadcrumbService.addFriendlyNameForRoute('/tipoacomodacao', ''); // Cadastro de tipos de acomodações
-        // breadcrumbService.addFriendlyNameForRoute('/quarto', ''); // Cadastro de tipos de acomodações
-        // breadcrumbService.addFriendlyNameForRoute('/diarias', ''); // Cadastro de tipos de diarias
-        // breadcrumbService.addFriendlyNameForRoute('/cbo', ''); // Código Brasileiro de Ocupações
-        // breadcrumbService.addFriendlyNameForRoute('/intersus', ''); // Valores de procedimentos intersus
-        // breadcrumbService.addFriendlyNameForRoute('/parametros', ''); // Parâmetros gerais do sistema
-
-        // PRONTO SOCORRO
 
     }
 
@@ -216,6 +118,10 @@ export class MainComponent implements OnInit, OnDestroy {
         this.pageTitleService.title.subscribe((val: string) => {
             this.header = val;
         });
+
+        if (localStorage.getItem('SESSAO') != null) {
+            this.name = JSON.parse(localStorage.getItem('SESSAO')).name;
+        }
 
         setTimeout(() => {
             if ((this.router.url === '/courses/courses' || this.router.url === '/courses/courses-list' ||
@@ -374,7 +280,7 @@ export class MainComponent implements OnInit, OnDestroy {
     /**
      * onDelete function is used to open the delete dialog.
      */
-    onDelete(cart) {
+   // onDelete(cart) {
         // this.ecommerceService.deleteDialog('Are you sure you want to delete this product permanently?')
         //     .subscribe(res => {
         //             this.popupDeleteResponse = res
@@ -382,7 +288,7 @@ export class MainComponent implements OnInit, OnDestroy {
         //         err => console.log(err),
         //         () => this.getPopupDeleteResponse(this.popupDeleteResponse, cart)
         //     );
-    }
+    // }
 
     /**
      * getPopupDeleteResponse is used to delete the cart item when reponse is yes.
@@ -413,26 +319,26 @@ export class MainComponent implements OnInit, OnDestroy {
         document.getElementById(selectedFilter.headerSelect).classList.add('radius-active');
     }
 
-    /**
-     *chatMenu method is used to toggle a chat menu list.
-     */
-    chatMenu() {
-        document.getElementById('gene-chat').classList.toggle('show-chat-list');
-    }
-
-    /**
-     * onChatOpen method is used to open a chat window.
-     */
-    onChatOpen() {
-        document.getElementById('chat-open').classList.toggle('show-chat-window');
-    }
-
-    /**
-     * onChatWindowClose method is used to close the chat window.
-     */
-    chatWindowClose() {
-        document.getElementById('chat-open').classList.remove('show-chat-window');
-    }
+    // /**
+    //  *chatMenu method is used to toggle a chat menu list.
+    //  */
+    // chatMenu() {
+    //     document.getElementById('gene-chat').classList.toggle('show-chat-list');
+    // }
+    //
+    // /**
+    //  * onChatOpen method is used to open a chat window.
+    //  */
+    // onChatOpen() {
+    //     document.getElementById('chat-open').classList.toggle('show-chat-window');
+    // }
+    //
+    // /**
+    //  * onChatWindowClose method is used to close the chat window.
+    //  */
+    // chatWindowClose() {
+    //     document.getElementById('chat-open').classList.remove('show-chat-window');
+    // }
 
     /**
      * O método changeLayout é usado para alterar o layout vertical para o layout horizontal.

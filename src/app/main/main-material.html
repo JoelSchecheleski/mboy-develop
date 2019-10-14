@@ -24,11 +24,11 @@
                         <div class="sidebar-container">
                             <div class="gene-user-thumb text-center">
                                 <div class="img-responsive">
-                                    <span class="gene-user-name gene-block">Joel Schecheleski</span>
+                                    <span class="gene-user-name gene-block">{{name | uppercase}}</span>
                                 </div>
                                 <div class="sidenav-scrollbar-container" fxLayout="column">
                                     <mat-nav-list fxLayout="column" menuToggleDirective class="navigation">
-                                        <mat-divider></mat-divider>
+<!--                                        <mat-divider></mat-divider>-->
                                         <!-- Monta o menu com base no menu-items.ts -->
 
                                         <mat-list-item menuToggleLink *ngFor="let menuitem of menuItems.getAll()">

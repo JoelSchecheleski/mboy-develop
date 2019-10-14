@@ -25,12 +25,13 @@ const MENUITEMS = [
     //     active: true,
     //     children: []
     // },
-    {
-        state: 'vertical',
-        name: 'Menu lateral',
-        type: 'button',
-        icon: ''
-    },
+    // {
+    //     state: 'vertical',
+    //     state: 'vertical',
+    //     name: 'Menu lateral',
+    //     type: 'button',
+    //     icon: ''
+    // },
     // ================================== MENUT ITENS MAIN-MATERIAL ===============================
     {
         state: 'general',
