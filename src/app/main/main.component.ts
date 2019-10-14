@@ -25,6 +25,7 @@ const screenfull = require('screenfull');
 
 export class MainComponent implements OnInit, OnDestroy {
     name: any = '';
+    image: any = '';
     root: any = 'ltr';
     layout: any = 'ltr';
     currentLang: any = 'pt-br';
@@ -121,6 +122,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
         if (localStorage.getItem('SESSAO') != null) {
             this.name = JSON.parse(localStorage.getItem('SESSAO')).name;
+            this.image = JSON.parse(localStorage.getItem('SESSAO')).avatar;
         }
 
         setTimeout(() => {

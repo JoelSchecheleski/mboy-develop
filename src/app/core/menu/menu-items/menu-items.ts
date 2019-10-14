@@ -49,7 +49,7 @@ const MENUITEMS = [
                 active: true
             },
             {
-                state: 'patients', // Cadastro de Pacientes
+                state: 'user', // Cadastro de Pacientes
                 name: 'patients',
                 type: 'link',
                 icon: 'date_range',

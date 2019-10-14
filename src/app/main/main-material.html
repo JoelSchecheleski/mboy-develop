@@ -93,7 +93,7 @@
             <mat-toolbar class="gene-header-toolbar" style="background-color: #d5652b">
                 <div class="gene-ham-icon" tourAnchor="start.tour">
                     <!-- TODO: toggleSidebar-->
-                    <button style="background-color: #37474F" mat-mini-fab mat-card-icon (click)="toggleSidebar()">
+                    <button style="background-color: #d5652b" mat-mini-fab mat-card-icon (click)="toggleSidebar()">
                         <mat-icon>menu</mat-icon>
                     </button>
                 </div>
@@ -115,7 +115,8 @@
                     </button>
                     <button class="user-button" mat-button [matMenuTriggerFor]="menu">
                         <div fxLayout="row" fxLayoutAlign="center center">
-                            <mat-icon>account_circle</mat-icon>
+                            <img *ngIf="image" src="{{image}}" width="100%" height="100%">
+                            <img *ngIf="!image" src="../../assets/img/avatar-default.svg" width="100%" height="100%">
                         </div>
                     </button>
                     <!--                    <button (click)="end.toggle()" mat-icon-button class="overflow-visible">-->
