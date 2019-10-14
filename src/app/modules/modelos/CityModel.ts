@@ -8,6 +8,7 @@ import {Resource} from '../../Resource';
 import {StateModel} from './stateModel';
 
 export class CityModel extends Resource {
+    public state_id?: any;
     public name?: string;
     public authorized?: boolean;
     public ibgeCode?: string;

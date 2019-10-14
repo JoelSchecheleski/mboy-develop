@@ -10,6 +10,7 @@ import {NacionalServices} from '../../../modules/servicos/nacional.services';
 import {EstadocivilServices} from '../../../modules/servicos/estadocivil.services';
 import {CidadeServices} from '../cidades-shared/cidade.services';
 import {StateServices} from '../cidades-shared/state.services';
+import {StateModel} from '../../../modules/modelos/stateModel';
 
 @Component({
     templateUrl: './cidade-form.html',
@@ -20,7 +21,8 @@ export class CidadesDialogComponent implements OnInit {
 
     public today = new Date();
     public selectedState: any;
-    public state: any;
+    // public state = new StateModel();
+    public estados: any;
     public formulario: FormGroup;
 
     constructor(
@@ -30,7 +32,7 @@ export class CidadesDialogComponent implements OnInit {
         public dialogRef: MatDialogRef<CidadesDialogComponent>,
         @Inject(MAT_DIALOG_DATA) private data,
     ) {
-        if (!isNullOrUndefined(data.descricao) && data.descricao !== '') {
+        if (!isNullOrUndefined(data.name) && data.name !== '') {
             this.status = 'Editando';
         } else {
             this.status = 'Novo';
@@ -38,29 +40,23 @@ export class CidadesDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-
-        // // Busca todas as nacionalidades
-        // this.nacionalservice.GET().subscribe(data => {
-        //     this.nationality = data;
-        //     console.table(this.nationality);
-        // });
-
         // Busca todos os tipos de estado civil cadastrado
         this.stateService.GET().subscribe(data => {
-            this.state = data;
-            console.log(this.state);
+            this.estados = data;
+            // console.log(this.state);
         });
 
         // Formulário de cadastro de pacientes
         this.formulario = this.formBuilder.group({
             id: this.data.id ? this.data.id : '',
+            state_id: this.data.state.id ? this.data.state.id : 0,
             name: this.data.name ? this.data.name : '',
             authorized: this.data.authorized ? this.data.authorized : '',
             ibgeCode: this.data.ibgeCode ? this.data.ibgeCode : '',
             zipCodes: this.data.zipCodes ? this.data.zipCodes : '',
             state: this.data.state ? this.data.state : '',
         });
-        this.selectedState = this.data.state;
+        this.selectedState = this.data.state.abbreviation;
     }
 
     public compareObjects(o1: any, o2: any): boolean {
@@ -78,7 +74,7 @@ export class CidadesDialogComponent implements OnInit {
             this.api.POST(form.value)
                 .subscribe(data => {
                         console.log('Objeto inserido!', data);
-                        this.dialogRef.close(`${form.value.descricao}`);
+                        this.dialogRef.close(`${form.value.name}`);
                     }
                 );
         }
@@ -97,7 +93,7 @@ export class CidadesDialogComponent implements OnInit {
                     this.api.PUT(form.value)
                         .subscribe(data => {
                                 console.log('Objeto atualizado!', data);
-                                this.dialogRef.close(`${form.value.descricao}`);
+                                this.dialogRef.close(`${form.value.name}`);
                             }
                         );
                 }
@@ -106,36 +102,7 @@ export class CidadesDialogComponent implements OnInit {
     }
 
     getErrorMessage() {
-        return this.formulario['nome'].hasError('required') ? 'Nome é requerido' : '';
+        return this.formulario['name'].hasError('required') ? 'Nome é obrigatório' : '';
     }
 
-    private idade(data) {
-        const atualmente = new Date();
-        const nascimento = new Date(data.split('/').reverse().join('/'));
-        let ano = atualmente.getFullYear() - nascimento.getFullYear();
-        let mes: any;
-        let dia: any;
-
-        if ((atualmente.getMonth() + 1) >= (nascimento.getMonth() + 1)) {
-            mes = (atualmente.getMonth() + 1) - (nascimento.getMonth() + 1);
-        } else {
-            mes = 12 + (atualmente.getMonth() + 1) - (nascimento.getMonth() + 1);
-            ano--;
-        }
-
-        if (atualmente.getDate() >= nascimento.getDate()) {
-            dia = atualmente.getDate() - nascimento.getDate();
-        } else {
-            dia = 31 + atualmente.getDate() - nascimento.getDate();
-            mes--;
-
-            if (mes < 0) {
-                mes = 11;
-                ano--;
-            }
-        }
-        return ((ano > 1) ? ano + ' Anos' : (ano === 1) ? ano + ' Ano' :
-            (mes > 1) ? mes + ' Meses' : (mes === 1) ? mes + ' Mês' :
-                (dia > 1) ? dia + ' Dias' : (dia === 1) ? dia + ' Dia' : 'Hoje');
-    }
 }

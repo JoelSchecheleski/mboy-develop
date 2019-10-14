@@ -116,14 +116,14 @@ export class CidadesComponent implements OnInit {
         }
 
         this.fileNameDialogRef.afterClosed().pipe(
-            filter(descricao => descricao)
-        ).subscribe(descricao => {
+            filter(name => name)
+        ).subscribe(name => {
             if (this.rowCidades) {
                 const index = this.rowCidades.findIndex(f => f.descricao === file);
                 if (index !== -1) {
-                    this.rowCidades[index] = {descricao, content: file};
+                    this.rowCidades[index] = {name, content: file};
                 } else {
-                    this.rowCidades.push({descricao, content: ''});
+                    this.rowCidades.push({name, content: ''});
                 }
             }
             this.ngOnInit();
