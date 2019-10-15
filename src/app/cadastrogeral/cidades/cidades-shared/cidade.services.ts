@@ -34,9 +34,8 @@ export class CidadeServices extends ResourceService<CityModel> {
             authorized: file ? file.authorized : '',
             ibgeCode: file ? file.ibgeCode : '',
             zipCodes: file ? file.zipCodes : '',
-            state: file ? file.state : {},
+            state: file ? file.state : '',
         };
-
         return this.dados;
     }
 }

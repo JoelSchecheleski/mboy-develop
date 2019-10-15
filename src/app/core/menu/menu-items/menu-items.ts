@@ -34,42 +34,85 @@ const MENUITEMS = [
     // },
     // ================================== MENUT ITENS MAIN-MATERIAL ===============================
     {
-        state: '',
-        name: 'General',
+        state: 'Pessoas',
+        name: 'Pessoas',
         type: 'sub',
         class: 'group-title',
-        icon: 'date_range',
+        icon: 'people',
         active: true,
         children: [
             {
-                state: 'chat',
-                name: 'CHAT',
+                state: 'user',
+                name: 'user',
                 type: 'link',
-                icon: 'chat',
+                icon: 'user',
                 active: true
             },
             {
-                state: 'patients', // Cadastro de Pacientes
+                state: 'motoboys',
+                name: 'Motoboys',
+                type: 'link',
+                icon: '',
+                active: true
+            },
+            {
+                state: 'empresas',
+                name: 'Empresas',
+                type: 'link',
+                icon: 'store',
+                active: true
+            },
+            {
+                state: 'clientes',
+                name: 'Clientes',
+                type: 'link',
+                icon: '',
+                active: true
+            },
+            {
+                state: 'user', // Cadastro de Pacientes
                 name: 'patients',
                 type: 'link',
-                icon: 'date_range',
-                active: true
-            },
-            {
-                state: 'user', // Cadastro de usuarios
-                name: 'Usuários',
-                type: 'link',
-                icon: 'date_range',
-                active: true
-            },
-            {
-                state: 'cidades', // Cadastro de cidades
-                name: 'cidades',
-                type: 'link',
-                icon: 'date_range',
+                icon: 'user',
                 active: true
             }
         ]
+    },
+    {
+        state: 'cidades',
+        name: 'Cidades',
+        type: 'link',
+        icon: 'room'
+    },
+    {
+        state: 'Valores',
+        name: 'Valores',
+        type: 'link',
+        icon: 'attach_money'
+    },
+    {
+        state: 'Reclamações',
+        name: 'Reclamações',
+        type: 'link',
+        icon: 'sentiment_very_dissatisfied'
+    },
+    {
+        state: 'Sorteios',
+        name: 'Sorteios',
+        type: 'link',
+        icon: 'insert_emoticon'
+    },
+    {
+        state: 'pushs',
+        name: 'Disparo de pushs',
+        type: 'link',
+        icon: 'add_to_home_screen'
+    },
+    {
+        state: 'Sair',
+        name: 'Sair',
+        type: 'link',
+        icon: 'meeting_room'
     }
 ];
 

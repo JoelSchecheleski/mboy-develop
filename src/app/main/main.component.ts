@@ -25,6 +25,7 @@ const screenfull = require('screenfull');
 
 export class MainComponent implements OnInit, OnDestroy {
     name: any = '';
+    image: any = '';
     root: any = 'ltr';
     layout: any = 'ltr';
     currentLang: any = 'pt-br';
@@ -61,7 +62,6 @@ export class MainComponent implements OnInit, OnDestroy {
                 private media: MediaObserver,
                 private deviceService: DeviceDetectorService,
                 private authService: AuthService,
-                // public ecommerceService: EcommerceService,
                 public coreService: CoreService, private routes: Router,
                 private activatedRoute: ActivatedRoute) {
 
@@ -104,14 +104,13 @@ export class MainComponent implements OnInit, OnDestroy {
             // this.tourService.start();
         }
 
-        breadcrumbService.addFriendlyNameForRoute('/dashboard', 'Dashboard');
-        breadcrumbService.addFriendlyNameForRoute('/dashboard/saas', 'SAAS');
-        breadcrumbService.addFriendlyNameForRoute('/dashboard/web-analytics', 'Web Analytics');
+        // breadcrumbService.addFriendlyNameForRoute('/dashboard', 'Dashboard');
+        // breadcrumbService.addFriendlyNameForRoute('/dashboard/saas', 'SAAS');
+        // breadcrumbService.addFriendlyNameForRoute('/dashboard/web-analytics', 'Web Analytics');
 
         // CADASTRO GERAL DO SISTEMA
-        breadcrumbService.addFriendlyNameForRoute('/patients', ''); // Abre a sessão de cadastro de pacientes
-        breadcrumbService.addFriendlyNameForRoute('/cidades', ''); // Abre a sessão de cadastro de convenios
-
+        breadcrumbService.addFriendlyNameForRoute('/patients', 'pacients'); // Abre a sessão de cadastro de pacientes
+        breadcrumbService.addFriendlyNameForRoute('/cidades', 'cidades'); // Abre a sessão de cadastro de convenios
     }
 
     ngOnInit() {
@@ -121,6 +120,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
         if (localStorage.getItem('SESSAO') != null) {
             this.name = JSON.parse(localStorage.getItem('SESSAO')).name;
+            this.image = JSON.parse(localStorage.getItem('SESSAO')).avatar;
         }
 
         setTimeout(() => {
@@ -273,9 +273,9 @@ export class MainComponent implements OnInit, OnDestroy {
     /**
      * logOut method is used to log out the  template.
      */
-    // logOut() {
-    //     this.authService.logOut();
-    // }
+    logOut() {
+        this.authService.logOut();
+    }
 
     /**
      * onDelete function is used to open the delete dialog.

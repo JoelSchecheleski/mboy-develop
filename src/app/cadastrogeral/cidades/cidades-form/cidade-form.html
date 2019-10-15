@@ -5,60 +5,44 @@
             <mat-card>
                 <div class="gene-card-title">
                     <div fxLayout="row" fxLayoutAlign="start left">
-                        <div fxLayout="column">
-                            <!--                            <h5>{{'Informações do paciente: ' |translate}} {{nomePac}} de {{anos}} de idade</h5>-->
-                        </div>
                         <span fxFlex></span>
                     </div>
                     <mat-divider></mat-divider>
                 </div>
                 <div class="gene-card-content">
 
-<!--                    &lt;!&ndash; Primeira linha &ndash;&gt;-->
-<!--                    <div fxLayout="row wrap" fxLayoutAlign="space-between center">-->
-<!--                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="50" fxFlex.gt-md="49">-->
-<!--                            <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">-->
-<!--                                <mat-form-field class="full-wid">-->
-<!--                                    <input formControlName="id" matInput placeholder="Prontuário" disabled>-->
-<!--                                </mat-form-field>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-                    <!-- Segunda linha-->
                     <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
                         <mat-form-field class="full-wid">
-                            <input formControlName="name" #nome matInput placeholder="Nome da cidade*">
+                            <input formControlName="name" #name matInput placeholder="Nome da cidade*">
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input formControlName="ibgeCode" matInput placeholder="CBGE">
+                            <input formControlName="ibgeCode" matInput placeholder="IBGE">
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input formControlName="authorized" matInput placeholder="Autorizada">
+                            <mat-label>Liberar cidade?</mat-label>
+                            <select matNativeControl required formControlName="authorized">
+                                <option value="true">Sim</option>
+                                <option value="false">Não</option>
+                            </select>
                         </mat-form-field>
-                    </div>
 
-                    <!--Terceira linha-->
-                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
-<!--                        <mat-form-field class="full-wid">-->
-<!--                            <input formControlName="state.name" matInput placeholder="Estado">-->
-<!--                            <mat-error>{{'Campo obrigatório' | translate}}</mat-error>-->
-<!--                        </mat-form-field>-->
                         <mat-form-field>
                             <mat-select name="state" [(value)]="selectedState" placeholder="UF">
-                                <mat-option *ngFor="let m of state" [value]="m.id">
-                                    {{m.abbreviation}}
+                                <mat-option *ngFor="let s of estados" [value]="s.id"
+                                            (onSelectionChange)="selectState($event, s.id)">
+                                    {{s.abbreviation}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-
-<!--                        <mat-form-field class="full-wid">-->
-                            <h2>{{state?.name}}></h2>
-<!--                        </mat-form-field>-->
                     </div>
+                    <pre>{{formulario?.value | json}}</pre>
                 </div>
+                <mat-dialog-actions>
+                    <button mat-button type="submit">Salvar</button>
+                    <button mat-button type="button" (click)="dialogRef.close()">Cancelar</button>
+                </mat-dialog-actions>
             </mat-card>
         </mat-tab>
     </mat-tab-group>

@@ -20,7 +20,6 @@
                             </a>
                         </div>
                     </mat-toolbar>
-
                     <perfect-scrollbar style="background-color: white"> <!-- TODO: Alterado a cor do menu -->
                         <div class="sidebar-container">
                             <div class="gene-user-thumb text-center">
@@ -28,29 +27,34 @@
                                     <span class="gene-user-name gene-block">{{name | uppercase}}</span>
                                 </div>
                                 <div class="sidenav-scrollbar-container" fxLayout="column">
-                                    <mat-nav-list fxLayout="column" menuToggleDirective class="navigation">
-<!--                                        <mat-divider></mat-divider>-->
+                                    <mat-nav-list fxLayout="column" menuToggleDirective class="navigation"
+                                                  style="color: #615d5a">
+                                        <mat-divider></mat-divider>
                                         <!-- Monta o menu com base no menu-items.ts -->
 
-                                        <mat-list-item menuToggleLink *ngFor="let menuitem of menuItems.getAll()">
-                                            <a menuToggle class="gene-relative" mat-ripple
+                                        <mat-list-item menuToggleLink *ngFor="let menuitem of menuItems.getAll()"
+                                                       class="rectangle">
+                                            <a menuToggle class="gene-relative" style="color: #615d5a"
                                                *ngIf="menuitem.type === 'button'" routerLinkActive="active-link"
                                                (click)="changeLayout()">
-                                                <mat-icon>{{ menuitem.icon }}</mat-icon>
+                                                <mat-icon
+                                                        style="height: 24px; width: 24px;">{{ menuitem.icon }}</mat-icon>
                                                 <span>{{ menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem?.label">
                                                     <span class="sidebar-label">{{ menuitem?.label}}</span>
                                                 </ng-container>
                                             </a>
-                                            <a menuToggle class="gene-relative" mat-ripple
-                                               [routerLink]="['/', menuitem.state]" routerLinkActive="active-link"
+
+                                            <a menuToggle class="gene-relative" mat-ripple style="color: #615d5a"
+                                               [routerLink]="[menuitem.state]" routerLinkActive="active"
                                                *ngIf="menuitem.type === 'link'">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
-                                                <span>{{ menuitem.name | translate }}</span>
+                                                <span>{{menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem?.label">
                                                     <span class="sidebar-label">{{ menuitem?.label}}</span>
                                                 </ng-container>
                                             </a>
+
                                             <a menuToggle class="gene-relative" mat-ripple href="javascript:;"
                                                *ngIf="menuitem.type === 'sub'">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
@@ -64,7 +68,7 @@
                                             <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
                                                 <mat-list-item *ngFor="let childitem of menuitem.children"
                                                                routerLinkActive="open">
-                                                    <a [routerLink]="[menuitem.state, childitem.state ]"
+                                                    <a [routerLink]="[childitem.state ]"
                                                        routerLinkActive="active-link" class="gene-relative" mat-ripple>
                                                         {{ childitem.name | translate }}
                                                         <ng-container *ngIf="childitem.label">
@@ -74,40 +78,24 @@
                                                 </mat-list-item>
                                             </mat-nav-list>
                                         </mat-list-item>
-
-                                        <mat-divider></mat-divider>
-                                        <!--                                        <mat-list-item>-->
-                                        <!--                                            <a (click)="addMenuItem()">-->
-                                        <!--                                                <mat-icon>add</mat-icon>-->
-                                        <!--                                                <span>{{'Add'|translate}}</span>-->
-                                        <!--                                            </a>-->
-                                        <!--                                        </mat-list-item>-->
                                     </mat-nav-list>
                                 </div>
+
                             </div>
                         </div>
                     </perfect-scrollbar>
                 </div>
-
-
             </mat-sidenav>
             <mat-toolbar class="gene-header-toolbar" style="background-color: #d5652b">
                 <div class="gene-ham-icon" tourAnchor="start.tour">
                     <!-- TODO: toggleSidebar-->
-                    <button style="background-color: #37474F" mat-mini-fab mat-card-icon (click)="toggleSidebar()">
-                        <mat-icon>menu</mat-icon>
-                    </button>
+                    <!--                    <button style="background-color: white" mat-mini-fab mat-card-icon (click)="toggleSidebar()">-->
+                    <!--                        <mat-icon>menu</mat-icon>-->
+                    <!--                    </button>-->
                 </div>
                 <a class="navbar-brand" href="#">{{header}}</a>
                 <breadcrumb class="gene-breadcrumbs"></breadcrumb>
                 <span fxFlex></span>
-                <div class="search-bar" fxFlex>
-                    <form class="search-form" fxShow="false" fxShow.gt-xs tourAnchor="tour-search">
-                        <mat-form-field>
-                            <input matInput placeholder="{{'Search' | translate}}">
-                        </mat-form-field>
-                    </form>
-                </div>
                 <div class="secondary-menu">
                     <button fxHide="true" fxHide.gt-sm="false" mat-button class="fullscreen-toggle"
                             (click)="toggleFullscreen()" tourAnchor="tour-full-screen">
@@ -116,7 +104,8 @@
                     </button>
                     <button class="user-button" mat-button [matMenuTriggerFor]="menu">
                         <div fxLayout="row" fxLayoutAlign="center center">
-                            <mat-icon>account_circle</mat-icon>
+                            <img *ngIf="image" src="{{image}}" width="100%" height="100%">
+                            <img *ngIf="!image" src="../../assets/img/avatar-default.svg" width="100%" height="100%">
                         </div>
                     </button>
                     <!--                    <button (click)="end.toggle()" mat-icon-button class="overflow-visible">-->
@@ -129,44 +118,51 @@
                     <!--                    </button>-->
                 </div>
             </mat-toolbar>
-        </mat-sidenav-container>
-    </div>
 
-    <mat-menu class="user-menu" x-position="before" y-position="below" #menu="matMenu">
-        <button mat-menu-item>
-            <mat-icon>account_circle</mat-icon>
-            <span>{{'Profile'|translate}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>settings</mat-icon>
-            <span>{{'Settings'|translate}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>help</mat-icon>
-            <span>{{'Help'|translate}}</span>
-        </button>
-        <mat-divider></mat-divider>
-        <!--        <button (click)="logOut()" mat-menu-item>-->
-        <!--            <mat-icon>exit_to_app</mat-icon>-->
-        <!--            <span>{{'Logout'|translate}}</span>-->
-        <!--        </button>-->
-    </mat-menu>
-    <mat-menu class="apps-menu" x-position="after" y-position="below" #appsmenu="matMenu">
-        <button mat-menu-item>
-            <mat-icon>storage</mat-icon>
-            <span>{{'Total App Memory'|translate}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>memory</mat-icon>
-            <span>{{'Total Memory Used'|translate}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>mail</mat-icon>
-            <span>{{'12 Unread Mail'|translate}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>feedback</mat-icon>
-            <span>{{'2 Feedback'|translate}}</span>
-        </button>
-    </mat-menu>
+            <div class="gene-base-container" #container>
+                <div class="inner-container">
+                    <router-outlet (activate)="onActivate($event, container)"></router-outlet>
+                </div>
+            </div>
+        </mat-sidenav-container>
+
+
+        <mat-menu class="user-menu" x-position="before" y-position="below" #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>account_circle</mat-icon>
+                <span>{{'Profile'|translate}}</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                <span>{{'Settings'|translate}}</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>help</mat-icon>
+                <span>{{'Help'|translate}}</span>
+            </button>
+            <mat-divider></mat-divider>
+            <!--        <button (click)="logOut()" mat-menu-item>-->
+            <!--            <mat-icon>exit_to_app</mat-icon>-->
+            <!--            <span>{{'Logout'|translate}}</span>-->
+            <!--        </button>-->
+        </mat-menu>
+        <mat-menu class="apps-menu" x-position="after" y-position="below" #appsmenu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>storage</mat-icon>
+                <span>{{'Total App Memory'|translate}}</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>memory</mat-icon>
+                <span>{{'Total Memory Used'|translate}}</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>mail</mat-icon>
+                <span>{{'12 Unread Mail'|translate}}</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>feedback</mat-icon>
+                <span>{{'2 Feedback'|translate}}</span>
+            </button>
+        </mat-menu>
+    </div>
 </ng-template>
