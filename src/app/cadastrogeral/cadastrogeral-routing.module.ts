@@ -13,10 +13,10 @@ const routes: Routes = [
     {
         path: '',
         children: [
-            {
-                path: 'patients',
-                loadChildren: './paciente/paciente.module#PacienteModule'
-            },
+            // {
+            //     path: 'patients',
+            //     loadChildren: './paciente/paciente.module#PacienteModule'
+            // },
             {
                 path: 'user',
                 loadChildren: './user/user.module#UserModule'

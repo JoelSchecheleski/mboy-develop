@@ -46,7 +46,7 @@
                                             </a>
 
                                             <a menuToggle class="gene-relative" mat-ripple style="color: #615d5a"
-                                               [routerLink]="[menuitem.state]" routerLinkActive="active"
+                                               [routerLink]="['/',menuitem.state]" routerLinkActive="active"
                                                *ngIf="menuitem.type === 'link'">
                                                 <mat-icon>{{ menuitem.icon }}</mat-icon>
                                                 <span>{{menuitem.name | translate }}</span>
@@ -68,7 +68,7 @@
                                             <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
                                                 <mat-list-item *ngFor="let childitem of menuitem.children"
                                                                routerLinkActive="open">
-                                                    <a [routerLink]="[childitem.state]"
+                                                    <a [routerLink]="['/',childitem.state]"
                                                        routerLinkActive="active-link" class="gene-relative" mat-ripple>
                                                         {{ childitem.name | translate }}
                                                         <ng-container *ngIf="childitem.label">

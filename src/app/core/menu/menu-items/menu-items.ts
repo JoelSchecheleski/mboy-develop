@@ -34,8 +34,8 @@ const MENUITEMS = [
     // },
     // ================================== MENUT ITENS MAIN-MATERIAL ===============================
     {
-        state: 'Pessoas',
-        name: 'Pessoas',
+        state: 'pessoas',
+        name: 'pessoas',
         type: 'sub',
         class: 'group-title',
         icon: 'people',
@@ -47,35 +47,35 @@ const MENUITEMS = [
                 type: 'link',
                 icon: 'user',
                 active: true
-            },
-            {
-                state: 'motoboys',
-                name: 'Motoboys',
-                type: 'link',
-                icon: '',
-                active: true
-            },
-            {
-                state: 'empresas',
-                name: 'Empresas',
-                type: 'link',
-                icon: 'store',
-                active: true
-            },
-            {
-                state: 'clientes',
-                name: 'Clientes',
-                type: 'link',
-                icon: '',
-                active: true
-            },
-            {
-                state: 'user', // Cadastro de Pacientes
-                name: 'patients',
-                type: 'link',
-                icon: 'user',
-                active: true
             }
+            // , {
+            //     state: 'motoboys',
+            //     name: 'Motoboys',
+            //     type: 'link',
+            //     icon: '',
+            //     active: true
+            // },
+            // {
+            //     state: 'empresas',
+            //     name: 'Empresas',
+            //     type: 'link',
+            //     icon: 'store',
+            //     active: true
+            // },
+            // {
+            //     state: 'clientes',
+            //     name: 'Clientes',
+            //     type: 'link',
+            //     icon: '',
+            //     active: true
+            // },
+            // {
+            //     state: 'user', // Cadastro de Pacientes
+            //     name: 'patients',
+            //     type: 'link',
+            //     icon: 'user',
+            //     active: true
+            // }
         ]
     },
     {
