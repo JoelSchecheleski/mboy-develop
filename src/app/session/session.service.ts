@@ -4,10 +4,11 @@ import {of, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {json} from 'ng2-validation/dist/json';
 import * as CryptoJS from 'crypto-js';
+import {Config} from '../app-config';
 
 @Injectable()
 export class ApiMedeasy {
-    public BaseUrl = 'http://localhost:8080/api/';
+    public BaseUrl = new Config().getEndpoint();
     public jwtToken: string;
     public Usuario: string;
     public infoUser: any;

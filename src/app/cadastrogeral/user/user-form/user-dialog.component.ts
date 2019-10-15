@@ -34,6 +34,7 @@ export class UserDialogComponent implements OnInit {
     public gridOptions: GridOptions;
     public language = new IdiomaPTBR().language;
     public rowData: any;
+    private url = new Config().getEndpoint();
 
     constructor(
         public api: UserServices,
@@ -104,7 +105,8 @@ export class UserDialogComponent implements OnInit {
         console.log('index => ', tabChangeEvent.index);
 
         if (tabChangeEvent.index === 1) {
-            this.api.client_http.get('http://localhost:8080/api/document/47980808080')
+            console.log(`teste`);
+            this.api.client_http.get(`${this.url}/document/${this.rowData.value}`)
                 .subscribe(
                     data => { // @ts-ignore
                         this.rowData = data;

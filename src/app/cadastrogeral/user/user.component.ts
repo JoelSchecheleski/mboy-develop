@@ -28,6 +28,7 @@ export class UserComponent implements OnInit {
     public language = new IdiomaPTBR().language;
     private gridApi;
     private gridColumnApi;
+    private url = new Config().getEndpoint();
 
     fileNameDialogRef: MatDialogRef<UserDialogComponent>;
 
@@ -126,7 +127,7 @@ export class UserComponent implements OnInit {
                 case 'editar':
                     let selectedRows = {};
                     // IMPLEMENTAR A BUSCA POR UM REGISTRO ESPECÍFICO QUANDO CLICADO REGISTRO ATUAL /Paciente/397
-                    this._http.get(`http://localhost:8080/api/user/${id}`)
+                    this._http.get(`${this.url}/user/${id}`)
                         .subscribe(data => {
                             selectedRows = data;
                             // console.table(selectedRows);
