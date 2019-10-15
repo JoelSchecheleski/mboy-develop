@@ -21,23 +21,28 @@
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input formControlName="authorized" matInput placeholder="Autorizada">
+                            <mat-label>Liberar cidade?</mat-label>
+                            <select matNativeControl required formControlName="authorized">
+                                <option value="true">Sim</option>
+                                <option value="false">Não</option>
+                            </select>
                         </mat-form-field>
 
                         <mat-form-field>
-                            <mat-select name="state_id" [(value)]="selectedState" placeholder="UF">
-                                <mat-option *ngFor="let s of estados" [value]="s.id">
+                            <mat-select name="state" [(value)]="selectedState" placeholder="UF">
+                                <mat-option *ngFor="let s of estados" [value]="s.id"
+                                            (onSelectionChange)="selectState($event, s.id)">
                                     {{s.abbreviation}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-<!--                        <pre>{{state | json}}</pre>-->
-                        <h2>{{estados?.name}}</h2>
                     </div>
-                    <pre>{{selectedState}}</pre>
-<!--                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">-->
-<!--                    </div>-->
+                    <pre>{{formulario?.value | json}}</pre>
                 </div>
+                <mat-dialog-actions>
+                    <button mat-button type="submit">Salvar</button>
+                    <button mat-button type="button" (click)="dialogRef.close()">Cancelar</button>
+                </mat-dialog-actions>
             </mat-card>
         </mat-tab>
     </mat-tab-group>

@@ -17,10 +17,10 @@ import {Config} from '../../app-config';
 import {CidadesDialogComponent} from './cidades-form/cidade-dialog.component';
 
 @Component({
-  selector: 'ms-cidades',
-  templateUrl: './cidades.component.html',
-  styleUrls: ['./cidades.component.scss'],
-  providers: [CidadeServices]
+    selector: 'ms-cidades',
+    templateUrl: './cidades.component.html',
+    styleUrls: ['./cidades.component.scss'],
+    providers: [CidadeServices]
 })
 
 export class CidadesComponent implements OnInit {
@@ -75,10 +75,10 @@ export class CidadesComponent implements OnInit {
                 suppressNavigable: true,
                 cellRenderer: function () {
                     const display = 'block';
-                    const html = `<button class='btn btn-danger btn-mini' color="primary" data-action-type='editar'>
+                    const html = `<button class='btn btn-danger btn-mini'  style="background-color: #D5652B; color: white" data-action-type='editar'>
                         <i class='icofont icofont-ui-edit'></i>Editar
                      </button>
-                     <button class='btn btn-danger btn-mini' color="primary" data-action-type='deletar'>
+                     <button class='btn btn-danger btn-mini'  style="background-color: #D5652B; color: white" data-action-type='deletar'>
                          <i class='icofont icofont-ui-delete'></i>Deletar
                      </button>`;
                     return html;
@@ -99,7 +99,7 @@ export class CidadesComponent implements OnInit {
     openFileDialog(file?) {
         if (file) { // Editando
             this.fileNameDialogRef = this.dialog.open(CidadesDialogComponent, {
-                height: '650px',
+                height: '350px',
                 width: '1200px',
                 // position: {
                 //     'top': '15%',
@@ -109,7 +109,7 @@ export class CidadesComponent implements OnInit {
             });
         } else { // Novo
             this.fileNameDialogRef = this.dialog.open(CidadesDialogComponent, {
-                height: '650px',
+                height: '350px',
                 width: '1200px',
                 data: this.api.cityData(file)
             });

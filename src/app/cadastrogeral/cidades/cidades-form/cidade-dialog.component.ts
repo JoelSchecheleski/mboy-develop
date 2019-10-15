@@ -11,6 +11,7 @@ import {EstadocivilServices} from '../../../modules/servicos/estadocivil.service
 import {CidadeServices} from '../cidades-shared/cidade.services';
 import {StateServices} from '../cidades-shared/state.services';
 import {StateModel} from '../../../modules/modelos/stateModel';
+import {MatOptionSelectionChange} from '@angular/material/core';
 
 @Component({
     templateUrl: './cidade-form.html',
@@ -20,8 +21,7 @@ export class CidadesDialogComponent implements OnInit {
     private status: any;
 
     public today = new Date();
-    public selectedState: any;
-    // public state = new StateModel();
+    public selectedState = '';
     public estados: any;
     public formulario: FormGroup;
 
@@ -40,13 +40,13 @@ export class CidadesDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        // Busca todos os tipos de estado civil cadastrado
+        // Busca todos os estados
         this.stateService.GET().subscribe(data => {
             this.estados = data;
-            // console.log(this.state);
+            console.table(data);
         });
 
-        // Formulário de cadastro de pacientes
+        // Liberação de cidades
         this.formulario = this.formBuilder.group({
             id: this.data.id ? this.data.id : '',
             state_id: this.data.state.id ? this.data.state.id : 0,
@@ -57,6 +57,12 @@ export class CidadesDialogComponent implements OnInit {
             state: this.data.state ? this.data.state : '',
         });
         this.selectedState = this.data.state.abbreviation;
+    }
+
+    public selectState(event: MatOptionSelectionChange, state_id: bigint) {
+        if (event.source.selected) {
+            this.formulario.value['state_id'] = state_id;
+        }
     }
 
     public compareObjects(o1: any, o2: any): boolean {
