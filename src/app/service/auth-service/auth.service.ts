@@ -15,13 +15,8 @@ export class AuthService {
     userData: any;
     isLoggedIn = false;
 
-    // constructor(private firebaseAuth: AngularFireAuth,
-    //             private router: Router,
-    //             private toastr: ToastrService) {
-    //     this.user = firebaseAuth.authState;
-    // }
-
-    constructor() {
+    constructor(private router: Router,
+                private toastr: ToastrService) {
     }
 
     /*
@@ -110,22 +105,20 @@ export class AuthService {
     /*
      * logOut function is used to sign out
      */
-    logOut() {
-        // this.firebaseAuth
-        //     .auth
-        //     .signOut();
-        // localStorage.removeItem('userProfile');
-        // this.isLoggedIn = false;
-        // this.toastr.success('Successfully logged out!');
-        // this.router.navigate(['/session/loginV2']);
+    public logOut() {
+        localStorage.removeItem('SESSAO');
+        localStorage.removeItem('TOKEN');
+        this.isLoggedIn = false;
+        this.toastr.success('Successfully logged out!');
+        this.router.navigate(['/session/loginV2']);
     }
 
     /*
      * setLocalUserProfile function is used to set local user profile data.
      */
     setLocalUserProfile(value) {
-        // localStorage.setItem('userProfile', JSON.stringify(value));
-        // this.getLocalStorageUser();
-        // this.isLoggedIn = true;
+        localStorage.setItem('userProfile', JSON.stringify(value));
+        this.getLocalStorageUser();
+        this.isLoggedIn = true;
     }
 }

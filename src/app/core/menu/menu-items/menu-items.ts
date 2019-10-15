@@ -108,12 +108,12 @@ const MENUITEMS = [
         type: 'link',
         icon: 'add_to_home_screen'
     },
-    {
-        state: 'Sair',
-        name: 'Sair',
-        type: 'link',
-        icon: 'meeting_room'
-    }
+    // {
+    //     state: 'Sair',
+    //     name: 'Sair',
+    //     type: 'link',
+    //     icon: 'meeting_room'
+    // }
 ];
 
 @Injectable()

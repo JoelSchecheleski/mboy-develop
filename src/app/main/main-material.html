@@ -68,7 +68,7 @@
                                             <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
                                                 <mat-list-item *ngFor="let childitem of menuitem.children"
                                                                routerLinkActive="open">
-                                                    <a [routerLink]="[childitem.state ]"
+                                                    <a [routerLink]="[childitem.state]"
                                                        routerLinkActive="active-link" class="gene-relative" mat-ripple>
                                                         {{ childitem.name | translate }}
                                                         <ng-container *ngIf="childitem.label">
@@ -78,6 +78,16 @@
                                                 </mat-list-item>
                                             </mat-nav-list>
                                         </mat-list-item>
+
+                                        <!-- Sair -->
+                                        <mat-list-item menuToggleLink>
+                                            <a class="gene-relative" mat-ripple style="color: #615d5a"
+                                               (click)="logOut()">
+                                                <mat-icon>{{'meeting_room'}}</mat-icon>
+                                                <span>{{'Sair' | translate }}</span>
+                                            </a>
+                                        </mat-list-item>
+
                                     </mat-nav-list>
                                 </div>
 
