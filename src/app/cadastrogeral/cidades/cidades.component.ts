@@ -116,7 +116,7 @@ export class CidadesComponent implements OnInit {
             this.fileNameDialogRef = this.dialog.open(CidadesDialogComponent, {
                 height: '350px',
                 width: '1200px',
-                data: this.api.cityData(file)
+                data: this.api.cityNewData(file)
             });
         }
 

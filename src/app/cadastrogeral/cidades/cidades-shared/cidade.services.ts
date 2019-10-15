@@ -36,14 +36,23 @@ export class CidadeServices extends ResourceService<CityModel> {
             customer: file ? file.customer : '',
             company: file ? file.company : ''
         };
-        // this.dados = {
-        //     id: file ? file.id : '',
-        //     name: file ? file.name : '',
-        //     authorized: file ? file.authorized : '',
-        //     ibgeCode: file ? file.ibgeCode : '',
-        //     zipCodes: file ? file.zipCodes : '',
-        //     state: file ? file.state : '',
-        // };
+        return this.dados;
+    }
+
+    /**
+     * Estrutura de dados para novo registro
+     * @param file
+     */
+    public cityNewData(file: any): Observable<any> {
+        this.dados = {};
+        this.dados = {
+            id: file ? file.id : '',
+            name: file ? file.name : '',
+            authorized: file ? file.authorized : '',
+            ibgeCode: file ? file.ibgeCode : '',
+            zipCodes: file ? file.zipCodes : '',
+            state: file ? file.state : '',
+        };
         return this.dados;
     }
 }
