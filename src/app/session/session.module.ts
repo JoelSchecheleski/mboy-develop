@@ -18,7 +18,7 @@ import {SlickCarouselModule} from 'ngx-slick-carousel';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import {LoginComponent} from './login/login.component';
+// import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {LockScreenComponent} from './lockscreen/lockscreen.component';
@@ -37,7 +37,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
     declarations: [
-        LoginComponent,
+        // LoginComponent,
         RegisterComponent,
         ForgotPasswordComponent,
         LockScreenComponent,

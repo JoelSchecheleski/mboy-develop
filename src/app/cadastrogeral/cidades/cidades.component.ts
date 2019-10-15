@@ -196,7 +196,7 @@ export class CidadesComponent implements OnInit {
     /**
      * Evento ao selecionar um registro
      */
-    onSelectionChanged() {
+    onSelectionChanged($event) {
         const selectedRows = this.gridApi.getSelectedRows();
         let selectedRowsString = '';
         selectedRows.forEach(function (rowSelection, index) {
