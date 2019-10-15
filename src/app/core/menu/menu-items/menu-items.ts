@@ -42,8 +42,8 @@ const MENUITEMS = [
         active: true,
         children: [
             {
-                state: 'usuarios',
-                name: 'Usuários',
+                state: 'user',
+                name: 'user',
                 type: 'link',
                 icon: 'user',
                 active: true

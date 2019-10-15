@@ -1,11 +1,14 @@
 import {Component, OnInit, Inject} from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA, MatButton} from '@angular/material';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {isNullOrUndefined} from '@swimlane/ngx-datatable/release/utils';
 import {DomSanitizer} from '@angular/platform-browser';
 import Swal from 'sweetalert2'
 import {UserServices} from '../user-shared/user.services';
 import {MatTabChangeEvent} from '@angular/material/tabs';
+import {Config} from '../../../app-config';
+import {GridOptions} from 'ag-grid-community';
+import {IdiomaPTBR} from '../../../idioma-PTBR';
 
 @Component({
     templateUrl: './user-form.html',
@@ -13,8 +16,6 @@ import {MatTabChangeEvent} from '@angular/material/tabs';
 })
 export class UserDialogComponent implements OnInit {
     private readonly status: any;
-
-    public today = new Date();
     public registrationStatusList = [
         {value: 'UNDER_ANALYSIS', viewValue: 'UNDER_ANALYSIS'},
         {value: 'APPROVED', viewValue: 'APPROVED'},
@@ -24,16 +25,22 @@ export class UserDialogComponent implements OnInit {
     ];
 
     public selectedStatus: any;
-
     public username: any;
     public formulario: FormGroup;
+    public rowHeight: 500;
+
+    public defaultColDef: any;
+    public columnDefs: any;
+    public gridOptions: GridOptions;
+    public language = new IdiomaPTBR().language;
+    public rowData: any;
 
     constructor(
         public api: UserServices,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<UserDialogComponent>,
         private domSanitizer: DomSanitizer,
-        @Inject(MAT_DIALOG_DATA) private data,
+        @Inject(MAT_DIALOG_DATA) private data
     ) {
         if (!isNullOrUndefined(data.username) && data.username !== '') {
             this.username = data.username;
@@ -42,11 +49,69 @@ export class UserDialogComponent implements OnInit {
             this.username = 'Novo Usuário';
             this.status = 'Novo';
         }
+
+        this.columnDefs = [
+            {headerName: 'Tipo documento', field: 'type', resizable: true, autoHeight: true},
+            {
+                headerName: 'Foto',
+                field: 'document',
+                lockPosition: false,
+                cellClass: 'locked-col',
+                suppressNavigable: true,
+                autoHeight: true,
+                autoWidth: true,
+                resizable: true,
+                cellRenderer: function (row: any) {
+                    return `<span data-action-type="showDocument" >Documento</span>`
+                }
+            }
+        ];
+
+        this.gridOptions = <GridOptions>{
+            onGridReady: () => {
+                this.gridOptions.api.sizeColumnsToFit();
+            },
+            rowHeight: 500,
+            frameworkComponents: {
+                button: MatButton
+            }
+        };
+    }
+
+    public onRowClicked(e) {
+        if (e.event.target !== undefined) {
+            const actionType = e.event.target.getAttribute('data-action-type');
+            switch (actionType) {
+                case 'showDocument':
+                    const image = new Image();
+                    image.src = e.data.document;
+
+                    setTimeout(function () {
+                        const w = window.open('about:blank', 'image', 'width=350, height=255,left='
+                            + (document.documentElement.clientWidth - 350) / 2
+                            + ',top=' + (document.documentElement.clientHeight - 255) / 2
+                        );
+
+                        w.document.write(image.outerHTML);
+                    }, 0);
+                    break;
+            }
+        }
     }
 
     tabChanged(tabChangeEvent: MatTabChangeEvent): void {
         console.log('tabChangeEvent => ', tabChangeEvent);
         console.log('index => ', tabChangeEvent.index);
+
+        if (tabChangeEvent.index === 1) {
+            this.api.client_http.get('http://localhost:8080/api/document/47980808080')
+                .subscribe(
+                    data => { // @ts-ignore
+                        this.rowData = data;
+                    },
+                    err => console.error(err)
+                );
+        }
     }
 
     ngOnInit() {
@@ -115,4 +180,6 @@ export class UserDialogComponent implements OnInit {
             });
         }
     }
+
+
 }

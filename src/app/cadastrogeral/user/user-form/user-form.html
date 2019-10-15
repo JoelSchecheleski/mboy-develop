@@ -1,6 +1,6 @@
 <form [formGroup]="formulario" (ngSubmit)="submit(formulario)">
     <!-- TAB INFORMAÇÕES GERAIS -->
-    <mat-tab-group  (selectedTabChange)="tabChanged($event)">
+    <mat-tab-group (selectedTabChange)="tabChanged($event)">
         <mat-tab label="Informações">
             <mat-card>
                 <div class="gene-card-title">
@@ -16,7 +16,7 @@
                     <!-- Primeira linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
                         <mat-form-field>
-                            <input formControlName="name" matInput placeholder="Usuário" >
+                            <input formControlName="name" matInput placeholder="Usuário">
                         </mat-form-field>
 
                         <mat-form-field>
@@ -81,7 +81,8 @@
                     <!-- Status linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
                         <mat-form-field>
-                            <mat-select formControlName="registrationStatus" [(value)]="selectedStatus" placeholder="Status">
+                            <mat-select formControlName="registrationStatus" [(value)]="selectedStatus"
+                                        placeholder="Status">
                                 <mat-option *ngFor="let n of registrationStatusList" [value]="n.value">
                                     {{n.viewValue}}
                                 </mat-option>
@@ -111,43 +112,57 @@
                 </div>
                 <div class="gene-card-content">
 
-                    <!-- Primeira linha -->
-                    <!--                    TODO Ajustar chamada dos documentos -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
-                            <input formControlName="zipCode" matInput placeholder="CEP">
-<!--                            <input formControlName="registrationStatus" matInput placeholder="Status">-->
-                        </mat-form-field>
-                    </div>
+                    <ag-grid-angular style="width: 100%; height: 100%"
+                                     class="ag-theme-balham"
+                                     [allowContextMenuWithControlKey]="true"
+                                     [enableRangeSelection]="true"
+                                     [enableColResize]="true"
+                                     [rowDragManaged]="true"
+                                     [gridAutoHeight]="true"
+                                     [enableSorting]="true"
+                                     [enableFilter]="true"
+                                     [animateRows]="true"
+                                     [pagination]="true"
+                                     [sideBar]="true"
+                                     [paginationPageSize]="15"
+                                     [defaultColDef]="defaultColDef"
+                                     [gridOptions]="gridOptions"
+                                     [columnDefs]="columnDefs"
+                                     [localeText]="language"
+                                     [rowData]="rowData"
+                                     [rowHeight]="rowHeight"
+                                     (rowClicked)="onRowClicked($event)"
+                    >
+                    </ag-grid-angular>
 
                 </div>
             </mat-card>
         </mat-tab>
 
         <!-- TAB Corridas -->
-<!--        <mat-tab label="Corridas">-->
-<!--            <mat-card>-->
-<!--                <div class="gene-card-title">-->
-<!--                    <div fxLayout="row" fxLayoutAlign="start left">-->
-<!--                        <div fxLayout="column">-->
-<!--                            <h5>{{'Informações das corridas'|translate}}</h5>-->
-<!--                        </div>-->
-<!--                        <span fxFlex></span>-->
-<!--                    </div>-->
-<!--                    <mat-divider></mat-divider>-->
-<!--                </div>-->
-<!--                <div class="gene-card-content">-->
+        <!--        <mat-tab label="Corridas">-->
+        <!--            <mat-card>-->
+        <!--                <div class="gene-card-title">-->
+        <!--                    <div fxLayout="row" fxLayoutAlign="start left">-->
+        <!--                        <div fxLayout="column">-->
+        <!--                            <h5>{{'Informações das corridas'|translate}}</h5>-->
+        <!--                        </div>-->
+        <!--                        <span fxFlex></span>-->
+        <!--                    </div>-->
+        <!--                    <mat-divider></mat-divider>-->
+        <!--                </div>-->
+        <!--                <div class="gene-card-content">-->
 
-<!--                    &lt;!&ndash; Primeira linha &ndash;&gt;-->
-<!--                    &lt;!&ndash;                    TODO Ajustar chamada das corridas &ndash;&gt;-->
-<!--                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">-->
-<!--                        <mat-form-field>-->
-<!--&lt;!&ndash;                            <input formControlName="registrationStatus" matInput placeholder="Status">&ndash;&gt;-->
-<!--                        </mat-form-field>-->
-<!--                    </div>-->
+        <!--                    &lt;!&ndash; Primeira linha &ndash;&gt;-->
+        <!--                    &lt;!&ndash;                    TODO Ajustar chamada das corridas &ndash;&gt;-->
+        <!--                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">-->
+        <!--                        <mat-form-field>-->
+        <!--&lt;!&ndash;                            <input formControlName="registrationStatus" matInput placeholder="Status">&ndash;&gt;-->
+        <!--                        </mat-form-field>-->
+        <!--                    </div>-->
 
-<!--                </div>-->
-<!--            </mat-card>-->
-<!--        </mat-tab>-->
+        <!--                </div>-->
+        <!--            </mat-card>-->
+        <!--        </mat-tab>-->
     </mat-tab-group>
 </form>

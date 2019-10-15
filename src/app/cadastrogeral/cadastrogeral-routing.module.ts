@@ -6,9 +6,9 @@ const routes: Routes = [
 
     // Cadastro geral ================================================================================
     {
-      path: '',
-      redirectTo: '/',
-      pathMatch: 'full'
+        path: '',
+        redirectTo: '/',
+        pathMatch: 'full'
     },
     {
         path: '',
@@ -16,6 +16,10 @@ const routes: Routes = [
             {
                 path: 'patients',
                 loadChildren: './paciente/paciente.module#PacienteModule'
+            },
+            {
+                path: 'user',
+                loadChildren: './user/user.module#UserModule'
             },
             {
                 path: 'cidades',
