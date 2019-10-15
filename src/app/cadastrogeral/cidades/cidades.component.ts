@@ -24,6 +24,9 @@ import {CidadesDialogComponent} from './cidades-form/cidade-dialog.component';
 })
 
 export class CidadesComponent implements OnInit {
+    public rowCidadesReport: any;
+    public rowDataReport: any;
+
     public rowCidades: any;
     public gridOptions: GridOptions;
     public rowData: any;
@@ -62,33 +65,35 @@ export class CidadesComponent implements OnInit {
         };
 
         this.columnDefs = [
-            {headerName: 'Id', field: 'id', rowDrag: true},
-            {headerName: 'Nome', field: 'name'},
-            {headerName: 'IBGE', field: 'ibgeCode'},
-            {headerName: 'UF', field: 'state.abbreviation'},
-            {headerName: 'Estado', field: 'state.name'},
+            {headerName: 'Id', field: 'id',  hide: true,},
+            {headerName: 'Cidade', field: 'cidade'},
+            {headerName: 'Estado', field: 'estado'},
+            {headerName: 'Qtd. de motoboys', field: 'motoboy'},
+            {headerName: 'Qtd. de clientes', field: 'customer'},
+            {headerName: 'Qtd. de empresas', field: 'company'}
             // {headerName: 'Autorizado', field: 'authorized'},
-            {
-                headerName: 'Ação',
-                lockPosition: false,
-                cellClass: 'locked-col',
-                suppressNavigable: true,
-                cellRenderer: function () {
-                    const display = 'block';
-                    const html = `<button class='btn btn-danger btn-mini'  style="background-color: #D5652B; color: white" data-action-type='editar'>
-                        <i class='icofont icofont-ui-edit'></i>Editar
-                     </button>
-                     <button class='btn btn-danger btn-mini'  style="background-color: #D5652B; color: white" data-action-type='deletar'>
-                         <i class='icofont icofont-ui-delete'></i>Deletar
-                     </button>`;
-                    return html;
-                }
-            }
+            // {
+            //     headerName: 'Ação',
+            //     lockPosition: false,
+            //     cellClass: 'locked-col',
+            //     suppressNavigable: true,
+            //     cellRenderer: function () {
+            //         const display = 'block';
+            //         const html = `<button class='btn btn-danger btn-mini'  style="background-color: #D5652B; color: white" data-action-type='editar'>
+            //             <i class='icofont icofont-ui-edit'></i>Editar
+            //          </button>
+            //          <button class='btn btn-danger btn-mini'  style="background-color: #D5652B; color: white" data-action-type='deletar'>
+            //              <i class='icofont icofont-ui-delete'></i>Deletar
+            //          </button>`;
+            //         return html;
+            //     }
+            // }
         ];
 
     }
 
     ngOnInit() {
+        this.getAllReportCity();
         this.getAllCidades()
     }
 
@@ -111,7 +116,7 @@ export class CidadesComponent implements OnInit {
             this.fileNameDialogRef = this.dialog.open(CidadesDialogComponent, {
                 height: '350px',
                 width: '1200px',
-                data: this.api.cityData(file)
+                data: this.api.cityNewData(file)
             });
         }
 
@@ -224,17 +229,19 @@ export class CidadesComponent implements OnInit {
                 err => console.error(err),
                 () => console.log(this.rowCidades)
             );
-        {
+    }
 
-        }
-        // this.api.GET().subscribe(
-        //     data => { // @ts-ignore
-        //         this.rowCidades = data;
-        //         this.rowData = data;
-        //     },
-        //     err => console.error(err),
-        //     () => console.log(this.rowCidades)
-        // );
+    public getAllReportCity() {
+        const endpoint = new Config().getEndpoint();
+        this._http.get(`${endpoint}city/report`)
+            .subscribe(
+                data => { // @ts-ignore
+                    this.rowCidadesReport = data;
+                    this.rowDataReport = data;
+                },
+                err => console.error(err),
+                () => console.log(this.rowCidadesReport)
+            );
     }
 
 }
