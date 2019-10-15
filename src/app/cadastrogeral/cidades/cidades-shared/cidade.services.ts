@@ -30,12 +30,20 @@ export class CidadeServices extends ResourceService<CityModel> {
         this.dados = {};
         this.dados = {
             id: file ? file.id : '',
-            name: file ? file.name : '',
-            authorized: file ? file.authorized : '',
-            ibgeCode: file ? file.ibgeCode : '',
-            zipCodes: file ? file.zipCodes : '',
-            state: file ? file.state : '',
+            cidade: file ? file.cidade : '',
+            estado: file ? file.estado : '',
+            motoboy: file ? file.motoboy : '',
+            customer: file ? file.customer : '',
+            company: file ? file.company : ''
         };
+        // this.dados = {
+        //     id: file ? file.id : '',
+        //     name: file ? file.name : '',
+        //     authorized: file ? file.authorized : '',
+        //     ibgeCode: file ? file.ibgeCode : '',
+        //     zipCodes: file ? file.zipCodes : '',
+        //     state: file ? file.state : '',
+        // };
         return this.dados;
     }
 }

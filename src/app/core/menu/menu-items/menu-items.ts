@@ -75,6 +75,12 @@ const MENUITEMS = [
                 type: 'link',
                 icon: 'user',
                 active: true
+            },
+            {
+                state: 'cidades',
+                name: 'Cidades',
+                type: 'link',
+                icon: 'room'
             }
         ]
     },
