@@ -3,16 +3,18 @@ import {HttpClient} from '@angular/common/http';
 import {ResourceService} from '../../../ResourceService';
 import {UserModel} from './userModel';
 import {Observable} from 'rxjs';
+import {Config} from '../../../app-config';
 
 @Injectable()
 export class UserServices extends ResourceService<UserModel> {
     private dados: any;
-    private client_http: HttpClient;
+    public client_http: HttpClient;
 
     constructor(httpClient: HttpClient) {
         super(
             httpClient,
             'user');
+        this.client_http = httpClient;
     }
 
     public userData(file: any): Observable<any> {
@@ -46,5 +48,16 @@ export class UserServices extends ResourceService<UserModel> {
         };
 
         return this.dados;
+    }
+
+    public getDocuments(username: String): any {
+        const endpoint = new Config().getEndpoint();
+        return this.client_http.get(`${endpoint}document/${username}`)
+            .subscribe(
+                data => { // @ts-ignore
+                    return data;
+                },
+                err => console.error(err)
+            );
     }
 }

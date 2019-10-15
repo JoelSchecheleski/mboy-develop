@@ -56,6 +56,13 @@ const MENUITEMS = [
                 active: true
             },
             {
+                state: 'user', // Cadastro de usuarios
+                name: 'Usuários',
+                type: 'link',
+                icon: 'date_range',
+                active: true
+            },
+            {
                 state: 'cidades', // Cadastro de cidades
                 name: 'cidades',
                 type: 'link',

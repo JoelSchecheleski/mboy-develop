@@ -4,7 +4,8 @@
 
 <ng-template #verticalLayout>
     <div id="main-app" class="app {{isSidebarFilterClass}} {{isHeaderFilterClass}}" [dir]="layout"
-         [ngClass]="{'app-dark': dark, 'boxed': boxed, 'collapsed-sidebar': collapseSidebar, 'compact-sidebar': compactSidebar, 'customizer-in': customizerIn}"
+         [ngClass]="{'app-dark': dark, 'boxed': boxed, 'collapsed-sidebar': collapseSidebar, 'compact-sidebar': compactSidebar,
+         'customizer-in': customizerIn}"
          [class.side-panel-opened]="coreService.sidenavOpen" [class.side-panel-closed]="!coreService.sidenavOpen">
         <mat-sidenav-container class="gene-container">
             <mat-sidenav #sidenav [(mode)]="coreService.sidenavMode" [(opened)]="coreService.sidenavOpen"

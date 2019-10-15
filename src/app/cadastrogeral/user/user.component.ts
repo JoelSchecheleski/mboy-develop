@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
     public rowData: any;
     public rowUser: any;
     public columnDefs: any;
-    public defaultColDef;
+    public defaultColDef: any;
     public language = new IdiomaPTBR().language;
     private gridApi;
     private gridColumnApi;
@@ -207,5 +207,4 @@ export class UserComponent implements OnInit {
                 () => console.log(this.rowUser)
             );
     }
-
 }
