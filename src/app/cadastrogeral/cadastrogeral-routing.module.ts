@@ -3,8 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthGuardService as RoleGuard} from '../role-guarde.service';
 
 const routes: Routes = [
-
-    // Cadastro geral ================================================================================
     {
         path: '',
         redirectTo: '/',
@@ -13,10 +11,6 @@ const routes: Routes = [
     {
         path: '',
         children: [
-            // {
-            //     path: 'patients',
-            //     loadChildren: './paciente/paciente.module#PacienteModule'
-            // },
             {
                 path: 'user',
                 loadChildren: './user/user.module#UserModule'
@@ -29,7 +23,6 @@ const routes: Routes = [
     }
 ];
 
-// JB925473301BR
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],

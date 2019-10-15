@@ -19,16 +19,6 @@ const appRoutes: Routes = [
         canActivate: [AuthGuard],
         runGuardsAndResolvers: 'always',
         children: [
-             {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
-
-            {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
-            {path: 'icons', loadChildren: './material-icons/material-icons.module#MaterialIconsModule'},
-            {path: 'components', loadChildren: './components/components.module#ComponentsModule'},
-            {path: 'users', loadChildren: './users/users.module#UsersModule'},
-
-            {path: '', redirectTo: 'home', pathMatch: 'full'},
-            {path: 'home', loadChildren: './components/components.module#ComponentsModule'},
-
             // Carrega todos os componentes dos cadastros gerais da aplicação
             {path: '', loadChildren: './cadastrogeral/cadastrogeral.module#CadastrogeralModule'},
 
