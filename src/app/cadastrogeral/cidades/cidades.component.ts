@@ -147,6 +147,8 @@ export class CidadesComponent implements OnInit {
                             selectedRows = data;
                             console.table(selectedRows);
                             this.openFileDialog(selectedRows);
+                        }, err => {
+                            console.log(err);
                         });
                     break;
                 case 'deletar':
@@ -155,7 +157,7 @@ export class CidadesComponent implements OnInit {
                         text: '',
                         type: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#038f9e',
+                        confirmButtonColor: '#D5652B',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Deletar',
                         cancelButtonText: 'Cancelar'

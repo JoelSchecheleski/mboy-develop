@@ -1,5 +1,4 @@
 <form [formGroup]="formulario" (ngSubmit)="submit(formulario)">
-    <!-- TAB INFORMAÇÕES GERAIS -->
     <mat-tab-group>
         <mat-tab label="Cidades">
             <mat-card>
@@ -29,7 +28,7 @@
                         </mat-form-field>
 
                         <mat-form-field>
-                            <mat-select name="state" [(value)]="selectedState" placeholder="UF">
+                            <mat-select name="state_id" [(value)]="selectedState" placeholder="UF">
                                 <mat-option *ngFor="let s of estados" [value]="s.id"
                                             (onSelectionChange)="selectState($event, s.id)">
                                     {{s.abbreviation}}
@@ -37,7 +36,7 @@
                             </mat-select>
                         </mat-form-field>
                     </div>
-                    <pre>{{formulario?.value | json}}</pre>
+<!--                    <pre>{{formulario?.value | json}}</pre>-->
                 </div>
                 <mat-dialog-actions>
                     <button mat-button type="submit">Salvar</button>

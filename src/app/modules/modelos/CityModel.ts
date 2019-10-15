@@ -12,6 +12,6 @@ export class CityModel extends Resource {
     public name?: string;
     public authorized?: boolean;
     public ibgeCode?: string;
-    public zipCodes?: string[];
-    public state: StateModel;
+    // public zipCodes?: string[];
+    // public state: StateModel;
 }

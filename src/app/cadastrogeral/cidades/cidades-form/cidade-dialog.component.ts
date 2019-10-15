@@ -76,7 +76,9 @@ export class CidadesDialogComponent implements OnInit {
 
     submit(form) {
         if (this.status === 'Novo') {
-            // console.log('Editando: ', form.value)
+            delete form.value['id'];
+            delete form.value['state'];
+            delete form.value['zipCodes'];
             this.api.POST(form.value)
                 .subscribe(data => {
                         console.log('Objeto inserido!', data);
@@ -90,7 +92,7 @@ export class CidadesDialogComponent implements OnInit {
                 text: '',
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#038f9e',
+                confirmButtonColor: '#D5652B',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Salvar',
                 cancelButtonText: 'Cancelar'
