@@ -18,9 +18,13 @@ import {
 
 
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class JWTInterceptor implements HttpInterceptor {
+
+    constructor(public router: Router) {
+    }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -45,6 +49,7 @@ export class JWTInterceptor implements HttpInterceptor {
                     .set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, HEAD, OPTIONS')
                     .set('SYSTEM', 'Mboy')
             });
+            this.router.navigate(['/session/loginV2']);
             return next.handle(firstLogin);
         }
     }

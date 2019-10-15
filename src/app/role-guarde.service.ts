@@ -48,7 +48,7 @@ export class AuthGuardService implements CanActivate {
             return true;
             // tslint:disable-next-line:triple-equals
         } else if (isAuthenticated == false || expire < atual) { // expire  < atual && !
-            this.router.navigate(['/auth/login/simple']);
+            this.router.navigate(['/session/loginV2']);
             return false;
         } else {
             return true;
