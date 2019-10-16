@@ -16,6 +16,14 @@ const routes: Routes = [
                 loadChildren: './user/user.module#UserModule'
             },
             {
+                path: 'customer',
+                loadChildren: './customer/customer.module#MotoboyModule'
+            },
+            {
+                path: 'motoboy',
+                loadChildren: './motoboy/motoboy.module#MotoboyModule'
+            },
+            {
                 path: 'cidades',
                 loadChildren: './cidades/cidades.module#CidadesModule'
             }

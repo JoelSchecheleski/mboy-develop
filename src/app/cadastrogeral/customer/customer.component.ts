@@ -10,16 +10,16 @@ import Swal from 'sweetalert2';
 import {HttpClient} from '@angular/common/http';
 import {Config} from '../../app-config';
 
-import {UserDialogComponent} from './user-form/user-dialog.component';
-import {UserServices} from './user-shared/user.services';
+import {CustomerDialogComponent} from './customer-form/customer-dialog.component';
+import {CustomerServices} from './customer-shared/customer.services';
 
 @Component({
-    selector: 'ms-usuario',
-    templateUrl: './user.component.html',
-    styleUrls: ['./user.component.scss'],
-    providers: [UserServices]
+    selector: 'ms-customer',
+    templateUrl: './customer.component.html',
+    styleUrls: ['./customer.component.scss'],
+    providers: [CustomerServices]
 })
-export class UserComponent implements OnInit {
+export class CustomerComponent implements OnInit {
     public gridOptions: GridOptions;
     public rowData: any;
     public rowUser: any;
@@ -30,16 +30,16 @@ export class UserComponent implements OnInit {
     private gridColumnApi;
     private url = new Config().getEndpoint();
 
-    fileNameDialogRef: MatDialogRef<UserDialogComponent>;
+    fileNameDialogRef: MatDialogRef<CustomerDialogComponent>;
 
     // Construtor da classe Usuario
     constructor(public _http: HttpClient,
-                public api: UserServices,
+                public api: CustomerServices,
                 private translate: TranslateService,
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
-        this.pageTitleService.setTitle('Usuários');
+        this.pageTitleService.setTitle('Clientes');
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {
@@ -52,10 +52,15 @@ export class UserComponent implements OnInit {
         };
 
         this.columnDefs = [
-            {headerName: 'Usuário', field: 'username'},
             {headerName: 'Nome', field: 'name'},
             {headerName: 'Email', field: 'email'},
+            {headerName: 'Contato', field: 'username'},
             {headerName: 'Status', field: 'registrationStatus'},
+            {
+                headerName: 'Data de cadastro', field: 'createdAt', cellRenderer: (data) => {
+                    return new Date(data.value).toLocaleDateString('pt-BR')
+                }
+            },
             // {headerName: 'Tipo de usuário', field: 'userType'},
             {
                 headerName: 'Ação',
@@ -87,13 +92,13 @@ export class UserComponent implements OnInit {
      */
     openFileDialog(file?) {
         if (file) { // Editando
-            this.fileNameDialogRef = this.dialog.open(UserDialogComponent, {
+            this.fileNameDialogRef = this.dialog.open(CustomerDialogComponent, {
                 height: '650px',
                 width: '1200px',
                 data: this.api.userData(file)
             });
         } else { // Novo
-            this.fileNameDialogRef = this.dialog.open(UserDialogComponent, {
+            this.fileNameDialogRef = this.dialog.open(CustomerDialogComponent, {
                 height: '650px',
                 width: '1200px',
                 data: this.api.userData(file)
@@ -196,7 +201,7 @@ export class UserComponent implements OnInit {
 
     public getAllUsers() {
         const endpoint = new Config().getEndpoint();
-        this._http.get(`${endpoint}user/type/admin`)
+        this._http.get(`${endpoint}user/type/customer`)
             .subscribe(
                 data => { // @ts-ignore
                     this.rowUser = data;

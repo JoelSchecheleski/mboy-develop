@@ -1,6 +1,6 @@
 import {Resource} from '../../../Resource';
 
-export class UserModel extends Resource {
+export class CustomerModel extends Resource {
     public username?: String;
     public email?: String;
     public password?: String;

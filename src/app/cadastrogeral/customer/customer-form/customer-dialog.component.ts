@@ -4,17 +4,17 @@ import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {isNullOrUndefined} from '@swimlane/ngx-datatable/release/utils';
 import {DomSanitizer} from '@angular/platform-browser';
 import Swal from 'sweetalert2'
-import {UserServices} from '../user-shared/user.services';
+import {CustomerServices} from '../customer-shared/customer.services';
 import {MatTabChangeEvent} from '@angular/material/tabs';
 import {Config} from '../../../app-config';
 import {GridOptions} from 'ag-grid-community';
 import {IdiomaPTBR} from '../../../idioma-PTBR';
 
 @Component({
-    templateUrl: './user-form.html',
-    providers: [UserServices]
+    templateUrl: './customer-form.html',
+    providers: [CustomerServices]
 })
-export class UserDialogComponent implements OnInit {
+export class CustomerDialogComponent implements OnInit {
     private readonly status: any;
     public registrationStatusList = [
         {value: 'UNDER_ANALYSIS', viewValue: 'UNDER_ANALYSIS'},
@@ -34,9 +34,9 @@ export class UserDialogComponent implements OnInit {
     private url = new Config().getEndpoint();
 
     constructor(
-        public api: UserServices,
+        public api: CustomerServices,
         private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<UserDialogComponent>,
+        public dialogRef: MatDialogRef<CustomerDialogComponent>,
         private domSanitizer: DomSanitizer,
         @Inject(MAT_DIALOG_DATA) private data
     ) {
@@ -78,19 +78,16 @@ export class UserDialogComponent implements OnInit {
 
     ngOnInit() {
         this.formulario = this.formBuilder.group({
-            username: new FormControl({
-                value: this.data.username ? this.data.username : '',
-                disabled: this.status !== 'Novo'
-            }, Validators.required),
-            email: this.data.email ? this.data.email : '',
-            password: this.data.password ? this.data.password : '',
-            name: this.data.name ? this.data.name : '',
+            name: new FormControl({ value: this.data.name ? this.data.name : '', disabled: this.status !== 'Novo' }),
+            email: new FormControl({ value: this.data.email ? this.data.email : '', disabled: this.status !== 'Novo' }),
+            username: new FormControl({ value: this.data.username ? this.data.username : '', disabled: this.status !== 'Novo' }),
+            password: new FormControl({ value: this.data.password ? this.data.password : '', disabled: this.status !== 'Novo' }),
             registrationStatus: new FormControl({
                 value: this.data.registrationStatus ? this.data.registrationStatus : '',
                 disabled: this.status === 'Novo'
             }),
-            userType: 'BACKOFFICE',
-            userTypeMboy: 'ADMIN',
+            userType: 'APP',
+            userTypeMboy: 'CUSTOMER',
         });
         this.selectedStatus = this.data.registrationStatus;
     }

@@ -33,6 +33,20 @@ const MENUITEMS = [
                 icon: 'user',
                 active: true
             },
+            {
+                state: 'customer',
+                name: 'Clientes',
+                type: 'link',
+                icon: 'user',
+                active: true
+            },
+            {
+                state: 'motoboy',
+                name: 'Motoboy',
+                type: 'link',
+                icon: 'user',
+                active: true
+            },
             // {
             //     state: 'motoboys',
             //     name: 'Motoboys',
