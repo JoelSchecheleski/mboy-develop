@@ -48,7 +48,9 @@
                                             <a menuToggle class="gene-relative" mat-ripple style="color: #615d5a"
                                                [routerLink]="['/',menuitem.state]" routerLinkActive="active"
                                                *ngIf="menuitem.type === 'link'">
-                                                <mat-icon>{{ menuitem.icon }}</mat-icon>
+                                                <mat-icon *ngIf="menuitem.name !== 'Sweepstakes'" style="width: 18px">{{ menuitem.icon}}</mat-icon>
+                                                <mat-icon *ngIf="menuitem.name == 'Sweepstakes'" svgIcon="sorteios" style="width: 18px"></mat-icon>
+
                                                 <span>{{menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem?.label">
                                                     <span class="sidebar-label">{{ menuitem?.label}}</span>

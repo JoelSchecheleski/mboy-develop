@@ -36,6 +36,9 @@ import {WidgetComponentModule} from './widget-component/widget-component.module'
 import {HorizontalLayoutComponent} from './horizontal-layout/horizontal-layout.component';
 import {PagesModule} from './pages/pages.module';
 
+import {MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
+
 // Módulos do sistema
 import {Interceptor} from './interceptor.module';
 import {CadastrogeralModule} from './cadastrogeral/cadastrogeral.module';
@@ -119,4 +122,35 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MboyAppModule {
+
+    constructor(private matIconRegistry: MatIconRegistry,
+                private domSanitizer: DomSanitizer) {
+
+        this.matIconRegistry.addSvgIcon(
+            'sorteios',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/sorteios.svg')
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            'pessoas',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/pessoas.svg')
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            'push',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/push.svg')
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            'reclamacoes',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/reclamacoes.svg')
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            'valores',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/valores.svg')
+        );
+
+    }
+
 }

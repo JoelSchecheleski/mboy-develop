@@ -61,7 +61,7 @@ const MENUITEMS = [
         name: 'Cities',
         type: 'link',
         icon: 'room'
-    }
+    },
     // , {
     //     state: 'Valores',
     //     name: 'Values',
@@ -74,12 +74,12 @@ const MENUITEMS = [
     //     type: 'link',
     //     icon: 'sentiment_very_dissatisfied'
     // },
-    // {
-    //     state: 'Sorteios',
-    //     name: 'Sweepstakes',
-    //     type: 'link',
-    //     icon: 'insert_emoticon'
-    // },
+    {
+        state: 'sweepstakes',
+        name: 'Sweepstakes',
+        type: 'link',
+        icon: 'sorteios'
+    },
     // {
     //     state: 'pushs',
     //     name: 'Push trigger',
