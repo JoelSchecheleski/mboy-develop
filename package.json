@@ -5,7 +5,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
-    "build": "ng build --prod --aot --build-optimizer",
+    "build": "ng build --prod --aot --vendor-chunk --common-chunk --delete-output-path --buildOptimizer",
+    "buildStat": "ng build --prod --aot --vendor-chunk --common-chunk --delete-output-path --buildOptimizer --stats-json",
+    "stats": "webpack-bundle-analyzer dist/stats.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -110,6 +112,8 @@
     "@types/jquery": "^3.3.29",
     "@types/node": "^10.12.18",
     "@types/nvd3": "^1.8.39",
+    "ag-grid-angular": "^20.2.0",
+    "ag-grid-community": "^20.2.0",
     "codelyzer": "^4.5.0",
     "jasmine-core": "^3.3.0",
     "jasmine-spec-reporter": "^4.2.1",
@@ -124,7 +128,6 @@
     "ts-node": "^7.0.1",
     "tslint": "^5.12.1",
     "typescript": "^3.2.4",
-    "ag-grid-angular": "^20.2.0",
-    "ag-grid-community": "^20.2.0"
+    "webpack-bundle-analyzer": "^3.5.2"
   }
 }

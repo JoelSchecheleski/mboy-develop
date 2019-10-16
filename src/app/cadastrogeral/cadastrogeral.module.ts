@@ -14,7 +14,7 @@ import {MaterialSharedModule} from '../modules/material-shared.module';
         CadastrogeralRoutingModule,
         TranslateModule,
         SweetAlert2Module.forRoot()
-    ]
+    ],
 })
 export class CadastrogeralModule {
 }

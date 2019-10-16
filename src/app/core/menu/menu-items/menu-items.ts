@@ -20,7 +20,7 @@ const MENUITEMS = [
     // ================================== MENUT ITENS MAIN-MATERIAL ===============================
     {
         state: 'pessoas',
-        name: 'pessoas',
+        name: 'Peoples',
         type: 'sub',
         class: 'group-title',
         icon: 'people',
@@ -28,7 +28,7 @@ const MENUITEMS = [
         children: [
             {
                 state: 'user',
-                name: 'Usuários',
+                name: 'Users',
                 type: 'link',
                 icon: 'user',
                 active: true
@@ -72,37 +72,37 @@ const MENUITEMS = [
     },
     {
         state: 'cidades',
-        name: 'Cidades',
+        name: 'Cities',
         type: 'link',
         icon: 'room'
-    }
+    },
     // , {
     //     state: 'Valores',
-    //     name: 'Valores',
+    //     name: 'Values',
     //     type: 'link',
     //     icon: 'attach_money'
     // },
     // {
     //     state: 'Reclamações',
-    //     name: 'Reclamações',
+    //     name: 'Claims',
     //     type: 'link',
     //     icon: 'sentiment_very_dissatisfied'
     // },
-    // {
-    //     state: 'Sorteios',
-    //     name: 'Sorteios',
-    //     type: 'link',
-    //     icon: 'insert_emoticon'
-    // },
+    {
+        state: 'sweepstakes',
+        name: 'Sweepstakes',
+        type: 'link',
+        icon: 'sorteios'
+    },
     // {
     //     state: 'pushs',
-    //     name: 'Disparo de pushs',
+    //     name: 'Push trigger',
     //     type: 'link',
     //     icon: 'add_to_home_screen'
     // },
     // {
     //     state: 'Sair',
-    //     name: 'Sair',
+    //     name: 'Get out',
     //     type: 'link',
     //     icon: 'meeting_room'
     // }

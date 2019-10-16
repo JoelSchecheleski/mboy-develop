@@ -23,7 +23,7 @@ import {RoutingModule} from './app-routing.module';
 
 import {AuthService} from './service/auth-service/auth.service';
 import {PageTitleService} from './core/page-title/page-title.service';
-import {D3ChartService} from './core/nvD3/nvD3.service';
+// import {D3ChartService} from './core/nvD3/nvD3.service';
 
 import {MBoyAppComponent} from './app.component';
 import {MainComponent} from './main/main.component';
@@ -36,20 +36,23 @@ import {WidgetComponentModule} from './widget-component/widget-component.module'
 import {HorizontalLayoutComponent} from './horizontal-layout/horizontal-layout.component';
 import {PagesModule} from './pages/pages.module';
 
+import {MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
+
 // Módulos do sistema
 import {Interceptor} from './interceptor.module';
 import {CadastrogeralModule} from './cadastrogeral/cadastrogeral.module';
 import {MaterialSharedModule} from './modules/material-shared.module';
 import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 
-export const firebaseConfig = {
-    apiKey: 'AIzaSyBO0CLP4fOA_kanqw1HQ2sDjEkyuK9lQ3o',
-    authDomain: 'gene-ccf5f.firebaseapp.comm',
-    databaseURL: 'https://gene-ccf5f.firebaseio.com',
-    projectId: 'gene-ccf5fc',
-    storageBucket: 'gene-ccf5f.appspot.com',
-    messagingSenderId: '907778578362'
-}
+// export const firebaseConfig = {
+//     apiKey: 'AIzaSyBO0CLP4fOA_kanqw1HQ2sDjEkyuK9lQ3o',
+//     authDomain: 'gene-ccf5f.firebaseapp.comm',
+//     databaseURL: 'https://gene-ccf5f.firebaseio.com',
+//     projectId: 'gene-ccf5fc',
+//     storageBucket: 'gene-ccf5f.appspot.com',
+//     messagingSenderId: '907778578362'
+// }
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -92,7 +95,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
                 deps: [HttpClient]
             }
         }),
-        AngularFireModule.initializeApp(firebaseConfig),
+        // AngularFireModule.initializeApp(firebaseConfig),
         AngularFireAuthModule,
         SweetAlert2Module.forRoot()
     ],
@@ -103,7 +106,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ],
     bootstrap: [MBoyAppComponent],
     providers: [
-        D3ChartService,
+        // D3ChartService,
         MenuItems,
         HorizontalMenuItems,
         BreadcrumbService,
@@ -119,4 +122,35 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MboyAppModule {
+
+    constructor(private matIconRegistry: MatIconRegistry,
+                private domSanitizer: DomSanitizer) {
+
+        this.matIconRegistry.addSvgIcon(
+            'sorteios',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/sorteios.svg')
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            'pessoas',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/pessoas.svg')
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            'push',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/push.svg')
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            'reclamacoes',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/reclamacoes.svg')
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            'valores',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/valores.svg')
+        );
+
+    }
+
 }

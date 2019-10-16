@@ -81,7 +81,16 @@ export class CidadesDialogComponent implements OnInit {
             delete form.value['zipCodes'];
             this.api.POST(form.value)
                 .subscribe(data => {
-                        console.log('Objeto inserido!', data);
+                        Swal.fire({
+                            position: 'center',
+                            // type: 'success',
+                            title: 'Cidade adicionada',
+                            imageUrl: '../../assets/cidade_add.svg',
+                            showConfirmButton: false,
+                            imageWidth: 150,
+                            animation: false,
+                            timer: 1500
+                        });
                         this.dialogRef.close(`${form.value.name}`);
                     }
                 );
@@ -100,7 +109,16 @@ export class CidadesDialogComponent implements OnInit {
                 if (result.value) {
                     this.api.PUT(form.value)
                         .subscribe(data => {
-                                console.log('Objeto atualizado!', data);
+                                Swal.fire({
+                                    position: 'center',
+                                    // type: 'success',
+                                    title: 'Cidade atualizada',
+                                    imageUrl: '../../assets/cidade_add.svg',
+                                    showConfirmButton: false,
+                                    imageWidth: 150,
+                                    animation: false,
+                                    timer: 1500
+                                });
                                 this.dialogRef.close(`${form.value.name}`);
                             }
                         );

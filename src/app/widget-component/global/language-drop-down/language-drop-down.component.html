@@ -4,13 +4,14 @@
 	  <img width="24" height="24" [src]="selectImage">
 	</button>
    <mat-menu #menu_activator>
-      <div class="gene-lang-popup">
-         <div class="language-title pad-all-sm primary-bg" fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <div class="gene-lang-popup" >
+         <div class="language-title pad-all-sm bg-idiomas"
+              fxLayout="row wrap" fxLayoutAlign="space-between center">
             <div class="sec-title" fxFlex="60">
                <h4 class="mrgn-b-none">{{'Languages'|translate}}</h4>
             </div>
             <div fxFlex="40" class="text-right">   
-               <span class="gene-text-md">{{langArray.length}} NEW</span>
+               <span class="gene-text-md">{{langArray.length}}</span>
             </div>   
          </div>
          <div  fxLayout="row wrap" class="pad-all-xs">

@@ -7,21 +7,15 @@
                            id="quickFilter">
                 </mat-form-field>
             </div>
-            <div fxFlex="12" align="ringth">
-                <button mat-mini-fab (click)="openFileDialog()">
+            <div align="ringth">
+                <button mat-mini-fab (click)="openFileDialog()" style="background-color: white;">
                     <mat-icon aria-label="">add</mat-icon>
                 </button>
-                <button mat-mini-fab>
-                    <mat-icon aria-label="">print</mat-icon>
-                </button>
-<!--                <button mat-mini-fab color="warn">-->
-<!--                    <mat-icon aria-label="">help_outline</mat-icon>-->
-<!--                </button>-->
             </div>
         </div>
 
         <ag-grid-angular style="width: 100%; height: 100%"
-                         class="ag-theme-balham"
+                         class="ag-theme-material"
                          [defaultColDef]="defaultColDef"
                          [rowSelection]="'multiple'"
                          [gridOptions]="gridOptions"
@@ -38,7 +32,7 @@
                          [animateRows]="true"
                          [pagination]="true"
                          [sideBar]="true"
-                         [rowHeight]="33"
+                         [rowHeight]="40"
                          [paginationPageSize]="15"
                          (selectionChanged)="onSelectionChanged($event)"
                          (rowClicked)="onRowClicked($event)"

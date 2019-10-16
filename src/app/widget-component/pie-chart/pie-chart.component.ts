@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Inject} from '@angular/core';
-import {D3, D3ChartService} from "../../core/nvD3/nvD3.service";
+// import {D3, D3ChartService} from "../../core/nvD3/nvD3.service";
 
 @Component({
   selector: 'ms-pie-chart',
@@ -11,18 +11,20 @@ export class PieChartComponent implements OnInit {
   @Input('data') data: any;
   @Input('chartOptions') chartOptions: any;
 
-  d3: D3;
+  // d3: D3;
   @Input('title') title: string;
   @Input('subtitle') subtitle: string;
   @Input('bgColor') bgColor: string;
   @Input('textColor') textColor: string;
 
-  constructor( @Inject(D3ChartService) d3ChartService: D3ChartService) {
-    this.d3 = d3ChartService.getD3();
+  constructor(
+      // @Inject(D3ChartService) d3ChartService: D3ChartService
+  ) {
+//    this.d3 = d3ChartService.getD3();
   }
 
   ngOnInit() {
-    let d3 = this.d3;
+  //  let d3 = this.d3;
 
     if (!this.chartOptions) {
       this.chartOptions = {

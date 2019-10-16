@@ -26,6 +26,10 @@ const routes: Routes = [
             {
                 path: 'cidades',
                 loadChildren: './cidades/cidades.module#CidadesModule'
+            },
+            {
+                path: 'sweepstakes',
+                loadChildren: './sweepstakes/sweepstakes.module#SweepstakesModule'
             }
         ]
     }

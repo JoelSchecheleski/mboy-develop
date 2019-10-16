@@ -5,9 +5,11 @@ import {map} from 'rxjs/operators';
 import {json} from 'ng2-validation/dist/json';
 import * as CryptoJS from 'crypto-js';
 import {Config} from '../app-config';
+import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 
 @Injectable()
-export class ApiMedeasy {
+export class ApiMboy {
     public BaseUrl = new Config().getEndpoint();
     public jwtToken: string;
     public Usuario: string;
@@ -19,11 +21,11 @@ export class ApiMedeasy {
 
     public Cabecalho = new HttpHeaders()
         .append('Content-Type', 'application/json; charset=utf-8');
-    //.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-    //.append('Access-Control-Allow-Origin', '*');
-    //.append('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, HEAD, OPTIONS');
+    // .append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    // .append('Access-Control-Allow-Origin', '*');
+    // .append('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, HEAD, OPTIONS');
 
-    constructor(private Http: HttpClient) {
+    constructor(private Http: HttpClient, private router: Router) {
         // this.logout();
     }
 
@@ -34,28 +36,64 @@ export class ApiMedeasy {
      * @return <any>
      */
     public login(username: string, password: string) {
-        console.log('Usuario e senha', username, password);
         return this.Http.post<any>(`${this.BaseUrl}auth/signin`, JSON.stringify({
             username: username,
             password: password
-        }), {headers: this.Cabecalho})
-            .pipe(map((res: Response) => {
-
-                // se login, então obtem um token jwt como resposta e armazena o Token recebido da API
-                if (res) {
-                    const retorno = JSON.parse(JSON.stringify(res));
-                    this.jwtToken = retorno.jwtToken;
-                    localStorage.setItem('TOKEN', JSON.stringify(this.jwtToken));
-                    localStorage.setItem('SESSAO', JSON.stringify(retorno));
-
-                    // Busca as informações de acesso do usuário e armazena temporariamente
-                    this.getInfoUser(username);
-                } else {
-                    localStorage.setItem('SESSAO', JSON.stringify('access denied'));
-                }
-                return res;
-            }));
+        })) // , {headers: this.Cabecalho}
+            .subscribe(response => {
+                const retorno = JSON.parse(JSON.stringify(response));
+                this.jwtToken = retorno.jwtToken;
+                localStorage.setItem('TOKEN', JSON.stringify(this.jwtToken));
+                localStorage.setItem('SESSAO', JSON.stringify(retorno));
+                // Busca as informações de acesso do usuário e armazena temporariamente
+                // this.getInfoUser(username);
+                this.router.navigate(['/']);
+            }, error => {
+                Swal.fire({
+                    title: 'Acesso negado!',
+                    text: 'Verifique seu usuário e senha.',
+                    imageUrl: '../../assets/img/errors/access_danied.svg',
+                    cancelButtonColor: '#D5652B',
+                    showCloseButton: true,
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                    animation: false
+                });
+            });
     }
+
+    // public login(username: string, password: string) {
+    //     console.log('Usuario e senha', username, password);
+    //     return this.Http.post<any>(`${this.BaseUrl}auth/signin`, JSON.stringify({
+    //         username: username,
+    //         password: password
+    //     }), {headers: this.Cabecalho})
+    //         .pipe(map((res: Response) => {
+    //
+    //             // se login, então obtem um token jwt como resposta e armazena o Token recebido da API
+    //             if (res) {
+    //                 const retorno = JSON.parse(JSON.stringify(res));
+    //                 this.jwtToken = retorno.jwtToken;
+    //                 localStorage.setItem('TOKEN', JSON.stringify(this.jwtToken));
+    //                 localStorage.setItem('SESSAO', JSON.stringify(retorno));
+    //                 // Busca as informações de acesso do usuário e armazena temporariamente
+    //                 this.getInfoUser(username);
+    //             } else {
+    //                 localStorage.setItem('SESSAO', JSON.stringify('access denied'));
+    //                 Swal.fire({
+    //                     title: 'Acesso negado!',
+    //                     text: 'Verifique seu usuário e senha.',
+    //                     imageUrl: '../../assets/img/brand/logo-full-alt.svg',
+    //                     imageWidth: 400,
+    //                     imageHeight: 200,
+    //                     imageAlt: 'Custom image',
+    //                     animation: false
+    //                 })
+    //             }
+    //             return res;
+    //         }));
+    // }
 
     /**
      * Busca informações do usuário logado e armazena essas informações de forma temporária

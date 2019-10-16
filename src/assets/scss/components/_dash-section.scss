@@ -165,17 +165,17 @@ div.user-profile-wrap {
 
 //chart line widget
 .display-dots-line-chart {
-	.nvd3 .nv-groups .nv-point {
-		stroke-opacity: 1 !important;
-		fill-opacity: 1 !important;
-		stroke-width: 6px;
-		&.hover {
-			stroke-width: 7px;
-		}
-	}
-	.nv-line {
-		stroke-width: 3.5;
-	}
+	//.nvd3 .nv-groups .nv-point {
+	//	stroke-opacity: 1 !important;
+	//	fill-opacity: 1 !important;
+	//	stroke-width: 6px;
+	//	&.hover {
+	//		stroke-width: 7px;
+	//	}
+	//}
+	//.nv-line {
+	//	stroke-width: 3.5;
+	//}
 }
 
 //drag and drop

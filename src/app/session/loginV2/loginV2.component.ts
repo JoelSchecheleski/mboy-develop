@@ -4,14 +4,14 @@ import {ViewEncapsulation} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {ApiMedeasy} from '../session.service';
+import {ApiMboy} from '../session.service';
 
 @Component({
     selector: 'ms-loginV2-session',
     templateUrl: './loginV2-component.html',
     styleUrls: ['./loginV2-component.scss', '../../../assets/styles/styles.scss'],
     encapsulation: ViewEncapsulation.None,
-    providers: [ApiMedeasy]
+    providers: [ApiMboy]
 })
 export class LoginV2Component {
     frmLogin: FormGroup;
@@ -53,13 +53,13 @@ export class LoginV2Component {
 
     constructor(public authService: AuthService,
                 public translate: TranslateService,
-                public api: ApiMedeasy,
-                public authenticationMedeasy: ApiMedeasy,
+                public api: ApiMboy,
+                public authenticationMedeasy: ApiMboy,
                 private router: Router) {
 
         this.frmLogin = new FormGroup({
-          username: this.username,
-          password: this.password
+            username: this.username,
+            password: this.password
         });
     }
 
@@ -71,18 +71,28 @@ export class LoginV2Component {
     // TODO: Login com o sistema
     login() {
         console.log('Efetuando login...');
-        this.authenticationMedeasy.login(this.frmLogin.value.username, this.frmLogin.value.password).subscribe(data => {
-            const ret = JSON.parse(JSON.stringify(data));
-            console.log('entrou em login component');
-            if (ret.jwtToken != null) {
-                console.log('Login Efetuado com sucesso');
-                 // this.router.navigate(['/dashboard/geral']);
-                this.router.navigate(['/']);
-            } else {
-                console.log('Usuário ou senha incorretos');
-                this.failLogin = true;
-            }
-        });
+        const dados = this.authenticationMedeasy.login(this.frmLogin.value.username, this.frmLogin.value.password);
+        // if (dados['jwtToken'] != null) {
+        //     console.log('Login Efetuado com sucesso');
+        //     // this.router.navigate(['/dashboard/geral']);
+        //     this.router.navigate(['/']);
+        // } else {
+        //     console.log('Usuário ou senha incorretos');
+        //     this.failLogin = true;
+        // }
+
+        // , subscribe(data => {
+        //     const ret = JSON.parse(JSON.stringify(data));
+        //     console.log('entrou em login component');
+        //     if (ret.jwtToken != null) {
+        //         console.log('Login Efetuado com sucesso');
+        //          // this.router.navigate(['/dashboard/geral']);
+        //         this.router.navigate(['/']);
+        //     } else {
+        //         console.log('Usuário ou senha incorretos');
+        //         this.failLogin = true;
+        //     }
+        // });
     }
 
 }

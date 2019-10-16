@@ -11,7 +11,7 @@
                             <div fxLayout="column" fxLayoutAlign="center center" class="mrgn-b-lg text-center">
                                 <div class="top">
                                     <div class="head">
-                                        <img class="logo" src="./assets/img/brand/logo-full-alt.svg"
+                                        <img class="logo" src="../../../assets/img/brand/logo-full-alt.svg"
                                              style="width: 100%; max-height: 75px">
                                     </div>
                                 </div>
@@ -23,12 +23,12 @@
                                 <div fxLayout="column" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="80" fxFlex.lg="70"
                                      fxFlex.xl="70" fxLayoutAlign="start">
                                     <mat-form-field class="full-wid mrgn-b-md" style="margin-left: 25%; margin-top: 12%;">
-                                        <input matInput placeholder="Usuário" type="text" required
+                                        <input matInput placeholder="{{'Username' | translate}}" type="text" required
                                                formControlName="username">
                                         <span matSuffix><i class="material-icons">verified_user</i></span>
                                     </mat-form-field>
                                     <mat-form-field class="full-wid mrgn-b-md" style="margin-left: 25%">
-                                        <input matInput placeholder="Password" type="password" required
+                                        <input matInput placeholder="{{'Password' | translate}}" type="password" required
                                                formControlName="password">
                                         <span matSuffix><i class="material-icons">vpn_key</i></span>
                                     </mat-form-field>
