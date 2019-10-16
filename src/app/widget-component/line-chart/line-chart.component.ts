@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Inject, ViewEncapsulation} from '@angular/core';
-import {D3, D3ChartService} from "../../core/nvD3/nvD3.service";
-import {lineChartDemoValues} from "../../data/widgetDemoData.data";
+// import {D3, D3ChartService} from "../../core/nvD3/nvD3.service";
+// import {lineChartDemoValues} from "../../data/widgetDemoData.data";
 
 @Component({
   selector: 'ms-line-chart',
@@ -13,7 +13,7 @@ export class LineChartComponent implements OnInit {
   @Input('data') data: any;
   @Input('chartOptions') chartOptions: any;
 
-  d3: D3;
+  // d3: D3;
   @Input('title') title: string;
   @Input('subtitle') subtitle: string;
   @Input('bgColor') bgColor: string;
@@ -22,17 +22,18 @@ export class LineChartComponent implements OnInit {
   @Input('interpolate') interpolate: boolean = false;
 
 
-  constructor(@Inject(D3ChartService) d3ChartService: D3ChartService) {
-    this.d3 = d3ChartService.getD3();
+  constructor( //@Inject(D3ChartService) d3ChartService: D3ChartService
+  ) {
+    // this.d3 = d3ChartService.getD3();
   }
 
   ngOnInit() {
-    let d3 = this.d3;
-
-    let interpolate = (this.interpolate) ? 'cardinal' : false;
-
-    let min = d3.min(lineChartDemoValues) - 40;
-    let max = d3.max(lineChartDemoValues) + 40;
+    // let d3 = this.d3;
+    //
+    // let interpolate = (this.interpolate) ? 'cardinal' : false;
+    //
+    // let min = d3.min(lineChartDemoValues) - 40;
+    // let max = d3.max(lineChartDemoValues) + 40;
 
     if (!this.chartOptions) {
       this.chartOptions = {
@@ -50,17 +51,17 @@ export class LineChartComponent implements OnInit {
           showXAxis: false,
           showYAxis: false,
           xAxis: {
-            ticks: d3.time.days,
+            // ticks: d3.time.days,
             axisLabel: '',
-            tickFormat: (d) => {
-              return d3.time.format('%a %d.%m.%Y')(new Date(d));
-            }
+            // tickFormat: (d) => {
+            //   return d3.time.format('%a %d.%m.%Y')(new Date(d));
+            // }
           },
-          yDomain: [min, max],
+          // yDomain: [min, max],
           showLegend: false,
           useInteractiveGuideline: true,
           color: [this.chartColor],
-          interpolate: interpolate
+          // interpolate: interpolate
         },
       };
     }

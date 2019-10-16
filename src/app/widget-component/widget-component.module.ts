@@ -21,7 +21,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {TranslateModule} from '@ngx-translate/core';
 import {EmbedVideo} from 'ngx-embed-video';
 
-import {nvD3} from '../core/nvD3/nvD3.component';
+// import {nvD3} from '../core/nvD3/nvD3.component';
 
 import {ShopGridComponent} from './shop-type/shop-grid/shop-grid.component';
 import {DeleteDialogComponent} from './pop-up/delete-dialog/delete-dialog.component';
@@ -49,7 +49,7 @@ import {PaymentMessageComponent} from './pop-up/payment-message/payment-message.
         LineChartComponent,
         StackedAreaChartComponent,
         PieChartComponent,
-        nvD3,
+        // nvD3,
         InboxComposeComponent,
         AddNewUserComponent,
         EditNewUserComponent,
