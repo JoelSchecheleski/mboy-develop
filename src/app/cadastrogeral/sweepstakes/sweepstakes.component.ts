@@ -68,6 +68,19 @@ export class SweepstakesComponent implements OnInit {
             {headerName: 'Quantidade mínima de corridas', field: 'quantityServices'},
             {headerName: 'Quantidade usuarios qualificados', field: 'quantityQualifiedUsers'},
             {headerName: 'Criado por', field: 'createdBy'},
+            {
+                headerName: 'Ação',
+                lockPosition: false,
+                cellClass: 'locked-col',
+                suppressNavigable: true,
+                cellRenderer: function () {
+                    const display = 'block';
+                    const html = `<button class='mat-button' style="color: #D5652B" data-action-type='editar'>
+                        Ver resultados
+                     </button>`;
+                    return html;
+                }
+            }
         ];
 
     }
