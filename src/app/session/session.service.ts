@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
 
 @Injectable()
-export class ApiMedeasy {
+export class ApiMboy {
     public BaseUrl = new Config().getEndpoint();
     public jwtToken: string;
     public Usuario: string;
@@ -52,8 +52,9 @@ export class ApiMedeasy {
                 Swal.fire({
                     title: 'Acesso negado!',
                     text: 'Verifique seu usuário e senha.',
-                    imageUrl: '../../assets/img/brand/logo-full-alt.svg',
-                    background: '#d1d5cc',
+                    imageUrl: '../../assets/img/errors/access_danied.svg',
+                    cancelButtonColor: '#D5652B',
+                    showCloseButton: true,
                     imageWidth: 400,
                     imageHeight: 200,
                     imageAlt: 'Custom image',
