@@ -53,6 +53,7 @@ export class ApiMedeasy {
                     title: 'Acesso negado!',
                     text: 'Verifique seu usuário e senha.',
                     imageUrl: '../../assets/img/brand/logo-full-alt.svg',
+                    background: '#d1d5cc',
                     imageWidth: 400,
                     imageHeight: 200,
                     imageAlt: 'Custom image',
