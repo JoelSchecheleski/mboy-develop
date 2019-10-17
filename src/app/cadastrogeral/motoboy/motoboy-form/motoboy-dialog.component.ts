@@ -31,7 +31,6 @@ export class MotoboyDialogComponent implements OnInit {
     public gridOptions: GridOptions;
     public language = new IdiomaPTBR().language;
     public rowData: any;
-    private url = new Config().getEndpoint();
 
     constructor(
         public api: MotoboyServices,

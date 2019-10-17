@@ -28,9 +28,11 @@ export class CompanyDialogComponent implements OnInit {
     public username: any;
     public formulario: FormGroup;
     public columnDefs: any;
+    public columnCreditDefs: any;
     public gridOptions: GridOptions;
     public language = new IdiomaPTBR().language;
     public rowData: any;
+    public rowDataCredit: any;
     private url = new Config().getEndpoint();
 
     constructor(
@@ -48,28 +50,21 @@ export class CompanyDialogComponent implements OnInit {
             this.status = 'Novo';
         }
 
-        this.columnDefs = [
-            {headerName: 'Tipo documento', field: 'type', resizable: true, autoHeight: true},
+        this.columnCreditDefs = [
             {
-                headerName: 'Foto',
-                field: 'document',
-                lockPosition: false,
-                cellClass: 'locked-col',
-                suppressNavigable: true,
-                autoHeight: true,
-                autoWidth: true,
-                resizable: true,
-                cellRenderer: function (row: any) {
-                    return `<span data-action-type="showDocument" >Documento</span>`
+                headerName: 'Data de cadastro', field: 'createdAt', cellRenderer: (data) => {
+                    return new Date(data.value).toLocaleDateString('pt-BR')
                 }
-            }
+            },
+            {headerName: 'Origem', field: 'origin'},
+            {headerName: 'Operação', field: 'operation'},
+            {headerName: 'Valor', field: 'value'},
         ];
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {
                 this.gridOptions.api.sizeColumnsToFit();
             },
-            rowHeight: 500,
             frameworkComponents: {
                 button: MatButton
             }
@@ -104,6 +99,18 @@ export class CompanyDialogComponent implements OnInit {
             userTypeMboy: 'COMPANY',
         });
         this.selectedStatus = this.data.registrationStatus;
+    }
+
+    tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+        if (tabChangeEvent.index === 1) { //creditos
+            this.api.client_http.get(`${this.url}user/credits/${this.data.username}`)
+                .subscribe(
+                    data => { // @ts-ignore
+                        this.rowDataCredit = data;
+                    },
+                    err => console.error(err)
+                );
+        }
     }
 
     submit(form) {
