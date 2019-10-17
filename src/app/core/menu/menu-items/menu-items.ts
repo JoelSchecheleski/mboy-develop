@@ -28,7 +28,7 @@ const MENUITEMS = [
         children: [
             {
                 state: 'user',
-                name: 'Users',
+                name: 'Administradores',
                 type: 'link',
                 icon: 'user',
                 active: true
@@ -42,7 +42,7 @@ const MENUITEMS = [
             },
             {
                 state: 'motoboy',
-                name: 'Motoboy',
+                name: 'Motoboys',
                 type: 'link',
                 icon: 'user',
                 active: true
