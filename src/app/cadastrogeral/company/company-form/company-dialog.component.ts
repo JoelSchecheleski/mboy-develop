@@ -4,17 +4,17 @@ import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {isNullOrUndefined} from '@swimlane/ngx-datatable/release/utils';
 import {DomSanitizer} from '@angular/platform-browser';
 import Swal from 'sweetalert2'
-import {CustomerServices} from '../customer-shared/customer.services';
+import {CompanyServices} from '../company-shared/company.services';
 import {MatTabChangeEvent} from '@angular/material/tabs';
 import {Config} from '../../../app-config';
 import {GridOptions} from 'ag-grid-community';
 import {IdiomaPTBR} from '../../../idioma-PTBR';
 
 @Component({
-    templateUrl: './customer-form.html',
-    providers: [CustomerServices]
+    templateUrl: './company-form.html',
+    providers: [CompanyServices]
 })
-export class CustomerDialogComponent implements OnInit {
+export class CompanyDialogComponent implements OnInit {
     private readonly status: any;
     public registrationStatusList = [
         {value: 'UNDER_ANALYSIS', viewValue: 'UNDER_ANALYSIS'},
@@ -34,9 +34,9 @@ export class CustomerDialogComponent implements OnInit {
     private url = new Config().getEndpoint();
 
     constructor(
-        public api: CustomerServices,
+        public api: CompanyServices,
         private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<CustomerDialogComponent>,
+        public dialogRef: MatDialogRef<CompanyDialogComponent>,
         private domSanitizer: DomSanitizer,
         @Inject(MAT_DIALOG_DATA) private data
     ) {
@@ -78,16 +78,30 @@ export class CustomerDialogComponent implements OnInit {
 
     ngOnInit() {
         this.formulario = this.formBuilder.group({
-            name: new FormControl({ value: this.data.name ? this.data.name : '', disabled: this.status !== 'Novo' }),
-            email: new FormControl({ value: this.data.email ? this.data.email : '', disabled: this.status !== 'Novo' }),
-            username: new FormControl({ value: this.data.username ? this.data.username : '', disabled: this.status !== 'Novo' }),
-            cpfCnpj: new FormControl({ value: this.data.cpfCnpj ? this.data.cpfCnpj : '', disabled: this.status !== 'Novo' }),
+            comercialName: new FormControl({
+                value: this.data.comercialName ? this.data.comercialName : '',
+                disabled: this.status !== 'Novo'
+            }),
+            email: new FormControl({value: this.data.email ? this.data.email : '', disabled: this.status !== 'Novo'}),
+            cpfCnpj: new FormControl({value: this.data.cpfCnpj ? this.data.cpfCnpj : '', disabled: this.status !== 'Novo'}),
+            username: new FormControl({value: this.data.username ? this.data.username : '', disabled: this.status !== 'Novo'}),
+            street: new FormControl({value: this.data.street ? this.data.street : '', disabled: this.status !== 'Novo'}),
+            houseNumber: new FormControl({value: this.data.houseNumber ? this.data.houseNumber : '', disabled: this.status !== 'Novo'}),
+            complement: new FormControl({value: this.data.complement ? this.data.complement : '', disabled: this.status !== 'Novo'}),
+            neighborhood: new FormControl({value: this.data.neighborhood ? this.data.neighborhood : '', disabled: this.status !== 'Novo'}),
+            usercity: new FormControl({value: this.data.usercity ? this.data.usercity : '', disabled: this.status !== 'Novo'}),
+            userstate: new FormControl({value: this.data.userstate ? this.data.userstate : '', disabled: this.status !== 'Novo'}),
+            zipCode: new FormControl({value: this.data.zipCode ? this.data.zipCode : '', disabled: this.status !== 'Novo'}),
+            accessoryType: new FormControl({
+                value: this.data.accessoryType ? this.data.accessoryType : '',
+                disabled: this.status !== 'Novo'
+            }),
             registrationStatus: new FormControl({
                 value: this.data.registrationStatus ? this.data.registrationStatus : '',
                 disabled: this.status === 'Novo'
             }),
             userType: 'APP',
-            userTypeMboy: 'CUSTOMER',
+            userTypeMboy: 'COMPANY',
         });
         this.selectedStatus = this.data.registrationStatus;
     }

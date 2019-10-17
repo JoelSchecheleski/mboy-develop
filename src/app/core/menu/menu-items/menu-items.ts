@@ -47,6 +47,13 @@ const MENUITEMS = [
                 icon: 'user',
                 active: true
             },
+            {
+                state: 'company',
+                name: 'Empresas',
+                type: 'link',
+                icon: 'user',
+                active: true
+            },
             // {
             //     state: 'motoboys',
             //     name: 'Motoboys',

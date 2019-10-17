@@ -9,9 +9,9 @@ import {Resource} from '../../../Resource';
 export class SweepstakesModel extends Resource {
     public createdAt?: Date;
     public cashPrize?: number;
-    public quantityWinners?: bigint;
+    public quantityWinners?: number;
     public userCategory?: string;
-    public quantityServices?: bigint;
-    public quantityQualifiedUsers?: bigint;
+    public quantityServices?: number;
+    public quantityQualifiedUsers?: number;
     public createdBy?: string;
 }

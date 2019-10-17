@@ -12,14 +12,8 @@
                     </div>
                     <mat-divider></mat-divider>
                 </div>
-                <div class="gene-card-content">
-                    <!-- Nome do usuario linha -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
-                            <input formControlName="username" matInput placeholder="Contato do usuário" required>
-                        </mat-form-field>
-                    </div>
 
+                <div class="gene-card-content">
                     <!-- Primeira linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
                         <mat-form-field>
@@ -34,7 +28,11 @@
                     <!-- segunda linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
                         <mat-form-field>
-                            <input formControlName="password" matInput placeholder="Senha">
+                            <input formControlName="cpfCnpj" matInput placeholder="CPF">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="username" matInput placeholder="Contato do usuário" required>
                         </mat-form-field>
                     </div>
 

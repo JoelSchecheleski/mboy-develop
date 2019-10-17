@@ -78,10 +78,24 @@ export class MotoboyDialogComponent implements OnInit {
 
     ngOnInit() {
         this.formulario = this.formBuilder.group({
-            name: new FormControl({ value: this.data.name ? this.data.name : '', disabled: this.status !== 'Novo' }),
-            email: new FormControl({ value: this.data.email ? this.data.email : '', disabled: this.status !== 'Novo' }),
-            username: new FormControl({ value: this.data.username ? this.data.username : '', disabled: this.status !== 'Novo' }),
-            password: new FormControl({ value: this.data.password ? this.data.password : '', disabled: this.status !== 'Novo' }),
+            comercialName: new FormControl({
+                value: this.data.comercialName ? this.data.comercialName : '',
+                disabled: this.status !== 'Novo'
+            }),
+            email: new FormControl({value: this.data.email ? this.data.email : '', disabled: this.status !== 'Novo'}),
+            cpfCnpj: new FormControl({value: this.data.cpfCnpj ? this.data.cpfCnpj : '', disabled: this.status !== 'Novo'}),
+            username: new FormControl({value: this.data.username ? this.data.username : '', disabled: this.status !== 'Novo'}),
+            street: new FormControl({value: this.data.street ? this.data.street : '', disabled: this.status !== 'Novo'}),
+            houseNumber: new FormControl({value: this.data.houseNumber ? this.data.houseNumber : '', disabled: this.status !== 'Novo'}),
+            complement: new FormControl({value: this.data.complement ? this.data.complement : '', disabled: this.status !== 'Novo'}),
+            neighborhood: new FormControl({value: this.data.neighborhood ? this.data.neighborhood : '', disabled: this.status !== 'Novo'}),
+            usercity: new FormControl({value: this.data.usercity ? this.data.usercity : '', disabled: this.status !== 'Novo'}),
+            userstate: new FormControl({value: this.data.userstate ? this.data.userstate : '', disabled: this.status !== 'Novo'}),
+            zipCode: new FormControl({value: this.data.zipCode ? this.data.zipCode : '', disabled: this.status !== 'Novo'}),
+            accessoryType: new FormControl({
+                value: this.data.accessoryType ? this.data.accessoryType : '',
+                disabled: this.status !== 'Novo'
+            }),
             registrationStatus: new FormControl({
                 value: this.data.registrationStatus ? this.data.registrationStatus : '',
                 disabled: this.status === 'Novo'

@@ -59,7 +59,7 @@ export class CidadesDialogComponent implements OnInit {
         this.selectedState = this.data.state.abbreviation;
     }
 
-    public selectState(event: MatOptionSelectionChange, state_id: bigint) {
+    public selectState(event: MatOptionSelectionChange, state_id: number) {
         if (event.source.selected) {
             this.formulario.value['state_id'] = state_id;
         }
@@ -107,7 +107,7 @@ export class CidadesDialogComponent implements OnInit {
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.value) {
-                    this.api.PUT(form.value)
+                    this.api.PUT(form.getRawValue())
                         .subscribe(data => {
                                 Swal.fire({
                                     position: 'center',
