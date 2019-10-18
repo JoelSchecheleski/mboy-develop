@@ -28,9 +28,12 @@ export class MotoboyDialogComponent implements OnInit {
     public username: any;
     public formulario: FormGroup;
     public columnDefs: any;
+    public columnRideDefs: any;
     public gridOptions: GridOptions;
     public language = new IdiomaPTBR().language;
     public rowData: any;
+    public rowDataRide: any;
+    private url = new Config().getEndpoint();
 
     constructor(
         public api: MotoboyServices,
@@ -64,11 +67,24 @@ export class MotoboyDialogComponent implements OnInit {
             }
         ];
 
+        this.columnRideDefs = [
+            {
+                headerName: 'Data', field: 'created_at', cellRenderer: (data) => {
+                    return new Date(data.value).toLocaleDateString('pt-BR')
+                }
+            },
+            {headerName: 'Origem', field: 'start_position'},
+            {headerName: 'Destino', field: 'end_position'},
+            {headerName: 'Participante', field: 'motoboy'},
+            {headerName: 'Tipo de corrida', field: 'service_type'},
+            {headerName: 'Forma de pagamento', field: 'payment_type'},
+            {headerName: 'Valor', field: 'price'}
+        ];
+
         this.gridOptions = <GridOptions>{
             onGridReady: () => {
                 this.gridOptions.api.sizeColumnsToFit();
             },
-            rowHeight: 500,
             frameworkComponents: {
                 button: MatButton
             }
@@ -103,6 +119,18 @@ export class MotoboyDialogComponent implements OnInit {
             userTypeMboy: 'MOTOBOY',
         });
         this.selectedStatus = this.data.registrationStatus;
+    }
+
+    tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+        if (tabChangeEvent.index === 1) { //corridas
+            this.api.client_http.get(`${this.url}user/rides?username=${this.data.username}`)
+                .subscribe(
+                    data => { // @ts-ignore
+                        this.rowDataRide = data;
+                    },
+                    err => console.error(err)
+                );
+        }
     }
 
     submit(form) {

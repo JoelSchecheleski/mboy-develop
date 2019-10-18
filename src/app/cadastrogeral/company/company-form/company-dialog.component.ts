@@ -29,10 +29,12 @@ export class CompanyDialogComponent implements OnInit {
     public formulario: FormGroup;
     public columnDefs: any;
     public columnCreditDefs: any;
+    public columnRideDefs: any;
     public gridOptions: GridOptions;
     public language = new IdiomaPTBR().language;
     public rowData: any;
     public rowDataCredit: any;
+    public rowDataRide: any;
     private url = new Config().getEndpoint();
 
     constructor(
@@ -59,6 +61,20 @@ export class CompanyDialogComponent implements OnInit {
             {headerName: 'Origem', field: 'origin'},
             {headerName: 'Operação', field: 'operation'},
             {headerName: 'Valor', field: 'value'},
+        ];
+
+        this.columnRideDefs = [
+            {
+                headerName: 'Data', field: 'created_at', cellRenderer: (data) => {
+                    return new Date(data.value).toLocaleDateString('pt-BR')
+                }
+            },
+            {headerName: 'Origem', field: 'start_position'},
+            {headerName: 'Destino', field: 'end_position'},
+            {headerName: 'Participante', field: 'customer'},
+            {headerName: 'Tipo de corrida', field: 'service_type'},
+            {headerName: 'Forma de pagamento', field: 'payment_type'},
+            {headerName: 'Valor', field: 'price'}
         ];
 
         this.gridOptions = <GridOptions>{
@@ -107,6 +123,14 @@ export class CompanyDialogComponent implements OnInit {
                 .subscribe(
                     data => { // @ts-ignore
                         this.rowDataCredit = data;
+                    },
+                    err => console.error(err)
+                );
+        } else if (tabChangeEvent.index === 2) { //corridas
+            this.api.client_http.get(`${this.url}user/rides?username=${this.data.username}`)
+                .subscribe(
+                    data => { // @ts-ignore
+                        this.rowDataRide = data;
                     },
                     err => console.error(err)
                 );
