@@ -21,6 +21,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 import {Router} from '@angular/router';
 import {isNull} from '@angular/compiler/src/output/output_ast';
+import * as moment from 'moment';
 
 @Component({
     selector: 'ms-sweepstakes',
@@ -73,7 +74,12 @@ export class SweepstakesComponent implements OnInit {
 
         this.columnDefs = [
             {headerName: 'Id', field: 'id', hide: true},
-            {headerName: 'Criado em', field: 'createdAt'},
+            // {headerName: 'Criado em', field: 'createdAt'},
+            {
+                headerName: 'Criado em', field: 'createdAt', cellRenderer: (data) => {
+                    return moment(data.value).format('DD/MM/YYYY HH:mm');
+                }
+            },
             {headerName: 'Valor do prémio', field: 'cashPrize'},
             {headerName: 'Nº contemplados', field: 'quantityWinners'},
             {headerName: 'Corridas requeridas', field: 'quantityServices'},
@@ -104,7 +110,7 @@ export class SweepstakesComponent implements OnInit {
      * Abre o dialog com o registro a ser atualizado / novo
      * @param file
      */
-    openFileDialog(file?) {
+    openFileDialog(file ?) {
         if (file) { // Editando
             this.fileNameDialogRef = this.dialog.open(SweepstakesDialogComponent, {
                 height: '350px',
