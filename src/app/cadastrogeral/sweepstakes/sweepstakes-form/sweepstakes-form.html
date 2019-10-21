@@ -1,1 +1,47 @@
-<h1>Sweepstakes</h1>
+<mat-card>
+    <div class="gene-card-title">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxLayout="column">
+                <h3>{{'Novo Sorteio'|translate}}</h3>
+            </div>
+            <span fxFlex></span>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+    <div class="gene-card-content">
+        <form [formGroup]="formulario" (ngSubmit)="submit(formulario)">
+            <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                    <mat-form-field class="full-wid" appearance="outline">
+                        <mat-label>Quantidade de contemplados</mat-label>
+                        <input formControlName="quantityWinners" matInput
+                               placeholder="Quantidade de contemplados">
+                    </mat-form-field>
+                </div>
+                <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                    <mat-form-field class="full-wid" appearance="outline">
+                        <mat-label>Valor por contemplado*</mat-label>
+                        <input formControlName="cashPrize" #cashPrize matInput
+                               placeholder="Valor por contemplado*">
+                    </mat-form-field>
+                </div>
+
+                <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                    <mat-form-field class="full-wid" appearance="outline">
+                        <mat-label>Qtd. mínima de corridas*</mat-label>
+                        <input formControlName="quantityServices" #cashPrize matInput
+                               placeholder="Qtd. mínima de corridas*">
+                    </mat-form-field>
+                </div>
+
+                <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                    <mat-dialog-actions>
+                        <button mat-button type="submit">Sortear</button>
+                        <button mat-button (click)="dialogRef.close()">Cancelar</button>
+                    </mat-dialog-actions>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-card>

@@ -40,13 +40,16 @@ export class SweepstakesDialogComponent implements OnInit {
     ngOnInit() {
         // Busca todos os estados
 
-
         // Sorteios realizados
         this.formulario = this.formBuilder.group({
             id: this.data.id ? this.data.id : '',
-
+            cashPrize: this.data.cashPrize ? this.data.cashPrize : '',
+            quantityWinners: this.data.quantityWinners ? this.data.quantityWinners : '',
+            userCategory: this.data.userCategory ? this.data.userCategory : '',
+            quantityServices: this.data.quantityServices ? this.data.quantityServices : '',
+            quantityQualifiedUsers: this.data.quantityQualifiedUsers ? this.data.quantityQualifiedUsers : '',
+            createdBy: this.data.createdBy ? this.data.createdBy : ''
         });
-        this.selectedState = this.data.state.abbreviation;
     }
 
     public compareObjects(o1: any, o2: any): boolean {
@@ -94,7 +97,7 @@ export class SweepstakesDialogComponent implements OnInit {
                                     position: 'center',
                                     // type: 'success',
                                     title: 'Cidade atualizada',
-                                    imageUrl: '../../assets/cidade_add.svg',
+                                    imageUrl: '../../assets/sorteios.svg',
                                     showConfirmButton: false,
                                     imageWidth: 150,
                                     animation: false,

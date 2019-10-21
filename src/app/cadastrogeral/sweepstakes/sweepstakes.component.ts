@@ -63,11 +63,11 @@ export class SweepstakesComponent implements OnInit {
 
         this.columnDefs = [
             {headerName: 'Criado em', field: 'createdAt'},
-            {headerName: 'Valor por contemplado', field: 'cashPrize'},
-            {headerName: 'Quantidade contemplados', field: 'quantityWinners'},
-            {headerName: 'Quantidade mínima de corridas', field: 'quantityServices'},
-            {headerName: 'Quantidade usuarios qualificados', field: 'quantityQualifiedUsers'},
-            {headerName: 'Criado por', field: 'createdBy'},
+            {headerName: 'Valor do prémio', field: 'cashPrize'},
+            {headerName: 'Nº contemplados', field: 'quantityWinners'},
+            {headerName: 'Corridas requeridas', field: 'quantityServices'},
+            {headerName: 'Nº de qualificados', field: 'quantityQualifiedUsers'},
+            // {headerName: 'Criado por', field: 'createdBy'},
             {
                 headerName: 'Ação',
                 lockPosition: false,
@@ -217,6 +217,7 @@ export class SweepstakesComponent implements OnInit {
                 data => {
                     this.rowSweepstakes = data;
                     this.rowData = data;
+                    console.log(data);
                 },
                 err => console.error(err),
                 () => console.log(this.rowSweepstakes)
