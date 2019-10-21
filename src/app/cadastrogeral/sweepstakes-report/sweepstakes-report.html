@@ -1,0 +1,76 @@
+<div class="user-manage-list">
+    <mat-card>
+        <div fxLayout="row wrap" fxLayoutAlign="space-between">
+            <!-- Informações do sorteio -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <div class="mrgn-r-sm">
+                    <mat-form-field>
+                        <input matInput placeholder='Realizado em' value="{{data.createdAt | date:'dd/MM/yyyy'}}">
+                    </mat-form-field>
+                </div>
+                <div class="mrgn-l-sm mrgn-r-sm">
+                    <mat-form-field>
+                        <input matInput placeholder='Valor' value="{{data.cashPrize | currency}}">
+                    </mat-form-field>
+                </div>
+                <div class="mrgn-l-sm mrgn-r-sm">
+                    <mat-form-field>
+                        <input matInput placeholder='Qtd. de sorteados' value="{{data.quantityQualifiedUsers}}">
+                    </mat-form-field>
+                </div>
+                <div class="mrgn-l-sm mrgn-r-sm">
+                    <mat-form-field>
+                        <input matInput placeholder='Período de uso' value="{{data.periodOfUse}}">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="table-responsive" fxLayout="row wrap">
+            <table class="full-wid" mat-table [dataSource]="dados">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef class="mrgn-l-sm mrgn-r-sm">Nome</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div fxLayoutAlign="start center">
+                            <div class="mrgn-r-sm user-list-image">
+                                <img class="img-circle" src="{{element.img}}" height="50" width="50">
+                            </div>
+                            <div>
+                                <h5 class="mrgn-b-xs">{{element.name}}</h5>
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef class="mrgn-l-sm mrgn-r-sm">E-mail</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="make-ellipse">{{element.email}} </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef class="mrgn-l-sm mrgn-r-sm">Telefone</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div fxLayoutAlign="start start">
+                            <div class="rounded mrgn-r-xs primary-bg status-icon"></div>
+                            <div class="status-text">
+                                <div>{{element.phone}}</div>
+                                <!--                                <div class="mat-text-muted">{{element.phone}}</div>-->
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            </table>
+        </div>
+        <div class="pagination">
+            <mat-paginator [length]="dados.length"
+                           [pageSize]="10"
+                           [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+        </div>
+    </mat-card>
+</div>

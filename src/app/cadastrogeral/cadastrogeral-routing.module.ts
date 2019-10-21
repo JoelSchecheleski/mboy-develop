@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuardService as RoleGuard} from '../role-guarde.service';
+import {SweepstakesReportComponent} from './sweepstakes-report/sweepstakes-report.component';
 
 const routes: Routes = [
     {
@@ -34,7 +35,12 @@ const routes: Routes = [
             {
                 path: 'sweepstakes',
                 loadChildren: './sweepstakes/sweepstakes.module#SweepstakesModule'
+            },
+            {
+                path: 'sweepstakes-report/:id',
+                loadChildren: './sweepstakes-report/sweepstakes-report.module#SweepstakesReportModule'
             }
+
         ]
     }
 ];

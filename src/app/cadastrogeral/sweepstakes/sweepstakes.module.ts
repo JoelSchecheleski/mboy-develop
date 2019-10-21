@@ -10,6 +10,8 @@ import {AgGridModule} from 'ag-grid-angular';
 import {MaterialSharedModule} from '../../modules/material-shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SweepstakesDialogComponent} from './sweepstakes-form/sweepstakes-dialog.component';
+import {SweepstakesReportComponent} from '../sweepstakes-report/sweepstakes-report.component';
+import {SweepstakesReportModule} from '../sweepstakes-report/sweepstakes-report.module';
 
 @NgModule({
     imports: [
@@ -21,7 +23,8 @@ import {SweepstakesDialogComponent} from './sweepstakes-form/sweepstakes-dialog.
         AgGridModule.withComponents([]),
         FormsModule,
         ReactiveFormsModule,
-        TranslateModule
+        TranslateModule,
+        SweepstakesReportModule
     ],
     entryComponents: [SweepstakesDialogComponent],
     declarations: [SweepstakesComponent, SweepstakesDialogComponent],

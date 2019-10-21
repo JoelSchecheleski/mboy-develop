@@ -1,4 +1,4 @@
-<div fxLayout="row">
+<div fxLayout="row" *ngIf="selectedRowsReport == null">
     <mat-card class="card" style="width: 100% !important;">
         <div fxLayout="row">
             <div fxFlex="100">
@@ -40,3 +40,12 @@
         </ag-grid-angular>
     </mat-card>
 </div>
+
+<div class="form-group row" *ngIf="selectedRowsReport != null">
+    <div class="form-group col-sm-12">
+        <ms-sweepstakes-report
+                [data]="selectedRowsReport">
+        </ms-sweepstakes-report>
+    </div>
+</div>
+

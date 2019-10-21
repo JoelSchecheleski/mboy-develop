@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {PageTitleService} from '../../core/page-title/page-title.service';
 
@@ -16,6 +16,11 @@ import {HttpClient} from '@angular/common/http';
 import {Config} from '../../app-config';
 import {SweepstakesDialogComponent} from './sweepstakes-form/sweepstakes-dialog.component';
 import {SweepstakesModel} from './sweepstakes-shared/SweepstakesModel';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {SelectionModel} from '@angular/cdk/collections';
+import {Router} from '@angular/router';
+import {isNull} from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector: 'ms-sweepstakes',
@@ -33,6 +38,10 @@ export class SweepstakesComponent implements OnInit {
     public language = new IdiomaPTBR().language;
     private gridApi;
     private gridColumnApi;
+    selectedRowsReport: any;
+
+    public data: any;
+    @Output() messageToEmit = new EventEmitter<string>();
 
     fileNameDialogRef: MatDialogRef<SweepstakesDialogComponent>;
 
@@ -42,7 +51,8 @@ export class SweepstakesComponent implements OnInit {
                 private translate: TranslateService,
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
-                private snackBar: MatSnackBar) {
+                private snackBar: MatSnackBar,
+                private router: Router) {
         this.pageTitleService.setTitle('Sweepstakes');
         const params = {
             skipHeader: false,
@@ -62,6 +72,7 @@ export class SweepstakesComponent implements OnInit {
         };
 
         this.columnDefs = [
+            {headerName: 'Id', field: 'id', hide: true},
             {headerName: 'Criado em', field: 'createdAt'},
             {headerName: 'Valor do prémio', field: 'cashPrize'},
             {headerName: 'Nº contemplados', field: 'quantityWinners'},
@@ -75,7 +86,7 @@ export class SweepstakesComponent implements OnInit {
                 suppressNavigable: true,
                 cellRenderer: function () {
                     const display = 'block';
-                    const html = `<button class='mat-button' style="color: #D5652B" data-action-type='editar'>
+                    const html = `<button class='mat-button' style="color: #D5652B" data-action-type='resultados'>
                         Ver resultados
                      </button>`;
                     return html;
@@ -136,43 +147,27 @@ export class SweepstakesComponent implements OnInit {
             const id = e.data.id;
             const actionType = e.event.target.getAttribute('data-action-type');
             switch (actionType) {
-                case 'editar':
-                    let selectedRows = {};
-                    const endpoint = new Config().getEndpoint();
-                    this._http.get(`${endpoint}sweepstakes/${id}`)
-                        .subscribe(data => {
-                            selectedRows = data;
-                            console.table(selectedRows);
-                            this.openFileDialog(selectedRows);
-                        }, err => {
-                            console.log(err);
-                        });
-                    break;
-                case 'deletar':
-                    Swal.fire({
-                        title: 'Deseja realmente deletar esse registro?',
-                        text: '',
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#D5652B',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Deletar',
-                        cancelButtonText: 'Cancelar'
-                    }).then((result) => {
-                        if (result.value) {
-                            this.api.DELETE(id)
-                                .subscribe(data => {
-                                        this.snackBar.open('Registro deletado com sucesso', '', {
-                                            duration: 2000,
-                                        });
-                                        this.ngOnInit();
-                                    }
-                                );
-                        }
-                    });
+                case 'resultados':
+                    // let selectedRowsReport = {};
+                    const endpointReport = new Config().getEndpoint();
+                    if (id != null) {
+                        this._http.get(`${endpointReport}sweepstakes/sweepstakes-report/${id}`)
+                            .subscribe(data => {
+                                this.selectedRowsReport = data;
+                                this.sendToChild(data);
+                                console.table(this.selectedRowsReport);
+                            }, err => {
+                                console.log(err);
+                            });
+                    }
                     break;
             }
         }
+    }
+
+    public sendToChild(data: any) {
+        this.data = data;
+        this.messageToEmit.emit(data);
     }
 
     /**

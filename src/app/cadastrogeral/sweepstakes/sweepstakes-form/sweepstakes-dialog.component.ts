@@ -1,4 +1,4 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, OnInit, Inject, ViewChild} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {isNullOrUndefined} from '@swimlane/ngx-datatable/release/utils';
@@ -11,6 +11,9 @@ import {EstadocivilServices} from '../../../modules/servicos/estadocivil.service
 import {SweepstakesServices} from '../sweepstakes-shared/sweepstakes-services';
 import {SweepstakesModel} from '../sweepstakes-shared/SweepstakesModel';
 import {MatOptionSelectionChange} from '@angular/material/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
     templateUrl: './sweepstakes-form.html',
@@ -23,6 +26,8 @@ export class SweepstakesDialogComponent implements OnInit {
     public selectedState = '';
     public estados: any;
     public formulario: FormGroup;
+
+
 
     constructor(
         public api: SweepstakesServices,
