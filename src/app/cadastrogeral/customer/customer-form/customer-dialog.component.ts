@@ -9,6 +9,7 @@ import {MatTabChangeEvent} from '@angular/material/tabs';
 import {Config} from '../../../app-config';
 import {GridOptions} from 'ag-grid-community';
 import {IdiomaPTBR} from '../../../idioma-PTBR';
+import * as moment from 'moment';
 
 @Component({
     templateUrl: './customer-form.html',
@@ -70,7 +71,7 @@ export class CustomerDialogComponent implements OnInit {
         this.columnRideDefs = [
             {
                 headerName: 'Data', field: 'created_at', cellRenderer: (data) => {
-                    return new Date(data.value).toLocaleDateString('pt-BR')
+                    return moment(data.value).format('DD/MM/YYYY HH:mm');
                 }
             },
             {headerName: 'Origem', field: 'start_position'},

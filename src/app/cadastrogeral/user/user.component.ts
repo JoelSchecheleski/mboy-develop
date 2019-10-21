@@ -64,10 +64,10 @@ export class UserComponent implements OnInit {
                 suppressNavigable: true,
                 cellRenderer: function () {
                     const display = 'block';
-                    const html = `<button class='btn btn-danger btn-mini' color="primary" data-action-type='editar'>
+                    const html = `<button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white"  data-action-type='editar'>
                         <i class='icofont icofont-ui-edit'></i>Editar
                      </button>
-                     <button class='btn btn-danger btn-mini' color="primary" data-action-type='deletar'>
+                     <button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white" data-action-type='deletar'>
                          <i class='icofont icofont-ui-delete'></i>Deletar
                      </button>`;
                     return html;

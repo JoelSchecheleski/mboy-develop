@@ -1,16 +1,11 @@
-import {Component, OnInit, Inject} from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormGroup, FormBuilder} from '@angular/forms';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {isNullOrUndefined} from '@swimlane/ngx-datatable/release/utils';
 
 import Swal from 'sweetalert2'
-import {ReligiaoServices} from '../../../modules/servicos/religiao.services';
-import {CorServices} from '../../../modules/servicos/cor.services';
-import {NacionalServices} from '../../../modules/servicos/nacional.services';
-import {EstadocivilServices} from '../../../modules/servicos/estadocivil.services';
 import {CidadeServices} from '../cidades-shared/cidade.services';
 import {StateServices} from '../cidades-shared/state.services';
-import {StateModel} from '../../../modules/modelos/stateModel';
 import {MatOptionSelectionChange} from '@angular/material/core';
 
 @Component({
@@ -19,8 +14,6 @@ import {MatOptionSelectionChange} from '@angular/material/core';
 })
 export class CidadesDialogComponent implements OnInit {
     private status: any;
-
-    public today = new Date();
     public selectedState = '';
     public estados: any;
     public formulario: FormGroup;
@@ -40,45 +33,37 @@ export class CidadesDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        // Busca todos os estados
         this.stateService.GET().subscribe(data => {
             this.estados = data;
-            console.table(data);
+            if (this.data && this.data.state) {
+                this.selectedState = this.estados.filter(obj => obj.abbreviation === this.data.state)[0].id
+            }
         });
 
-        // Liberação de cidades
+
         this.formulario = this.formBuilder.group({
             id: this.data.id ? this.data.id : '',
-            state_id: this.data.state.id ? this.data.state.id : 0,
             name: this.data.name ? this.data.name : '',
-            authorized: this.data.authorized ? this.data.authorized : '',
+            authorized: this.data.authorized ? this.data.authorized : false,
             ibgeCode: this.data.ibgeCode ? this.data.ibgeCode : '',
             zipCodes: this.data.zipCodes ? this.data.zipCodes : '',
             state: this.data.state ? this.data.state : '',
         });
-        this.selectedState = this.data.state.abbreviation;
     }
 
     public selectState(event: MatOptionSelectionChange, state_id: number) {
         if (event.source.selected) {
             this.formulario.value['state_id'] = state_id;
+            this.formulario.value['state'] = this.estados.filter(obj => obj.id === state_id)[0].abbreviation;
         }
     }
-
-    public compareObjects(o1: any, o2: any): boolean {
-        return o1.name === o2.name && o1.id === o2.id;
-    }
-
-    public compareItems(i1, i2) {
-        return i1 && i2 && i1.id === i2.id;
-    }
-
 
     submit(form) {
         if (this.status === 'Novo') {
             delete form.value['id'];
-            delete form.value['state'];
+            delete form.value['state_id'];
             delete form.value['zipCodes'];
+
             this.api.POST(form.value)
                 .subscribe(data => {
                         Swal.fire({
@@ -94,8 +79,7 @@ export class CidadesDialogComponent implements OnInit {
                         this.dialogRef.close(`${form.value.name}`);
                     }
                 );
-        }
-        if (this.status === 'Editando') {
+        } else if (this.status === 'Editando') {
             Swal.fire({
                 title: 'Deseja realmente atualizar?',
                 text: '',
@@ -107,7 +91,7 @@ export class CidadesDialogComponent implements OnInit {
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.value) {
-                    this.api.PUT(form.getRawValue())
+                    this.api.PUT(form.value)
                         .subscribe(data => {
                                 Swal.fire({
                                     position: 'center',
@@ -126,9 +110,4 @@ export class CidadesDialogComponent implements OnInit {
             });
         }
     }
-
-    getErrorMessage() {
-        return this.formulario['name'].hasError('required') ? 'Nome é obrigatório' : '';
-    }
-
 }
