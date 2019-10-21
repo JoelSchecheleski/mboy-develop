@@ -12,6 +12,7 @@ import {Config} from '../../app-config';
 
 import {MotoboyDialogComponent} from './motoboy-form/motoboy-dialog.component';
 import {MotoboyServices} from './motoboy-shared/motoboy.services';
+import * as moment from 'moment';
 
 @Component({
     selector: 'ms-motoboy',
@@ -58,7 +59,7 @@ export class MotoboyComponent implements OnInit {
             {headerName: 'Status', field: 'registrationStatus'},
             {
                 headerName: 'Data de cadastro', field: 'createdAt', cellRenderer: (data) => {
-                    return new Date(data.value).toLocaleDateString('pt-BR')
+                    return moment(data.value).format('DD/MM/YYYY HH:mm');
                 }
             },
             // {headerName: 'Tipo de usuário', field: 'userType'},
@@ -69,10 +70,10 @@ export class MotoboyComponent implements OnInit {
                 suppressNavigable: true,
                 cellRenderer: function () {
                     const display = 'block';
-                    const html = `<button class='btn btn-danger btn-mini' color="primary" data-action-type='editar'>
+                    const html = `<button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white"  data-action-type='editar'>
                         <i class='icofont icofont-ui-edit'></i>Editar
                      </button>
-                     <button class='btn btn-danger btn-mini' color="primary" data-action-type='deletar'>
+                     <button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white"  data-action-type='deletar'>
                          <i class='icofont icofont-ui-delete'></i>Deletar
                      </button>`;
                     return html;

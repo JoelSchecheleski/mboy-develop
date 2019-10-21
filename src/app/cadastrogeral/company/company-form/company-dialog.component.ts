@@ -9,6 +9,7 @@ import {MatTabChangeEvent} from '@angular/material/tabs';
 import {Config} from '../../../app-config';
 import {GridOptions} from 'ag-grid-community';
 import {IdiomaPTBR} from '../../../idioma-PTBR';
+import * as moment from 'moment';
 
 @Component({
     templateUrl: './company-form.html',
@@ -55,7 +56,7 @@ export class CompanyDialogComponent implements OnInit {
         this.columnCreditDefs = [
             {
                 headerName: 'Data de cadastro', field: 'createdAt', cellRenderer: (data) => {
-                    return new Date(data.value).toLocaleDateString('pt-BR')
+                    return moment(data.value).format('DD/MM/YYYY HH:mm');
                 }
             },
             {headerName: 'Origem', field: 'origin'},
@@ -66,7 +67,7 @@ export class CompanyDialogComponent implements OnInit {
         this.columnRideDefs = [
             {
                 headerName: 'Data', field: 'created_at', cellRenderer: (data) => {
-                    return new Date(data.value).toLocaleDateString('pt-BR')
+                    return moment(data.value).format('DD/MM/YYYY HH:mm');
                 }
             },
             {headerName: 'Origem', field: 'start_position'},
