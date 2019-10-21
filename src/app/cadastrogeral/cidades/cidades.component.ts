@@ -5,7 +5,6 @@ import {PageTitleService} from '../../core/page-title/page-title.service';
 import {GridOptions} from 'ag-grid-community';
 import 'ag-grid-community';
 import {IdiomaPTBR} from '../../idioma-PTBR';
-import {isNullOrUndefined} from 'util';
 import {MatButton, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 
 import {filter} from 'rxjs/operators';
@@ -26,7 +25,6 @@ import {CidadesDialogComponent} from './cidades-form/cidade-dialog.component';
 export class CidadesComponent implements OnInit {
     public rowCidadesReport: any;
     public rowDataReport: any;
-
     public rowCidades: any;
     public gridOptions: GridOptions;
     public rowData: any;
@@ -34,10 +32,9 @@ export class CidadesComponent implements OnInit {
     public rowSelection;
     public defaultColDef;
     public language = new IdiomaPTBR().language;
+    fileNameDialogRef: MatDialogRef<CidadesDialogComponent>;
     private gridApi;
     private gridColumnApi;
-
-    fileNameDialogRef: MatDialogRef<CidadesDialogComponent>;
 
     // Construtor da classe Cidades
     constructor(public _http: HttpClient,
@@ -47,47 +44,49 @@ export class CidadesComponent implements OnInit {
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
         this.pageTitleService.setTitle('Cidades');
-        const params = {
-            skipHeader: false,
-            skipFooters: true,
-            skipGroups: true,
-            fileName: 'export.csv'
-        };
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {
                 this.gridOptions.api.sizeColumnsToFit();
             },
-            rowHeight: 48, // recommended row height for material design data grids,
+            rowHeight: 48,
             frameworkComponents: {
                 button: MatButton
             }
         };
 
         this.columnDefs = [
-            {headerName: 'Id', field: 'id',  hide: true,},
+            {headerName: 'Id', field: 'id', hide: true,},
             {headerName: 'Cidade', field: 'cidade'},
             {headerName: 'Estado', field: 'estado'},
             {headerName: 'Qtd. de motoboys', field: 'motoboy'},
             {headerName: 'Qtd. de clientes', field: 'customer'},
-            {headerName: 'Qtd. de empresas', field: 'company'}
-            // {headerName: 'Autorizado', field: 'authorized'},
-            // {
-            //     headerName: 'Ação',
-            //     lockPosition: false,
-            //     cellClass: 'locked-col',
-            //     suppressNavigable: true,
-            //     cellRenderer: function () {
-            //         const display = 'block';
-            //         const html = `<button class='btn btn-danger btn-mini'  style="background-color: #D5652B; color: white" data-action-type='editar'>
-            //             <i class='icofont icofont-ui-edit'></i>Editar
-            //          </button>
-            //          <button class='btn btn-danger btn-mini'  style="background-color: #D5652B; color: white" data-action-type='deletar'>
-            //              <i class='icofont icofont-ui-delete'></i>Deletar
-            //          </button>`;
-            //         return html;
-            //     }
-            // }
+            {headerName: 'Qtd. de empresas', field: 'company'},
+            {
+                headerName: 'Autorizado', field: 'authorized',
+                cellRenderer: function (params) {
+                    console.log(params.data);
+                    const checked = params.data.authorized ? 'checked' : '';
+                    const input = `<input type="checkbox"  ${checked} disabled >`;
+                    return input;
+                }
+            },
+            {
+                headerName: 'Ação',
+                lockPosition: false,
+                cellClass: 'locked-col',
+                suppressNavigable: true,
+                cellRenderer: function () {
+                    const display = 'block';
+                    const html = `<button class='btn btn-danger btn-mini'  style="background-color: #D5652B; color: white" data-action-type='editar'>
+                        <i class='icofont icofont-ui-edit'></i>Editar
+                     </button>
+                     <button class='btn btn-danger btn-mini'  style="background-color: #D5652B; color: white" data-action-type='deletar'>
+                         <i class='icofont icofont-ui-delete'></i>Deletar
+                     </button>`;
+                    return html;
+                }
+            }
         ];
 
     }
@@ -106,11 +105,7 @@ export class CidadesComponent implements OnInit {
             this.fileNameDialogRef = this.dialog.open(CidadesDialogComponent, {
                 height: '350px',
                 width: '1200px',
-                // position: {
-                //     'top': '15%',
-                //     'left': '25%'
-                // },
-                data: this.api.cityData(file)
+                data: this.api.cityNewData(file)
             });
         } else { // Novo
             this.fileNameDialogRef = this.dialog.open(CidadesDialogComponent, {
@@ -145,13 +140,11 @@ export class CidadesComponent implements OnInit {
             const actionType = e.event.target.getAttribute('data-action-type');
             switch (actionType) {
                 case 'editar':
-                    let selectedRows = {};
                     const endpoint = new Config().getEndpoint();
                     this._http.get(`${endpoint}city/${id}`)
                         .subscribe(data => {
-                            selectedRows = data;
-                            console.table(selectedRows);
-                            this.openFileDialog(selectedRows);
+                            console.table(data);
+                            this.openFileDialog(data);
                         }, err => {
                             console.log(err);
                         });

@@ -28,7 +28,7 @@
                         </mat-form-field>
 
                         <mat-form-field>
-                            <mat-select name="state_id" [(value)]="selectedState" placeholder="UF">
+                            <mat-select name="state" [(value)]="selectedState" placeholder="UF">
                                 <mat-option *ngFor="let s of estados" [value]="s.id"
                                             (onSelectionChange)="selectState($event, s.id)">
                                     {{s.abbreviation}}
