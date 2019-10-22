@@ -15,6 +15,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 import {isEmpty} from 'rxjs/operators';
+import {Config} from '../../../app-config';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
     templateUrl: './sweepstakes-form.html',
@@ -22,7 +24,7 @@ import {isEmpty} from 'rxjs/operators';
 })
 export class SweepstakesDialogComponent implements OnInit {
     private status: any;
-
+    public dayExpirationCredit: any;
     public today = new Date();
     public selectedState = '';
     public estados: any;
@@ -30,6 +32,7 @@ export class SweepstakesDialogComponent implements OnInit {
 
 
     constructor(
+        public _http: HttpClient,
         public api: SweepstakesServices,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<SweepstakesDialogComponent>,
@@ -43,7 +46,8 @@ export class SweepstakesDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        // Busca todos os estados
+        // Busca as configurações da aplicação
+        this.getSettings();
 
         // Sorteios realizados
         this.formulario = this.formBuilder.group({
@@ -66,8 +70,8 @@ export class SweepstakesDialogComponent implements OnInit {
     }
 
     submit(form) {
-        if (isNullOrUndefined(form.value.quantityWinners)) {
-            this.dialogRef.close(`${form.value.cashPrize}`);
+        if (isNullOrUndefined(form.value.quantityWinners) || form.value.quantityWinners === '') {
+//            this.dialogRef.close(`${form.value.cashPrize}`);
             this.status = null;
         }
         if (this.status === 'Novo') {
@@ -140,6 +144,20 @@ export class SweepstakesDialogComponent implements OnInit {
 
     getErrorMessage() {
         return this.formulario['name'].hasError('required') ? 'Nome é obrigatório' : '';
+    }
+
+    getSettings() {
+        const endpoint = new Config().getEndpoint();
+        this._http.get(`${endpoint}config/settings`)
+            .subscribe(
+                data => {
+                    this.dayExpirationCredit = data['creditLimit'];
+                    console.log(data);
+                },
+                err => {
+                    console.error(err);
+                }
+            );
     }
 
 }
