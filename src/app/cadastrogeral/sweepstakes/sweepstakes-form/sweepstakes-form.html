@@ -14,7 +14,7 @@
                 <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                     <mat-form-field class="full-wid" appearance="outline">
                         <mat-label>Quantidade de contemplados</mat-label>
-                        <input formControlName="quantityWinners" matInput
+                        <input formControlName="quantityWinners" matInput type="numeric"
                                placeholder="Quantidade de contemplados">
                     </mat-form-field>
                 </div>
@@ -36,12 +36,16 @@
 
                 <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                     <mat-dialog-actions>
-                        <button mat-button type="submit">Sortear</button>
-                        <button mat-button (click)="dialogRef.close()">Cancelar</button>
+                        <button mat-button type="submit" name="cancelar">Sortear</button>
                     </mat-dialog-actions>
-
+                    <button mat-button (click)="dialogRef.close()">Cancelar</button>
                 </div>
             </div>
         </form>
     </div>
+<!--    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">-->
+<!--        <mat-card class="rectangleInfo"><b>Atenção:</b> o período para uso do valor pelo sorteado tem duração de-->
+<!--            30 dias.-->
+<!--        </mat-card>-->
+<!--    </div>-->
 </mat-card>
