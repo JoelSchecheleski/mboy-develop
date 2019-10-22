@@ -21,18 +21,11 @@
             </div>
 
             <div fxLayout="row wrap" fxLayoutAlign="space-between center">
-<!--                <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" fxFlex.gt-md="100">-->
-<!--                    <mat-form-field class="full-wid" appearance="outline">-->
-<!--                        <mat-label>Forma de pagamento*</mat-label>-->
-<!--                        <input formControlName="formOfPayment" #formOfPayment matInput-->
-<!--                               placeholder="Forma de pagamento">-->
-<!--                    </mat-form-field>-->
-<!--                </div>-->
-
                 <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" fxFlex.gt-md="100">
                     <mat-form-field class="full-wid" appearance="outline">
                         <mat-label>Forma de pagamento*</mat-label>
-                        <mat-select formControlName="formOfPayment" [(value)]="selectedPayment" placeholder="Forma de pagamento">
+                        <mat-select formControlName="formOfPayment" [(value)]="selectedPayment"
+                                    placeholder="Forma de pagamento">
                             <mat-option *ngFor="let n of methodPayment" [value]="n.value">
                                 {{n.viewValue}}
                             </mat-option>
@@ -51,6 +44,6 @@
             </div>
         </form>
     </div>
-    <pre>{{frmNewCredit.value | json}}</pre>
+<!--    <pre>{{frmNewCredit.value | json}}</pre>-->
 </mat-card>
 

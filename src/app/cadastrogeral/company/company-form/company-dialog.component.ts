@@ -193,10 +193,11 @@ export class CompanyDialogComponent implements OnInit {
     // ================================================= new crédits =================================================
 
     openFileDialog(file?) {
+        console.log(this.data);
         this.fileNameDialogNewCredit = this.dialog.open(NewCreditComponent, {
             height: '450px',
             width: '600px',
-            data: this.api.userData(file)
+            data: this.data
         });
     }
 
