@@ -9,6 +9,7 @@ import {MaterialSharedModule} from '../../modules/material-shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {CompanyDialogComponent} from './company-form/company-dialog.component';
+import { NewCreditComponent } from './company-form/new-credit/new-credit.component';
 
 @NgModule({
     imports: [
@@ -21,8 +22,8 @@ import {CompanyDialogComponent} from './company-form/company-dialog.component';
         FormsModule,
         ReactiveFormsModule,
     ],
-    entryComponents: [CompanyDialogComponent],
-    declarations: [CompanyComponent, CompanyDialogComponent],
+    entryComponents: [CompanyDialogComponent, NewCreditComponent],
+    declarations: [CompanyComponent, CompanyDialogComponent, NewCreditComponent],
     bootstrap: [CompanyComponent]
 })
 export class CompanyModule {

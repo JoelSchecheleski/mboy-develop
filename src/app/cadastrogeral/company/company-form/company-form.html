@@ -105,10 +105,12 @@
                 <div class="gene-card-content">
                     <div fxLayout="row">
                         <div align="left">
-                            <button mat-raised-button class="button-credit">
-                                <mat-icon svgIcon="add" style="width: 18px"></mat-icon>
-                                Nova recarga
-                            </button>
+                            <mat-dialog-actions>
+                                <button mat-raised-button type="button" (click)="openFileDialog()" class="button-credit">
+                                    <mat-icon svgIcon="add" style="width: 18px"></mat-icon>
+                                    Nova recarga
+                                </button>
+                            </mat-dialog-actions>
                         </div>
                     </div>
                     <br/>
