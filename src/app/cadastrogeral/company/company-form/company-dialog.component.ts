@@ -13,6 +13,7 @@ import * as moment from 'moment';
 
 @Component({
     templateUrl: './company-form.html',
+    styleUrls: ['./company-form.scss'],
     providers: [CompanyServices]
 })
 export class CompanyDialogComponent implements OnInit {
@@ -24,6 +25,8 @@ export class CompanyDialogComponent implements OnInit {
         {value: 'ACCESS_DENIED', viewValue: 'ACCESS_DENIED'},
         {value: 'REJECTED', viewValue: 'REJECTED'}
     ];
+
+    fileNameDialogRef: MatDialogRef<newCredite>;
 
     public selectedStatus: any;
     public username: any;
