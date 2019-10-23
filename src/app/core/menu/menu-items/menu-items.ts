@@ -53,28 +53,7 @@ const MENUITEMS = [
                 type: 'link',
                 icon: 'user',
                 active: true
-            },
-            // {
-            //     state: 'motoboys',
-            //     name: 'Motoboys',
-            //     type: 'link',
-            //     icon: '',
-            //     active: true
-            // },
-            // {
-            //     state: 'empresas',
-            //     name: 'Empresas',
-            //     type: 'link',
-            //     icon: 'store',
-            //     active: true
-            // },
-            // {
-            //     state: 'clientes',
-            //     name: 'Clientes',
-            //     type: 'link',
-            //     icon: '',
-            //     active: true
-            // },
+            }
         ]
     },
     {
@@ -83,36 +62,43 @@ const MENUITEMS = [
         type: 'link',
         icon: 'room'
     },
-    // , {
-    //     state: 'Valores',
-    //     name: 'Values',
-    //     type: 'link',
-    //     icon: 'attach_money'
-    // },
-    // {
-    //     state: 'Reclamações',
-    //     name: 'Claims',
-    //     type: 'link',
-    //     icon: 'sentiment_very_dissatisfied'
-    // },
     {
         state: 'sweepstakes',
         name: 'Sweepstakes',
         type: 'link',
         icon: 'sorteios'
     },
-    // {
-    //     state: 'pushs',
-    //     name: 'Push trigger',
-    //     type: 'link',
-    //     icon: 'add_to_home_screen'
-    // },
-    // {
-    //     state: 'Sair',
-    //     name: 'Get out',
-    //     type: 'link',
-    //     icon: 'meeting_room'
-    // }
+    {
+        state: 'values',
+        name: 'Valores',
+        type: 'sub',
+        class: 'group-title',
+        icon: 'valores',
+        active: true,
+        children: [
+            {
+                state: 'config',
+                name: 'Configuração',
+                type: 'link',
+                icon: 'user',
+                active: true
+            },
+            {
+                state: 'tableKm',
+                name: 'Tabela por KM',
+                type: 'link',
+                icon: 'user',
+                active: true
+            },
+            {
+                state: 'tableHour',
+                name: 'Tabela por hora',
+                type: 'link',
+                icon: 'user',
+                active: true
+            }
+        ]
+    }
 ];
 
 @Injectable()
