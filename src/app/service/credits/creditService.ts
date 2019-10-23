@@ -13,7 +13,7 @@ export class CreditService extends ResourceService<CreditModel> {
     constructor(httpClient: HttpClient) {
         super(
             httpClient,
-            'user');
+            'vindi/bills');
         this.client_http = httpClient;
     }
 

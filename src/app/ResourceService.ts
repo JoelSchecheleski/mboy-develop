@@ -39,7 +39,6 @@ export class ResourceService<T extends Resource> {
      */
     public POST(item: T): Observable<T> {
         delete item['id'];
-        console.log('Objeto a ser inserido: ' + this.getCleanObject(item));
         return this.httpClient
             .post<T>(`${this.url}${this.endpoint}`, this.getCleanObject(item)).pipe(
                 map(data => {
@@ -53,7 +52,6 @@ export class ResourceService<T extends Resource> {
      * @return <T> Object updated
      */
     public PUT(item: T, id: any = null): Observable<T> {
-        console.log('Objeto a ser atualizado: ' + this.getCleanObject(item));
         return this.httpClient
             .put<T>(`${this.url}${this.endpoint}`, this.getCleanObject(item)).pipe(
                 map(data => {
