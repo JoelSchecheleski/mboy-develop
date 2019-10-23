@@ -1,6 +1,6 @@
 import {filter} from 'rxjs/operators';
 import {Component, OnInit, OnDestroy, ViewChild, HostListener, ViewEncapsulation} from '@angular/core';
-import {MenuItems} from '../core/menu/menu-items/menu-items';
+import {MenuItemsLeft} from '../core/menu/menu-items/menu-items-left.service';
 import {BreadcrumbService} from 'ng5-breadcrumb';
 import {PageTitleService} from '../core/page-title/page-title.service';
 import {TranslateService} from '@ngx-translate/core';
@@ -54,7 +54,7 @@ export class MainComponent implements OnInit, OnDestroy {
     @ViewChild('sidenav') sidenav;
 
     constructor(public tourService: TourService,
-                public menuItems: MenuItems,
+                public menuItems: MenuItemsLeft,
                 private breadcrumbService: BreadcrumbService,
                 private pageTitleService: PageTitleService,
                 public translate: TranslateService,

@@ -16,10 +16,10 @@ const routes: Routes = [
                 path: 'user',
                 loadChildren: './user/user.module#UserModule'
             },
-            {
-                path: 'customer',
-                loadChildren: './customer/customer.module#TablekmModule'
-            },
+            // {
+            //     path: 'customer',
+            //     loadChildren: './customer/customer.module#TablekmModule'
+            // },
             {
                 path: 'motoboy',
                 loadChildren: './motoboy/motoboy.module#MotoboyModule'
@@ -40,11 +40,14 @@ const routes: Routes = [
                 path: 'sweepstakes-report/:id',
                 loadChildren: './sweepstakes-report/sweepstakes-report.module#SweepstakesReportModule'
             },
+            // {
+            //     path: 'tableKm',
+            //     loadChildren: './tablekm/tablekm.module#TablekmModule'
+            // }
             {
-                path: 'tableKm',
-                loadChildren: './tablekm/tablekm.module#TablekmModule'
+                path: 'claims',
+                loadChildren: './claims/claims.module#ClaimsModule'
             }
-
         ]
     }
 ];

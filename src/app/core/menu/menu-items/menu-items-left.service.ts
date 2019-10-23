@@ -98,11 +98,17 @@ const MENUITEMS = [
                 active: true
             }
         ]
+    },
+    {
+        state: 'claims',
+        name: 'Reclamações',
+        type: 'link',
+        icon: 'reclamacoes'
     }
 ];
 
 @Injectable()
-export class MenuItems {
+export class MenuItemsLeft {
     getAll(): Menu[] {
         return MENUITEMS;
     }
