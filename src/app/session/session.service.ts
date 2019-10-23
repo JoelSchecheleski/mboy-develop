@@ -49,17 +49,31 @@ export class ApiMboy {
                 // this.getInfoUser(username);
                 this.router.navigate(['/']);
             }, error => {
-                Swal.fire({
-                    title: 'Acesso negado!',
-                    text: 'Verifique seu usuário e senha.',
-                    imageUrl: '../../assets/img/errors/access_danied.svg',
-                    cancelButtonColor: '#D5652B',
-                    showCloseButton: true,
-                    imageWidth: 400,
-                    imageHeight: 200,
-                    imageAlt: 'Custom image',
-                    animation: false
-                });
+                if (error.status === 0) {
+                    Swal.fire({
+                        title: 'Server offline!',
+                        text: 'O servidor não está disponível.',
+                        imageUrl: '../../assets/img/errors/404.svg',
+                        cancelButtonColor: '#D5652B',
+                        showCloseButton: true,
+                        imageWidth: 400,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                        animation: false
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Acesso negado!',
+                        text: 'Verifique seu usuário e senha.',
+                        imageUrl: '../../assets/img/errors/access_danied.svg',
+                        cancelButtonColor: '#D5652B',
+                        showCloseButton: true,
+                        imageWidth: 400,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                        animation: false
+                    });
+                }
             });
     }
 

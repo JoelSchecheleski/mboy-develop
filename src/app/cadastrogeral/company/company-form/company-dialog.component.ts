@@ -10,9 +10,13 @@ import {Config} from '../../../app-config';
 import {GridOptions} from 'ag-grid-community';
 import {IdiomaPTBR} from '../../../idioma-PTBR';
 import * as moment from 'moment';
+import {NewCreditComponent} from './new-credit/new-credit.component';
+import {filter} from 'rxjs/operators';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
     templateUrl: './company-form.html',
+    styleUrls: ['./company-form.scss'],
     providers: [CompanyServices]
 })
 export class CompanyDialogComponent implements OnInit {
@@ -24,6 +28,11 @@ export class CompanyDialogComponent implements OnInit {
         {value: 'ACCESS_DENIED', viewValue: 'ACCESS_DENIED'},
         {value: 'REJECTED', viewValue: 'REJECTED'}
     ];
+
+    /**
+     * Nova carga de créditos
+     */
+    fileNameDialogNewCredit: MatDialogRef<NewCreditComponent>;
 
     public selectedStatus: any;
     public username: any;
@@ -42,7 +51,9 @@ export class CompanyDialogComponent implements OnInit {
         public api: CompanyServices,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<CompanyDialogComponent>,
+        public dialogNewCredit: MatDialogRef<NewCreditComponent>,
         private domSanitizer: DomSanitizer,
+        private dialog: MatDialog,
         @Inject(MAT_DIALOG_DATA) private data
     ) {
         if (!isNullOrUndefined(data.username) && data.username !== '') {
@@ -119,7 +130,7 @@ export class CompanyDialogComponent implements OnInit {
     }
 
     tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-        if (tabChangeEvent.index === 1) { //creditos
+        if (tabChangeEvent.index === 1) { // creditos
             this.api.client_http.get(`${this.url}user/credits/${this.data.username}`)
                 .subscribe(
                     data => { // @ts-ignore
@@ -127,7 +138,7 @@ export class CompanyDialogComponent implements OnInit {
                     },
                     err => console.error(err)
                 );
-        } else if (tabChangeEvent.index === 2) { //corridas
+        } else if (tabChangeEvent.index === 2) { // corridas
             this.api.client_http.get(`${this.url}user/rides?username=${this.data.username}`)
                 .subscribe(
                     data => { // @ts-ignore
@@ -178,4 +189,16 @@ export class CompanyDialogComponent implements OnInit {
             console.log('Deu ruim: ' + this.status);
         }
     }
+
+    // ================================================= new crédits =================================================
+
+    openFileDialog(file?) {
+        console.log(this.data);
+        this.fileNameDialogNewCredit = this.dialog.open(NewCreditComponent, {
+            height: '450px',
+            width: '600px',
+            data: this.data
+        });
+    }
+
 }

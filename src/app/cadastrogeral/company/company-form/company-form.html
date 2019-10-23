@@ -90,7 +90,7 @@
             </mat-card>
         </mat-tab>
 
-        <!--         TAB Creditos -->
+        <!-- ============================= TAB Creditos ============================= -->
         <mat-tab label="Créditos">
             <mat-card>
                 <div class="gene-card-title">
@@ -103,7 +103,17 @@
                     <mat-divider></mat-divider>
                 </div>
                 <div class="gene-card-content">
-
+                    <div fxLayout="row">
+                        <div align="left">
+                            <mat-dialog-actions>
+                                <button mat-raised-button type="button" (click)="openFileDialog(formulario.value)" class="button-credit">
+                                    <mat-icon svgIcon="add" style="width: 18px"></mat-icon>
+                                    Nova recarga
+                                </button>
+                            </mat-dialog-actions>
+                        </div>
+                    </div>
+                    <br/>
                     <ag-grid-angular style="width: 100%; height: 100%"
                                      class="ag-theme-balham"
                                      [allowContextMenuWithControlKey]="true"

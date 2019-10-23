@@ -113,17 +113,13 @@ export class SweepstakesComponent implements OnInit {
     openFileDialog(file ?) {
         if (file) { // Editando
             this.fileNameDialogRef = this.dialog.open(SweepstakesDialogComponent, {
-                height: '350px',
+                height: '50%',
                 width: '1200px',
-                // position: {
-                //     'top': '15%',
-                //     'left': '25%'
-                // },
                 data: this.api.sweepstakesData(file)
             });
         } else { // Novo
             this.fileNameDialogRef = this.dialog.open(SweepstakesDialogComponent, {
-                height: '350px',
+                height: '450px',
                 width: '1200px',
                 data: this.api.sweepstakesData(file)
             });
@@ -220,7 +216,12 @@ export class SweepstakesComponent implements OnInit {
                     this.rowData = data;
                     console.log(data);
                 },
-                err => console.error(err),
+                err => {
+                    console.error(err);
+                    if (err.status === 0) {
+                        this.router.navigate(['/session/loginV2']);
+                    }
+                },
                 () => console.log(this.rowSweepstakes)
             );
     }

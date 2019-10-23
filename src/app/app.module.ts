@@ -151,6 +151,11 @@ export class MboyAppModule {
             this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/valores.svg')
         );
 
+        this.matIconRegistry.addSvgIcon(
+            'add',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/add.svg')
+        );
+
     }
 
 }

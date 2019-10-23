@@ -14,6 +14,9 @@ import {MatOptionSelectionChange} from '@angular/material/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
+import {isEmpty} from 'rxjs/operators';
+import {Config} from '../../../app-config';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
     templateUrl: './sweepstakes-form.html',
@@ -21,15 +24,15 @@ import {SelectionModel} from '@angular/cdk/collections';
 })
 export class SweepstakesDialogComponent implements OnInit {
     private status: any;
-
+    public dayExpirationCredit: any;
     public today = new Date();
     public selectedState = '';
     public estados: any;
     public formulario: FormGroup;
 
 
-
     constructor(
+        public _http: HttpClient,
         public api: SweepstakesServices,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<SweepstakesDialogComponent>,
@@ -43,7 +46,8 @@ export class SweepstakesDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        // Busca todos os estados
+        // Busca as configurações da aplicação
+        this.getSettings();
 
         // Sorteios realizados
         this.formulario = this.formBuilder.group({
@@ -65,24 +69,42 @@ export class SweepstakesDialogComponent implements OnInit {
         return i1 && i2 && i1.id === i2.id;
     }
 
-
     submit(form) {
+        if (isNullOrUndefined(form.value.quantityWinners) || form.value.quantityWinners === '') {
+//            this.dialogRef.close(`${form.value.cashPrize}`);
+            this.status = null;
+        }
         if (this.status === 'Novo') {
+            form.value.userCategory = 'COMPANY';
+            form.value.quantityQualifiedUsers = form.value.quantityWinners;
+            form.value.createdBy = JSON.parse(localStorage.getItem('SESSAO')).username; // Busca o usuário
             this.api.POST(form.value)
                 .subscribe(data => {
                         Swal.fire({
                             position: 'center',
                             // type: 'success',
                             title: 'Sorteio realizado',
-                            imageUrl: '../../assets/sorteios.svg',
+                            imageUrl: '../../assets/sorteio_success.svg',
                             showConfirmButton: false,
                             imageWidth: 150,
                             animation: false,
-                            timer: 1500
+                            timer: 2500
                         });
-                        this.dialogRef.close(`${form.value.name}`);
+                        this.dialogRef.close(`${form.value.cashPrize}`);
+                    }, error => {
+                        Swal.fire({
+                            position: 'center',
+                            // type: 'success',
+                            title: `Ocorreu um erro <br/> Tente novamente mais tarde.`,
+                            imageUrl: '../../assets/sorteio_error.svg',
+                            showConfirmButton: false,
+                            imageWidth: 150,
+                            animation: false,
+                            timer: 2500
+                        })
                     }
                 );
+            this.ngOnInit();
         }
         if (this.status === 'Editando') {
             Swal.fire({
@@ -96,6 +118,9 @@ export class SweepstakesDialogComponent implements OnInit {
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.value) {
+                    form.value.userCategory = 'COMPANY';
+                    form.value.quantityQualifiedUsers = form.value.quantityWinners;
+                    form.value.createdBy = JSON.parse(localStorage.getItem('SESSAO')).username; // Busca o usuário
                     this.api.PUT(form.value)
                         .subscribe(data => {
                                 Swal.fire({
@@ -108,16 +133,31 @@ export class SweepstakesDialogComponent implements OnInit {
                                     animation: false,
                                     timer: 1500
                                 });
-                                this.dialogRef.close(`${form.value.name}`);
+                                this.dialogRef.close(`${form.value.cashPrize}`);
                             }
                         );
                 }
             });
+            this.ngOnInit();
         }
     }
 
     getErrorMessage() {
         return this.formulario['name'].hasError('required') ? 'Nome é obrigatório' : '';
+    }
+
+    getSettings() {
+        const endpoint = new Config().getEndpoint();
+        this._http.get(`${endpoint}config/settings`)
+            .subscribe(
+                data => {
+                    this.dayExpirationCredit = data['creditLimit'];
+                    console.log(data);
+                },
+                err => {
+                    console.error(err);
+                }
+            );
     }
 
 }
