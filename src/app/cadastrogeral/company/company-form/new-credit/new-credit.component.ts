@@ -72,11 +72,11 @@ export class NewCreditComponent implements OnInit {
             // Enviar para o servidor da vindi essa cpbrança
             this.api.POST(this.credits).subscribe(
                 response => {
-                    console.log(response);
+                    // console.log(response);
                     const retorno = JSON.parse(JSON.stringify(response));
-                    console.log(retorno)
+                    const tipo = retorno.charges[0].payment_method.code;
 
-                    if (response) {
+                    if (tipo === 'bank_slip') {
                         Swal.fire({
                             title: 'Deseja visualizar o boleto agora?',
                             text: '',
@@ -89,19 +89,29 @@ export class NewCreditComponent implements OnInit {
                         }).then((result) => {
                             if (result.value) {
                                 // Abre uma nova guia com o link do boleto
-                              const url = retorno.charges[0].print_url;
-                              if (!isNullOrUndefined(url)) {
-                                window.location.href = url;
-                              } else {
-                                window.location.href = 'http://www.cnn.com/';
-                              }
-                                // this.router.navigate(['/']).then(saida => {
-                                //     window.location.href = 'http://www.cnn.com/';
-                                // });
+                                const url = retorno.charges[0].print_url;
+                                if (!isNullOrUndefined(url)) {
+                                    this.router.navigate(['/company']).then(saida => {
+                                        window.location.href = url;
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Não foi possível visualizar o boleto',
+                                        text: 'Código de cobrança ' + retorno.id,
+                                        type: 'warning',
+                                        showCancelButton: false
+                                    })
+                                }
                             }
                         });
+                    } else {
+                        Swal.fire({
+                            title: 'Cobrança realizada com sucesso',
+                            text: 'Código de cobrança ' + retorno.id,
+                            type: 'warning',
+                            showCancelButton: false
+                        })
                     }
-
                 }
             );
             this.credits = new CreditModel(); // Limpa o objeto após salvar
