@@ -64,7 +64,7 @@
 
                                     <td>
                                         <button class="btn btn-mini btn-danger" type="button"
-                                                (click)="deleteItem(i, row)" title="Remover">
+                                                (click)="deleteRow(i, row)" title="Remover">
                                             <i style="margin-left: 5px;" class="icofont icofont-ui-add"> - </i>
                                         </button>
                                     </td>
@@ -82,44 +82,5 @@
                 </mat-dialog-actions>
             </mat-card>
         </mat-tab>
-
-        <!--        &lt;!&ndash;         TAB Corridas &ndash;&gt;-->
-        <!--        <mat-tab label="Corridas">-->
-        <!--            <mat-card>-->
-        <!--                <div class="gene-card-title">-->
-        <!--                    <div fxLayout="row" fxLayoutAlign="start left">-->
-        <!--                        <div fxLayout="column">-->
-        <!--                            <h5>{{'Informações das corridas realizadas'|translate}}</h5>-->
-        <!--                        </div>-->
-        <!--                        <span fxFlex></span>-->
-        <!--                    </div>-->
-        <!--                    <mat-divider></mat-divider>-->
-        <!--                </div>-->
-        <!--                <div class="gene-card-content">-->
-
-        <!--                    <ag-grid-angular style="width: 100%; height: 100%"-->
-        <!--                                     class="ag-theme-balham"-->
-        <!--                                     [allowContextMenuWithControlKey]="true"-->
-        <!--                                     [enableRangeSelection]="true"-->
-        <!--                                     [enableColResize]="true"-->
-        <!--                                     [rowDragManaged]="true"-->
-        <!--                                     [gridAutoHeight]="true"-->
-        <!--                                     [enableSorting]="true"-->
-        <!--                                     [enableFilter]="true"-->
-        <!--                                     [animateRows]="true"-->
-        <!--                                     [pagination]="true"-->
-        <!--                                     [sideBar]="true"-->
-        <!--                                     [localeText]="language"-->
-        <!--                                     [paginationPageSize]="15"-->
-        <!--                                     [gridOptions]="gridOptions"-->
-        <!--                                     [columnDefs]="columnRideDefs"-->
-        <!--                                     [rowData]="rowDataRide"-->
-        <!--                    >-->
-        <!--                    </ag-grid-angular>-->
-
-        <!--                </div>-->
-        <!--            </mat-card>-->
-        <!--        </mat-tab>-->
-
     </mat-tab-group>
 </form>

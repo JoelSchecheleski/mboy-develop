@@ -11,6 +11,7 @@ import {Config} from '../../app-config';
 
 import {TablekmDialogComponent} from './tablekm-form/tablekm-dialog.component';
 import {TablekmServices} from './tablekm-shared/tablekm.services';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'ms-table-kilometer',
@@ -27,7 +28,7 @@ export class TablekmComponent implements OnInit {
     public language = new IdiomaPTBR().language;
     private gridApi;
     private gridColumnApi;
-    // private url = new Config().getEndpoint();
+    private url = new Config().getEndpoint();
 
     fileNameDialogRef: MatDialogRef<TablekmDialogComponent>;
 
@@ -52,15 +53,6 @@ export class TablekmComponent implements OnInit {
 
         this.columnDefs = [
             {headerName: 'Nome', field: 'description'},
-            // {
-            //     headerName: 'Ativo', field: 'authorized',
-            //     cellRenderer: function (params) {
-            //         console.log(params.data);
-            //         const checked = params.data.authorized ? 'checked' : '';
-            //         const input = `<input type="checkbox"  ${checked} disabled >`;
-            //         return input;
-            //     }
-            // },
             {
                 headerName: 'Ação',
                 lockPosition: false,
@@ -124,37 +116,37 @@ export class TablekmComponent implements OnInit {
      */
     public onRowClicked(e) {
         if (e.event.target !== undefined) {
-            // const id = e.data.id;
             const actionType = e.event.target.getAttribute('data-action-type');
             switch (actionType) {
                 case 'editar':
                     this.openFileDialog(JSON.parse(JSON.stringify(e.data)));
                     break;
-                //
-                //     case 'deletar':
-                //         console.log('DELETAR O ITEM: ', id);
-                //         Swal.fire({
-                //             title: 'Deseja realmente deletar esse registro?',
-                //             text: '',
-                //             type: 'warning',
-                //             showCancelButton: true,
-                //             confirmButtonColor: '#038f9e',
-                //             cancelButtonColor: '#d33',
-                //             confirmButtonText: 'Deletar',
-                //             cancelButtonText: 'Cancelar'
-                //         }).then((result) => {
-                //             if (result.value) {
-                //                 this.api.DELETE(id)
-                //                     .subscribe(data => {
-                //                             this.snackBar.open('Registro deletado com sucesso', '', {
-                //                                 duration: 2000,
-                //                             });
-                //                             this.ngOnInit();
-                //                         }
-                //                     );
-                //             }
-                //         });
-                //         break;
+
+                case 'deletar':
+                    const id = e.data.id;
+                    console.log('DELETAR O ITEM: ', id);
+                    Swal.fire({
+                        title: 'Deseja realmente deletar esse registro?',
+                        text: '',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#038f9e',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Deletar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.value) {
+                            this.api.client_http.delete(`${this.url}settings/kilometers/${id}`)
+                                .subscribe(data => {
+                                        this.snackBar.open('Registro deletado com sucesso', '', {
+                                            duration: 2000,
+                                        });
+                                        this.ngOnInit();
+                                    }
+                                );
+                        }
+                    });
+                    break;
             }
         }
     }
