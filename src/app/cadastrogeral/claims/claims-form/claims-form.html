@@ -1,1 +1,56 @@
-<h1>RECLAMAÇÕES</h1>
+<form [formGroup]="frmSugestao" (ngSubmit)="submit(frmSugestao)">
+    <mat-tab-group>
+        <mat-tab label="Reclamação">
+            {{data.subject}}
+            <mat-card>
+                <div class="gene-card-title">
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <span fxFlex></span>
+                        <div class="mrgn-r-sm">
+                            <mat-form-field>
+                                <input matInput placeholder='Criado por'
+                                       value="{{data.createdby}}" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="mrgn-l-sm mrgn-r-sm">
+                            <mat-form-field>
+                                <input matInput placeholder='Email' value="{{data.email}}" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="mrgn-l-sm mrgn-r-sm">
+                            <mat-form-field>
+                                <input matInput placeholder='Tipo de usuário'
+                                       value="{{data.userType}}" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="mrgn-l-sm mrgn-r-sm">
+                            <mat-form-field>
+                                <input matInput placeholder='Período de uso'
+                                       value="{{data.createdAt | date:'dd/MM/yyyy hh:mm:ss'}}" readonly>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" fxFlex.gt-md="100">
+                            <mat-form-field>
+                                <mat-label>Alterar Status</mat-label>
+                                <mat-select formControlName="status" [(value)]="selectedstatusClaim"
+                                            placeholder="Alterar status" (selectionChange)="onUpdateStatus($event.value)">
+                                    <mat-option *ngFor="let n of statusClaim" [value]="n.value">
+                                        {{n.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+
+                <div class="gene-card-content">
+                    {{data.message}}
+                </div>
+
+
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</form>
