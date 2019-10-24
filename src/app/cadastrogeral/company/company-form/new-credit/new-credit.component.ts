@@ -10,12 +10,15 @@ import {Config} from '../../../../app-config';
 import {SettingsServices} from '../../../../service/Settings/SettingsServices';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
+import {MailService} from '../../../../service/mail/mail.service';
+import {EmailModel} from '../../../../modules/modelos/emailModel';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'ms-new-credit',
     templateUrl: './new-credit.component.html',
     styleUrls: ['./new-credit.component.scss'],
-    providers: [CreditService, SettingsServices]
+    providers: [CreditService, SettingsServices, MailService]
 })
 export class NewCreditComponent implements OnInit {
     private _baseUrl = new Config().getEndpoint();
@@ -24,6 +27,7 @@ export class NewCreditComponent implements OnInit {
     public billsitems = new BillItems();
     public paymentprofile = new PaymentProfile();
     public settings: any;
+    public emailSend = new EmailModel();
 
     public methodPayment = [
         {value: 'credit_card', viewValue: 'Cartão de crédito'},
@@ -32,6 +36,8 @@ export class NewCreditComponent implements OnInit {
     selectedPayment: any;
 
     constructor(
+        private _snackBar: MatSnackBar,
+        private email: MailService,
         private router: Router,
         private apiSetings: SettingsServices,
         private api: CreditService,
@@ -53,72 +59,119 @@ export class NewCreditComponent implements OnInit {
 
     // Submit do formulário
     submit(formulario) {
-        if (!isNullOrUndefined(formulario.value.formOfPayment) || !isNullOrUndefined(formulario.value.vlrNewCredit)) {
-            // Bills
-            this.credits.customer_id = this.data.vindiId;
-            this.credits.payment_method_code = formulario.value.formOfPayment;
+        if (!isNullOrUndefined(formulario.value.formOfPayment) &&
+            !isNullOrUndefined(formulario.value.vlrNewCredit)) {
+            Swal.fire({
+                title: 'Você deseja confirmar a recarga?',
+                text: `Após a confirmação os créditos serão inseridos diretamente na conta da empresa.`,
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#038f9e',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não'
+            }).then((confirmacao) => {
+                if (confirmacao.value) {
 
-            // Bill itens
-            this.billsitems.product_id = this.settings.id_product_mototaxi;
-            this.billsitems.amount = formulario.value.vlrNewCredit;
-            this.credits.bill_items.push(this.billsitems);
+                    // Bills
+                    this.credits.customer_id = this.data.vindiId;
+                    this.credits.payment_method_code = formulario.value.formOfPayment;
 
-            // Profile payment
-            this.paymentprofile.id = null;
-            this.credits.payment_profile = this.paymentprofile;
+                    // Bill itens
+                    this.billsitems.product_id = this.settings.id_product_mototaxi;
+                    this.billsitems.amount = formulario.value.vlrNewCredit;
+                    this.credits.bill_items.push(this.billsitems);
 
-            console.log(JSON.stringify(this.credits));
+                    // Profile payment
+                    this.paymentprofile.id = null;
+                    this.credits.payment_profile = this.paymentprofile;
 
-            // Enviar para o servidor da vindi essa cpbrança
-            this.api.POST(this.credits).subscribe(
-                response => {
-                    // console.log(response);
-                    const retorno = JSON.parse(JSON.stringify(response));
-                    const tipo = retorno.charges[0].payment_method.code;
+                    // Enviar para o servidor da vindi essa cpbrança
+                    this.api.POST(this.credits).subscribe(
+                        response => {
+                            // console.log(response);
+                            const retorno = JSON.parse(JSON.stringify(response));
+                            const tipo = retorno.charges[0].payment_method.code;
 
-                    if (tipo === 'bank_slip') {
-                        Swal.fire({
-                            title: 'Deseja visualizar o boleto agora?',
-                            text: '',
-                            type: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#038f9e',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Sim',
-                            cancelButtonText: 'Não'
-                        }).then((result) => {
-                            if (result.value) {
-                                // Abre uma nova guia com o link do boleto
+                            if (tipo === 'bank_slip') {
+                                Swal.fire({
+                                    title: 'Recarga realizada. O valor do boleto é: ',
+                                    imageUrl: '../../../assets/money.svg',
+                                    text: 'R$: ' + retorno.amount,
+                                    showCloseButton: true,
+                                    imageWidth: 200,
+                                    imageHeight: 100,
+                                    confirmButtonColor: '#D5652B',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Imprimir boleto',
+                                    cancelButtonText: 'Não'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        // Abre uma nova guia com o link do boleto
+                                        const url = retorno.charges[0].print_url;
+                                        if (!isNullOrUndefined(url)) {
+                                            this.router.navigate([]).then(saida => {
+                                                // window.location.href = url;
+                                                window.open(url, '_blank');
+                                            });
+                                            this.dialogNewCredit.close();
+                                        } else {
+                                            Swal.fire({
+                                                title: 'Não foi possível visualizar o boleto',
+                                                text: 'Código de cobrança ' + retorno.id,
+                                                type: 'warning',
+                                                showCancelButton: false
+                                            });
+                                            this.dialogNewCredit.close();
+                                        }
+                                    }
+                                });
                                 const url = retorno.charges[0].print_url;
-                                if (!isNullOrUndefined(url)) {
-                                    this.router.navigate(['/company']).then(saida => {
-                                        window.location.href = url;
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: 'Não foi possível visualizar o boleto',
-                                        text: 'Código de cobrança ' + retorno.id,
-                                        type: 'warning',
-                                        showCancelButton: false
-                                    })
-                                }
+                                const barcode = retorno.charges[0].last_transaction.gateway_response_fields.typable_barcode;
+                                const linkBill = `<a href='${url}' target='_blank'>visualizar</a>`;
+
+                                // Envio de boleto
+                                this.emailSend.to = this.data.email;
+                                this.emailSend.subject = 'Nova Fatura gerada pelo MBoy';
+                                this.emailSend.content = 'Pague seu boleto <b>MBoy</b> com o Codigo de barras <br/<b>' + barcode +
+                                    '</b><br/>' + linkBill;
+                                this.emailSend.multipart = false;
+                                this.emailSend.html = false;
+                                this.email.POST(this.emailSend).subscribe(
+                                    data => {
+                                        console.log(data);
+                                        if (data) {
+                                            this.openSnackBar('Email já enviado ao cliente', 'sucesso')
+                                        }
+                                    }
+                                );
+
+                            } else {
+                                Swal.fire({
+                                    title: 'Recarga realizada com sucesso no valor de: R$ ' + retorno.amount,
+                                    text: 'Código da cobrança ' + retorno.id,
+                                    type: 'warning',
+                                    showCancelButton: false
+                                });
+                                this.dialogNewCredit.close();
                             }
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'Cobrança realizada com sucesso',
-                            text: 'Código de cobrança ' + retorno.id,
-                            type: 'warning',
-                            showCancelButton: false
-                        })
-                    }
+                        }
+                    );
+                    this.credits = new CreditModel();
+                    this.billsitems = new BillItems();
+                    this.paymentprofile = new PaymentProfile();
+                    formulario.value.formOfPayment = null;
+                    formulario.value.vlrNewCredit = null;
+                    this.dialogNewCredit.close();
+                } else {
+                    this.credits = new CreditModel();
+                    this.billsitems = new BillItems();
+                    this.paymentprofile = new PaymentProfile();
+                    formulario.value.formOfPayment = null;
+                    formulario.value.vlrNewCredit = null;
+                    this.dialogNewCredit.close();
                 }
-            );
-            this.credits = new CreditModel(); // Limpa o objeto após salvar
-            this.billsitems = new BillItems();
-            this.paymentprofile = new PaymentProfile();
-        } else {
-            console.log('Formulário inválido!');
+            });
         }
     }
 
@@ -129,5 +182,11 @@ export class NewCreditComponent implements OnInit {
                 console.log(data);
             }
         );
+    }
+
+    openSnackBar(message: string, action: string) {
+        this._snackBar.open(message, action, {
+            duration: 2000,
+        });
     }
 }

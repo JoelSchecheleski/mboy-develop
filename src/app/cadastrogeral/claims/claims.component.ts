@@ -1,45 +1,47 @@
 import {Component, OnInit} from '@angular/core';
+import {GridOptions} from 'ag-grid-community';
+import {IdiomaPTBR} from '../../idioma-PTBR';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {ClaimsDialogComponent} from './claims-form/claims-dialog.component';
+import {HttpClient} from '@angular/common/http';
+import {ClaimsServices} from './claims-shared/claims.services';
 import {TranslateService} from '@ngx-translate/core';
 import {PageTitleService} from '../../core/page-title/page-title.service';
-import {GridOptions} from 'ag-grid-community';
-import 'ag-grid-community';
-import {IdiomaPTBR} from '../../idioma-PTBR';
-import {MatButton, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatButton} from '@angular/material/button';
 import {filter} from 'rxjs/operators';
-import Swal from 'sweetalert2';
-import {HttpClient} from '@angular/common/http';
 import {Config} from '../../app-config';
+import Swal from 'sweetalert2';
+import * as moment from 'moment';
 
-import {UserDialogComponent} from './user-form/user-dialog.component';
-import {UserServices} from './user-shared/user.services';
 
 @Component({
-    selector: 'ms-usuario',
-    templateUrl: './user.component.html',
-    styleUrls: ['./user.component.scss'],
-    providers: [UserServices]
+    selector: 'ms-claims',
+    templateUrl: './claims.component.html',
+    styleUrls: ['./claims.component.scss'],
+    providers: [ClaimsServices]
 })
-export class UserComponent implements OnInit {
+export class ClaimsComponent implements OnInit {
+    public rowClaimssReport: any;
+    // public rowDataReport: any;
+    public rowClaims: any;
     public gridOptions: GridOptions;
     public rowData: any;
-    public rowUser: any;
     public columnDefs: any;
-    public defaultColDef: any;
+    public rowSelection;
+    public defaultColDef;
     public language = new IdiomaPTBR().language;
+    fileNameDialogRef: MatDialogRef<ClaimsDialogComponent>;
     private gridApi;
     private gridColumnApi;
-    private url = new Config().getEndpoint();
 
-    fileNameDialogRef: MatDialogRef<UserDialogComponent>;
-
-    // Construtor da classe Usuario
     constructor(public _http: HttpClient,
-                public api: UserServices,
+                public api: ClaimsServices,
                 private translate: TranslateService,
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
-        this.pageTitleService.setTitle('Cadastro de usuários');
+        this.pageTitleService.setTitle('Gerenciar reclamações');
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {
@@ -50,34 +52,41 @@ export class UserComponent implements OnInit {
                 button: MatButton
             }
         };
-
         this.columnDefs = [
-            {headerName: 'Usuário', field: 'username'},
-            {headerName: 'Nome', field: 'name'},
-            {headerName: 'Email', field: 'email'},
-            {headerName: 'Status', field: 'registrationStatus'},
-            // {headerName: 'Tipo de usuário', field: 'userType'},
+            {headerName: 'Id', field: 'id', hide: true},
             {
-                headerName: 'Ação',
-                lockPosition: false,
-                cellClass: 'locked-col',
-                suppressNavigable: true,
-                cellRenderer: function () {
-                    const display = 'block';
-                    const html = `<button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white"  data-action-type='editar'>
-                        <i class='icofont icofont-ui-edit'></i>Editar
-                     </button>
-                     <button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white" data-action-type='deletar'>
-                         <i class='icofont icofont-ui-delete'></i>Deletar
-                     </button>`;
-                    return html;
+                headerName: 'Status', field: 'status',
+                cellRenderer: function (params) {
+                    // tslint:disable-next-line:max-line-length
+                    return `${params.value === 'PENDING' ? '<button type="button" style="width: 10px;    height: 10px;    ' +
+                        'padding: 6px 0px;    border-width: 0px;    border-radius: 15px;    text-align: center;    ' +
+                        'font-size: 12px;    line-height: 1.42857;    background-color: #d52022"></button> Em aberto'
+                        : '<button type="button" style="width: 10px;    height: 10px;    padding: 6px 0px;    border-width: 0px;    ' +
+                        'border-radius: 15px;    text-align: center;    font-size: 12px;    line-height: 1.42857;    ' +
+                        'background-color: #40d54a"></button>Resolvida'}`;
+                }
+            },
+            {headerName: 'Titulo', field: 'subject'},
+            {headerName: 'Usuario', field: 'createdby'},
+            {headerName: 'E-Mail', field: 'email'},
+            {
+                headerName: 'Tipo de usuário', field: 'userType',
+                cellRenderer: function (params) {
+                    return `${params.value === 'CUSTOMER' ? 'Cliente' :
+                        params.value === 'MOTOBOY' ? 'Motoboy' :
+                            params.value === 'COMPANY' ? 'Empresa' : 'Administrador'}`
+                }
+            },
+            {
+                headerName: 'Data', field: 'createdAt', cellRenderer: (data) => {
+                    return moment(data.value).format('DD/MM/YYYY HH:mm');
                 }
             }
         ];
     }
 
     ngOnInit() {
-        this.getAllUsers()
+        this.getAllClaims()
     }
 
     /**
@@ -86,28 +95,22 @@ export class UserComponent implements OnInit {
      */
     openFileDialog(file?) {
         if (file) { // Editando
-            this.fileNameDialogRef = this.dialog.open(UserDialogComponent, {
-                height: '650px',
+            this.fileNameDialogRef = this.dialog.open(ClaimsDialogComponent, {
+                height: '350px',
                 width: '1200px',
-                data: this.api.userData(file)
-            });
-        } else { // Novo
-            this.fileNameDialogRef = this.dialog.open(UserDialogComponent, {
-                height: '650px',
-                width: '1200px',
-                data: this.api.userData(file)
+                data: this.api.clamsData(file),
             });
         }
 
         this.fileNameDialogRef.afterClosed().pipe(
-            filter(descricao => descricao)
-        ).subscribe(descricao => {
-            if (this.rowUser) {
-                const index = this.rowUser.findIndex(f => f.descricao === file);
+            filter(name => name)
+        ).subscribe(name => {
+            if (this.rowClaims) {
+                const index = this.rowClaims.findIndex(f => f.descricao === file);
                 if (index !== -1) {
-                    this.rowUser[index] = {descricao, content: file};
+                    this.rowClaims[index] = {name, content: file};
                 } else {
-                    this.rowUser.push({descricao, content: ''});
+                    this.rowClaims.push({name, content: ''});
                 }
             }
             this.ngOnInit();
@@ -120,28 +123,26 @@ export class UserComponent implements OnInit {
      */
     public onRowClicked(e) {
         if (e.event.target !== undefined) {
-            const id = e.data.username;
+            const id = e.data.id;
             const actionType = e.event.target.getAttribute('data-action-type');
             switch (actionType) {
                 case 'editar':
-                    let selectedRows = {};
-                    // IMPLEMENTAR A BUSCA POR UM REGISTRO ESPECÍFICO QUANDO CLICADO REGISTRO ATUAL /Paciente/397
-                    this._http.get(`${this.url}user/${id}`)
+                    const endpoint = new Config().getEndpoint();
+                    this._http.get(`${endpoint}chat/${id}`)
                         .subscribe(data => {
-                            selectedRows = data;
-                            // console.table(selectedRows);
-                            this.openFileDialog(selectedRows);
+                            console.table(data);
+                            this.openFileDialog(data);
+                        }, err => {
+                            console.log(err);
                         });
                     break;
-
                 case 'deletar':
-                    console.log('DELETAR O ITEM: ', id);
                     Swal.fire({
                         title: 'Deseja realmente deletar esse registro?',
                         text: '',
                         type: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#038f9e',
+                        confirmButtonColor: '#D5652B',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Deletar',
                         cancelButtonText: 'Cancelar'
@@ -184,25 +185,33 @@ export class UserComponent implements OnInit {
             }
             selectedRowsString += rowSelection.descricao;
         });
+        console.log(JSON.stringify(selectedRows[0]));
     }
 
     public onGridReady(params) {
         this.gridApi = params.api;
         this.gridColumnApi = params.columnApi;
-
         params.api.sizeColumnsToFit();
     }
 
-    public getAllUsers() {
+    /**
+     * Busca todos os Claims
+     * @return List of {objects<T>}
+     */
+    public getAllClaims() {
+        const body = {};
+        // const body = {'stats': 'PENDING'};
         const endpoint = new Config().getEndpoint();
-        this._http.get(`${endpoint}user/type/admin`)
+
+        this._http.put(`${endpoint}chat/search`, body)
             .subscribe(
                 data => { // @ts-ignore
-                    this.rowUser = data;
+                    this.rowClaims = data;
                     this.rowData = data;
                 },
                 err => console.error(err),
-                () => console.log(this.rowUser)
+                () => console.table(this.rowClaims)
             );
     }
+
 }

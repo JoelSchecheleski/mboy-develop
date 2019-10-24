@@ -71,7 +71,11 @@ export class CompanyDialogComponent implements OnInit {
                 }
             },
             {headerName: 'Origem', field: 'origin'},
-            {headerName: 'Operação', field: 'operation'},
+            {
+                headerName: 'Operação', field: 'operation', cellRenderer: dados => {
+                    return dados.value === 'ADD' ? 'Pago' : 'Pendente'
+                }
+            },
             {headerName: 'Valor', field: 'value'},
         ];
 

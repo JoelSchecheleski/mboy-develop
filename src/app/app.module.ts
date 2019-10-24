@@ -28,7 +28,7 @@ import {PageTitleService} from './core/page-title/page-title.service';
 import {MBoyAppComponent} from './app.component';
 import {MainComponent} from './main/main.component';
 import {MenuToggleModule} from './core/menu/menu-toggle.module';
-import {MenuItems} from './core/menu/menu-items/menu-items';
+import {MenuItemsLeft} from './core/menu/menu-items/menu-items-left.service';
 import {AuthGuard} from './core/guards/auth.guard';
 import {HorizontalMenuItems} from './core/menu/horizontal-menu-items/horizontal-menu-items';
 
@@ -107,7 +107,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     bootstrap: [MBoyAppComponent],
     providers: [
         // D3ChartService,
-        MenuItems,
+        MenuItemsLeft,
         HorizontalMenuItems,
         BreadcrumbService,
         PageTitleService,
@@ -154,6 +154,20 @@ export class MboyAppModule {
         this.matIconRegistry.addSvgIcon(
             'add',
             this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/add.svg')
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            'valores2',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/valores2.svg')
+        );
+
+        this.matIconRegistry.addSvgIcon(
+            'pin',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/pin.svg')
+        );
+        this.matIconRegistry.addSvgIcon(
+            'sair',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/sair.svg')
         );
 
     }

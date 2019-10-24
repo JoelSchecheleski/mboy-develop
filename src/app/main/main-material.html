@@ -11,7 +11,8 @@
             <mat-sidenav #sidenav [(mode)]="coreService.sidenavMode" [(opened)]="coreService.sidenavOpen"
                          class="sidebar-area">
                 <div class="sidebar-panel gene-sidenav" fxLayout="column">
-                    <mat-toolbar class="sidebar-logo gene-header-toolbar" style="padding-top: 10px; background-color: #d5652b">
+                    <mat-toolbar class="sidebar-logo gene-header-toolbar"
+                                 style="padding-top: 10px; background-color: #d5652b">
                         <div class="gene-logo">
                             <a href="javascript:void(0)" [routerLink]="['/dashboard/saas']">
                                 <div class="logo-sign inline-block">
@@ -20,7 +21,7 @@
                             </a>
                         </div>
                     </mat-toolbar>
-                    <perfect-scrollbar style="background-color: white"> <!-- TODO: Alterado a cor do menu -->
+                    <perfect-scrollbar style="background-color: white">
                         <div class="sidebar-container">
                             <div class="gene-user-thumb text-center">
                                 <div class="img-responsive">
@@ -37,8 +38,8 @@
                                             <a menuToggle class="gene-relative" style="color: #615d5a"
                                                *ngIf="menuitem.type === 'button'" routerLinkActive="active-link"
                                                (click)="changeLayout()">
-                                                <mat-icon
-                                                        style="height: 24px; width: 24px;">{{ menuitem.icon }}</mat-icon>
+                                                <mat-icon style="height: 24px; width: 24px;">{{ menuitem.icon }}</mat-icon>
+
                                                 <span>{{ menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem?.label">
                                                     <span class="sidebar-label">{{ menuitem?.label}}</span>
@@ -48,8 +49,18 @@
                                             <a menuToggle class="gene-relative" mat-ripple style="color: #615d5a"
                                                [routerLink]="['/',menuitem.state]" routerLinkActive="active"
                                                *ngIf="menuitem.type === 'link'">
-                                                <mat-icon *ngIf="menuitem.name !== 'Sweepstakes'" style="width: 18px">{{ menuitem.icon}}</mat-icon>
-                                                <mat-icon *ngIf="menuitem.name == 'Sweepstakes'" svgIcon="sorteios" style="width: 18px"></mat-icon>
+                                                <mat-icon *ngIf="menuitem.name !== 'Sweepstakes'"
+                                                          style="height: 24px; width: 24px;">{{ menuitem.icon}}</mat-icon>
+                                                <mat-icon *ngIf="menuitem.name == 'Sweepstakes'" svgIcon="sorteios"
+                                                          style="height: 24px; width: 24px;"></mat-icon>
+                                                <mat-icon *ngIf="menuitem.name == 'Reclamações'" svgIcon="reclamacoes"
+                                                          style="height: 24px; width: 24px; margin-left: -34px"></mat-icon>
+                                                <mat-icon *ngIf="menuitem.name == 'Cities'" svgIcon="pin"
+                                                          style="height: 24px; width: 24px; margin-left: -34px"></mat-icon>
+                                                <mat-icon *ngIf="menuitem.name == 'Peoples'" svgIcon="pessoas"
+                                                          style="height: 24px; width: 24px; margin-left: -34px"></mat-icon>
+                                                <mat-icon *ngIf="menuitem.name == 'Push'" svgIcon="push"
+                                                          style="height: 24px; width: 24px; margin-left: -34px"></mat-icon>
 
                                                 <span>{{menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem?.label">
@@ -59,7 +70,9 @@
 
                                             <a menuToggle class="gene-relative" mat-ripple href="javascript:;"
                                                *ngIf="menuitem.type === 'sub'">
-                                                <mat-icon>{{ menuitem.icon }}</mat-icon>
+                                                <mat-icon style="height: 24px; width: 24px;"
+                                                          svgIcon="{{menuitem.icon}}"></mat-icon>
+
                                                 <span>{{ menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem.label">
                                                     <span class="sidebar-label">{{ menuitem.label}}</span>
@@ -78,14 +91,17 @@
                                                         </ng-container>
                                                     </a>
                                                 </mat-list-item>
+                                                <mat-divider></mat-divider>
                                             </mat-nav-list>
+                                            <mat-divider></mat-divider>
                                         </mat-list-item>
 
                                         <!-- Sair -->
                                         <mat-list-item menuToggleLink>
                                             <a class="gene-relative" mat-ripple style="color: #615d5a"
                                                (click)="logOut()">
-                                                <mat-icon>{{'meeting_room'}}</mat-icon>
+                                                <mat-icon svgIcon="sair"
+                                                          style="height: 24px; width: 24px"></mat-icon>
                                                 <span>{{'Get out' | translate }}</span>
                                             </a>
                                         </mat-list-item>

@@ -23,7 +23,7 @@ const MENUITEMS = [
         name: 'Peoples',
         type: 'sub',
         class: 'group-title',
-        icon: 'people',
+        icon: 'pessoas',
         active: true,
         children: [
             {
@@ -60,20 +60,14 @@ const MENUITEMS = [
         state: 'cidades',
         name: 'Cities',
         type: 'link',
-        icon: 'room'
+        icon: 'pin'
     },
-    {
-        state: 'sweepstakes',
-        name: 'Sweepstakes',
-        type: 'link',
-        icon: 'sorteios'
-    },
-    {
+   {
         state: 'values',
         name: 'Valores',
         type: 'sub',
         class: 'group-title',
-        icon: 'valores',
+        icon: 'valores2',
         active: true,
         children: [
             {
@@ -98,11 +92,29 @@ const MENUITEMS = [
                 active: true
             }
         ]
+    },
+    {
+        state: 'claims',
+        name: 'Reclamações',
+        type: 'link',
+        icon: 'reclamacoes'
+    },
+    {
+        state: 'sweepstakes',
+        name: 'Sweepstakes',
+        type: 'link',
+        icon: 'sorteios'
+    },
+    {
+        state: 'push',
+        name: 'Push',
+        type: 'link',
+        icon: 'push'
     }
 ];
 
 @Injectable()
-export class MenuItems {
+export class MenuItemsLeft {
     getAll(): Menu[] {
         return MENUITEMS;
     }
