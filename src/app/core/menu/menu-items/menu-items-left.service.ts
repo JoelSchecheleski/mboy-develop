@@ -62,13 +62,7 @@ const MENUITEMS = [
         type: 'link',
         icon: 'pin'
     },
-    {
-        state: 'sweepstakes',
-        name: 'Sweepstakes',
-        type: 'link',
-        icon: 'sorteios'
-    },
-    {
+   {
         state: 'values',
         name: 'Valores',
         type: 'sub',
@@ -104,6 +98,18 @@ const MENUITEMS = [
         name: 'Reclamações',
         type: 'link',
         icon: 'reclamacoes'
+    },
+    {
+        state: 'sweepstakes',
+        name: 'Sweepstakes',
+        type: 'link',
+        icon: 'sorteios'
+    },
+    {
+        state: 'push',
+        name: 'Push',
+        type: 'link',
+        icon: 'push'
     }
 ];
 
