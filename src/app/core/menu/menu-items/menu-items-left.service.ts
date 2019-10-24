@@ -78,14 +78,14 @@ const MENUITEMS = [
                 active: true
             },
             {
-                state: 'tableKm',
+                state: 'tablekm',
                 name: 'Tabela por KM',
                 type: 'link',
                 icon: 'user',
                 active: true
             },
             {
-                state: 'tableHour',
+                state: 'tablehour',
                 name: 'Tabela por hora',
                 type: 'link',
                 icon: 'user',

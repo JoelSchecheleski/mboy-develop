@@ -19,11 +19,6 @@
                         <mat-form-field>
                             <input formControlName="description" matInput placeholder="Nome da configuração" required>
                         </mat-form-field>
-
-                        <mat-form-field>
-                            <input formControlName="additionalValuePerKm" matInput placeholder="Adicional por KM"
-                                   required>
-                        </mat-form-field>
                     </div>
                 </div>
 
@@ -32,8 +27,7 @@
                     <div class="col-sm-12">
                         <div class="table-responsive">
 
-                            <button class="btn btn-info btn-icon" type="button"
-                                    style="background-color: #D5652B; color: white;" (click)="addNewRow()">
+                            <button class="btn btn-info btn-icon" style="background-color: #D5652B; color: white;" type="button" (click)="addNewRow()">
                                 <i style="margin-left: 5px;" class="icofont icofont-ui-add"> + </i>
                             </button>
 
@@ -41,8 +35,8 @@
 
                                 <thead class="font12">
                                 <tr>
-                                    <th>KM Inicial</th>
-                                    <th>KM Final</th>
+                                    <th>HR Inicial</th>
+                                    <th>HR Final</th>
                                     <th>Valor</th>
                                     <th>Ação</th>
                                 </tr>
@@ -51,13 +45,14 @@
                                 <tbody class="font12">
                                 <tr *ngFor="let row of itensAdicionados; let i = index">
                                     <td>
-                                        <input type="number" matInput (change)="updateRow(i, 'kmInitial', $event)"
-                                               value="{{row.kmInitial}}">
+                                        <input type="time" matInput step="1" minlength="8" maxlength="8" size="10"
+                                               value="{{row.hourInitial}}"
+                                               (change)="updateRow(i, 'hourInitial', $event)">
                                     </td>
 
                                     <td>
-                                        <input type="number" matInput (change)="updateRow(i, 'kmFinal', $event)"
-                                               value="{{row.kmFinal}}">
+                                        <input type="time" matInput step="1" minlength="8" maxlength="8" size="10"
+                                               value="{{row.hourFinal}}" (change)="updateRow(i, 'hourFinal', $event)">
                                     </td>
 
                                     <td>
@@ -66,8 +61,8 @@
                                     </td>
 
                                     <td>
-                                        <button class="btn btn-mini btn-danger" type="button"
-                                                style="background-color: #D5652B; color: white;"
+                                        <button class="btn btn-mini btn-danger"
+                                                style="background-color: #D5652B; color: white;" type="button"
                                                 (click)="deleteRow(i)" title="Remover">
                                             <i style="margin-left: 5px;" class="icofont icofont-ui-add"> - </i>
                                         </button>
