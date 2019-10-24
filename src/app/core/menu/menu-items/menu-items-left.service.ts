@@ -23,7 +23,7 @@ const MENUITEMS = [
         name: 'Peoples',
         type: 'sub',
         class: 'group-title',
-        icon: 'people',
+        icon: 'pessoas',
         active: true,
         children: [
             {
@@ -73,7 +73,7 @@ const MENUITEMS = [
         name: 'Valores',
         type: 'sub',
         class: 'group-title',
-        icon: 'attach_money',
+        icon: 'valores2',
         active: true,
         children: [
             {

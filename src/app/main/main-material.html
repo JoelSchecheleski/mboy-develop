@@ -57,6 +57,8 @@
                                                           style="height: 24px; width: 24px; margin-left: -34px"></mat-icon>
                                                 <mat-icon *ngIf="menuitem.name == 'Cities'" svgIcon="pin"
                                                           style="height: 24px; width: 24px; margin-left: -34px"></mat-icon>
+                                                <mat-icon *ngIf="menuitem.name == 'Peoples'" svgIcon="pessoas"
+                                                          style="height: 24px; width: 24px; margin-left: -34px"></mat-icon>
 
                                                 <span>{{menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem?.label">
@@ -66,7 +68,8 @@
 
                                             <a menuToggle class="gene-relative" mat-ripple href="javascript:;"
                                                *ngIf="menuitem.type === 'sub'">
-                                                <mat-icon style="height: 24px; width: 24px;">{{ menuitem.icon }}</mat-icon>
+                                                <mat-icon style="height: 24px; width: 24px;"
+                                                          svgIcon="{{menuitem.icon}}"></mat-icon>
 
                                                 <span>{{ menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem.label">
@@ -95,7 +98,8 @@
                                         <mat-list-item menuToggleLink>
                                             <a class="gene-relative" mat-ripple style="color: #615d5a"
                                                (click)="logOut()">
-                                                <mat-icon>{{'meeting_room'}}</mat-icon>
+                                                <mat-icon svgIcon="sair"
+                                                          style="height: 24px; width: 24px"></mat-icon>
                                                 <span>{{'Get out' | translate }}</span>
                                             </a>
                                         </mat-list-item>

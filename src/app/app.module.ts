@@ -165,6 +165,11 @@ export class MboyAppModule {
             'pin',
             this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/pin.svg')
         );
+        this.matIconRegistry.addSvgIcon(
+            'sair',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/sair.svg')
+        );
+
     }
 
 }
