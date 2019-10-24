@@ -1,13 +1,12 @@
 import {Resource} from '../../../Resource';
 
-export class TablekmModel extends Resource {
+export class TablehrModel extends Resource {
     public description?: String;
-    public additionalValuePerKm?: number;
     public listRangeSettings?: [TableRangeModel];
 }
 
 export class TableRangeModel extends Resource {
-    public kmInitial?: number;
-    public kmFinal?: number;
+    public hourInitial?: any;
+    public hourFinal?: any;
     public value?: number;
 }

@@ -3,27 +3,27 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {isNullOrUndefined} from '@swimlane/ngx-datatable/release/utils';
 import {DomSanitizer} from '@angular/platform-browser';
-import {TablekmServices} from '../tablekm-shared/tablekm.services';
+import {TablehrServices} from '../tablehr-shared/tablehr.services';
 import {IdiomaPTBR} from '../../../idioma-PTBR';
-import {TableRangeModel} from '../tablekm-shared/tablekmModel';
+import {TableRangeModel} from '../tablehr-shared/tablehrModel';
 import {Config} from '../../../app-config';
 
 @Component({
-    templateUrl: './tablekm-form.html',
-    providers: [TablekmServices]
+    templateUrl: './tablehr-form.html',
+    providers: [TablehrServices]
 })
-export class TablekmDialogComponent implements OnInit {
+export class TablehrDialogComponent implements OnInit {
     private readonly status: any;
     public language = new IdiomaPTBR().language;
     public formulario: FormGroup;
     private readonly config: string;
     private url = new Config().getEndpoint();
-    public itensAdicionados: any;
+    public itensAdicionados: [TableRangeModel];
 
     constructor(
-        public api: TablekmServices,
+        public api: TablehrServices,
         private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<TablekmDialogComponent>,
+        public dialogRef: MatDialogRef<TablehrDialogComponent>,
         private domSanitizer: DomSanitizer,
         @Inject(MAT_DIALOG_DATA) private data
     ) {
@@ -39,8 +39,7 @@ export class TablekmDialogComponent implements OnInit {
     ngOnInit() {
         this.formulario = this.formBuilder.group({
             id: this.data.id,
-            description: this.data.description,
-            additionalValuePerKm: this.data.additionalValuePerKm,
+            description: this.data.description
         });
 
         this.itensAdicionados = this.data.listRangeSettings;
@@ -63,17 +62,17 @@ export class TablekmDialogComponent implements OnInit {
                     return;
                 }
 
-                if ((value.kmInitial >= value.kmFinal) //se inicial maior ou igual a final
-                    || (value.kmInitial >= objeto.listRangeSettings[intervalo]['kmInitial']
-                        && value.kmFinal <= objeto.listRangeSettings[intervalo]['kmFinal']) //interno
-                    || (value.kmInitial <= objeto.listRangeSettings[intervalo]['kmInitial']
-                        && value.kmFinal >= objeto.listRangeSettings[intervalo]['kmFinal']) //externo
-                    || (value.kmInitial >= objeto.listRangeSettings[intervalo]['kmInitial']
-                        && value.kmInitial <= objeto.listRangeSettings[intervalo]['kmFinal']) //inicio dentro de outra faixa
-                    || (value.kmFinal >= objeto.listRangeSettings[intervalo]['kmInitial']
-                        && value.kmFinal <= objeto.listRangeSettings[intervalo]['kmFinal']) //fim dentro de outra faica
+                if ((value.hourInitial >= value.hourFinal) //se inicial maior ou igual a final
+                    || (value.hourInitial >= objeto.listRangeSettings[intervalo]['hourInitial']
+                        && value.hourFinal <= objeto.listRangeSettings[intervalo]['hourFinal']) //interno
+                    || (value.hourInitial <= objeto.listRangeSettings[intervalo]['hourInitial']
+                        && value.hourFinal >= objeto.listRangeSettings[intervalo]['hourFinal']) //externo
+                    || (value.hourInitial >= objeto.listRangeSettings[intervalo]['hourInitial']
+                        && value.hourInitial <= objeto.listRangeSettings[intervalo]['hourFinal']) //inicio dentro de outra faixa
+                    || (value.hourFinal >= objeto.listRangeSettings[intervalo]['hourInitial']
+                        && value.hourFinal <= objeto.listRangeSettings[intervalo]['hourFinal']) //fim dentro de outra faica
                 ) {
-                    error.push('Favor verificar os conflitos de alcance nas quilometragens!');
+                    error.push('Favor verificar os conflitos de horários!');
                     break;
                 }
             }
@@ -86,10 +85,9 @@ export class TablekmDialogComponent implements OnInit {
             return;
         }
 
-        delete form.value['registrationStatus'];
-        this.api.client_http.post(`${this.url}settings/kilometers`, objeto)
+
+        this.api.client_http.post(`${this.url}settings/hour`, objeto)
             .subscribe(data => {
-                    // console.log('Objeto inserido!', data);
                     this.dialogRef.close(`${form.value.descricao}`);
                 }
             );
@@ -100,10 +98,15 @@ export class TablekmDialogComponent implements OnInit {
     }
 
     addNewRow() {
-        this.itensAdicionados.push({id: null, kmInitial: 0, kmFinal: 0, value: 0});
+        this.itensAdicionados.push({id: null, hourInitial: 0, hourFinal: 0, value: 0});
     }
 
     updateRow(index, column, event) {
-        this.itensAdicionados[index][column] = Number(event.srcElement.value);
+        if (column !== 'value') {
+            this.itensAdicionados[index][column] = event.srcElement.value;
+        } else {
+            this.itensAdicionados[index][column] = Number(event.srcElement.value);
+        }
+
     }
 }

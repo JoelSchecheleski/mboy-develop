@@ -9,17 +9,17 @@ import {filter} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Config} from '../../app-config';
 
-import {TablekmDialogComponent} from './tablekm-form/tablekm-dialog.component';
-import {TablekmServices} from './tablekm-shared/tablekm.services';
+import {TablehrDialogComponent} from './tablehr-form/tablehr-dialog.component';
+import {TablehrServices} from './tablehr-shared/tablehr.services';
 import Swal from 'sweetalert2';
 
 @Component({
     selector: 'ms-table-kilometer',
-    templateUrl: './tablekm.component.html',
-    styleUrls: ['./tablekm.component.scss'],
-    providers: [TablekmServices]
+    templateUrl: './tablehr.component.html',
+    styleUrls: ['./tablehr.component.scss'],
+    providers: [TablehrServices]
 })
-export class TablekmComponent implements OnInit {
+export class TablehrComponent implements OnInit {
     public gridOptions: GridOptions;
     public rowData: any;
     public rowSetting: any;
@@ -30,10 +30,10 @@ export class TablekmComponent implements OnInit {
     private gridColumnApi;
     private url = new Config().getEndpoint();
 
-    fileNameDialogRef: MatDialogRef<TablekmDialogComponent>;
+    fileNameDialogRef: MatDialogRef<TablehrDialogComponent>;
 
     constructor(public _http: HttpClient,
-                public api: TablekmServices,
+                public api: TablehrServices,
                 private translate: TranslateService,
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
@@ -82,13 +82,13 @@ export class TablekmComponent implements OnInit {
      */
     openFileDialog(file?) {
         if (file) { // Editando
-            this.fileNameDialogRef = this.dialog.open(TablekmDialogComponent, {
+            this.fileNameDialogRef = this.dialog.open(TablehrDialogComponent, {
                 height: '650px',
                 width: '1200px',
                 data: this.api.userData(file)
             });
         } else { // Novo
-            this.fileNameDialogRef = this.dialog.open(TablekmDialogComponent, {
+            this.fileNameDialogRef = this.dialog.open(TablehrDialogComponent, {
                 height: '650px',
                 width: '1200px',
                 data: this.api.userData(file)
@@ -136,7 +136,7 @@ export class TablekmComponent implements OnInit {
                         cancelButtonText: 'Cancelar'
                     }).then((result) => {
                         if (result.value) {
-                            this.api.client_http.delete(`${this.url}settings/kilometers/${id}`)
+                            this.api.client_http.delete(`${this.url}settings/hour/${id}`)
                                 .subscribe(data => {
                                         this.snackBar.open('Registro deletado com sucesso', '', {
                                             duration: 2000,
@@ -184,7 +184,7 @@ export class TablekmComponent implements OnInit {
 
     public getAllSettings() {
         const endpoint = new Config().getEndpoint();
-        this._http.get(`${endpoint}settings/kilometers/0`)
+        this._http.get(`${endpoint}settings/hour/0`)
             .subscribe(
                 data => { // @ts-ignore
                     this.rowSetting = data;

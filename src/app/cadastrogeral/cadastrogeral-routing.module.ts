@@ -18,7 +18,7 @@ const routes: Routes = [
             },
             {
                 path: 'customer',
-                loadChildren: './customer/customer.module#TablekmModule'
+                loadChildren: './customer/customer.module#TablehrModule'
             },
             {
                 path: 'motoboy',
@@ -41,8 +41,12 @@ const routes: Routes = [
                 loadChildren: './sweepstakes-report/sweepstakes-report.module#SweepstakesReportModule'
             },
             {
-                path: 'tableKm',
+                path: 'tablekm',
                 loadChildren: './tablekm/tablekm.module#TablekmModule'
+            },
+            {
+                path: 'tablehour',
+                loadChildren: './tableHour/tablehr.module#TablehrModule'
             }
 
         ]
