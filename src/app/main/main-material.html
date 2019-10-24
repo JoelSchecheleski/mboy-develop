@@ -39,6 +39,7 @@
                                                *ngIf="menuitem.type === 'button'" routerLinkActive="active-link"
                                                (click)="changeLayout()">
                                                 <mat-icon style="height: 24px; width: 24px;">{{ menuitem.icon }}</mat-icon>
+
                                                 <span>{{ menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem?.label">
                                                     <span class="sidebar-label">{{ menuitem?.label}}</span>
@@ -49,11 +50,13 @@
                                                [routerLink]="['/',menuitem.state]" routerLinkActive="active"
                                                *ngIf="menuitem.type === 'link'">
                                                 <mat-icon *ngIf="menuitem.name !== 'Sweepstakes'"
-                                                          style="width: 18px">{{ menuitem.icon}}</mat-icon>
+                                                          style="height: 24px; width: 24px;">{{ menuitem.icon}}</mat-icon>
                                                 <mat-icon *ngIf="menuitem.name == 'Sweepstakes'" svgIcon="sorteios"
-                                                          style="width: 18px"></mat-icon>
+                                                          style="height: 24px; width: 24px;"></mat-icon>
                                                 <mat-icon *ngIf="menuitem.name == 'Reclamações'" svgIcon="reclamacoes"
-                                                          style="width: 18px"></mat-icon>
+                                                          style="height: 24px; width: 24px; margin-left: -34px"></mat-icon>
+                                                <mat-icon *ngIf="menuitem.name == 'Cities'" svgIcon="pin"
+                                                          style="height: 24px; width: 24px; margin-left: -34px"></mat-icon>
 
                                                 <span>{{menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem?.label">
@@ -63,7 +66,7 @@
 
                                             <a menuToggle class="gene-relative" mat-ripple href="javascript:;"
                                                *ngIf="menuitem.type === 'sub'">
-                                                <mat-icon>{{ menuitem.icon }}</mat-icon>
+                                                <mat-icon style="height: 24px; width: 24px;">{{ menuitem.icon }}</mat-icon>
 
                                                 <span>{{ menuitem.name | translate }}</span>
                                                 <ng-container *ngIf="menuitem.label">

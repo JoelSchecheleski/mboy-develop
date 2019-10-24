@@ -157,10 +157,14 @@ export class MboyAppModule {
         );
 
         this.matIconRegistry.addSvgIcon(
-            'add',
-            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/valores_menu.svg')
+            'valores2',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/valores2.svg')
         );
 
+        this.matIconRegistry.addSvgIcon(
+            'pin',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/pin.svg')
+        );
     }
 
 }

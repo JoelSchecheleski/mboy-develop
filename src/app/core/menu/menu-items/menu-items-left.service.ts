@@ -60,7 +60,7 @@ const MENUITEMS = [
         state: 'cidades',
         name: 'Cities',
         type: 'link',
-        icon: 'room'
+        icon: 'pin'
     },
     {
         state: 'sweepstakes',
@@ -73,7 +73,7 @@ const MENUITEMS = [
         name: 'Valores',
         type: 'sub',
         class: 'group-title',
-        icon: 'valores',
+        icon: 'attach_money',
         active: true,
         children: [
             {

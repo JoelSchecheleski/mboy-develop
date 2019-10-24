@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
-        this.pageTitleService.setTitle('Usuários');
+        this.pageTitleService.setTitle('Cadastro de usuários');
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {
@@ -74,7 +74,6 @@ export class UserComponent implements OnInit {
                 }
             }
         ];
-
     }
 
     ngOnInit() {
