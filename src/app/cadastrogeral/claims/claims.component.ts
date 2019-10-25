@@ -59,11 +59,11 @@ export class ClaimsComponent implements OnInit {
                 cellRenderer: function (params) {
                     // tslint:disable-next-line:max-line-length
                     return `${params.value === 'PENDING' ? '<button type="button" style="width: 10px;    height: 10px;    ' +
-                        'padding: 6px 0px;    border-width: 0px;    border-radius: 15px;    text-align: center;    ' +
-                        'font-size: 12px;    line-height: 1.42857;    background-color: #d52022"></button> Em aberto'
-                        : '<button type="button" style="width: 10px;    height: 10px;    padding: 6px 0px;    border-width: 0px;    ' +
+                        'padding: 0px 1px;    border-width: 0px;    border-radius: 15px;    text-align: center;    ' +
+                        'font-size: 12px;    line-height: 1.42857;    background-color: #d52022"></button>     Em aberto'
+                        : '<button type="button" style="width: 10px;    height: 10px;    padding: 0px 1px;    border-width: 0px;    ' +
                         'border-radius: 15px;    text-align: center;    font-size: 12px;    line-height: 1.42857;    ' +
-                        'background-color: #40d54a"></button>Resolvida'}`;
+                        'background-color: #40d54a"></button>     Resolvida'}`;
                 }
             },
             {headerName: 'Titulo', field: 'subject'},
@@ -81,9 +81,23 @@ export class ClaimsComponent implements OnInit {
                 headerName: 'Data', field: 'createdAt', cellRenderer: (data) => {
                     return moment(data.value).format('DD/MM/YYYY HH:mm');
                 }
+            },
+            {
+                headerName: 'Ação',
+                lockPosition: false,
+                cellClass: 'locked-col',
+                suppressNavigable: true,
+                cellRenderer: function () {
+                    const display = 'block';
+                    const html = `<button class='btn btn-danger btn-mini'  style="background-color: #D5652B; 
+                                    color: white" data-action-type='editar'> <i class='icofont icofont-ui-edit'></i>Editar
+                                </button>`;
+                    return html;
+                }
             }
         ];
     }
+
 
     ngOnInit() {
         this.getAllClaims()
@@ -96,7 +110,7 @@ export class ClaimsComponent implements OnInit {
     openFileDialog(file?) {
         if (file) { // Editando
             this.fileNameDialogRef = this.dialog.open(ClaimsDialogComponent, {
-                height: '350px',
+                height: '550px',
                 width: '1200px',
                 data: this.api.clamsData(file),
             });
@@ -117,6 +131,7 @@ export class ClaimsComponent implements OnInit {
         });
     }
 
+
     /**
      * Executa uma função com base no que foi clicado
      * @param e
@@ -127,37 +142,15 @@ export class ClaimsComponent implements OnInit {
             const actionType = e.event.target.getAttribute('data-action-type');
             switch (actionType) {
                 case 'editar':
-                    const endpoint = new Config().getEndpoint();
-                    this._http.get(`${endpoint}chat/${id}`)
-                        .subscribe(data => {
-                            console.table(data);
-                            this.openFileDialog(data);
-                        }, err => {
-                            console.log(err);
-                        });
-                    break;
-                case 'deletar':
-                    Swal.fire({
-                        title: 'Deseja realmente deletar esse registro?',
-                        text: '',
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#D5652B',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Deletar',
-                        cancelButtonText: 'Cancelar'
-                    }).then((result) => {
-                        if (result.value) {
-                            this.api.DELETE(id)
-                                .subscribe(data => {
-                                        this.snackBar.open('Registro deletado com sucesso', '', {
-                                            duration: 2000,
-                                        });
-                                        this.ngOnInit();
-                                    }
-                                );
-                        }
+                    this.openFileDialog(e.data);
+                    // let dialogRef = this.dialog.open(Component);
+                    // const sub = dialogRef.componentInstance.onAdd.subscribe(() => {
+                    //
+                    // });
+                    this.fileNameDialogRef.afterClosed().subscribe(() => {
+                        this.getAllClaims();
                     });
+
                     break;
             }
         }
@@ -183,7 +176,7 @@ export class ClaimsComponent implements OnInit {
             if (index !== 0) {
                 selectedRowsString += ',';
             }
-            selectedRowsString += rowSelection.descricao;
+            selectedRowsString += rowSelection.status;
         });
         console.log(JSON.stringify(selectedRows[0]));
     }
