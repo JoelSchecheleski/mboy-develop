@@ -45,7 +45,7 @@ const routes: Routes = [
                 },
                 {
                     path: 'tablehour',
-                    loadChildren: './tableHour/tablehr.module#SettingsModule'
+                    loadChildren: './tableHour/tablehr.module#TablehrModule'
                 },
                 {
                     path: 'claims',

@@ -95,33 +95,38 @@ export class PushComponent implements OnInit {
      * @param form Formulário a ser submetido
      */
     public submit(form) {
-        const endpoint = new Config().getEndpoint();
-        const body = {
-            abbreviation: this.selectedState,
-            city: this.citySelected,
-            message: form.value.message
+        if (form.value.message != null && this.selectedState != null && this.citySelected != null) {
+            const endpoint = new Config().getEndpoint();
+            const body = {
+                abbreviation: this.selectedState,
+                city: this.citySelected,
+                message: form.value.message
+            }
+            this._http.post(`${endpoint}push`, JSON.stringify(body))
+                .subscribe(data => {
+                    if (data['abbreviation'] != null) {
+                        Swal.fire({
+                            position: 'center',
+                            type: 'success',
+                            title: 'Push enviado com sucesso',
+                            showConfirmButton: false,
+                            animation: false,
+                            timer: 1500
+                        });
+                    } else {
+                        Swal.fire({
+                            position: 'center',
+                            type: 'error',
+                            title: 'Ops, algo deu errado',
+                            showConfirmButton: false,
+                            animation: false,
+                            timer: 1500
+                        });
+                    }
+                });
         }
-        this._http.put(`${endpoint}push`, JSON.stringify(body))
-            .subscribe(data => {
-                if (data['abbreviation'] != null) {
-                    Swal.fire({
-                        position: 'center',
-                        type: 'success',
-                        title: 'Push enviado com sucesso',
-                        showConfirmButton: false,
-                        animation: false,
-                        timer: 1500
-                    });
-                } else {
-                    Swal.fire({
-                        position: 'center',
-                        type: 'error',
-                        title: 'Ops, algo deu errado',
-                        showConfirmButton: false,
-                        animation: false,
-                        timer: 1500
-                    });
-                }
-            })
+        this.selectedState = null;
+        this.citySelected = null;
+        this.limpar();
     }
 }
