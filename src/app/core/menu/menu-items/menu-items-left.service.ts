@@ -71,7 +71,7 @@ const MENUITEMS = [
         active: true,
         children: [
             {
-                state: 'config',
+                state: 'settings',
                 name: 'Configuração',
                 type: 'link',
                 icon: 'user',

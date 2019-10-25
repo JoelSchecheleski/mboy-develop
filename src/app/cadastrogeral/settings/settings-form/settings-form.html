@@ -1,0 +1,65 @@
+<form [formGroup]="formulario" (ngSubmit)="submit(formulario)">
+    <!-- TAB INFORMAÇÕES GERAIS -->
+    <mat-tab-group>
+        <mat-tab label="Informações">
+            <mat-card>
+                <div class="gene-card-title">
+                    <div fxLayout="row" fxLayoutAlign="start left">
+                        <div fxLayout="column">
+                            <h5>{{'Informações da configuração: ' |translate}} {{config}}</h5>
+                        </div>
+                        <span fxFlex></span>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+
+                <div class="gene-card-content">
+                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+<!--                        <mat-form-field>-->
+<!--                            <input formControlName="id" matInput placeholder="Identificador da configuração" readonly>-->
+<!--                        </mat-form-field>-->
+
+                        <mat-form-field>
+                            <input formControlName="minimumValueBankSlip" type="number" step="0.5" matInput
+                                   placeholder="Valor mínimo">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Ativo</mat-label>
+                            <select matNativeControl required formControlName="active">
+                                <option value="true">Sim</option>
+                                <option value="false">Não</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="gene-card-content">
+                    <mat-form-field>
+                        <mat-select formControlName="settingPerKmName" [(ngModel)]="selectedSettingKm"
+                                    placeholder="Config. de Km">
+                            <mat-option *ngFor="let n of kmSettingStatusList" [value]="n.id">
+                                {{n.description}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-select formControlName="settingPerHourName" [(ngModel)]="selectedSettingHr"
+                                    placeholder="Config. de Hora">
+                            <mat-option *ngFor="let n of hrSettingStatusList" [value]="n.id">
+                                {{n.description}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+
+                <mat-dialog-actions>
+                    <button mat-button type="submit">Salvar</button>
+                    <button mat-button type="button" (click)="dialogRef.close()">Cancelar</button>
+                </mat-dialog-actions>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</form>
