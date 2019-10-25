@@ -50,6 +50,9 @@ const routes: Routes = [
                 {
                     path: 'claims',
                     loadChildren: './claims/claims.module#ClaimsModule'
+                },                {
+                    path: 'push',
+                    loadChildren: './push/push.module#PushModule'
                 }
             ]
         }

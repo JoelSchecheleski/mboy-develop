@@ -19,7 +19,7 @@ export class CidadeServices extends ResourceService<CityModel> {
             httpClient,
             'city');
     }
-    
+
     /**
      * Estrutura de dados para novo registro
      * @param file

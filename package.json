@@ -61,6 +61,8 @@
     "leaflet": "^1.4.0",
     "leaflet-map": "^0.2.1",
     "moment": "^2.23.0",
+    "ng-alain": "^7.3.1",
+    "ng-zorro-antd": "^7.3.3",
     "ng2-charts": "^1.6.0",
     "ng2-ckeditor": "^1.2.2",
     "ng2-dragula": "^2.1.1",
@@ -98,13 +100,11 @@
     "ts-helpers": "^1.1.2",
     "videogular2": "^6.4.0",
     "web-animations-js": "^2.3.1",
-    "zone.js": "^0.8.28",
-    "ng-zorro-antd": "^7.3.3",
-    "ng-alain": "^7.3.1"
+    "zone.js": "^0.8.28"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.4",
-    "@angular/cli": "^7.3.5",
+    "@angular/cli": "^8.3.14",
     "@angular/compiler-cli": "^7.2.1",
     "@angular/language-service": "^7.2.1",
     "@types/d3": "3.5.41",
