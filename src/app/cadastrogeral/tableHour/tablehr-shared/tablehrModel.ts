@@ -1,7 +1,7 @@
 import {Resource} from '../../../Resource';
 
 export class TablehrModel extends Resource {
-    public description?: String;
+    public description?: string;
     public listRangeSettings?: [TableRangeModel];
 }
 

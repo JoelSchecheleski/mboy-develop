@@ -17,7 +17,7 @@ const routes: Routes = [
                 },
                 {
                     path: 'customer',
-                    loadChildren: './customer/customer.module#TablehrModule'
+                    loadChildren: './customer/customer.module#SettingsModule'
                 },
                 {
                     path: 'motoboy',
@@ -45,14 +45,18 @@ const routes: Routes = [
                 },
                 {
                     path: 'tablehour',
-                    loadChildren: './tableHour/tablehr.module#TablehrModule'
+                    loadChildren: './tableHour/tablehr.module#SettingsModule'
                 },
                 {
                     path: 'claims',
                     loadChildren: './claims/claims.module#ClaimsModule'
-                },                {
+                }, {
                     path: 'push',
                     loadChildren: './push/push.module#PushModule'
+                },
+                {
+                    path: 'settings',
+                    loadChildren: './settings/settings.module#SettingsModule'
                 }
             ]
         }

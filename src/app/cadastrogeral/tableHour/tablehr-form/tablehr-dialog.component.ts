@@ -7,6 +7,7 @@ import {TablehrServices} from '../tablehr-shared/tablehr.services';
 import {IdiomaPTBR} from '../../../idioma-PTBR';
 import {TableRangeModel} from '../tablehr-shared/tablehrModel';
 import {Config} from '../../../app-config';
+import Swal from 'sweetalert2';
 
 @Component({
     templateUrl: './tablehr-form.html',
@@ -81,16 +82,22 @@ export class TablehrDialogComponent implements OnInit {
         objeto.listRangeSettings.forEach(validaIntervalos);
 
         if (error.length > 0) {
-            window.alert(error[0]);
-            return;
+            Swal.fire({
+                title: error[0],
+                text: '',
+                type: 'warning',
+                showCancelButton: false,
+                confirmButtonColor: '#038f9e',
+                confirmButtonText: 'Ok',
+            })
+        } else {
+
+            this.api.client_http.post(`${this.url}settings/hour`, objeto)
+                .subscribe(data => {
+                        this.dialogRef.close(`${form.value.descricao}`);
+                    }
+                );
         }
-
-
-        this.api.client_http.post(`${this.url}settings/hour`, objeto)
-            .subscribe(data => {
-                    this.dialogRef.close(`${form.value.descricao}`);
-                }
-            );
     }
 
     deleteRow(i: number) {
