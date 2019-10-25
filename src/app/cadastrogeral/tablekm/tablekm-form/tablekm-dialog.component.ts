@@ -7,6 +7,7 @@ import {TablekmServices} from '../tablekm-shared/tablekm.services';
 import {IdiomaPTBR} from '../../../idioma-PTBR';
 import {TableRangeModel} from '../tablekm-shared/tablekmModel';
 import {Config} from '../../../app-config';
+import Swal from 'sweetalert2';
 
 @Component({
     templateUrl: './tablekm-form.html',
@@ -82,17 +83,24 @@ export class TablekmDialogComponent implements OnInit {
         objeto.listRangeSettings.forEach(validaIntervalos);
 
         if (error.length > 0) {
-            window.alert(error[0]);
-            return;
-        }
+            Swal.fire({
+                title: error[0],
+                text: '',
+                type: 'warning',
+                showCancelButton: false,
+                confirmButtonColor: '#038f9e',
+                confirmButtonText: 'Ok',
+            })
+        } else {
 
-        delete form.value['registrationStatus'];
-        this.api.client_http.post(`${this.url}settings/kilometers`, objeto)
-            .subscribe(data => {
-                    // console.log('Objeto inserido!', data);
-                    this.dialogRef.close(`${form.value.descricao}`);
-                }
-            );
+            delete form.value['registrationStatus'];
+            this.api.client_http.post(`${this.url}settings/kilometers`, objeto)
+                .subscribe(data => {
+                        // console.log('Objeto inserido!', data);
+                        this.dialogRef.close(`${form.value.descricao}`);
+                    }
+                );
+        }
     }
 
     deleteRow(i: number) {
