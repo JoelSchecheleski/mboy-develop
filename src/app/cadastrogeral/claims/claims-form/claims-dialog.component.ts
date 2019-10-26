@@ -35,7 +35,7 @@ export class ClaimsDialogComponent implements OnInit {
         public api: ClaimsServices,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<ClaimsDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) private data,
+        @Inject(MAT_DIALOG_DATA) public data,
     ) {
         if (!isNullOrUndefined(data.status) && data.status !== '') {
             this.status = 'Editando';

@@ -17,7 +17,7 @@ export class TablekmDialogComponent implements OnInit {
     private readonly status: any;
     public language = new IdiomaPTBR().language;
     public formulario: FormGroup;
-    private readonly config: string;
+    public readonly config: string;
     private url = new Config().getEndpoint();
     public itensAdicionados: any;
 
