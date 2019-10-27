@@ -22,7 +22,11 @@ export class ForgotPasswordV2Component {
      * send method is used to send a reset password link into your email.
      */
     send(value) {
-        this.authService.resetPasswordV2(value);
+        console.log(value);
+
+
+
+        this.email = null;
     }
 }
 
