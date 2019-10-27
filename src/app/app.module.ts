@@ -34,7 +34,7 @@ import {HorizontalMenuItems} from './core/menu/horizontal-menu-items/horizontal-
 
 import {WidgetComponentModule} from './widget-component/widget-component.module';
 import {HorizontalLayoutComponent} from './horizontal-layout/horizontal-layout.component';
-import {PagesModule} from './pages/pages.module';
+// import {PagesModule} from './pages/pages.module';
 
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -72,7 +72,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         DeviceDetectorModule.forRoot(),
         RoutingModule,
         FlexLayoutModule,
-        PagesModule,
 
         CadastrogeralModule,  // Módulo de cadastros gerais do sistema
         MaterialSharedModule, // Módulo contendo todos os componentes do Material Design

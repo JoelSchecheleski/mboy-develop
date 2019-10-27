@@ -2,8 +2,6 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HorizontalLayoutComponent} from './horizontal-layout/horizontal-layout.component';
 import {MainComponent} from './main/main.component';
-import {CommingsoonComponent} from './pages/commingsoon/commingsoon.component';
-import {MaintenanceComponent} from './pages/maintenance/maintenance.component';
 import {AuthGuard} from './core/guards/auth.guard';
 
 const appRoutes: Routes = [
@@ -27,15 +25,7 @@ const appRoutes: Routes = [
     {
         path: 'session',
         loadChildren: './session/session.module#SessionModule',
-    },
-    {
-        path: 'pages/comingsoon',
-        component: CommingsoonComponent
-    },
-    {
-        path: 'pages/maintenance',
-        component: MaintenanceComponent
-    },
+    }
 ]
 
 @NgModule({
@@ -44,4 +34,5 @@ const appRoutes: Routes = [
     providers: []
 })
 export class RoutingModule {
+
 }
