@@ -5,7 +5,7 @@
  */
 
 import {Resource} from '../../Resource';
-import {number} from 'ng2-validation/dist/number';
+// import {number} from 'ng2-validation/dist/number';
 import {BillItems} from './billItems';
 import {PaymentProfile} from './paymentProfile';
 

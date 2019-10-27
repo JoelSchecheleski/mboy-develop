@@ -8,7 +8,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule, Routes} from '@angular/router';
 import {FlexLayoutModule} from '@angular/flex-layout';
-
 import {PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -44,15 +43,6 @@ import {Interceptor} from './interceptor.module';
 import {CadastrogeralModule} from './cadastrogeral/cadastrogeral.module';
 import {MaterialSharedModule} from './modules/material-shared.module';
 import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
-
-// export const firebaseConfig = {
-//     apiKey: 'AIzaSyBO0CLP4fOA_kanqw1HQ2sDjEkyuK9lQ3o',
-//     authDomain: 'gene-ccf5f.firebaseapp.comm',
-//     databaseURL: 'https://gene-ccf5f.firebaseio.com',
-//     projectId: 'gene-ccf5fc',
-//     storageBucket: 'gene-ccf5f.appspot.com',
-//     messagingSenderId: '907778578362'
-// }
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

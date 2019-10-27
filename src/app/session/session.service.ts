@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {of, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {json} from 'ng2-validation/dist/json';
+// import {json} from 'ng2-validation/dist/json';
 import * as CryptoJS from 'crypto-js';
 import {Config} from '../app-config';
 import Swal from 'sweetalert2';
