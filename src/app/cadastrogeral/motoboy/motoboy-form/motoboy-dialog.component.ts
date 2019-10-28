@@ -18,13 +18,12 @@ import * as moment from 'moment';
 export class MotoboyDialogComponent implements OnInit {
     private readonly status: any;
     public registrationStatusList = [
-        {value: 'UNDER_ANALYSIS', viewValue: 'UNDER_ANALYSIS'},
-        {value: 'APPROVED', viewValue: 'APPROVED'},
-        {value: 'BLOCKED', viewValue: 'BLOCKED'},
-        {value: 'ACCESS_DENIED', viewValue: 'ACCESS_DENIED'},
-        {value: 'REJECTED', viewValue: 'REJECTED'}
+        {value: 'UNDER_ANALYSIS', viewValue: 'Sob Análise'},
+        {value: 'APPROVED', viewValue: 'Aprovado'},
+        {value: 'BLOCKED', viewValue: 'Bloqueado'},
+        {value: 'ACCESS_DENIED', viewValue: 'Acesso negado'},
+        {value: 'REJECTED', viewValue: 'Rejeitado'}
     ];
-
     public selectedStatus: any;
     public username: any;
     public formulario: FormGroup;

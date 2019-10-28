@@ -55,7 +55,18 @@ export class UserComponent implements OnInit {
             {headerName: 'Usuário', field: 'username'},
             {headerName: 'Nome', field: 'name'},
             {headerName: 'Email', field: 'email'},
-            {headerName: 'Status', field: 'registrationStatus'},
+            {
+                headerName: 'Status', field: 'registrationStatus',
+                cellRenderer: function (params) {
+                    return `${
+                        params.value === 'APPROVED' ? 'Aprovado' :
+                            params.value === 'UNDER_ANALYSIS' ? 'Sob Análise' :
+                                params.value === 'REJECTED' ? 'Rejeitado' :
+                                    params.value === 'BLOCKED' ? 'Bloqueado' :
+                                        params.value === 'ACCESS_DENIED' ? 'Acesso negado' :
+                                            params.value === '' ? 'Indefinido' : ''}`;
+                }
+            },
             // {headerName: 'Tipo de usuário', field: 'userType'},
             {
                 headerName: 'Ação',
@@ -64,12 +75,8 @@ export class UserComponent implements OnInit {
                 suppressNavigable: true,
                 cellRenderer: function () {
                     const display = 'block';
-                    const html = `<button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white"  data-action-type='editar'>
-                        <i class='icofont icofont-ui-edit'></i>Editar
-                     </button>
-                     <button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white" data-action-type='deletar'>
-                         <i class='icofont icofont-ui-delete'></i>Deletar
-                     </button>`;
+                    const html = `<button class='btn-edit' data-action-type='editar'><i class='icofont icofont-ui-edit'></i>Editar</button>
+                     <button class='btn-delete' data-action-type='deletar'><i class='icofont icofont-ui-delete'></i>Deletar</button>`;
                     return html;
                 }
             }
@@ -141,7 +148,7 @@ export class UserComponent implements OnInit {
                         text: '',
                         type: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#038f9e',
+                        confirmButtonColor: '#D5652B',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Deletar',
                         cancelButtonText: 'Cancelar'

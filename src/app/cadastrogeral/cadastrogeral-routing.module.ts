@@ -17,7 +17,7 @@ const routes: Routes = [
                 },
                 {
                     path: 'customer',
-                    loadChildren: './customer/customer.module#SettingsModule'
+                    loadChildren: './customer/customer.module#CustomerModule'
                 },
                 {
                     path: 'motoboy',

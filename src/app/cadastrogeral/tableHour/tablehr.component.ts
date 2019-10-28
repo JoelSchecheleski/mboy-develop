@@ -59,12 +59,9 @@ export class TablehrComponent implements OnInit {
                 cellClass: 'locked-col',
                 suppressNavigable: true,
                 cellRenderer: function () {
-                    const html = `<button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white"  data-action-type='editar'>
-                        <i class='icofont icofont-ui-edit'></i>Editar
-                     </button>
-                     <button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white"  data-action-type='deletar'>
-                         <i class='icofont icofont-ui-delete'></i>Deletar
-                     </button>`;
+                    const display = 'block';
+                    const html = `<button class='btn-edit' data-action-type='editar'><i class='icofont icofont-ui-edit'></i>Editar</button>
+                     <button class='btn-delete' data-action-type='deletar'><i class='icofont icofont-ui-delete'></i>Deletar</button>`;
                     return html;
                 }
             }
@@ -130,7 +127,7 @@ export class TablehrComponent implements OnInit {
                         text: '',
                         type: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#038f9e',
+                        confirmButtonColor: '#D5652B',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Deletar',
                         cancelButtonText: 'Cancelar'

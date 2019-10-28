@@ -55,7 +55,18 @@ export class CompanyComponent implements OnInit {
             {headerName: 'Nome', field: 'name'},
             {headerName: 'Email', field: 'email'},
             {headerName: 'Contato', field: 'username'},
-            {headerName: 'Status', field: 'registrationStatus'},
+            {
+                headerName: 'Status', field: 'registrationStatus',
+                cellRenderer: function (params) {
+                    return `${
+                        params.value === 'APPROVED' ? 'Aprovado' :
+                        params.value === 'UNDER_ANALYSIS' ? 'Sob Análise' :
+                        params.value === 'REJECTED' ? 'Rejeitado' :
+                        params.value === 'BLOCKED' ? 'Bloqueado' :
+                        params.value === 'ACCESS_DENIED' ? 'Acesso negado' :
+                        params.value === '' ? 'Indefinido' : ''}`;
+                }
+            },
             {
                 headerName: 'Data de cadastro', field: 'createdAt', cellRenderer: (data) => {
                     return moment(data.value).format('DD/MM/YYYY HH:mm');
@@ -69,12 +80,8 @@ export class CompanyComponent implements OnInit {
                 suppressNavigable: true,
                 cellRenderer: function () {
                     const display = 'block';
-                    const html = `<button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white"  data-action-type='editar'>
-                        <i class='icofont icofont-ui-edit'></i>Editar
-                     </button>
-                     <button class='btn btn-danger btn-mini' style="background-color: #D5652B; color: white"  data-action-type='deletar'>
-                         <i class='icofont icofont-ui-delete'></i>Deletar
-                     </button>`;
+                    const html = `<button class='btn-edit' data-action-type='editar'><i class='icofont icofont-ui-edit'></i>Editar</button>
+                     <button class='btn-delete' data-action-type='deletar'><i class='icofont icofont-ui-delete'></i>Deletar</button>`;
                     return html;
                 }
             }
@@ -90,7 +97,7 @@ export class CompanyComponent implements OnInit {
      * Abre o dialog com o registro a ser atualizado / novo
      * @param file
      */
-    openFileDialog(file?) {
+    openFileDialog(file ?) {
         if (file) { // Editando
             this.fileNameDialogRef = this.dialog.open(CompanyDialogComponent, {
                 height: '650px',
@@ -147,7 +154,7 @@ export class CompanyComponent implements OnInit {
                         text: '',
                         type: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#038f9e',
+                        confirmButtonColor: '#D5652B',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Deletar',
                         cancelButtonText: 'Cancelar'
@@ -192,14 +199,14 @@ export class CompanyComponent implements OnInit {
         });
     }
 
-    public onGridReady(params) {
+    onGridReady(params) {
         this.gridApi = params.api;
         this.gridColumnApi = params.columnApi;
 
         params.api.sizeColumnsToFit();
     }
 
-    public getAllUsers() {
+    getAllUsers() {
         const endpoint = new Config().getEndpoint();
         this._http.get(`${endpoint}user/type/company`)
             .subscribe(

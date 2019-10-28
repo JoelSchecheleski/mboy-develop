@@ -14,6 +14,7 @@ export class MBoyAppComponent {
         translate.setDefaultLang('pt-br');
 
         const browserLang: string = translate.getBrowserLang();
-        translate.use(browserLang.match(/pt-br|en/) ? browserLang : 'pt-br');
+        // translate.use(browserLang.match(/pt-br|en/) ? browserLang : 'pt-br');
+        translate.use('pt-br' ? 'pt-br' : 'pt-br');
     }
 }
