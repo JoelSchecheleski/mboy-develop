@@ -16,29 +16,34 @@
                 <div class="gene-card-content">
                     <!-- Primeira linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Nome do usuário</mat-label>
                             <input formControlName="name" matInput placeholder="Nome do usuário" required>
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>E-Mail</mat-label>
                             <input formControlName="email" matInput placeholder="E-mail" required>
                         </mat-form-field>
                     </div>
 
                     <!-- segunda linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
-                            <input formControlName="cpfCnpj" matInput placeholder="CPF">
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>CPF</mat-label>
+                            <input type="cpfCnpj" formControlName="cpfCnpj" matInput placeholder="CPF">
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Contato do usuário</mat-label>
                             <input formControlName="username" matInput placeholder="Contato do usuário" required>
                         </mat-form-field>
                     </div>
 
                     <!-- Status linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Status</mat-label>
                             <mat-select formControlName="registrationStatus" [(value)]="selectedStatus"
                                         placeholder="Status">
                                 <mat-option *ngFor="let n of registrationStatusList" [value]="n.value">

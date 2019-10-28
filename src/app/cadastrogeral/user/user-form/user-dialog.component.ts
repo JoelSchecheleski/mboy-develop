@@ -92,7 +92,7 @@ export class UserDialogComponent implements OnInit {
             userType: 'BACKOFFICE',
             userTypeMboy: 'ADMIN',
         });
-        this.selectedStatus = this.data.registrationStatus;
+        this.selectedStatus = this.data.registrationStatus ;
     }
 
     submit(form) {

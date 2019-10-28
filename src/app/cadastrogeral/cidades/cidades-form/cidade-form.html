@@ -11,15 +11,18 @@
                 <div class="gene-card-content">
 
                     <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
-                        <mat-form-field class="full-wid">
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Nome da cidade</mat-label>
                             <input formControlName="name" #name matInput placeholder="Nome da cidade*">
                         </mat-form-field>
 
-                        <mat-form-field>
+
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>IBGE</mat-label>
                             <input formControlName="ibgeCode" matInput placeholder="IBGE">
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>Liberar cidade?</mat-label>
                             <select matNativeControl required formControlName="authorized">
                                 <option value="true">Sim</option>
@@ -27,7 +30,8 @@
                             </select>
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>UF</mat-label>
                             <mat-select name="state" [(value)]="selectedState" placeholder="UF">
                                 <mat-option *ngFor="let s of estados" [value]="s.id"
                                             (onSelectionChange)="selectState($event, s.id)">

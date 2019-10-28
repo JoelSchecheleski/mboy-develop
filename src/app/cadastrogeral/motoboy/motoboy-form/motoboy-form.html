@@ -15,73 +15,86 @@
                 <div class="gene-card-content">
                     <!-- Primeira linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Nome fantasia</mat-label>
                             <input formControlName="comercialName" matInput placeholder="Nome Fantasia" required>
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>E-Mail</mat-label>
                             <input formControlName="email" matInput placeholder="E-mail" required>
                         </mat-form-field>
                     </div>
 
                     <!-- segunda linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>CNPJ</mat-label>
                             <input formControlName="cpfCnpj" matInput placeholder="CNPJ">
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Contato</mat-label>
                             <input formControlName="username" matInput placeholder="Contato">
                         </mat-form-field>
                     </div>
 
                     <!-- terceira linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Logradouro</mat-label>
                             <input formControlName="street" matInput placeholder="Logradouro">
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Número</mat-label>
                             <input formControlName="houseNumber" matInput placeholder="Número">
                         </mat-form-field>
                     </div>
 
                     <!-- Quarta linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Complemento</mat-label>
                             <input formControlName="complement" matInput placeholder="Complemento">
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Bairro</mat-label>
                             <input formControlName="neighborhood" matInput placeholder="Bairro">
                         </mat-form-field>
                     </div>
 
                     <!-- Quinta linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Cidade</mat-label>
                             <input formControlName="usercity" matInput placeholder="Cidade">
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Estado</mat-label>
                             <input formControlName="userstate" matInput placeholder="Estado">
                         </mat-form-field>
                     </div>
 
                     <!-- Sexta linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>CEP</mat-label>
                             <input formControlName="zipCode" matInput placeholder="CEP">
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Acessório</mat-label>
                             <input formControlName="accessoryType" matInput placeholder="Acessório">
                         </mat-form-field>
                     </div>
 
                     <!-- Status linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Status</mat-label>
                             <mat-select formControlName="registrationStatus" [(value)]="selectedStatus"
                                         placeholder="Status">
                                 <mat-option *ngFor="let n of registrationStatusList" [value]="n.value">

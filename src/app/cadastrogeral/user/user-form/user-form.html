@@ -14,33 +14,39 @@
                 </div>
                 <div class="gene-card-content">
                     <!-- Nome do usuario linha -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
-                            <input formControlName="username" matInput placeholder="Nome de Usuário" required>
-                        </mat-form-field>
-                    </div>
+                    <!--                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">-->
+                    <!--                    </div>-->
 
                     <!-- Primeira linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
-                            <input formControlName="name" matInput placeholder="Usuário" required>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Nome de usuário</mat-label>
+                            <input formControlName="username" matInput placeholder="Nome de Usuário" required>
                         </mat-form-field>
 
-                        <mat-form-field>
-                            <input formControlName="email" matInput placeholder="E-mail" required>
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Usuário</mat-label>
+                            <input formControlName="name" matInput placeholder="Usuário" required>
                         </mat-form-field>
                     </div>
 
                     <!-- segunda linha -->
                     <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
-                            <input formControlName="password" matInput placeholder="Senha">
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input type="password" formControlName="password" matInput placeholder="Senha">
+                        </mat-form-field>
+
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>E-Mail</mat-label>
+                            <input formControlName="email" matInput placeholder="E-mail" required>
                         </mat-form-field>
                     </div>
 
                     <!-- Status linha -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field>
+                    <div fxLayout="row" fxLayoutAlign="start left" class="div1" fxLayout.xs="column">
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Status</mat-label>
                             <mat-select formControlName="registrationStatus" [(value)]="selectedStatus"
                                         placeholder="Status">
                                 <mat-option *ngFor="let n of registrationStatusList" [value]="n.value">
