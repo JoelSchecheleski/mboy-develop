@@ -60,10 +60,9 @@ export class CidadesDialogComponent implements OnInit {
 
     submit(form) {
         if (this.status === 'Novo') {
-            delete form.value['id'];
-            delete form.value['state_id'];
-            delete form.value['zipCodes'];
-
+            // delete form.value['id'];
+            // delete form.value['state_id'];
+            // delete form.value['zipCodes'];
             this.api.POST(form.value)
                 .subscribe(data => {
                         Swal.fire({
@@ -95,7 +94,6 @@ export class CidadesDialogComponent implements OnInit {
                         .subscribe(data => {
                                 Swal.fire({
                                     position: 'center',
-                                    // type: 'success',
                                     title: 'Cidade atualizada',
                                     imageUrl: '../../assets/cidade_add.svg',
                                     showConfirmButton: false,
@@ -104,6 +102,16 @@ export class CidadesDialogComponent implements OnInit {
                                     timer: 1500
                                 });
                                 this.dialogRef.close(`${form.value.name}`);
+                            }, error => {
+                                Swal.fire({
+                                    position: 'center',
+                                    title: 'Não foi possível atualizar a cidade',
+                                    imageUrl: '../../assets/cidade_error.svg',
+                                    showConfirmButton: false,
+                                    imageWidth: 150,
+                                    animation: false,
+                                    timer: 2500
+                                })
                             }
                         );
                 }

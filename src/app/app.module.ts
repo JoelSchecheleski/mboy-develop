@@ -33,6 +33,7 @@ import {HorizontalMenuItems} from './core/menu/horizontal-menu-items/horizontal-
 
 import {WidgetComponentModule} from './widget-component/widget-component.module';
 import {HorizontalLayoutComponent} from './horizontal-layout/horizontal-layout.component';
+
 // import {PagesModule} from './pages/pages.module';
 
 import {MatIconRegistry} from '@angular/material/icon';

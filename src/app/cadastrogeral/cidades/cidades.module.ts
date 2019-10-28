@@ -10,6 +10,7 @@ import {AgGridModule} from 'ag-grid-angular';
 import {MaterialSharedModule} from '../../modules/material-shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CidadesDialogComponent} from './cidades-form/cidade-dialog.component';
+import {TextMaskModule} from 'angular2-text-mask';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import {CidadesDialogComponent} from './cidades-form/cidade-dialog.component';
         AgGridModule.withComponents([]),
         FormsModule,
         ReactiveFormsModule,
-        TranslateModule
+        TranslateModule,
+        TextMaskModule
     ],
     entryComponents: [CidadesDialogComponent],
     declarations: [CidadesComponent, CidadesDialogComponent],

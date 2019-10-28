@@ -16,10 +16,9 @@
                             <input formControlName="name" #name matInput placeholder="Nome da cidade*">
                         </mat-form-field>
 
-
                         <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>IBGE</mat-label>
-                            <input formControlName="ibgeCode" matInput placeholder="IBGE">
+                            <input maxlength="9" formControlName="ibgeCode" matInput placeholder="IBGE" ui-br-cep-mask>
                         </mat-form-field>
 
                         <mat-form-field class="full-wid" appearance="outline">
