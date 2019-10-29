@@ -8,7 +8,6 @@ import {AgGridModule} from 'ag-grid-angular';
 import {MaterialSharedModule} from '../../modules/material-shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import {SettingsDialogComponent} from './settings-form/settings-dialog.component';
 import {TextMaskModule} from 'angular2-text-mask';
 
 @NgModule({
@@ -23,8 +22,7 @@ import {TextMaskModule} from 'angular2-text-mask';
         ReactiveFormsModule,
         TextMaskModule,
     ],
-    entryComponents: [SettingsDialogComponent],
-    declarations: [SettingsComponent, SettingsDialogComponent],
+    declarations: [SettingsComponent],
     bootstrap: [SettingsComponent]
 })
 export class SettingsModule {

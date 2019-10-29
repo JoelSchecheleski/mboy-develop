@@ -9,9 +9,10 @@ import {filter} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Config} from '../../app-config';
 
-import {SettingsDialogComponent} from './settings-form/settings-dialog.component';
 import {SettingsServices} from './settings-shared/settings.services';
 import Swal from 'sweetalert2';
+import {SettingPerHr, SettingPerKm, SettingsModel} from './settings-shared/settingsModel';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'ms-table-kilometer',
@@ -20,9 +21,10 @@ import Swal from 'sweetalert2';
     providers: [SettingsServices]
 })
 export class SettingsComponent implements OnInit {
+    private data: any;
     public gridOptions: GridOptions;
-    public rowData: any;
-    public rowSetting: any;
+    // public rowData: any;
+    // public rowSetting: any;
     public columnDefs: any;
     public defaultColDef: any;
     public language = new IdiomaPTBR().language;
@@ -30,139 +32,45 @@ export class SettingsComponent implements OnInit {
     private gridColumnApi;
     private url = new Config().getEndpoint();
 
-    fileNameDialogRef: MatDialogRef<SettingsDialogComponent>;
+    private readonly status: any;
+    public formulario: FormGroup;
+    private readonly config: string;
 
-    constructor(public _http: HttpClient,
-                public api: SettingsServices,
-                private translate: TranslateService,
-                private pageTitleService: PageTitleService,
-                private dialog: MatDialog,
-                private snackBar: MatSnackBar) {
+    public hrSettingStatusList: [SettingPerHr];
+    public kmSettingStatusList: [SettingPerKm];
+    public selectedSettingHr: any;
+    public selectedSettingKm: any;
 
-        this.pageTitleService.setTitle('Configuração');
+    private settingsModel = new SettingsModel();
 
-        this.gridOptions = <GridOptions>{
-            onGridReady: () => {
-                this.gridOptions.api.sizeColumnsToFit();
-            },
-            rowHeight: 48,
-            frameworkComponents: {
-                button: MatButton
-            }
-        };
-
-        this.columnDefs = [
-            {headerName: 'Id', field: 'id', hide: true},
-            {headerName: 'Valor minimo', field: 'minimumValueBankSlip'},
-            {headerName: 'Configuracao de quilometragem', field: 'settingPerKmName'},
-            {headerName: 'Configuracao de horário', field: 'settingPerHourName'},
-            {
-                headerName: 'Ativo', field: 'active',
-                cellRenderer: function (params) {
-                    const checked = params.data.active ? 'checked' : '';
-                    const input = `<input type="checkbox"  ${checked} disabled >`;
-                    return input;
-                }
-            },
-            {
-                headerName: 'Ação',
-                lockPosition: false,
-                cellClass: 'locked-col',
-                suppressNavigable: true,
-                cellRenderer: function () {
-                    const display = 'block';
-                    const html = `<button class='btn-edit' data-action-type='editar'><i class='icofont icofont-ui-edit'></i>Editar</button>
-                     <button class='btn-delete' data-action-type='deletar'><i class='icofont icofont-ui-delete'></i>Deletar</button>`;
-                    return html;
-                }
-            }
-        ];
-
+    constructor(private api: SettingsServices,
+                private _http: HttpClient,
+                private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
-        this.getAllSettings()
-    }
-
-    /**
-     * Abre o dialog com o registro a ser atualizado / novo
-     * @param file
-     */
-    openFileDialog(file?) {
-        if (file) { // Editando
-            this.fileNameDialogRef = this.dialog.open(SettingsDialogComponent, {
-                height: '650px',
-                width: '1200px',
-                data: this.api.userData(file)
-            });
-        } else { // Novo
-            this.fileNameDialogRef = this.dialog.open(SettingsDialogComponent, {
-                height: '650px',
-                width: '1200px',
-                data: this.api.userData(file)
-            });
-        }
-
-        this.fileNameDialogRef.afterClosed().pipe(
-            filter(descricao => descricao)
-        ).subscribe(descricao => {
-            if (this.rowSetting) {
-                const index = this.rowSetting.findIndex(f => f.descricao === file);
-                if (index !== -1) {
-                    this.rowSetting[index] = {descricao, content: file};
-                } else {
-                    this.rowSetting.push({descricao, content: ''});
-                }
-            }
-            this.ngOnInit();
-        });
-    }
-
-    /**
-     * Executa uma função com base no que foi clicado
-     * @param e
-     */
-    public onRowClicked(e) {
-        if (e.event.target !== undefined) {
-            const id = e.data.id;
-            const actionType = e.event.target.getAttribute('data-action-type');
-            switch (actionType) {
-                case 'editar':
-                    this.api.client_http.get(`${this.url}settings/config/${id}`)
-                        .subscribe(data => {
-                            this.openFileDialog(data[0]);
-                        }, err => {
-                            console.log(err);
-                        });
-                    break;
-
-                case 'deletar':
-                    console.log('DELETAR O ITEM: ', id);
-                    Swal.fire({
-                        title: 'Deseja realmente deletar esse registro?',
-                        text: '',
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#D5652B',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Deletar',
-                        cancelButtonText: 'Cancelar'
-                    }).then((result) => {
-                        if (result.value) {
-                            this.api.client_http.delete(`${this.url}settings/config/${id}`)
-                                .subscribe(data => {
-                                        this.snackBar.open('Registro deletado com sucesso', '', {
-                                            duration: 2000,
-                                        });
-                                        this.ngOnInit();
-                                    }
-                                );
-                        }
+        this._http.get(`${this.url}settings/config/0`)
+            .subscribe(
+                data => { // @ts-ignore
+                    this.data = data[0];
+                    this.formulario = this.formBuilder.group({
+                        // id: this.data.id,
+                        minimumValueBankSlip: [],
+                        settingPerHourName: [],
+                        settingPerKmName: [],
+                        active: []
                     });
-                    break;
-            }
-        }
+                    console.log(this.data);
+                    this.selectedSettingHr = this.data.settingPerHourNameId ? this.data.settingPerHourNameId : null;
+                    this.selectedSettingKm = this.data.settingPerKmNameId ? this.data.settingPerKmNameId : null;
+
+                    this.data = data[0];
+                },
+                err => console.error(err)
+            );
+        this.setParameters();
     }
+
 
     /**
      * Filtra um registro pelo campo disposto
@@ -195,12 +103,56 @@ export class SettingsComponent implements OnInit {
         params.api.sizeColumnsToFit();
     }
 
-    public getAllSettings() {
-        this._http.get(`${this.url}settings/config/0`)
+    submit(form) {
+        if (form.status !== 'VALID') {
+            return;
+        }
+        const objeto = (JSON.parse(JSON.stringify(form.value)));
+
+        this.settingsModel.id = this.data.id;
+        this.settingsModel.active = true;
+        this.settingsModel.settingPerHourNameId = this.selectedSettingHr;
+        this.settingsModel.settingPerKmNameId = this.selectedSettingKm;
+        this.settingsModel.minimumValueBankSlip = 0;
+
+        console.log();
+        this.api.client_http.put(`${this.url}settings/update-config`, JSON.stringify(this.settingsModel))
+            .subscribe(data => {
+                console.log(data);
+                Swal.fire({
+                    position: 'center',
+                    type: 'success',
+                    title: 'Sorteio realizado',
+                    showConfirmButton: false,
+                    animation: true,
+                    timer: 2500
+                });
+            })
+    }
+
+    /**
+     * Define as configurações iniciais
+     */
+    public setParameters() {
+        this.getAllKmSettings();
+        this.getAllHrSettings();
+    }
+
+    public getAllKmSettings() {
+        this.api.client_http.get(`${this.url}settings/kilometers/0`)
             .subscribe(
                 data => { // @ts-ignore
-                    this.rowSetting = data;
-                    this.rowData = data;
+                    this.kmSettingStatusList = data as [SettingPerKm];
+                },
+                err => console.error(err)
+            );
+    }
+
+    public getAllHrSettings() {
+        this.api.client_http.get(`${this.url}settings/hour/0`)
+            .subscribe(
+                data => { // @ts-ignore
+                    this.hrSettingStatusList = data as [SettingPerHr];
                 },
                 err => console.error(err)
             );

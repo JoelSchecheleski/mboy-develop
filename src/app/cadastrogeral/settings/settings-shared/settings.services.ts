@@ -16,7 +16,7 @@ export class SettingsServices extends ResourceService<SettingsModel> {
         this.client_http = httpClient;
     }
 
-    public userData(file: SettingsModel): Observable<any> {
+    public settingsData(file: SettingsModel): Observable<any> {
         this.dados = {
             minimumValueBankSlip: file ? file.minimumValueBankSlip : 0,
             settingPerKmName: file ? file.settingPerKmName : '',
