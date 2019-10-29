@@ -103,8 +103,11 @@ export class UserDialogComponent implements OnInit {
 
         if (this.status === 'Novo') {
             // delete form.value['registrationStatus'];
-            this.api.client_http.post(`${endpoint}user-registration`, form.getRawValue())
+            form.value['registrationStatus'] = true;
+
+            this.api.client_http.post(`${endpoint}user-registration`, JSON.stringify(form.value)) // form.getRawValue()
                 .subscribe(data => {
+                        console.log(data);
                         Swal.fire({
                             position: 'center',
                             title: 'Usuário cadastrado com sucesso.',
