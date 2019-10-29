@@ -92,7 +92,7 @@ export class UserDialogComponent implements OnInit {
             userType: 'BACKOFFICE',
             userTypeMboy: 'ADMIN',
         });
-        this.selectedStatus = this.data.registrationStatus ;
+        this.selectedStatus = this.data.registrationStatus;
     }
 
     submit(form) {
@@ -105,7 +105,26 @@ export class UserDialogComponent implements OnInit {
             delete form.value['registrationStatus'];
             this.api.client_http.post(`${endpoint}user-registration`, form.getRawValue())
                 .subscribe(data => {
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Usuário cadastrado com sucesso.',
+                            imageUrl: '../../assets/viagens_error.svg',
+                            showConfirmButton: false,
+                            imageWidth: 150,
+                            animation: false,
+                            timer: 2500
+                        });
                         this.dialogRef.close(`${form.value.descricao}`);
+                    }, error => {
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Ops, algo deu errado.',
+                            imageUrl: '../../assets/viagens_error.svg',
+                            showConfirmButton: false,
+                            imageWidth: 150,
+                            animation: false,
+                            timer: 2500
+                        });
                     }
                 );
         } else if (this.status === 'Editando') {
@@ -114,7 +133,7 @@ export class UserDialogComponent implements OnInit {
                 text: '',
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#038f9e',
+                confirmButtonColor: '#D5652B',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Salvar',
                 cancelButtonText: 'Cancelar'

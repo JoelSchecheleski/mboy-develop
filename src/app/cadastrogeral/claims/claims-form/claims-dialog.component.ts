@@ -71,15 +71,23 @@ export class ClaimsDialogComponent implements OnInit {
                 if (data) {
                     Swal.fire({
                         position: 'center',
-                        title: 'Reclação finalizada com sucesso',
-                        imageUrl: '../../assets/cidade_add.svg',
+                        type: 'success',
+                        title: 'Reclamação finalizada com sucesso',
                         showConfirmButton: false,
-                        imageWidth: 150,
-                        animation: false,
-                        timer: 1500
+                        animation: true,
+                        timer: 2500
                     });
                     this.onAdd.emit('fechado');
                     this.dialogRef.close();
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        type: 'error',
+                        title: 'Não foi possível alterar essa reclamação',
+                        showConfirmButton: false,
+                        animation: true,
+                        timer: 2500
+                    });
                 }
             });
 

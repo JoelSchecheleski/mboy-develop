@@ -94,7 +94,24 @@ export class TablehrDialogComponent implements OnInit {
 
             this.api.client_http.post(`${this.url}settings/hour`, objeto)
                 .subscribe(data => {
+                        Swal.fire({
+                            position: 'center',
+                            type: 'success',
+                            title: 'Registro adicionado com sucesso.',
+                            showConfirmButton: false,
+                            animation: true,
+                            timer: 2500
+                        });
                         this.dialogRef.close(`${form.value.descricao}`);
+                    }, error1 => {
+                        Swal.fire({
+                            position: 'center',
+                            type: 'error',
+                            title: 'Erro ao adicionar registro! Tente novamente.',
+                            showConfirmButton: false,
+                            animation: true,
+                            timer: 2500
+                        });
                     }
                 );
         }
