@@ -122,7 +122,16 @@ export class SettingsComponent implements OnInit {
                 Swal.fire({
                     position: 'center',
                     type: 'success',
-                    title: 'Sorteio realizado',
+                    title: 'Configurações de valores realizado com sucesso',
+                    showConfirmButton: false,
+                    animation: true,
+                    timer: 2500
+                });
+            }, error => {
+                Swal.fire({
+                    position: 'center',
+                    type: 'error',
+                    title: 'Não foi possível configurar os valores',
                     showConfirmButton: false,
                     animation: true,
                     timer: 2500
