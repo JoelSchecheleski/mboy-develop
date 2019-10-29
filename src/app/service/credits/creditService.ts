@@ -1,6 +1,9 @@
+// @ts-ignore
 import {Injectable} from '@angular/core';
+// @ts-ignore
 import {HttpClient} from '@angular/common/http';
 import {ResourceService} from '../../ResourceService';
+// @ts-ignore
 import {Observable} from 'rxjs';
 import {Config} from '../../app-config';
 import {CreditModel} from '../../modules/modelos/creditModel';
@@ -34,8 +37,7 @@ export class CreditService extends ResourceService<CreditModel> {
             .subscribe(
                 data => {
                     return data;
-                },
-                err => console.error(err)
+                }
             );
     }
 }

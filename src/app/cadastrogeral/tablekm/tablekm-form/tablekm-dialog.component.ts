@@ -96,7 +96,6 @@ export class TablekmDialogComponent implements OnInit {
             delete form.value['registrationStatus'];
             this.api.client_http.post(`${this.url}settings/kilometers`, objeto)
                 .subscribe(data => {
-                        // console.log('Objeto inserido!', data);
                         this.dialogRef.close(`${form.value.descricao}`);
                     }
                 );

@@ -56,7 +56,7 @@ export class CidadesComponent implements OnInit {
         };
 
         this.columnDefs = [
-            {headerName: 'Id', field: 'id', hide: true,},
+            {headerName: 'Id', field: 'id', hide: true},
             {headerName: 'Cidade', field: 'cidade'},
             {headerName: 'Estado', field: 'estado'},
             {headerName: 'Qtd. de motoboys', field: 'motoboy'},
@@ -65,7 +65,6 @@ export class CidadesComponent implements OnInit {
             {
                 headerName: 'Autorizado', field: 'authorized',
                 cellRenderer: function (params) {
-                    console.log(params.data);
                     const checked = params.data.authorized ? 'checked' : '';
                     const input = `<input type="checkbox"  ${checked} disabled >`;
                     return input;
@@ -139,10 +138,8 @@ export class CidadesComponent implements OnInit {
                     const endpoint = new Config().getEndpoint();
                     this._http.get(`${endpoint}city/${id}`)
                         .subscribe(data => {
-                            console.table(data);
+                            // console.table(data);
                             this.openFileDialog(data);
-                        }, err => {
-                            console.log(err);
                         });
                     break;
                 case 'deletar':
@@ -194,7 +191,6 @@ export class CidadesComponent implements OnInit {
             }
             selectedRowsString += rowSelection.descricao;
         });
-        console.log(JSON.stringify(selectedRows[0]));
     }
 
     public onGridReady(params) {
@@ -214,9 +210,7 @@ export class CidadesComponent implements OnInit {
                 data => { // @ts-ignore
                     this.rowCidades = data;
                     this.rowData = data;
-                },
-                err => console.error(err),
-                () => console.log(this.rowCidades)
+                }
             );
     }
 
@@ -227,9 +221,7 @@ export class CidadesComponent implements OnInit {
                 data => { // @ts-ignore
                     this.rowCidadesReport = data;
                     this.rowDataReport = data;
-                },
-                err => console.error(err),
-                () => console.log(this.rowCidadesReport)
+                }
             );
     }
 

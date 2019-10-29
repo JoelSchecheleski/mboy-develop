@@ -149,7 +149,6 @@ export class MotoboyComponent implements OnInit {
                     break;
 
                 case 'deletar':
-                    console.log('DELETAR O ITEM: ', id);
                     Swal.fire({
                         title: 'Deseja realmente deletar esse registro?',
                         text: '',
@@ -214,9 +213,7 @@ export class MotoboyComponent implements OnInit {
                 data => { // @ts-ignore
                     this.rowUser = data;
                     this.rowData = data;
-                },
-                err => console.error(err),
-                () => console.log(this.rowUser)
+                }
             );
     }
 }

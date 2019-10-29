@@ -100,14 +100,11 @@ export class UserDialogComponent implements OnInit {
             return;
         }
         const endpoint = new Config().getEndpoint();
-        console.log('submit');
 
         if (this.status === 'Novo') {
             delete form.value['registrationStatus'];
-            // console.log('Editando: ', form.value)
             this.api.client_http.post(`${endpoint}user-registration`, form.getRawValue())
                 .subscribe(data => {
-                        console.log('Objeto inserido!', data);
                         this.dialogRef.close(`${form.value.descricao}`);
                     }
                 );
@@ -125,14 +122,11 @@ export class UserDialogComponent implements OnInit {
                 if (result.value) {
                     this.api.PUT(form.getRawValue(), form.value.username)
                         .subscribe(data => {
-                                console.log('Objeto atualizado!', data);
                                 this.dialogRef.close(`${form.value.descricao}`);
                             }
                         );
                 }
             });
-        } else {
-            console.log('Deu ruim: ' + this.status);
         }
     }
 }

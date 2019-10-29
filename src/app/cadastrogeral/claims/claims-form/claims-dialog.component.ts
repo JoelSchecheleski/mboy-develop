@@ -67,7 +67,7 @@ export class ClaimsDialogComponent implements OnInit {
         const endpoint = new Config().getEndpoint();
         this._http.put(`${endpoint}chat/update-chat/${this.data.id}`, JSON.stringify(this.data))
             .subscribe(data => {
-                console.table(data);
+                // console.table(data);
                 if (data) {
                     Swal.fire({
                         position: 'center',
@@ -81,8 +81,6 @@ export class ClaimsDialogComponent implements OnInit {
                     this.onAdd.emit('fechado');
                     this.dialogRef.close();
                 }
-            }, err => {
-                console.log(err);
             });
 
     }

@@ -68,7 +68,6 @@ export class PushComponent implements OnInit {
     public selectedStateLoadCitys(abreviation: string) {
         this.selectedState = abreviation;
         this.citys = this.getCitysOfState(abreviation);
-        console.log(this.citys);
     }
 
     private getCitysOfState(abreviation: string): any {
@@ -76,7 +75,6 @@ export class PushComponent implements OnInit {
         return this._http.get(`${endpoint}state/state-cities/${abreviation}`)
             .subscribe(
                 data => {
-                    console.log(data['cities']);
                     this.citys = data['cities'];
                 },
             );

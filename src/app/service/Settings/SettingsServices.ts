@@ -53,7 +53,6 @@ export class SettingsServices extends ResourceService<SettingsModel> {
     //         .subscribe(
     //             data => {
     //                 return data;
-    //                 console.log(data);
     //             },
     //             err => console.error(err)
     //         );

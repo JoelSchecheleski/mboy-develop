@@ -152,10 +152,6 @@ export class SweepstakesDialogComponent implements OnInit {
             .subscribe(
                 data => {
                     this.dayExpirationCredit = data['creditLimit'];
-                    console.log(data);
-                },
-                err => {
-                    console.error(err);
                 }
             );
     }

@@ -121,7 +121,6 @@ export class TablehrComponent implements OnInit {
 
                 case 'deletar':
                     const id = e.data.id;
-                    console.log('DELETAR O ITEM: ', id);
                     Swal.fire({
                         title: 'Deseja realmente deletar esse registro?',
                         text: '',
@@ -186,8 +185,7 @@ export class TablehrComponent implements OnInit {
                 data => { // @ts-ignore
                     this.rowSetting = data;
                     this.rowData = data;
-                },
-                err => console.error(err)
+                }
             );
     }
 }

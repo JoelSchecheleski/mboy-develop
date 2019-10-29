@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {of, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-// import {json} from 'ng2-validation/dist/json';
 import * as CryptoJS from 'crypto-js';
 import {Config} from '../app-config';
 import Swal from 'sweetalert2';
@@ -78,7 +77,6 @@ export class ApiMboy {
     }
 
     // public login(username: string, password: string) {
-    //     console.log('Usuario e senha', username, password);
     //     return this.Http.post<any>(`${this.BaseUrl}auth/signin`, JSON.stringify({
     //         username: username,
     //         password: password

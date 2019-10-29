@@ -1,7 +1,10 @@
+// @ts-ignore
 import {Injectable} from '@angular/core';
+// @ts-ignore
 import {HttpClient} from '@angular/common/http';
 import {ResourceService} from '../../../ResourceService';
 import {CustomerModel} from './customerModel';
+// @ts-ignore
 import {Observable} from 'rxjs';
 import {Config} from '../../../app-config';
 
@@ -56,8 +59,7 @@ export class CustomerServices extends ResourceService<CustomerModel> {
             .subscribe(
                 data => { // @ts-ignore
                     return data;
-                },
-                err => console.error(err)
+                }
             );
     }
 }

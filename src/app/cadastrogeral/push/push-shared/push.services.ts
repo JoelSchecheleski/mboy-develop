@@ -28,7 +28,6 @@ export class PushServices extends ResourceService<PushModel> {
             file ? file.city : '',
             file ? file.state : '',
             file ? file.message : '');
-        console.log(this.dados);
         return;
     }
 

@@ -70,26 +70,20 @@ export class LoginV2Component {
 
     // TODO: Login com o sistema
     login() {
-        console.log('Efetuando login...');
         const dados = this.authenticationMedeasy.login(this.frmLogin.value.username, this.frmLogin.value.password);
         // if (dados['jwtToken'] != null) {
-        //     console.log('Login Efetuado com sucesso');
         //     // this.router.navigate(['/dashboard/geral']);
         //     this.router.navigate(['/']);
         // } else {
-        //     console.log('Usuário ou senha incorretos');
         //     this.failLogin = true;
         // }
 
         // , subscribe(data => {
         //     const ret = JSON.parse(JSON.stringify(data));
-        //     console.log('entrou em login component');
         //     if (ret.jwtToken != null) {
-        //         console.log('Login Efetuado com sucesso');
         //          // this.router.navigate(['/dashboard/geral']);
         //         this.router.navigate(['/']);
         //     } else {
-        //         console.log('Usuário ou senha incorretos');
         //         this.failLogin = true;
         //     }
         // });

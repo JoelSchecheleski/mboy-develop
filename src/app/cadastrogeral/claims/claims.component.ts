@@ -177,7 +177,6 @@ export class ClaimsComponent implements OnInit {
             }
             selectedRowsString += rowSelection.status;
         });
-        console.log(JSON.stringify(selectedRows[0]));
     }
 
     public onGridReady(params) {
@@ -200,9 +199,7 @@ export class ClaimsComponent implements OnInit {
                 data => { // @ts-ignore
                     this.rowClaims = data;
                     this.rowData = data;
-                },
-                err => console.error(err),
-                () => console.table(this.rowClaims)
+                }
             );
     }
 

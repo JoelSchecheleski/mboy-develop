@@ -278,19 +278,6 @@ export class MainComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * onDelete function is used to open the delete dialog.
-     */
-   // onDelete(cart) {
-        // this.ecommerceService.deleteDialog('Are you sure you want to delete this product permanently?')
-        //     .subscribe(res => {
-        //             this.popupDeleteResponse = res
-        //         },
-        //         err => console.log(err),
-        //         () => this.getPopupDeleteResponse(this.popupDeleteResponse, cart)
-        //     );
-    // }
-
-    /**
      * getPopupDeleteResponse is used to delete the cart item when reponse is yes.
      */
     getPopupDeleteResponse(response: any, cart) {

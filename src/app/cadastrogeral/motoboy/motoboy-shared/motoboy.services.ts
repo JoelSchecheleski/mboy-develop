@@ -1,7 +1,10 @@
+// @ts-ignore
 import {Injectable} from '@angular/core';
+// @ts-ignore
 import {HttpClient} from '@angular/common/http';
 import {ResourceService} from '../../../ResourceService';
 import {MotoboyModel} from './motoboyModel';
+// @ts-ignore
 import {Observable} from 'rxjs';
 import {Config} from '../../../app-config';
 
@@ -56,8 +59,7 @@ export class MotoboyServices extends ResourceService<MotoboyModel> {
             .subscribe(
                 data => { // @ts-ignore
                     return data;
-                },
-                err => console.error(err)
+                }
             );
     }
 }

@@ -1,7 +1,10 @@
+// @ts-ignore
 import {Injectable} from '@angular/core';
+// @ts-ignore
 import {HttpClient} from '@angular/common/http';
 import {ResourceService} from '../../../ResourceService';
 import {SettingsModel} from './settingsModel';
+// @ts-ignore
 import {Observable} from 'rxjs';
 
 @Injectable()

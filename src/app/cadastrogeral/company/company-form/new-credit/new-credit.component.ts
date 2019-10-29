@@ -1,6 +1,10 @@
+// @ts-ignore
 import {Component, Inject, OnInit} from '@angular/core';
+// @ts-ignore
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+// @ts-ignore
 import {NgForm, FormGroup, FormControl, FormBuilder, Validator, Validators, FormArray, NgSelectOption} from '@angular/forms';
+// @ts-ignore
 import {isNullOrUndefined} from '@swimlane/ngx-datatable/release/utils';
 import {CreditService} from '../../../../service/credits/creditService';
 import {CreditModel} from '../../../../modules/modelos/creditModel';
@@ -8,10 +12,13 @@ import {BillItems} from '../../../../modules/modelos/billItems';
 import {PaymentProfile} from '../../../../modules/modelos/paymentProfile';
 import {Config} from '../../../../app-config';
 import {SettingsServices} from '../../../../service/Settings/SettingsServices';
+// @ts-ignore
 import Swal from 'sweetalert2';
+// @ts-ignore
 import {Router} from '@angular/router';
 import {MailService} from '../../../../service/mail/mail.service';
 import {EmailModel} from '../../../../modules/modelos/emailModel';
+// @ts-ignore
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -89,7 +96,6 @@ export class NewCreditComponent implements OnInit {
                     // Enviar para o servidor da vindi essa cpbrança
                     this.api.POST(this.credits).subscribe(
                         response => {
-                            // console.log(response);
                             const retorno = JSON.parse(JSON.stringify(response));
                             const tipo = retorno.charges[0].payment_method.code;
 
@@ -139,7 +145,6 @@ export class NewCreditComponent implements OnInit {
                                 this.emailSend.html = false;
                                 this.email.POST(this.emailSend).subscribe(
                                     data => {
-                                        console.log(data);
                                         if (data) {
                                             this.openSnackBar('Email já enviado ao cliente', 'sucesso')
                                         }
@@ -179,7 +184,6 @@ export class NewCreditComponent implements OnInit {
         this.apiSetings.GET().subscribe(
             data => {
                 this.settings = data;
-                console.log(data);
             }
         );
     }

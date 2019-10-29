@@ -143,13 +143,12 @@ export class CustomerComponent implements OnInit {
                     this._http.get(`${this.url}user/${id}`)
                         .subscribe(data => {
                             selectedRows = data;
-                            // console.table(selectedRows);
+                            // // console.table(selectedRows);
                             this.openFileDialog(selectedRows);
                         });
                     break;
 
                 case 'deletar':
-                    console.log('DELETAR O ITEM: ', id);
                     Swal.fire({
                         title: 'Deseja realmente deletar esse registro?',
                         text: '',
@@ -214,9 +213,7 @@ export class CustomerComponent implements OnInit {
                 data => { // @ts-ignore
                     this.rowUser = data;
                     this.rowData = data;
-                },
-                err => console.error(err),
-                () => console.log(this.rowUser)
+                }
             );
     }
 }

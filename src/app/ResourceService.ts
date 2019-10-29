@@ -76,7 +76,6 @@ export class ResourceService<T extends Resource> {
     getTodos(): Observable<T> {
         return this.httpClient.get(`${this.url}${this.endpoint}`)
             .pipe(map((data: Resource) => {
-                    console.log(JSON.stringify(data))
                     return data as T;
                 })
             );
@@ -115,7 +114,6 @@ export class ResourceService<T extends Resource> {
      * @Return void
      */
     public DELETE(id: number) {
-        console.log(`${this.url}${this.endpoint}/${id}`);
         return this.httpClient.delete(`${this.url}${this.endpoint}/${id}`);
     }
 

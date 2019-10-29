@@ -157,9 +157,8 @@ export class SweepstakesComponent implements OnInit {
                             .subscribe(data => {
                                 this.selectedRowsReport = data;
                                 this.sendToChild(data);
-                                console.table(this.selectedRowsReport);
+                                // console.table(this.selectedRowsReport);
                             }, err => {
-                                console.log(err);
                             });
                     }
                     break;
@@ -194,7 +193,6 @@ export class SweepstakesComponent implements OnInit {
             }
             selectedRowsString += rowSelection.descricao;
         });
-        console.log(JSON.stringify(selectedRows[0]));
     }
 
     public onGridReady(params) {
@@ -214,15 +212,13 @@ export class SweepstakesComponent implements OnInit {
                 data => {
                     this.rowSweepstakes = data;
                     this.rowData = data;
-                    console.log(data);
                 },
                 err => {
-                    console.error(err);
+                    // console.error(err);
                     if (err.status === 0) {
                         this.router.navigate(['/session/loginV2']);
                     }
-                },
-                () => console.log(this.rowSweepstakes)
+                }
             );
     }
 }

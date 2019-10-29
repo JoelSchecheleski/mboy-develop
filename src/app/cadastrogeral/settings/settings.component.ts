@@ -1,18 +1,26 @@
+// @ts-ignore
 import {Component, OnInit} from '@angular/core';
+// @ts-ignore
 import {TranslateService} from '@ngx-translate/core';
 import {PageTitleService} from '../../core/page-title/page-title.service';
+// @ts-ignore
 import {GridOptions} from 'ag-grid-community';
 import 'ag-grid-community';
 import {IdiomaPTBR} from '../../idioma-PTBR';
+// @ts-ignore
 import {MatButton, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+// @ts-ignore
 import {filter} from 'rxjs/operators';
+// @ts-ignore
 import {HttpClient} from '@angular/common/http';
 import {Config} from '../../app-config';
 
 import {SettingsServices} from './settings-shared/settings.services';
+// @ts-ignore
 import Swal from 'sweetalert2';
 import {SettingPerHr, SettingPerKm, SettingsModel} from './settings-shared/settingsModel';
-import {FormBuilder, FormGroup} from '@angular/forms';
+// @ts-ignore
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'ms-table-kilometer',
@@ -46,6 +54,14 @@ export class SettingsComponent implements OnInit {
     constructor(private api: SettingsServices,
                 private _http: HttpClient,
                 private formBuilder: FormBuilder) {
+
+        this.formulario = this.formBuilder.group({
+            id: [null],
+            minimumValueBankSlip: [null],
+            settingPerHourName: [null, Validators.required],
+            settingPerKmName: [null, Validators.required],
+            active: [null],
+        });
     }
 
     ngOnInit() {
@@ -53,20 +69,9 @@ export class SettingsComponent implements OnInit {
             .subscribe(
                 data => { // @ts-ignore
                     this.data = data[0];
-                    this.formulario = this.formBuilder.group({
-                        // id: this.data.id,
-                        minimumValueBankSlip: [],
-                        settingPerHourName: [],
-                        settingPerKmName: [],
-                        active: []
-                    });
-                    console.log(this.data);
                     this.selectedSettingHr = this.data.settingPerHourNameId ? this.data.settingPerHourNameId : null;
                     this.selectedSettingKm = this.data.settingPerKmNameId ? this.data.settingPerKmNameId : null;
-
-                    this.data = data[0];
-                },
-                err => console.error(err)
+                }
             );
         this.setParameters();
     }
@@ -115,10 +120,8 @@ export class SettingsComponent implements OnInit {
         this.settingsModel.settingPerKmNameId = this.selectedSettingKm;
         this.settingsModel.minimumValueBankSlip = 0;
 
-        console.log();
         this.api.client_http.put(`${this.url}settings/update-config`, JSON.stringify(this.settingsModel))
             .subscribe(data => {
-                console.log(data);
                 Swal.fire({
                     position: 'center',
                     type: 'success',
@@ -152,8 +155,7 @@ export class SettingsComponent implements OnInit {
             .subscribe(
                 data => { // @ts-ignore
                     this.kmSettingStatusList = data as [SettingPerKm];
-                },
-                err => console.error(err)
+                }
             );
     }
 
@@ -162,8 +164,7 @@ export class SettingsComponent implements OnInit {
             .subscribe(
                 data => { // @ts-ignore
                     this.hrSettingStatusList = data as [SettingPerHr];
-                },
-                err => console.error(err)
+                }
             );
     }
 }

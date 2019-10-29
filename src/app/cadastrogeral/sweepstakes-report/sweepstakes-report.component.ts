@@ -57,7 +57,7 @@ export class SweepstakesReportComponent implements OnInit {
     // Busca todas as informações de um sorteio realizado
     getInformationSweepstakes() {
         this.dados =  new MatTableDataSource<any>(this.data['winners']);
-        console.table(this.dados);
+        // console.table(this.dados);
     }
 
     /**

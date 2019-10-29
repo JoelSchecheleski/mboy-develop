@@ -151,8 +151,6 @@ export class HorizontalLayoutComponent implements OnInit {
         //     .subscribe(res => {
         //             this.popupDeleteResponse = res
         //         },
-        //         err => console.log(err),
-        //         () => this.getPopupDeleteResponse(this.popupDeleteResponse, cart)
         //     );
     }
 
