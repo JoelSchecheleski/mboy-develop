@@ -102,13 +102,13 @@ export class UserDialogComponent implements OnInit {
         const endpoint = new Config().getEndpoint();
 
         if (this.status === 'Novo') {
-            delete form.value['registrationStatus'];
+            // delete form.value['registrationStatus'];
             this.api.client_http.post(`${endpoint}user-registration`, form.getRawValue())
                 .subscribe(data => {
                         Swal.fire({
                             position: 'center',
                             title: 'Usuário cadastrado com sucesso.',
-                            imageUrl: '../../assets/viagens_error.svg',
+                            imageUrl: '../../assets/viagens_ok.svg',
                             showConfirmButton: false,
                             imageWidth: 150,
                             animation: false,
@@ -141,6 +141,15 @@ export class UserDialogComponent implements OnInit {
                 if (result.value) {
                     this.api.PUT(form.getRawValue(), form.value.username)
                         .subscribe(data => {
+                                Swal.fire({
+                                    position: 'center',
+                                    title: 'Usuário cadastrado com sucesso.',
+                                    imageUrl: '../../assets/viagens_ok.svg',
+                                    showConfirmButton: false,
+                                    imageWidth: 150,
+                                    animation: false,
+                                    timer: 2500
+                                });
                                 this.dialogRef.close(`${form.value.descricao}`);
                             }
                         );
