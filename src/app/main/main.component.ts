@@ -25,6 +25,7 @@ const screenfull = require('screenfull');
 
 export class MainComponent implements OnInit, OnDestroy {
     name: any = '';
+    email: any = '';
     image: any = '';
     root: any = 'ltr';
     layout: any = 'ltr';
@@ -120,6 +121,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
         if (localStorage.getItem('SESSAO') != null) {
             this.name = JSON.parse(localStorage.getItem('SESSAO')).name;
+            this.email = JSON.parse(localStorage.getItem('SESSAO')).email;
             this.image = JSON.parse(localStorage.getItem('SESSAO')).avatar;
         }
 
