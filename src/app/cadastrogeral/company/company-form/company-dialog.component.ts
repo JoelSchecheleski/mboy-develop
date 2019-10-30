@@ -66,6 +66,7 @@ export class CompanyDialogComponent implements OnInit {
 
         this.columnCreditDefs = [
             {
+                // tslint:disable-next-line:no-shadowed-variable
                 headerName: 'Data de cadastro', field: 'createdAt', cellRenderer: (data) => {
                     return moment(data.value).format('DD/MM/YYYY HH:mm');
                 }
@@ -81,6 +82,7 @@ export class CompanyDialogComponent implements OnInit {
 
         this.columnRideDefs = [
             {
+                // tslint:disable-next-line:no-shadowed-variable
                 headerName: 'Data', field: 'created_at', cellRenderer: (data) => {
                     return moment(data.value).format('DD/MM/YYYY HH:mm');
                 }
@@ -105,6 +107,8 @@ export class CompanyDialogComponent implements OnInit {
 
     ngOnInit() {
         this.formulario = this.formBuilder.group({
+            id: new FormControl({value: this.data.id ? this.data.id : '', disabled: this.status !== 'Novo'}),
+            name: new FormControl({value: this.data.name ? this.data.name : '', disabled: this.status !== 'Novo'}),
             comercialName: new FormControl({
                 value: this.data.comercialName ? this.data.comercialName : '',
                 disabled: this.status !== 'Novo'
@@ -185,18 +189,18 @@ export class CompanyDialogComponent implements OnInit {
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.value) {
-                    this.api.PUT(form.getRawValue(), form.value.username)
+                    this.api.PUT(form.getRawValue(), form.getRawValue().username)
                         .subscribe(data => {
-                        Swal.fire({
-                            position: 'center',
-                            title: 'Registro atualizado com sucesso.',
-                            imageUrl: '../../assets/viagens_ok.svg',
-                            showConfirmButton: false,
-                            imageWidth: 150,
-                            animation: false,
-                            timer: 2500
-                        });
-                        this.dialogRef.close(`${form.value.comercialName}`);
+                                Swal.fire({
+                                    position: 'center',
+                                    title: 'Registro atualizado com sucesso.',
+                                    imageUrl: '../../assets/viagens_ok.svg',
+                                    showConfirmButton: false,
+                                    imageWidth: 150,
+                                    animation: false,
+                                    timer: 2500
+                                });
+                                this.dialogRef.close(`${form.value.comercialName}`);
                             }, error => {
                                 Swal.fire({
                                     position: 'center',
@@ -207,6 +211,8 @@ export class CompanyDialogComponent implements OnInit {
                                     animation: false,
                                     timer: 2500
                                 });
+                            }, () => {
+                                this.dialogRef.close(`${form.value.name}`);
                             }
                         );
                 }

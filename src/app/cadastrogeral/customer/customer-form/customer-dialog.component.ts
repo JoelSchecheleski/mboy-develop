@@ -94,10 +94,10 @@ export class CustomerDialogComponent implements OnInit {
 
     ngOnInit() {
         this.formulario = this.formBuilder.group({
-            name: new FormControl({ value: this.data.name ? this.data.name : '', disabled: this.status !== 'Novo' }),
-            email: new FormControl({ value: this.data.email ? this.data.email : '', disabled: this.status !== 'Novo' }),
-            username: new FormControl({ value: this.data.username ? this.data.username : '', disabled: this.status !== 'Novo' }),
-            cpfCnpj: new FormControl({ value: this.data.cpfCnpj ? this.data.cpfCnpj : '', disabled: this.status !== 'Novo' }),
+            name: new FormControl({value: this.data.name ? this.data.name : '', disabled: this.status !== 'Novo'}),
+            email: new FormControl({value: this.data.email ? this.data.email : '', disabled: this.status !== 'Novo'}),
+            username: new FormControl({value: this.data.username ? this.data.username : '', disabled: this.status !== 'Novo'}),
+            cpfCnpj: new FormControl({value: this.data.cpfCnpj ? this.data.cpfCnpj : '', disabled: this.status !== 'Novo'}),
             registrationStatus: new FormControl({
                 value: this.data.registrationStatus ? this.data.registrationStatus : '',
                 disabled: this.status === 'Novo'
@@ -109,7 +109,7 @@ export class CustomerDialogComponent implements OnInit {
     }
 
     tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-       if (tabChangeEvent.index === 1) { //corridas
+        if (tabChangeEvent.index === 1) { //corridas
             this.api.client_http.get(`${this.url}user/rides?username=${this.data.username}`)
                 .subscribe(
                     data => { // @ts-ignore
@@ -144,9 +144,29 @@ export class CustomerDialogComponent implements OnInit {
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.value) {
-                    this.api.PUT(form.getRawValue(), form.value.username)
+                    this.api.PUT(form.getRawValue(), form.getRawValue().username)
                         .subscribe(data => {
-                                this.dialogRef.close(`${form.value.descricao}`);
+                                Swal.fire({
+                                    position: 'center',
+                                    title: 'Registro atualizado com sucesso.',
+                                    imageUrl: '../../assets/viagens_ok.svg',
+                                    showConfirmButton: false,
+                                    imageWidth: 150,
+                                    animation: false,
+                                    timer: 2500
+                                });
+                            }, error => {
+                                Swal.fire({
+                                    position: 'center',
+                                    title: 'Ops, algo deu errado.',
+                                    imageUrl: '../../assets/viagens_error.svg',
+                                    showConfirmButton: false,
+                                    imageWidth: 150,
+                                    animation: false,
+                                    timer: 2500
+                                });
+                            }, () => {
+                                this.dialogRef.close(`${form.value.name}`);
                             }
                         );
                 }

@@ -53,6 +53,7 @@ export class CustomerComponent implements OnInit {
         };
 
         this.columnDefs = [
+            {headerName: 'Id', field: 'id', hide: true},
             {headerName: 'Nome', field: 'name'},
             {headerName: 'Email', field: 'email'},
             {headerName: 'Contato', field: 'username'},
