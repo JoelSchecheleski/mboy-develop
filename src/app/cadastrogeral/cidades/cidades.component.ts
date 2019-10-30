@@ -59,24 +59,23 @@ export class CidadesComponent implements OnInit {
             {headerName: 'Id', field: 'id', hide: true},
             {headerName: 'Cidade', field: 'cidade'},
             {headerName: 'Estado', field: 'estado'},
-            {headerName: 'Qtd. de motoboys', field: 'motoboy'},
-            {headerName: 'Qtd. de clientes', field: 'customer'},
-            {headerName: 'Qtd. de empresas', field: 'company'},
+            {headerName: 'Qtd. motoboys', field: 'motoboy'},
+            {headerName: 'Qtd. clientes', field: 'customer'},
+            {headerName: 'Qtd. empresas', field: 'company'},
             {
                 headerName: 'Autorizado', field: 'authorized',
                 cellRenderer: function (params) {
                     const checked = params.data.authorized ? 'checked' : '';
                     const input = `<input type="checkbox"  ${checked} disabled >`;
                     return input;
-                }
+                }, hide: true
             },
             {
                 headerName: 'Ação',
                 lockPosition: false,
-                cellClass: 'locked-col',
+                // cellClass: 'locked-col',
                 suppressNavigable: true,
                 cellRenderer: function () {
-                    const display = 'block';
                     const html = `<button class='btn-edit' data-action-type='editar'><i class='icofont icofont-ui-edit'></i>Editar</button>
                      <button class='btn-delete' data-action-type='deletar'><i class='icofont icofont-ui-delete'></i>Deletar</button>`;
                     return html;
@@ -160,6 +159,15 @@ export class CidadesComponent implements OnInit {
                                             duration: 2000,
                                         });
                                         this.ngOnInit();
+                                    }, error => {
+                                        Swal.fire({
+                                            position: 'center',
+                                            type: 'error',
+                                            title: 'Não foi possível deletar esse registro.',
+                                            showConfirmButton: false,
+                                            animation: false,
+                                            timer: 1500
+                                        });
                                     }
                                 );
                         }

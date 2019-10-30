@@ -57,16 +57,16 @@ export class MotoboyComponent implements OnInit {
             {headerName: 'Nome', field: 'name'},
             {headerName: 'Email', field: 'email'},
             {headerName: 'Contato', field: 'username'},
-                        {
+            {
                 headerName: 'Status', field: 'registrationStatus',
                 cellRenderer: function (params) {
                     return `${
                         params.value === 'APPROVED' ? 'Aprovado' :
-                        params.value === 'UNDER_ANALYSIS' ? 'Sob Análise' :
-                        params.value === 'REJECTED' ? 'Rejeitado' :
-                        params.value === 'BLOCKED' ? 'Bloqueado' :
-                        params.value === 'ACCESS_DENIED' ? 'Acesso negado' :
-                        params.value === '' ? 'Indefinido' : ''}`;
+                            params.value === 'UNDER_ANALYSIS' ? 'Sob Análise' :
+                                params.value === 'REJECTED' ? 'Rejeitado' :
+                                    params.value === 'BLOCKED' ? 'Bloqueado' :
+                                        params.value === 'ACCESS_DENIED' ? 'Acesso negado' :
+                                            params.value === '' ? 'Indefinido' : ''}`;
                 }
             },
             {
@@ -167,6 +167,15 @@ export class MotoboyComponent implements OnInit {
                                             duration: 2000,
                                         });
                                         this.ngOnInit();
+                                    }, error => {
+                                        Swal.fire({
+                                            position: 'center',
+                                            type: 'error',
+                                            title: 'Não foi possível deletar esse registro.',
+                                            showConfirmButton: false,
+                                            animation: false,
+                                            timer: 1500
+                                        });
                                     }
                                 );
                         }

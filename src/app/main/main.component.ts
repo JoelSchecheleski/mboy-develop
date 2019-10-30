@@ -17,6 +17,7 @@ import {CoreService} from '../service/core/core.service';
 const screenfull = require('screenfull');
 
 @Component({
+    // tslint:disable-next-line:component-selector
     selector: 'gene-layout',
     templateUrl: './main-material.html',
     styleUrls: ['./main-material.scss'],

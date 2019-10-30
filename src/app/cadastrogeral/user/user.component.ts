@@ -159,6 +159,15 @@ export class UserComponent implements OnInit {
                                             duration: 2000,
                                         });
                                         this.ngOnInit();
+                                    }, error => {
+                                        Swal.fire({
+                                            position: 'center',
+                                            type: 'error',
+                                            title: 'Não foi possível deletar esse registro.',
+                                            showConfirmButton: false,
+                                            animation: false,
+                                            timer: 1500
+                                        });
                                     }
                                 );
                         }

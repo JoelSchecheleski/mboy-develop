@@ -53,7 +53,7 @@ export class CompanyComponent implements OnInit {
 
         this.columnDefs = [
             {headerName: 'Id', field: 'id', hide: true},
-            {headerName: 'Nome', field: 'name'},
+            {headerName: 'Nome', field: 'comercialName'},
             {headerName: 'Email', field: 'email'},
             {headerName: 'Contato', field: 'username'},
             {
@@ -166,6 +166,15 @@ export class CompanyComponent implements OnInit {
                                             duration: 2000,
                                         });
                                         this.ngOnInit();
+                                    }, error => {
+                                        Swal.fire({
+                                            position: 'center',
+                                            type: 'error',
+                                            title: 'Não foi possível deletar esse registro.',
+                                            showConfirmButton: false,
+                                            animation: false,
+                                            timer: 1500
+                                        });
                                     }
                                 );
                         }
