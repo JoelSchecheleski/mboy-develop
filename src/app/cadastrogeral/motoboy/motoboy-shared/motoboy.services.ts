@@ -22,6 +22,7 @@ export class MotoboyServices extends ResourceService<MotoboyModel> {
 
     public userData(file: any): Observable<any> {
         this.dados = {
+            id: file ? file.id : '',
             username: file ? file.username : '',
             email: file ? file.email : '',
             password: file ? file.password : '',

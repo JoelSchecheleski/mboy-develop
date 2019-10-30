@@ -159,7 +159,10 @@ export class MboyAppModule {
             'sair',
             this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/sair.svg')
         );
-
+        this.matIconRegistry.addSvgIcon(
+            'shape',
+            this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/shape.svg')
+        );
     }
 
 }

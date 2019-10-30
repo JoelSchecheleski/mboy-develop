@@ -126,7 +126,7 @@ export class CustomerDialogComponent implements OnInit {
         const endpoint = new Config().getEndpoint();
 
         if (this.status === 'Novo') {
-            delete form.value['registrationStatus'];
+            // delete form.value['registrationStatus'];
             this.api.client_http.post(`${endpoint}user-registration`, form.getRawValue())
                 .subscribe(data => {
                         this.dialogRef.close(`${form.value.descricao}`);
@@ -138,7 +138,7 @@ export class CustomerDialogComponent implements OnInit {
                 text: '',
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#038f9e',
+                confirmButtonColor: '#D5652B',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Salvar',
                 cancelButtonText: 'Cancelar'

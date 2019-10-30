@@ -73,7 +73,7 @@ export class NewCreditComponent implements OnInit {
                 text: `Após a confirmação os créditos serão inseridos diretamente na conta da empresa.`,
                 type: 'question',
                 showCancelButton: true,
-                confirmButtonColor: '#038f9e',
+                confirmButtonColor: '#D5652B',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Sim',
                 cancelButtonText: 'Não'

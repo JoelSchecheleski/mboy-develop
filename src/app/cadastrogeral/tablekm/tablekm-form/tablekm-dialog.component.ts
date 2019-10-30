@@ -88,12 +88,12 @@ export class TablekmDialogComponent implements OnInit {
                 text: '',
                 type: 'warning',
                 showCancelButton: false,
-                confirmButtonColor: '#038f9e',
+                confirmButtonColor: '#D5652B',
                 confirmButtonText: 'Ok',
             })
         } else {
 
-            delete form.value['registrationStatus'];
+            // delete form.value['registrationStatus'];
             this.api.client_http.post(`${this.url}settings/kilometers`, objeto)
                 .subscribe(data => {
                         Swal.fire({

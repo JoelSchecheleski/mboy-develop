@@ -87,7 +87,7 @@ export class TablehrDialogComponent implements OnInit {
                 text: '',
                 type: 'warning',
                 showCancelButton: false,
-                confirmButtonColor: '#038f9e',
+                confirmButtonColor: '#D5652B',
                 confirmButtonText: 'Ok',
             })
         } else {

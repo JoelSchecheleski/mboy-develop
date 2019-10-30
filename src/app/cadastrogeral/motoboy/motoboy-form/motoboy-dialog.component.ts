@@ -93,6 +93,8 @@ export class MotoboyDialogComponent implements OnInit {
 
     ngOnInit() {
         this.formulario = this.formBuilder.group({
+            id: new FormControl({value: this.data.id ? this.data.id : '', disabled: this.status !== 'Novo'}),
+            name: new FormControl({value: this.data.name ? this.data.name : '', disabled: this.status !== 'Novo'}),
             comercialName: new FormControl({
                 value: this.data.comercialName ? this.data.comercialName : '',
                 disabled: this.status !== 'Novo'
@@ -139,10 +141,29 @@ export class MotoboyDialogComponent implements OnInit {
         const endpoint = new Config().getEndpoint();
 
         if (this.status === 'Novo') {
-            delete form.value['registrationStatus'];
+            // delete form.value['registrationStatus'];
             this.api.client_http.post(`${endpoint}user-registration`, form.getRawValue())
                 .subscribe(data => {
-                        this.dialogRef.close(`${form.value.descricao}`);
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Registro cadastrado sucesso.',
+                            imageUrl: '../../assets/viagens_ok.svg',
+                            showConfirmButton: false,
+                            imageWidth: 150,
+                            animation: false,
+                            timer: 2500
+                        });
+                        this.dialogRef.close(`${form.value.email}`);
+                    }, error => {
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Ops, algo deu errado.',
+                            imageUrl: '../../assets/viagens_error.svg',
+                            showConfirmButton: false,
+                            imageWidth: 150,
+                            animation: false,
+                            timer: 2500
+                        });
                     }
                 );
         } else if (this.status === 'Editando') {
@@ -151,15 +172,34 @@ export class MotoboyDialogComponent implements OnInit {
                 text: '',
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#038f9e',
+                confirmButtonColor: '#D5652B',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Salvar',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.value) {
-                    this.api.PUT(form.getRawValue(), form.value.username)
+                    this.api.PUT(form.getRawValue(), form.getRawValue().username)
                         .subscribe(data => {
-                                this.dialogRef.close(`${form.value.descricao}`);
+                                Swal.fire({
+                                    position: 'center',
+                                    title: 'Registro alterado com sucesso.',
+                                    imageUrl: '../../assets/viagens_ok.svg',
+                                    showConfirmButton: false,
+                                    imageWidth: 150,
+                                    animation: false,
+                                    timer: 2500
+                                });
+                                this.dialogRef.close(`${form.value.email}`);
+                            }, error => {
+                                Swal.fire({
+                                    position: 'center',
+                                    title: 'Ops, algo deu errado.',
+                                    imageUrl: '../../assets/viagens_error.svg',
+                                    showConfirmButton: false,
+                                    imageWidth: 150,
+                                    animation: false,
+                                    timer: 2500
+                                });
                             }
                         );
                 }

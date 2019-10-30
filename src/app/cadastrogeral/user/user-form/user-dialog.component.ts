@@ -100,11 +100,7 @@ export class UserDialogComponent implements OnInit {
             return;
         }
         const endpoint = new Config().getEndpoint();
-
         if (this.status === 'Novo') {
-            // delete form.value['registrationStatus'];
-            form.value['registrationStatus'] = true;
-
             this.api.client_http.post(`${endpoint}user-registration`, JSON.stringify(form.value)) // form.getRawValue()
                 .subscribe(data => {
                         console.log(data);
@@ -146,9 +142,11 @@ export class UserDialogComponent implements OnInit {
                         .subscribe(data => {
                                 Swal.fire({
                                     position: 'center',
-                                    title: 'Usuário cadastrado com sucesso.',
+                                    title: 'Usuário alterado com sucesso.',
                                     imageUrl: '../../assets/viagens_ok.svg',
                                     showConfirmButton: false,
+                                    confirmButtonColor: '#D5652B',
+                                    cancelButtonColor: '#d33',
                                     imageWidth: 150,
                                     animation: false,
                                     timer: 2500

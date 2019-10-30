@@ -158,10 +158,19 @@ export class CompanyDialogComponent implements OnInit {
         const endpoint = new Config().getEndpoint();
 
         if (this.status === 'Novo') {
-            delete form.value['registrationStatus'];
+            // delete form.value['registrationStatus'];
             this.api.client_http.post(`${endpoint}user-registration`, form.getRawValue())
                 .subscribe(data => {
-                        this.dialogRef.close(`${form.value.descricao}`);
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Registro adicionado com sucesso.',
+                            imageUrl: '../../assets/viagens_ok.svg',
+                            showConfirmButton: false,
+                            imageWidth: 150,
+                            animation: false,
+                            timer: 2500
+                        });
+                        this.dialogRef.close(`${form.value.comercialName}`);
                     }
                 );
         } else if (this.status === 'Editando') {
@@ -170,7 +179,7 @@ export class CompanyDialogComponent implements OnInit {
                 text: '',
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#038f9e',
+                confirmButtonColor: '#D5652B',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Salvar',
                 cancelButtonText: 'Cancelar'
@@ -178,7 +187,26 @@ export class CompanyDialogComponent implements OnInit {
                 if (result.value) {
                     this.api.PUT(form.getRawValue(), form.value.username)
                         .subscribe(data => {
-                                this.dialogRef.close(`${form.value.descricao}`);
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Registro atualizado com sucesso.',
+                            imageUrl: '../../assets/viagens_ok.svg',
+                            showConfirmButton: false,
+                            imageWidth: 150,
+                            animation: false,
+                            timer: 2500
+                        });
+                        this.dialogRef.close(`${form.value.comercialName}`);
+                            }, error => {
+                                Swal.fire({
+                                    position: 'center',
+                                    title: 'Ops, algo deu errado.',
+                                    imageUrl: '../../assets/viagens_error.svg',
+                                    showConfirmButton: false,
+                                    imageWidth: 150,
+                                    animation: false,
+                                    timer: 2500
+                                });
                             }
                         );
                 }
