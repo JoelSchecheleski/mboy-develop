@@ -72,7 +72,7 @@ export class ClaimsDialogComponent implements OnInit {
                     Swal.fire({
                         position: 'center',
                         type: 'success',
-                        title: 'Reclamação finalizada com sucesso',
+                        title: 'Registro salvo',
                         showConfirmButton: false,
                         animation: true,
                         timer: 2500
@@ -83,7 +83,7 @@ export class ClaimsDialogComponent implements OnInit {
                     Swal.fire({
                         position: 'center',
                         type: 'error',
-                        title: 'Não foi possível alterar essa reclamação',
+                        title: 'Erro ao alterar esse registro, tente novamente!',
                         showConfirmButton: false,
                         animation: true,
                         timer: 2500

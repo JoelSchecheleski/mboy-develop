@@ -1,4 +1,3 @@
-// @ts-ignore
 import {Injectable} from '@angular/core';
 
 @Injectable()

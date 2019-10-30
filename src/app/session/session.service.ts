@@ -66,6 +66,7 @@ export class ApiMboy {
                         text: 'Verifique seu usuário e senha.',
                         imageUrl: '../../assets/img/errors/access_danied.svg',
                         cancelButtonColor: '#D5652B',
+                        confirmButtonColor: '#D5652B',
                         showCloseButton: true,
                         imageWidth: 400,
                         imageHeight: 200,

@@ -123,6 +123,7 @@ export class PushComponent implements OnInit {
                     }
                 });
         }
+        this.citys = null;
         this.selectedState = null;
         this.citySelected = null;
         this.limpar();
