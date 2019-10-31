@@ -41,10 +41,12 @@
     </mat-card>
 </div>
 
+<!-- Passando dados para o relatório -->
 <div class="form-group row" *ngIf="selectedRowsReport != null">
     <div class="form-group col-sm-12">
         <ms-sweepstakes-report
-                [data]="selectedRowsReport">
+                [data]="selectedRowsReport"
+                (resposta)="reciverFeedback($event)">
         </ms-sweepstakes-report>
     </div>
 </div>

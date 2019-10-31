@@ -22,6 +22,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
     selector: 'ms-sweepstakes-report',
     templateUrl: './sweepstakes-report.html',
+    styleUrls: ['sweepstakes-report.scss'],
     providers: [SweepstakesServices]
 })
 // tslint:disable-next-line:component-class-suffix
@@ -36,6 +37,7 @@ export class SweepstakesReportComponent implements OnInit {
     // Entrada de dados do componente pai
     @Input() data: any;
     @Output() messageToEmit = new EventEmitter<string>();
+    @Output() resposta = new EventEmitter<string>();
 
     public displayedColumns: string [] = ['name', 'email', 'phone'];
 
@@ -56,15 +58,15 @@ export class SweepstakesReportComponent implements OnInit {
 
     // Busca todas as informações de um sorteio realizado
     getInformationSweepstakes() {
-        this.dados =  new MatTableDataSource<any>(this.data['winners']);
+        this.dados = new MatTableDataSource<any>(this.data['winners']);
         // console.table(this.dados);
     }
 
     /**
      * Envia uma mensagem para o componente que o chamou
-     * @param message Mensagem a ser enviado
      */
-    sendMessageToParent(message: string) {
-        this.messageToEmit.emit(message)
+    sendMessageToParent() {
+        this.resposta.emit('Voltar');
     }
+
 }

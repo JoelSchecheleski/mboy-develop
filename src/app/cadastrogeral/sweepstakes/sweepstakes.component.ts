@@ -43,6 +43,7 @@ export class SweepstakesComponent implements OnInit {
 
     public data: any;
     @Output() messageToEmit = new EventEmitter<string>();
+    @Output() respostaFilho = new EventEmitter<string>();
 
     fileNameDialogRef: MatDialogRef<SweepstakesDialogComponent>;
 
@@ -221,4 +222,11 @@ export class SweepstakesComponent implements OnInit {
                 }
             );
     }
+
+    public reciverFeedback(respostaFilho) {
+        console.log('Recebeu resposta do filho! ' + respostaFilho);
+        this.selectedRowsReport = null;
+        this.ngOnInit();
+    }
+
 }

@@ -4,32 +4,32 @@
             <!-- Informações do sorteio -->
             <div fxLayout="row" fxLayoutAlign="start center">
                 <div class="mrgn-r-sm">
-                    <mat-form-field class="full-wid" appearance="outline">
+                    <mat-form-field class="full-wid mat-font" appearance="outline">
                             <mat-label>Realizado em</mat-label>
-                        <input matInput placeholder='Realizado em' value="{{data.createdAt | date:'dd/MM/yyyy'}}">
+                        <input matInput placeholder='Realizado em' value="{{data.createdAt | date:'dd-MM-yyyy'}}">
                     </mat-form-field>
                 </div>
                 <div class="mrgn-l-sm mrgn-r-sm">
-                    <mat-form-field class="full-wid" appearance="outline">
+                    <mat-form-field class="full-wid mat-font" appearance="outline">
                             <mat-label>Valor</mat-label>
-                        <input matInput placeholder='Valor' value="{{data.cashPrize | currency}}">
+                        <input matInput placeholder='Valor' value="{{data.cashPrize | currency:'BRL':true}}">
                     </mat-form-field>
                 </div>
                 <div class="mrgn-l-sm mrgn-r-sm">
-                    <mat-form-field class="full-wid" appearance="outline">
+                    <mat-form-field class="full-wid mat-font" appearance="outline">
                             <mat-label>Qtd. sorteados</mat-label>
                         <input matInput placeholder='Qtd. de sorteados' value="{{data.quantityQualifiedUsers}}">
                     </mat-form-field>
                 </div>
                 <div class="mrgn-l-sm mrgn-r-sm">
-                    <mat-form-field class="full-wid" appearance="outline">
+                    <mat-form-field class="full-wid mat-font" appearance="outline">
                             <mat-label>Período de uso</mat-label>
                         <input matInput placeholder='Período de uso' value="{{data.periodOfUse}}">
                     </mat-form-field>
                 </div>
                 <div class="mrgn-l-md mrgn-b-md add-user-btn" fxLayoutAlign="start center">
                     <mat-card-actions class="mat-pad-none margin-none">
-                        <button class='mat-button' style="color: #D5652B" data-action-type='voltar' [routerLink]="['/']">
+                        <button class='mat-button btn-salvar' style="color: white" (click)="sendMessageToParent()" data-action-type='voltar'>
                             Fechar
                         </button>
                     </mat-card-actions>
@@ -45,14 +45,7 @@
                     </th>
                     <td mat-cell *matCellDef="let element" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)"
                         fxFlex.gt-md="0 1 calc(25%-10px)">
-                        <div fxLayoutAlign="start center">
-                            <div class="mrgn-r-sm user-list-image">
-                                <img class="img-circle" src="{{element.img}}" height="50" width="50">
-                            </div>
-                            <div>
-                                <h5 class="mrgn-b-xs">{{element.name}}</h5>
-                            </div>
-                        </div>
+                        <div class="make-ellipse">{{element.name != null ? element.name : '.'}} </div>
                     </td>
                 </ng-container>
 
@@ -73,7 +66,7 @@
                     <td mat-cell *matCellDef="let element" fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)"
                         fxFlex.gt-md="0 1 calc(25%-10px)">
                         <div fxLayoutAlign="start start">
-                            <div class="rounded mrgn-r-xs primary-bg status-icon"></div>
+<!--                            <div class="rounded mrgn-r-xs primary-bg status-icon"></div>-->
                             <div class="status-text">
                                 <div>{{element.phone}}</div>
                             </div>

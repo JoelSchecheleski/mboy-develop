@@ -62,12 +62,14 @@ export class ClaimsDialogComponent implements OnInit {
 
     public onUpdateStatus(dados) {
         // this.frmSugestao.value.status = dados.value;
-        this.data.status = this.selectedstatusClaim;
-
+        const body = {
+            id: this.data.id,
+            status: this.selectedstatusClaim
+        }
         const endpoint = new Config().getEndpoint();
-        this._http.put(`${endpoint}chat/update-chat/${this.data.id}`, JSON.stringify(this.data))
+        this._http.put(`${endpoint}chat/update-chat`, JSON.stringify(body))
             .subscribe(data => {
-                // console.table(data);
+                console.table(data);
                 if (data) {
                     Swal.fire({
                         position: 'center',
