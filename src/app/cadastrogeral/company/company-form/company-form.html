@@ -14,7 +14,7 @@
                 </div>
                 <div class="gene-card-content">
                     <!-- Primeira linha -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                         <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>Nome fantasia</mat-label>
                             <input formControlName="comercialName" #comercialName matInput placeholder="Nome Fantasia" required>
@@ -37,7 +37,7 @@
                     </div>
 
                     <!-- terceira linha -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                         <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>Logradouro</mat-label>
                             <input formControlName="street" matInput placeholder="Logradouro">
@@ -60,7 +60,7 @@
                     </div>
 
                     <!-- Quinta linha -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                         <mat-form-field  class="full-wid" appearance="outline">
                             <mat-label>Cidade</mat-label>
                             <input formControlName="usercity" matInput placeholder="Cidade">
@@ -83,7 +83,7 @@
                     </div>
 
                     <!-- Status linha -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                         <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>Status</mat-label>
                             <mat-select formControlName="registrationStatus" [(value)]="selectedStatus"

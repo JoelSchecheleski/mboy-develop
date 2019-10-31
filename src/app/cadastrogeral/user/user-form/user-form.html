@@ -14,24 +14,24 @@
                 </div>
                 <div class="gene-card-content">
                     <!-- Nome do usuario linha -->
-                    <!--                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">-->
+                    <!--                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">-->
                     <!--                    </div>-->
 
                     <!-- Primeira linha -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Nome de usuário</mat-label>
-                            <input formControlName="username" matInput placeholder="Nome de Usuário" required>
-                        </mat-form-field>
-
+                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                         <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>Usuário</mat-label>
-                            <input formControlName="name" matInput placeholder="Usuário" required>
+                            <input formControlName="username" matInput placeholder="Usuário" required>
+                        </mat-form-field>
+                        espaço
+                        <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Nome de usuário</mat-label>
+                            <input formControlName="name" matInput placeholder="Nome de Usuário" required>
                         </mat-form-field>
                     </div>
 
                     <!-- segunda linha -->
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
+                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                         <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>Password</mat-label>
                             <input type="password" formControlName="password" matInput placeholder="Senha">

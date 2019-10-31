@@ -10,7 +10,8 @@
                 </div>
                 <div class="gene-card-content">
 
-                    <div fxLayout="row" fxLayoutAlign="space-around center" class="div2" fxLayout.xs="column">
+
+                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                         <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>Nome da cidade</mat-label>
                             <input formControlName="name" #name matInput placeholder="Nome da cidade*">
@@ -20,7 +21,9 @@
                             <mat-label>IBGE</mat-label>
                             <input maxlength="9" formControlName="ibgeCode" matInput placeholder="IBGE" ui-br-cep-mask>
                         </mat-form-field>
+                    </div>
 
+                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                         <mat-form-field class="full-wid" appearance="outline">
                             <mat-label>Liberar cidade?</mat-label>
                             <select matNativeControl required formControlName="authorized">
@@ -39,7 +42,7 @@
                             </mat-select>
                         </mat-form-field>
                     </div>
-<!--                    <pre>{{formulario?.value | json}}</pre>-->
+                    <!--                    <pre>{{formulario?.value | json}}</pre>-->
                 </div>
                 <mat-dialog-actions>
                     <button mat-button type="submit" class="btn-salvar">Salvar</button>

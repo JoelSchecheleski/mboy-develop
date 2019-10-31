@@ -97,13 +97,13 @@ export class CidadesComponent implements OnInit {
     openFileDialog(file?) {
         if (file) { // Editando
             this.fileNameDialogRef = this.dialog.open(CidadesDialogComponent, {
-                height: '350px',
+                height: '450px',
                 width: '1200px',
                 data: this.api.cityNewData(file)
             });
         } else { // Novo
             this.fileNameDialogRef = this.dialog.open(CidadesDialogComponent, {
-                height: '350px',
+                height: '450px',
                 width: '1200px',
                 data: this.api.cityNewData(file)
             });
