@@ -134,8 +134,13 @@ export class TablehrComponent implements OnInit {
                         if (result.value) {
                             this.api.client_http.delete(`${this.url}settings/hour/${id}`)
                                 .subscribe(data => {
-                                        this.snackBar.open('Registro deletado com sucesso', '', {
-                                            duration: 2000,
+                                        Swal.fire({
+                                            position: 'center',
+                                            type: 'success',
+                                            title: 'Registro deletado com sucesso',
+                                            showConfirmButton: false,
+                                            animation: true,
+                                            timer: 2500
                                         });
                                         this.ngOnInit();
                                     }, error => {
