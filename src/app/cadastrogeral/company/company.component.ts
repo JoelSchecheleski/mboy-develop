@@ -61,11 +61,11 @@ export class CompanyComponent implements OnInit {
                 cellRenderer: function (params) {
                     return `${
                         params.value === 'APPROVED' ? 'Aprovado' :
-                        params.value === 'UNDER_ANALYSIS' ? 'Sob Análise' :
-                        params.value === 'REJECTED' ? 'Rejeitado' :
-                        params.value === 'BLOCKED' ? 'Bloqueado' :
-                        params.value === 'ACCESS_DENIED' ? 'Acesso negado' :
-                        params.value === '' ? 'Indefinido' : ''}`;
+                            params.value === 'UNDER_ANALYSIS' ? 'Sob Análise' :
+                                params.value === 'REJECTED' ? 'Rejeitado' :
+                                    params.value === 'BLOCKED' ? 'Bloqueado' :
+                                        params.value === 'ACCESS_DENIED' ? 'Acesso negado' :
+                                            params.value === '' ? 'Indefinido' : ''}`;
                 }
             },
             {
@@ -162,8 +162,13 @@ export class CompanyComponent implements OnInit {
                         if (result.value) {
                             this.api.DELETE(id)
                                 .subscribe(data => {
-                                        this.snackBar.open('Registro deletado com sucesso', '', {
-                                            duration: 2000,
+                                        Swal.fire({
+                                            position: 'center',
+                                            type: 'success',
+                                            title: 'Registro deletado com sucesso',
+                                            showConfirmButton: false,
+                                            animation: true,
+                                            timer: 2500
                                         });
                                         this.ngOnInit();
                                     }, error => {
