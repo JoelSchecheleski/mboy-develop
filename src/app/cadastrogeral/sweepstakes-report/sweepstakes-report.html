@@ -4,22 +4,26 @@
             <!-- Informações do sorteio -->
             <div fxLayout="row" fxLayoutAlign="start center">
                 <div class="mrgn-r-sm">
-                    <mat-form-field>
+                    <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Realizado em</mat-label>
                         <input matInput placeholder='Realizado em' value="{{data.createdAt | date:'dd/MM/yyyy'}}">
                     </mat-form-field>
                 </div>
                 <div class="mrgn-l-sm mrgn-r-sm">
-                    <mat-form-field>
+                    <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Valor</mat-label>
                         <input matInput placeholder='Valor' value="{{data.cashPrize | currency}}">
                     </mat-form-field>
                 </div>
                 <div class="mrgn-l-sm mrgn-r-sm">
-                    <mat-form-field>
+                    <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Qtd. sorteados</mat-label>
                         <input matInput placeholder='Qtd. de sorteados' value="{{data.quantityQualifiedUsers}}">
                     </mat-form-field>
                 </div>
                 <div class="mrgn-l-sm mrgn-r-sm">
-                    <mat-form-field>
+                    <mat-form-field class="full-wid" appearance="outline">
+                            <mat-label>Período de uso</mat-label>
                         <input matInput placeholder='Período de uso' value="{{data.periodOfUse}}">
                     </mat-form-field>
                 </div>

@@ -89,8 +89,7 @@ export class ClaimsComponent implements OnInit {
                 suppressNavigable: true,
                 cellRenderer: function () {
                     const display = 'block';
-                    const html = `<button class='btn-edit' data-action-type='editar'><i class='icofont icofont-ui-edit'></i>Editar</button>
-                     <button class='btn-delete' data-action-type='deletar'><i class='icofont icofont-ui-delete'></i>Deletar</button>`;
+                    const html = `<button class='btn-edit' data-action-type='editar'><i class='icofont icofont-ui-edit'></i>Editar</button>`;
                     return html;
                 }
             }
