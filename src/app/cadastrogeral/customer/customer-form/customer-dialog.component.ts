@@ -77,9 +77,31 @@ export class CustomerDialogComponent implements OnInit {
             {headerName: 'Origem', field: 'start_position'},
             {headerName: 'Destino', field: 'end_position'},
             {headerName: 'Participante', field: 'customer'},
-            {headerName: 'Tipo de corrida', field: 'service_type'},
-            {headerName: 'Forma de pagamento', field: 'payment_type'},
-            {headerName: 'Valor', field: 'price'}
+            {
+                headerName: 'Tipo de corrida', field: 'service_type',
+                cellRenderer: function (params) {
+                    return `${
+                        params.value === 'DELIVERY' ? 'Entrega' :
+                            params.value === 'MOTOTAXI' ? 'Mototaxi' :
+                                params.value === '' ? 'Indefinido' : ''}`;
+                }
+            },
+            {
+                headerName: 'Forma de pagamento', field: 'payment_type',
+                cellRenderer: function (params) {
+                    return `${
+                        params.value === 'MONEY' ? 'Dinheiro' :
+                            params.value === 'CREDIT_CARD' ? 'Cartão de crédito' :
+                                params.value === 'CREDIT' ? 'Crédito' :
+                                    params.value === 'BANK_SLIP' ? 'Boleto' :
+                                        params.value === '' ? 'Indefinido' : ''}`;
+                }
+            },
+            {
+                headerName: 'Valor', field: 'price', cellRenderer: function (params) {
+                    return `${'R$ ' + params.value.toFixed(2)}`;
+                }
+            }
         ];
 
         this.gridOptions = <GridOptions>{

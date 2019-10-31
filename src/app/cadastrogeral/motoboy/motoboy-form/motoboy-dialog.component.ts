@@ -69,6 +69,7 @@ export class MotoboyDialogComponent implements OnInit {
 
         this.columnRideDefs = [
             {
+                // tslint:disable-next-line:no-shadowed-variable
                 headerName: 'Data', field: 'created_at', cellRenderer: (data) => {
                     return moment(data.value).format('DD/MM/YYYY HH:mm');
                 }
@@ -76,9 +77,31 @@ export class MotoboyDialogComponent implements OnInit {
             {headerName: 'Origem', field: 'start_position'},
             {headerName: 'Destino', field: 'end_position'},
             {headerName: 'Participante', field: 'motoboy'},
-            {headerName: 'Tipo de corrida', field: 'service_type'},
-            {headerName: 'Forma de pagamento', field: 'payment_type'},
-            {headerName: 'Valor', field: 'price'}
+            {
+                headerName: 'Tipo de corrida', field: 'service_type',
+                cellRenderer: function (params) {
+                    return `${
+                        params.value === 'DELIVERY' ? 'Entrega' :
+                            params.value === 'MOTOTAXI' ? 'Mototaxi' :
+                                params.value === '' ? 'Indefinido' : ''}`;
+                }
+            },
+            {
+                headerName: 'Forma de pagamento', field: 'payment_type',
+                cellRenderer: function (params) {
+                    return `${
+                        params.value === 'MONEY' ? 'Dinheiro' :
+                            params.value === 'CREDIT_CARD' ? 'Cartão de crédito' :
+                                params.value === 'CREDIT' ? 'Crédito' :
+                                    params.value === 'BANK_SLIP' ? 'Boleto' :
+                                        params.value === '' ? 'Indefinido' : ''}`;
+                }
+            },
+            {
+                headerName: 'Valor', field: 'price', cellRenderer: function (params) {
+                    return `${'R$ ' + params.value.toFixed(2)}`;
+                }
+            }
         ];
 
         this.gridOptions = <GridOptions>{
@@ -124,7 +147,7 @@ export class MotoboyDialogComponent implements OnInit {
     }
 
     tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-        if (tabChangeEvent.index === 1) { //corridas
+        if (tabChangeEvent.index === 1) { // corridas
             this.api.client_http.get(`${this.url}user/rides?username=${this.data.username}`)
                 .subscribe(
                     data => { // @ts-ignore
