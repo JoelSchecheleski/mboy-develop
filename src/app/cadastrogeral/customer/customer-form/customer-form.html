@@ -14,50 +14,52 @@
                 </div>
 
                 <div class="gene-card-content">
-                    <!-- Primeira linha -->
-                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Nome do usuário</mat-label>
-                            <input formControlName="name" #name matInput placeholder="Nome do usuário" required>
-                        </mat-form-field>
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                        <!-- Primeira linha -->
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Nome do usuário</mat-label>
+                                <input formControlName="name" #name matInput placeholder="Nome do usuário" required>
+                            </mat-form-field>
 
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>E-Mail</mat-label>
-                            <input formControlName="email" matInput placeholder="E-mail" required>
-                        </mat-form-field>
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>E-Mail</mat-label>
+                                <input type="email" formControlName="email" matInput placeholder="E-mail" required>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- segunda linha -->
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <mat-form-field type="cpfCnpj" class="full-wid" appearance="outline">
+                                <mat-label>CPF</mat-label>
+                                <input type="cpfCnpj" formControlName="cpfCnpj" matInput placeholder="CPF">
+                            </mat-form-field>
+
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Contato do usuário</mat-label>
+                                <input formControlName="username" matInput placeholder="Contato do usuário" required>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Status linha -->
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Status</mat-label>
+                                <mat-select formControlName="registrationStatus" [(value)]="selectedStatus"
+                                            placeholder="Status">
+                                    <mat-option *ngFor="let n of registrationStatusList" [value]="n.value">
+                                        {{n.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
                     </div>
 
-                    <!-- segunda linha -->
-                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>CPF</mat-label>
-                            <input type="cpfCnpj" formControlName="cpfCnpj" matInput placeholder="CPF">
-                        </mat-form-field>
-
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Contato do usuário</mat-label>
-                            <input formControlName="username" matInput placeholder="Contato do usuário" required>
-                        </mat-form-field>
-                    </div>
-
-                    <!-- Status linha -->
-                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Status</mat-label>
-                            <mat-select formControlName="registrationStatus" [(value)]="selectedStatus"
-                                        placeholder="Status">
-                                <mat-option *ngFor="let n of registrationStatusList" [value]="n.value">
-                                    {{n.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
+                    <mat-dialog-actions>
+                        <button mat-button type="submit" class="btn-salvar">Salvar</button>
+                        <button mat-button type="button" (click)="dialogRef.close()">Cancelar</button>
+                    </mat-dialog-actions>
                 </div>
-
-                <mat-dialog-actions>
-                    <button mat-button type="submit" class="btn-salvar">Salvar</button>
-                    <button mat-button type="button" (click)="dialogRef.close()">Cancelar</button>
-                </mat-dialog-actions>
             </mat-card>
         </mat-tab>
 

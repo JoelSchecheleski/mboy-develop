@@ -146,10 +146,14 @@
                     <!--                    <ms-language-drop-down></ms-language-drop-down>-->
                 </div>
             </mat-toolbar>
-
+            <!-- router-outlet -->
             <div class="gene-base-container" #container>
                 <div class="inner-container">
                     <router-outlet (activate)="onActivate($event, container)"></router-outlet>
+                    <mat-card *ngIf="_activeted">
+                        <h2>Início</h2><br />
+                        <h3>Olá, bem-vindo ao painel administrativo do MBoy.</h3>
+                    </mat-card>
                 </div>
             </div>
         </mat-sidenav-container>
@@ -157,3 +161,4 @@
         </mat-menu>
     </div>
 </ng-template>
+

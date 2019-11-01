@@ -53,6 +53,8 @@ export class MainComponent implements OnInit, OnDestroy {
     private _mediaSubscription: Subscription;
     private _routerEventsSubscription: Subscription;
     private _router: Subscription;
+    private _activeted: boolean;
+
     @ViewChild('sidenav') sidenav;
 
     constructor(public tourService: TourService,
@@ -124,6 +126,7 @@ export class MainComponent implements OnInit, OnDestroy {
             this.name = JSON.parse(localStorage.getItem('SESSAO')).name;
             this.email = JSON.parse(localStorage.getItem('SESSAO')).email;
             this.image = JSON.parse(localStorage.getItem('SESSAO')).avatar;
+            this._activeted = true;
         }
 
         setTimeout(() => {
@@ -207,6 +210,7 @@ export class MainComponent implements OnInit, OnDestroy {
         } else if (window.innerWidth > 1280) {
             this.coreService.sidenavMode = 'side';
             this.coreService.sidenavOpen = true;
+            this._activeted = false;
         }
     }
 
