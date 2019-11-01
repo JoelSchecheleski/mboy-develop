@@ -14,14 +14,14 @@
                 <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                     <mat-form-field class="full-wid" appearance="outline">
                         <mat-label>Quantidade de contemplados</mat-label>
-                        <input formControlName="quantityWinners" matInput type="numeric"
+                        <input formControlName="quantityWinners" matInput type="number"
                                placeholder="Quantidade de contemplados">
                     </mat-form-field>
                 </div>
                 <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                     <mat-form-field class="full-wid" appearance="outline">
                         <mat-label>Valor por contemplado*</mat-label>
-                        <input formControlName="cashPrize" #cashPrize matInput
+                        <input formControlName="cashPrize" matInput type="number"
                                placeholder="Valor por contemplado*">
                     </mat-form-field>
                 </div>
@@ -29,7 +29,7 @@
                 <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
                     <mat-form-field class="full-wid" appearance="outline">
                         <mat-label>Qtd. mínima de corridas*</mat-label>
-                        <input formControlName="quantityServices" #cashPrize matInput
+                        <input formControlName="quantityServices" #cashPrize matInput type="number"
                                placeholder="Qtd. mínima de corridas*">
                     </mat-form-field>
                 </div>
