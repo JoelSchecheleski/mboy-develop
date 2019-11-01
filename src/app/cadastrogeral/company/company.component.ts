@@ -101,7 +101,7 @@ export class CompanyComponent implements OnInit {
     openFileDialog(file ?) {
         if (file) { // Editando
             this.fileNameDialogRef = this.dialog.open(CompanyDialogComponent, {
-                height: '650px',
+                height: '850px',
                 width: '1200px',
                 data: this.api.userData(file)
             });

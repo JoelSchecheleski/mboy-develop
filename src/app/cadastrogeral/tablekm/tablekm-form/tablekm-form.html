@@ -14,29 +14,32 @@
                 </div>
 
                 <div class="gene-card-content">
-
-                    <div fxLayout="row" fxLayoutAlign="start left" class="div2" fxLayout.xs="column">
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Descrição</mat-label>
-                            <input formControlName="description" matInput placeholder="Nome da configuração" required>
-                        </mat-form-field>
-
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Valor adicional por KM</mat-label>
-                            <input type="number" formControlName="additionalValuePerKm" matInput placeholder="Adicional por KM"
-                                   required>
-                        </mat-form-field>
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="49" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Descrição</mat-label>
+                                <input formControlName="description" matInput placeholder="Nome da configuração"
+                                       required>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="49" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Valor adicional por KM</mat-label>
+                                <input type="number" formControlName="additionalValuePerKm" matInput
+                                       placeholder="Adicional por KM"
+                                       required>
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
-
                 <!-- GRID -->
                 <div class="row" style="width: 100%">
                     <div class="col-sm-12">
                         <div class="table-responsive">
                             <div align="rigth">
-                                    <button type="button" class='btn-edit' data-action-type='editar' (click)="addNewRow()">
-                                        <i class='icofont icofont-ui-edit'></i>Adicionar
-                                    </button>
+                                <button type="button" class='btn-edit' data-action-type='editar' (click)="addNewRow()">
+                                    <i class='icofont icofont-ui-edit'></i>Adicionar
+                                </button>
                             </div>
 
                             <table class="table table-striped table-light table-framed  table-xs">

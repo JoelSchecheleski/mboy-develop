@@ -13,86 +13,95 @@
                     <mat-divider></mat-divider>
                 </div>
                 <div class="gene-card-content">
-                    <!-- Primeira linha -->
-                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Nome fantasia</mat-label>
-                            <input formControlName="comercialName" #comercialName matInput placeholder="Nome Fantasia" required>
-                        </mat-form-field>
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                        <!-- Primeira linha -->
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Nome fantasia</mat-label>
+                                <input formControlName="comercialName" #comercialName matInput
+                                       placeholder="Nome Fantasia" required>
+                            </mat-form-field>
 
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>E-Mail</mat-label>
-                            <input formControlName="email" matInput placeholder="E-mail" required>
-                        </mat-form-field>
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>E-Mail</mat-label>
+                                <input formControlName="email" matInput placeholder="E-mail" required>
+                            </mat-form-field>
+                        </div>
 
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>CNPJ</mat-label>
-                            <input formControlName="cpfCnpj" matInput placeholder="CNPJ">
-                        </mat-form-field>
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>CNPJ</mat-label>
+                                <input formControlName="cpfCnpj" matInput placeholder="CNPJ">
+                            </mat-form-field>
 
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Contato</mat-label>
-                            <input formControlName="username" matInput placeholder="Contato">
-                        </mat-form-field>
-                    </div>
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Contato</mat-label>
+                                <input formControlName="username" matInput placeholder="Contato">
+                            </mat-form-field>
+                        </div>
 
-                    <!-- terceira linha -->
-                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Logradouro</mat-label>
-                            <input formControlName="street" matInput placeholder="Logradouro">
-                        </mat-form-field>
+                        <!-- terceira linha -->
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Logradouro</mat-label>
+                                <input formControlName="street" matInput placeholder="Logradouro">
+                            </mat-form-field>
 
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Número</mat-label>
-                            <input type="houseNumber" formControlName="houseNumber" matInput placeholder="Número">
-                        </mat-form-field>
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Número</mat-label>
+                                <input type="houseNumber" formControlName="houseNumber" matInput placeholder="Número">
+                            </mat-form-field>
+                        </div>
 
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Complemento</mat-label>
-                            <input formControlName="complement" matInput placeholder="Complemento">
-                        </mat-form-field>
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Complemento</mat-label>
+                                <input formControlName="complement" matInput placeholder="Complemento">
+                            </mat-form-field>
 
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Bairro</mat-label>
-                            <input formControlName="neighborhood" matInput placeholder="Bairro">
-                        </mat-form-field>
-                    </div>
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Bairro</mat-label>
+                                <input formControlName="neighborhood" matInput placeholder="Bairro">
+                            </mat-form-field>
+                        </div>
 
-                    <!-- Quinta linha -->
-                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
-                        <mat-form-field  class="full-wid" appearance="outline">
-                            <mat-label>Cidade</mat-label>
-                            <input formControlName="usercity" matInput placeholder="Cidade">
-                        </mat-form-field>
+                        <!-- Quinta linha -->
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Cidade</mat-label>
+                                <input formControlName="usercity" matInput placeholder="Cidade">
+                            </mat-form-field>
 
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Estado</mat-label>
-                            <input formControlName="userstate" matInput placeholder="Estado">
-                        </mat-form-field>
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Estado</mat-label>
+                                <input formControlName="userstate" matInput placeholder="Estado">
+                            </mat-form-field>
+                        </div>
 
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>CEP</mat-label>
-                            <input formControlName="zipCode" matInput placeholder="CEP">
-                        </mat-form-field>
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>CEP</mat-label>
+                                <input formControlName="zipCode" matInput placeholder="CEP">
+                            </mat-form-field>
 
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Acessório</mat-label>
-                            <input formControlName="accessoryType" matInput placeholder="Acessório">
-                        </mat-form-field>
-                    </div>
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Acessório</mat-label>
+                                <input formControlName="accessoryType" matInput placeholder="Acessório">
+                            </mat-form-field>
+                        </div>
 
-                    <!-- Status linha -->
-                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Status</mat-label>
-                            <mat-select formControlName="registrationStatus" [(value)]="selectedStatus"
-                                        placeholder="Status">
-                                <mat-option *ngFor="let n of registrationStatusList" [value]="n.value">
-                                    {{n.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                        <!-- Status linha -->
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <mat-form-field class="full-wid" appearance="outline">
+                                <mat-label>Status</mat-label>
+                                <mat-select formControlName="registrationStatus" [(value)]="selectedStatus"
+                                            placeholder="Status">
+                                    <mat-option *ngFor="let n of registrationStatusList" [value]="n.value">
+                                        {{n.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
 
@@ -119,7 +128,8 @@
                     <div fxLayout="row">
                         <div align="left">
                             <mat-dialog-actions>
-                                <button mat-raised-button type="button" (click)="openFileDialog(formulario.value)" class="button-credit">
+                                <button mat-raised-button type="button" (click)="openFileDialog(formulario.value)"
+                                        class="button-credit">
                                     <mat-icon svgIcon="add" style="width: 18px"></mat-icon>
                                     Nova recarga
                                 </button>

@@ -71,13 +71,21 @@ export class CompanyDialogComponent implements OnInit {
                     return moment(data.value).format('DD/MM/YYYY HH:mm');
                 }
             },
-            {headerName: 'Origem', field: 'origin'},
-            {
-                headerName: 'Operação', field: 'operation', cellRenderer: dados => {
-                    return dados.value === 'ADD' ? 'Pago' : 'Pendente'
+            {headerName: 'Origem', field: 'origin', cellRenderer: dados => {
+                    return dados.value === 'COMPANY' ? 'Empresa' : ''
                 }
             },
-            {headerName: 'Valor', field: 'value'},
+            {
+                headerName: 'Operação', field: 'operation', cellRenderer: dados => {
+                    return dados.value === 'ADD' ? 'Pago' :
+                           dados.value === 'COMPANY' ? 'Empresa' : ''
+                }
+            },
+            {
+                headerName: 'Valor', field: 'value', cellRenderer: function (params) {
+                    return `${'R$ ' + params.value.toFixed(2)}`;
+                }
+            }
         ];
 
         this.columnRideDefs = [
