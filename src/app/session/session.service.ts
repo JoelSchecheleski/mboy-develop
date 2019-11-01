@@ -53,7 +53,7 @@ export class ApiMboy {
                         title: 'Server offline!',
                         text: 'O servidor não está disponível.',
                         imageUrl: '../../assets/img/errors/404.svg',
-                        cancelButtonColor: '#D5652B',
+                        confirmButtonColor: '#D5652B',
                         showCloseButton: true,
                         imageWidth: 400,
                         imageHeight: 200,
