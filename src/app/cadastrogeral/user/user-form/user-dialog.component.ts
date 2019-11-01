@@ -103,7 +103,7 @@ export class UserDialogComponent implements OnInit {
         if (this.status === 'Novo') {
             this.api.client_http.post(`${endpoint}user-registration`, JSON.stringify(form.value)) // form.getRawValue()
                 .subscribe(data => {
-                        console.log(data);
+                        // console.log(data);
                         Swal.fire({
                             position: 'center',
                             title: 'Usuário cadastrado com sucesso.',
@@ -115,14 +115,15 @@ export class UserDialogComponent implements OnInit {
                         });
                         this.dialogRef.close(`${form.value.descricao}`);
                     }, error => {
+                        console.log(error);
                         Swal.fire({
                             position: 'center',
-                            title: 'Ops, algo deu errado.',
+                            title: 'Ops, algo deu errado. ' + error.error.errors[0],
                             imageUrl: '../../assets/viagens_error.svg',
                             showConfirmButton: false,
                             imageWidth: 150,
                             animation: false,
-                            timer: 2500
+                            timer: 4500
                         });
                     }
                 );
