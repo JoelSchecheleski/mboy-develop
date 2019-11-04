@@ -146,6 +146,7 @@ export class MotoboyComponent implements OnInit {
                             selectedRows = data;
                             // console.table(selectedRows);
                             this.openFileDialog(selectedRows);
+
                         });
                     break;
 
@@ -223,7 +224,7 @@ export class MotoboyComponent implements OnInit {
 
     public getAllUsers() {
         const endpoint = new Config().getEndpoint();
-        this._http.get(`${endpoint}user/type/motoboy`)
+        this._http.get(`${endpoint}user/type/MOTOBOY`)
             .subscribe(
                 data => { // @ts-ignore
                     this.rowUser = data;

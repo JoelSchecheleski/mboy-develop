@@ -16,6 +16,9 @@ import * as moment from 'moment';
     providers: [MotoboyServices]
 })
 export class MotoboyDialogComponent implements OnInit {
+    public vehicleDocument: any;
+    public cnhDocument: any;
+
     private readonly status: any;
     public registrationStatusList = [
         {value: 'UNDER_ANALYSIS', viewValue: 'Sob Análise'},
@@ -115,6 +118,9 @@ export class MotoboyDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.vehicleDocument = this.data.vehicleDocument;
+        this.cnhDocument = this.data.cnhDocument;
+
         this.formulario = this.formBuilder.group({
             id: new FormControl({value: this.data.id ? this.data.id : '', disabled: this.status !== 'Novo'}),
             name: new FormControl({value: this.data.name ? this.data.name : '', disabled: this.status !== 'Novo'}),
@@ -144,6 +150,32 @@ export class MotoboyDialogComponent implements OnInit {
             userTypeMboy: 'MOTOBOY',
         });
         this.selectedStatus = this.data.registrationStatus;
+    }
+
+    /**
+     * Visualiza o documento do veículo
+     */
+    visualizarVehicleDocument() {
+        console.log('Abrir visualizador de documento veículo');
+        Swal.fire({
+            imageUrl: this.vehicleDocument,
+            confirmButtonColor: '#D5652B',
+            imageHeight: 400,
+            imageWidth: 700,
+            imageAlt: 'Documento do veículo'
+        })
+    }
+
+    // Visualiza o documento CNH
+    visualizarCnhDocument() {
+        console.log('Abrir visualizador de documento cnh');
+        Swal.fire({
+            imageUrl: this.cnhDocument,
+            confirmButtonColor: '#D5652B',
+            imageHeight: 400,
+            imageWidth: 700,
+            imageAlt: 'Documento da CNH do motorista'
+        })
     }
 
     tabChanged(tabChangeEvent: MatTabChangeEvent): void {

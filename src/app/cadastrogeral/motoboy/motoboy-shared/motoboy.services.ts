@@ -48,7 +48,9 @@ export class MotoboyServices extends ResourceService<MotoboyModel> {
             currentRank: file ? file.currentRank : '',
             vindiId: file ? file.vindiId : '',
             userstate: file ? file.userstate : '',
-            usercity: file ? file.usercity : ''
+            usercity: file ? file.usercity : '',
+            vehicleDocument: file ? file.vehicleDocument : '',
+            cnhDocument: file ? file.cnhDocument : ''
         };
 
         return this.dados;

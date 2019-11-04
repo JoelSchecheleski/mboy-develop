@@ -104,6 +104,11 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
+
+                        <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
+                            <a  class="btn-edit" *ngIf="vehicleDocument != null" (click)="visualizarVehicleDocument()">Visualizar documento do veículo</a><br/>
+                            <a  class="btn-edit" *ngIf="cnhDocument != null" (click)="visualizarCnhDocument()">Visualizar documento CNH</a>
+                        </div>
                     </div>
                 </div>
                 <mat-dialog-actions>

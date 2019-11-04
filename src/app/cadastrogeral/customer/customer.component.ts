@@ -223,7 +223,7 @@ export class CustomerComponent implements OnInit {
 
     public getAllUsers() {
         const endpoint = new Config().getEndpoint();
-        this._http.get(`${endpoint}user/type/customer`)
+        this._http.get(`${endpoint}user/type/CUSTOMER`)
             .subscribe(
                 data => { // @ts-ignore
                     this.rowUser = data;

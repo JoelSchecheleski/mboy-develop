@@ -222,7 +222,7 @@ export class CompanyComponent implements OnInit {
 
     getAllUsers() {
         const endpoint = new Config().getEndpoint();
-        this._http.get(`${endpoint}user/type/company`)
+        this._http.get(`${endpoint}user/type/COMPANY`)
             .subscribe(
                 data => { // @ts-ignore
                     this.rowUser = data;

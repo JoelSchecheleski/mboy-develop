@@ -215,7 +215,7 @@ export class UserComponent implements OnInit {
 
     public getAllUsers() {
         const endpoint = new Config().getEndpoint();
-        this._http.get(`${endpoint}user/type/admin`)
+        this._http.get(`${endpoint}user/type/ADMIN`)
             .subscribe(
                 data => { // @ts-ignore
                     this.rowUser = data;
