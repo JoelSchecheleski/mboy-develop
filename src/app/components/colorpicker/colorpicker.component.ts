@@ -22,7 +22,7 @@ export class ColorpickerComponent implements OnInit{
    constructor(private pageTitleService: PageTitleService, private translate : TranslateService) {}
 
    ngOnInit() {
-      this.pageTitleService.setTitle("Color Picker");
+      // this.pageTitleService.setTitle("Color Picker");
    }
 
 }

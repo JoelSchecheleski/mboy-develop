@@ -27,7 +27,7 @@ export class SelectComponent implements OnInit{
 	constructor(private pageTitleService: PageTitleService, private translate : TranslateService) { }
 
   	ngOnInit() {
-      this.pageTitleService.setTitle("Select");
+      // this.pageTitleService.setTitle("Select");
    }
 }
 

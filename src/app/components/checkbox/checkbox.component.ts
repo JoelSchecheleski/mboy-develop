@@ -24,7 +24,7 @@ export class CheckboxComponent implements OnInit {
    constructor(private pageTitleService: PageTitleService, private translate : TranslateService) {}
 
    ngOnInit() {
-      this.pageTitleService.setTitle("Checkbox");
+      // this.pageTitleService.setTitle("Checkbox");
    }
 }
 

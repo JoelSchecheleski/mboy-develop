@@ -20,7 +20,7 @@ export class ToolbarComponent implements OnInit {
                 private translate : TranslateService) {}
 
    ngOnInit() {
-      this.pageTitleService.setTitle("Toolbar");
+      // this.pageTitleService.setTitle("Toolbar");
    }
 
 }

@@ -39,7 +39,7 @@ export class ListOverviewComponent implements OnInit{
 					 private translate : TranslateService) {}
 
 	ngOnInit() {
- 		this.pageTitleService.setTitle("List");
+ 		// this.pageTitleService.setTitle("List");
 	}
 
 }

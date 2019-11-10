@@ -25,7 +25,7 @@ export class DialogOverviewComponent implements OnInit{
                 public translate : TranslateService) { }
 
   	ngOnInit() {
-    	this.pageTitleService.setTitle("Dialog");
+    	// this.pageTitleService.setTitle("Dialog");
    }
 
    dialogHTML : string = `

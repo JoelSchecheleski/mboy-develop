@@ -25,7 +25,7 @@ export class SliderOverviewComponent implements OnInit {
                 private translate : TranslateService) {}
 
    ngOnInit() {
-      this.pageTitleService.setTitle("Slider");
+      // this.pageTitleService.setTitle("Slider");
    }
 }
 

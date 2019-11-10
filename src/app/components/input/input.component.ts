@@ -19,7 +19,7 @@ export class InputComponent implements OnInit{
                 public translate : TranslateService) {}
 
 	ngOnInit() {
- 	   this.pageTitleService.setTitle("Input");
+ 	   // this.pageTitleService.setTitle("Input");
 	}
  	
 }

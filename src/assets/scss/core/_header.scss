@@ -4,9 +4,19 @@
   margin-right: 1rem;
 }
 
+.mat-card {
+  -webkit-box-shadow: -12px -7px 25px -8px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: -12px -7px 25px -8px rgba(0, 0, 0, 0.5);
+  box-shadow: -12px -7px 25px -8px rgba(0, 0, 0, 0.5);
+}
+
+//.sidebar-logo {
+//  height: 8.0rem;
+//}
+
 .gene-header-toolbar {
   &.mat-toolbar-row, &.mat-toolbar-single-row {
-    height: 75px;
+    height: 7.0rem;
   }
 
   .mat-button, .mat-icon-button, .mat-raised-button, .mat-input-element {
@@ -248,5 +258,5 @@ body .gene-header-toolbar.mat-toolbar {
 
 //header toolbar
 body .gene-header-toolbar {
-  padding: 0 1.5rem;
+  padding: 0 1.10rem;
 }

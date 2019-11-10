@@ -18,7 +18,7 @@ export class MaterialIconComponent implements OnInit {
 	constructor(private pageTitleService: PageTitleService,private translate : TranslateService) {}
 
 	ngOnInit() {
-		this.pageTitleService.setTitle("Material Icons");
+		// this.pageTitleService.setTitle("Material Icons");
 	} 
 	 
 

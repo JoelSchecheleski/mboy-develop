@@ -43,7 +43,7 @@ export class MenuOverviewComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.pageTitleService.setTitle('Menu');
+        // this.pageTitleService.setTitle('Menu');
     }
 }
 

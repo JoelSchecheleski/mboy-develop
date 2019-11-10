@@ -1,19 +1,39 @@
 <div fxLayout="row">
     <mat-card class="card" style="width: 100% !important;">
-        <div fxLayout="row">
-            <div fxFlex="100">
-                <mat-form-field>
+        <div class="gene-card-title">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <div fxLayout="column">
+                    <h3>{{'Usuários'|translate}}</h3>
+                </div>
+                <span fxFlex></span>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayoutAlign="start center">
+                <button btn class="btn-mboy" (click)="openFileDialog()">
+                    Cadastrar usuário
+                </button>
+            </div>
+            <div fxLayoutAlign="end center">
+                <mat-form-field class="full-wid" appearance="outline" style="width: 150% !important">
+                    <mat-label>Buscar...</mat-label>
                     <input matInput placeholder="Procurar por" (input)="onQuickFilterChanged($event)"
                            id="quickFilter">
                 </mat-form-field>
-            </div>
-            <div align="ringth">
-                <button mat-mini-fab (click)="openFileDialog()" style="background-color: white;">
-                    <mat-icon aria-label="">add</mat-icon>
-                </button>
+
+                <mat-form-field class="full-wid" appearance="outline">
+                    <mat-label>Filtro</mat-label>
+                    <mat-select formControlName="status" [(value)]="selectedstatusFilter"
+                                placeholder="Filtrar"
+                                (selectionChange)="onSelectStatusChanged($event)">
+                        <mat-option *ngFor="let n of statusFilter" [value]="n.value">
+                            {{n.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
         </div>
-
         <ag-grid-angular style="width: 100%; height: 100%"
                          class="ag-theme-material"
                          [defaultColDef]="defaultColDef"
@@ -32,7 +52,7 @@
                          [animateRows]="true"
                          [pagination]="true"
                          [sideBar]="true"
-                         [rowHeight]="40"
+                         [rowHeight]="50"
                          [paginationPageSize]="15"
                          (selectionChanged)="onSelectionChanged($event)"
                          (rowClicked)="onRowClicked($event)"

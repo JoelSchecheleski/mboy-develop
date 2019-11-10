@@ -1,43 +1,44 @@
 <form [formGroup]="formulario" (ngSubmit)="submit(formulario)">
-    <!-- TAB INFORMAÇÕES GERAIS -->
-<!--    <mat-tab-group>-->
-<!--        <mat-tab label="Configuração">-->
-            <mat-card>
-                <div class="gene-card-title">
-                    <div fxLayout="row" fxLayoutAlign="start left">
-                        <div fxLayout="column">
-                            <h3>{{'Ajuste de precificação ' |translate}} </h3> <!--{{config}}-->
-                        </div>
-                        <span fxFlex></span>
-                    </div>
-                    <mat-divider></mat-divider>
+    <mat-card>
+        <div class="gene-card-title">
+            <div fxLayout="row" fxLayoutAlign="start left">
+                <div fxLayout="column">
+                    <h3>{{'Ajuste de precificação ' | translate}} </h3> <!--{{config}}-->
                 </div>
-                <div class="gene-card-content">
-                    <div fxFlex.gt-sm="49" fxFlex.gt-xs="49" fxFlex="100" fxFlex.gt-md="49">
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Tabela por KM Ativa*</mat-label>
-                            <mat-select formControlName="settingPerKmName" [(ngModel)]="selectedSettingKm"
-                                        placeholder="Config. de Km">
-                                <mat-option *ngFor="let n of kmSettingStatusList" [value]="n.id">
-                                    {{n.description}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field class="full-wid" appearance="outline">
-                            <mat-label>Tabela por hora Ativa*</mat-label>
-                            <mat-select formControlName="settingPerHourName" [(ngModel)]="selectedSettingHr"
-                                        placeholder="Config. de Hora">
-                                <mat-option *ngFor="let n of hrSettingStatusList" [value]="n.id">
-                                    {{n.description}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
+                <span fxFlex></span>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+        <div class="gene-card-content">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxFlex.gt-sm="45" fxFlex.gt-xs="45" fxFlex="45" fxFlex.gt-md="45">
+                    <mat-form-field class="full-wid" appearance="outline">
+                        <mat-label>Tabela por KM Ativa*</mat-label>
+                        <mat-select formControlName="settingPerKmName" [(ngModel)]="selectedSettingKm"
+                                    placeholder="Config. de Km">
+                            <mat-option *ngFor="let n of kmSettingStatusList" [value]="n.id">
+                                {{n.description}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
-                <mat-dialog-actions>
-                    <button mat-button type="submit" class="btn-salvar">Salvar</button>
-                </mat-dialog-actions>
-            </mat-card>
-<!--        </mat-tab>-->
-<!--    </mat-tab-group>-->
+                <div fxFlex.gt-sm="45" fxFlex.gt-xs="45" fxFlex="45" fxFlex.gt-md="45">
+                    <mat-form-field class="full-wid" appearance="outline">
+                        <mat-label>Tabela por hora Ativa*</mat-label>
+                        <mat-select formControlName="settingPerHourName" [(ngModel)]="selectedSettingHr"
+                                    placeholder="Config. de Hora">
+                            <mat-option *ngFor="let n of hrSettingStatusList" [value]="n.id">
+                                {{n.description}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <mat-dialog-actions>
+            <button mat-button type="submit" class="btn-salvar">Salvar</button>
+        </mat-dialog-actions>
+    </mat-card>
+    <!--        </mat-tab>-->
+    <!--    </mat-tab-group>-->
 </form>

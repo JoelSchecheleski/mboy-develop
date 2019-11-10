@@ -39,7 +39,7 @@ export class TablekmComponent implements OnInit {
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
 
-        this.pageTitleService.setTitle('Configuração');
+        // this.pageTitleService.setTitle('Configuração');
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {

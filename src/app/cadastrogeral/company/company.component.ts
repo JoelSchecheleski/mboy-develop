@@ -39,7 +39,7 @@ export class CompanyComponent implements OnInit {
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
-        this.pageTitleService.setTitle('Gerenciamento de empresas');
+        // this.pageTitleService.setTitle('Gerenciamento de empresas');
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {

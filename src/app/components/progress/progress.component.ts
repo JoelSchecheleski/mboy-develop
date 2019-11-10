@@ -25,7 +25,7 @@ export class ProgressComponent implements OnInit{
                 public translate : TranslateService) {}
 
    ngOnInit() {
-      this.pageTitleService.setTitle("Progress");
+      // this.pageTitleService.setTitle("Progress");
    }
 
    /**

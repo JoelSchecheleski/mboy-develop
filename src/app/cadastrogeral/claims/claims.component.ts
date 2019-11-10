@@ -41,7 +41,7 @@ export class ClaimsComponent implements OnInit {
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
-        this.pageTitleService.setTitle('Gerenciar reclamações');
+        // this.pageTitleService.setTitle('Gerenciar reclamações');
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {

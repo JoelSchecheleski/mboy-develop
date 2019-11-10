@@ -40,7 +40,7 @@ export class MotoboyComponent implements OnInit {
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
-        this.pageTitleService.setTitle('Gerenciamento de Motoboy');
+        // this.pageTitleService.setTitle('Gerenciamento de Motoboy');
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {

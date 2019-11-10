@@ -40,7 +40,7 @@ export class CustomerComponent implements OnInit {
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
-        this.pageTitleService.setTitle('Gerenciamento de clientes');
+        // this.pageTitleService.setTitle('Gerenciamento de clientes');
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {

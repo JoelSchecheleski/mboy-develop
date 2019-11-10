@@ -22,7 +22,7 @@ export class SnackbarOverviewComponent implements OnInit{
                 private translate : TranslateService) {}
 
   	ngOnInit() {
- 	   this.pageTitleService.setTitle("Snackbar");
+ 	   // this.pageTitleService.setTitle("Snackbar");
 	}
 
    /**

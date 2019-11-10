@@ -43,7 +43,7 @@ export class CidadesComponent implements OnInit {
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
-        this.pageTitleService.setTitle('Liberação de cidades');
+        // this.pageTitleService.setTitle('Liberação de cidades');
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {

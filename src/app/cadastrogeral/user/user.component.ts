@@ -30,6 +30,18 @@ export class UserComponent implements OnInit {
     private gridColumnApi;
     private url = new Config().getEndpoint();
 
+    public statusFilter = [
+        {value: 'Aprovado', viewValue: 'Aprovado'},
+        {value: 'Em análise', viewValue: 'Em análise'},
+        {value: 'Rejeitado', viewValue: 'Rejeitado'},
+        {value: 'Bloqueado', viewValue: 'Bloqueado'},
+        {value: 'Acesso negado', viewValue: 'Acesso negado'}
+    ]
+    selectedstatusFilter: any;
+
+    private cssCheque = 'position: relative; -webkit-appearance: none;  outline: none;  width: 50px;  height: 30px;  ' +
+        'background-color: #fff;  border: 1px solid #D9DADC;  border-radius: 50px;  box-shadow: inset -20px 0 0 0 #fff;';
+
     fileNameDialogRef: MatDialogRef<UserDialogComponent>;
 
     // Construtor da classe Usuario
@@ -39,7 +51,7 @@ export class UserComponent implements OnInit {
                 private pageTitleService: PageTitleService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar) {
-        this.pageTitleService.setTitle('Cadastro de usuários');
+        // // this.pageTitleService.setTitle('Cadastro de usuários');
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {
@@ -52,7 +64,7 @@ export class UserComponent implements OnInit {
         };
 
         this.columnDefs = [
-            {headerName: 'Usuário', field: 'username'},
+            {headerName: 'Usuário', field: 'username', hide: true},
             {headerName: 'Nome', field: 'name'},
             {headerName: 'Email', field: 'email'},
             {
@@ -67,7 +79,6 @@ export class UserComponent implements OnInit {
                                             params.value === '' ? 'Indefinido' : ''}`;
                 }
             },
-            // {headerName: 'Tipo de usuário', field: 'userType'},
             {
                 headerName: 'Ação',
                 lockPosition: false,
@@ -189,6 +200,15 @@ export class UserComponent implements OnInit {
      */
     onQuickFilterChanged(event) {
         const val = event.target.value.toLowerCase();
+        this.gridApi.setQuickFilter(val);
+    }
+
+    /**
+     * Realiza a busca por status de registro específico
+     * @param event Evento
+     */
+    onSelectStatusChanged(event) {
+        const val = event.value;
         this.gridApi.setQuickFilter(val);
     }
 

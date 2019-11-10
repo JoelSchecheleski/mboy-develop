@@ -55,7 +55,7 @@ export class SweepstakesComponent implements OnInit {
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar,
                 private router: Router) {
-        this.pageTitleService.setTitle('Sorteios');
+        // this.pageTitleService.setTitle('Sorteios');
         const params = {
             skipHeader: false,
             skipFooters: true,

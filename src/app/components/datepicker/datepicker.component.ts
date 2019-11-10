@@ -18,7 +18,7 @@ export class DatepickerComponent implements OnInit{
 	constructor(private pageTitleService: PageTitleService, private translate : TranslateService) {}
 
    	ngOnInit() {
-    	this.pageTitleService.setTitle("Date Picker");
+    	// this.pageTitleService.setTitle("Date Picker");
    	}
  	
 }

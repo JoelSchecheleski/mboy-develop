@@ -46,7 +46,7 @@ export class GridListComponent implements OnInit{
 					 public translate : TranslateService) {}
 
 	ngOnInit() {
-		this.pageTitleService.setTitle("Grid");
+		// this.pageTitleService.setTitle("Grid");
 	}
 }
 

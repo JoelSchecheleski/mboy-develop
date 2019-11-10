@@ -28,7 +28,7 @@ export class RadioComponent implements OnInit {
                 private translate : TranslateService) {}
 
    ngOnInit() {
-      this.pageTitleService.setTitle("Radio Buttons");
+      // this.pageTitleService.setTitle("Radio Buttons");
    }
 
 }
